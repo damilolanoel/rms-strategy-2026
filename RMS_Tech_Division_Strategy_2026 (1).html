@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RMS Tech Division — Microsoft CSP & B2B Tech Services</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c1117;--ink2:#3a3d4a;--ink3:#6b7280;--rule:#e5e7eb;--rule2:#d1d5db;
+  --bg:#ffffff;--bg2:#f8f9fb;--bg3:#f0f2f5;
+  --navy:#1a3a6b;--navy2:#0f2548;--gold:#c8933a;--gold2:#a87428;
+  --tech:#0f4c8a;--tech2:#e8f0fb;
+  --ms:#185f9a;--ms2:#e1effc;
+  --b2b:#1b6b4a;--b2b2:#e6f5ef;
+  --green:#0d5c3b;--green-bg:#ecfdf5;
+  --amber:#92400e;--amber-bg:#fffbeb;
+  --red:#991b1b;--red-bg:#fef2f2;
+  --purple:#4c1d95;--purple-bg:#f5f3ff;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
+
+/* Cover */
+.cover{background:var(--navy2);color:white;padding:56px 52px 44px;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:380px;height:380px;border-radius:50%;border:1px solid rgba(255,255,255,0.06)}
+.cover::after{content:'';position:absolute;bottom:-60px;left:60px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(255,255,255,0.05)}
+.cover-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:14px}
+.cover-title{font-family:'DM Serif Display',serif;font-size:42px;line-height:1.1;margin-bottom:8px}
+.cover-title em{color:var(--gold);font-style:italic}
+.cover-sub{font-size:15px;color:rgba(255,255,255,0.65);margin-bottom:32px;font-weight:300}
+.cover-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.pill{font-size:11px;padding:5px 14px;border-radius:20px;font-weight:500;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8)}
+.pill.ms{background:rgba(24,95,154,0.35);border-color:rgba(24,95,154,0.5)}
+.pill.b2b{background:rgba(27,107,74,0.35);border-color:rgba(27,107,74,0.5)}
+.cover-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+.cstat-val{font-size:24px;font-weight:600;color:var(--gold)}
+.cstat-label{font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--rule)}
+.nav-inner{display:flex;overflow-x:auto;padding:0 20px}
+.nav-item{padding:13px 16px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;color:var(--ink3);border-bottom:2px solid transparent;transition:all .2s}
+.nav-item:hover{color:var(--navy)}
+.nav-item.active{color:var(--navy);border-bottom-color:var(--navy)}
+.nav-item.ms-tab{color:var(--ms)}
+.nav-item.ms-tab.active{border-bottom-color:var(--ms)}
+.nav-item.b2b-tab{color:var(--b2b)}
+.nav-item.b2b-tab.active{border-bottom-color:var(--b2b)}
+
+/* Layout */
+.page{max-width:960px;margin:0 auto;padding:44px 28px}
+.section{display:none}.section.active{display:block}
+.sec-eye{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.sec-title{font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:8px}
+.sec-desc{font-size:14px;color:var(--ink3);max-width:640px;margin-bottom:28px}
+
+/* Typography */
+h2{font-family:'DM Serif Display',serif;font-size:21px;margin:28px 0 12px}
+h3{font-size:14px;font-weight:600;color:var(--ink);margin:16px 0 8px}
+p{font-size:14px;color:var(--ink2);margin-bottom:12px;line-height:1.7}
+
+/* Stat cards */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.stat{background:var(--bg2);border:1px solid var(--rule);border-radius:8px;padding:14px 16px}
+.stat-label{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.stat-num{font-size:24px;font-weight:600;line-height:1}
+.stat-sub{font-size:12px;color:var(--ink3);margin-top:3px}
+
+/* Cards */
+.card{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:18px 20px}
+.card-ms{border-left:3px solid var(--ms)}
+.card-b2b{border-left:3px solid var(--b2b)}
+.card-gold{border-left:3px solid var(--gold)}
+.card-navy{border-left:3px solid var(--navy)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+
+/* Product cards */
+.prod{border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.prod-hdr{padding:14px 16px}
+.prod-name{font-size:14px;font-weight:600;margin-bottom:4px}
+.prod-tagline{font-size:12px;color:var(--ink3)}
+.prod-body{padding:13px 16px;border-top:1px solid var(--rule);background:var(--bg2)}
+.prod-price{font-size:19px;font-weight:700;margin-bottom:2px}
+.prod-note{font-size:12px;color:var(--ink3)}
+.prod-list{list-style:none;margin-top:10px}
+.prod-list li{font-size:12.5px;color:var(--ink2);padding:3px 0 3px 14px;position:relative}
+.prod-list li::before{content:'→';position:absolute;left:0;font-size:10px;top:5px;color:var(--gold)}
+
+/* Table */
+.tbl-wrap{border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:20px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;padding:9px 12px;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3);border-bottom:1.5px solid var(--rule2);background:var(--bg2)}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--bg3)}
+
+/* Checklist */
+.check-list{list-style:none}
+.check-item{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--rule)}
+.check-item:last-child{border-bottom:none}
+.cbox{width:21px;height:21px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.cbox.done{background:#0d5c3b;color:white}
+.cbox.urgent{background:var(--gold);color:white}
+.cbox.todo{background:white;border:1.5px solid var(--rule2)}
+.check-title{font-weight:500;font-size:13.5px;color:var(--ink)}
+.check-note{font-size:12px;color:var(--ink3);margin-top:2px}
+.tag{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;margin-left:8px;vertical-align:middle}
+.tag-done{background:var(--green-bg);color:var(--green)}
+.tag-urg{background:var(--amber-bg);color:var(--amber)}
+.tag-wk{background:var(--ms2);color:var(--ms)}
+.tag-mo{background:var(--purple-bg);color:var(--purple)}
+
+/* Timeline */
+.timeline{padding-left:26px;position:relative}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:1px;background:var(--rule2)}
+.tl-item{position:relative;margin-bottom:18px}
+.tl-dot{position:absolute;left:-22px;top:4px;width:13px;height:13px;border-radius:50%;border:2px solid var(--navy);background:white}
+.tl-dot.filled{background:var(--navy)}
+.tl-q{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--navy);margin-bottom:6px}
+.tl-tasks{display:flex;flex-direction:column;gap:5px}
+.tl-task{font-size:13px;color:var(--ink2);padding:5px 10px;background:var(--bg2);border-radius:6px;border-left:2px solid var(--rule2)}
+.tl-task.hi{border-left-color:var(--gold)}
+
+/* Highlight box */
+.hl{border-radius:12px;padding:22px 24px;margin-bottom:22px}
+.hl-ms{background:var(--ms2);border:1px solid #b5d4f4}
+.hl-b2b{background:var(--b2b2);border:1px solid #9fe1cb}
+.hl-gold{background:var(--amber-bg);border:1px solid #fde68a}
+
+/* Revenue comparison */
+.rev-seg{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--rule)}
+.rev-seg:last-child{border-bottom:none}
+.rev-label{width:180px;font-size:13px;color:var(--ink2);flex-shrink:0}
+.rev-bar-wrap{flex:1;height:8px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.rev-bar-fill{height:100%;border-radius:4px}
+.rev-val{width:70px;text-align:right;font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0}
+
+/* P&L */
+.pl-wrap{border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:24px}
+.pl-row{display:flex;justify-content:space-between;padding:8px 14px;font-size:13.5px;border-bottom:1px solid var(--rule)}
+.pl-row:last-child{border-bottom:none}
+.pl-row.total{font-weight:600;background:var(--bg2)}
+.pl-row.sec-hdr{background:var(--navy);color:white;font-weight:600;font-size:12px;letter-spacing:.5px;padding:7px 14px}
+.pl-row.grand{background:var(--navy2);color:white;font-weight:600;font-size:15px}
+.pl-pos{color:var(--green);font-weight:600}
+.pl-neg{color:var(--red)}
+
+/* Badge */
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600}
+.badge-ms{background:var(--ms2);color:var(--ms)}
+.badge-b2b{background:var(--b2b2);color:var(--b2b)}
+.badge-gold{background:var(--amber-bg);color:var(--amber)}
+.badge-new{background:#fef9c3;color:#713f12}
+
+/* Footer */
+.doc-footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:12px;color:var(--ink3)}
+
+/* Divider */
+.divider{height:1px;background:var(--rule);margin:24px 0}
+
+@media(max-width:640px){
+  .stats,.grid2,.grid3,.grid4{grid-template-columns:1fr}
+  .cover{padding:32px 20px 28px}
+  .cover-title{font-size:30px}
+  .cover-stats{grid-template-columns:1fr 1fr}
+  .page{padding:28px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">RMS Tech Division · Confidential CEO Document · 2026</div>
+  <div class="cover-title">RMS <em>Tech</em> Division</div>
+  <div class="cover-sub">Microsoft Licensing Provisioning + B2B Technology Services — Full Strategy & Setup</div>
+  <div class="cover-pills">
+    <span class="pill ms">Microsoft CSP Indirect Reseller</span>
+    <span class="pill b2b">B2B Managed Tech Services</span>
+    <span class="pill">Microsoft 365 · Azure · Copilot</span>
+    <span class="pill">Cloud Migration · IT Support</span>
+  </div>
+  <div class="cover-stats">
+    <div><div class="cstat-val">₦42m</div><div class="cstat-label">2026 Tech revenue target</div></div>
+    <div><div class="cstat-val">₦219m</div><div class="cstat-label">New RMS total plan</div></div>
+    <div><div class="cstat-val">~35%</div><div class="cstat-label">MS licensing gross margin</div></div>
+    <div><div class="cstat-val">~65%</div><div class="cstat-label">B2B services gross margin</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-item active" onclick="show('overview',this)">Overview</div>
+    <div class="nav-item ms-tab" onclick="show('ms',this)">Microsoft CSP</div>
+    <div class="nav-item ms-tab" onclick="show('ms-setup',this)">CSP Setup Steps</div>
+    <div class="nav-item b2b-tab" onclick="show('b2b',this)">B2B Tech Services</div>
+    <div class="nav-item b2b-tab" onclick="show('products',this)">Product Catalog</div>
+    <div class="nav-item" onclick="show('clients',this)">Target Clients</div>
+    <div class="nav-item" onclick="show('revenue',this)">Revenue Plan</div>
+    <div class="nav-item" onclick="show('org',this)">Org & Hiring</div>
+  </div>
+</nav>
+
+<div class="page">
+
+<!-- ══ OVERVIEW ══ -->
+<section class="section active" id="section-overview">
+<div class="sec-eye" style="color:var(--gold)">Strategic Rationale</div>
+<div class="sec-title" style="color:var(--navy)">Why RMS is adding a Tech Division</div>
+<div class="sec-desc">Our existing research clients — and the 39.6m SMEs we serve — all have the same unmet need: working technology. We are already inside their organisations. Adding Microsoft licensing and B2B tech services turns us from a quarterly engagement into a monthly recurring relationship.</div>
+
+<div class="hl hl-gold" style="margin-bottom:22px">
+  <h3 style="color:var(--amber);margin-top:0">The CEO's strategic logic in one paragraph</h3>
+  <p style="margin:0;font-size:14px;color:var(--ink2)">Every FMCG brand, fintech, SME, and NGO that commissions research from us is simultaneously paying someone else for Microsoft licences, IT support, and cloud services. That money is leaving the room. By becoming a Microsoft CSP Indirect Reseller and adding a lean B2B tech services team, RMS captures recurring monthly revenue from the same clients we already trust us — without acquiring new relationships from scratch. The licensing arm runs on thin margins but builds permanent monthly cash flow. The services arm (cloud migration, IT support, Microsoft 365 deployment) runs on 60–70% margins with minimal field cost. Together they add ₦42m to our 2026 plan and push total revenue to ₦219m.</p>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-label">Original RMS plan</div><div class="stat-num" style="color:var(--navy)">₦177m</div><div class="stat-sub">Research + SME</div></div>
+  <div class="stat"><div class="stat-label">MS licensing revenue</div><div class="stat-num" style="color:var(--ms)">₦18m</div><div class="stat-sub">~150+ seats provisioned</div></div>
+  <div class="stat"><div class="stat-label">B2B tech services</div><div class="stat-num" style="color:var(--b2b)">₦24m</div><div class="stat-sub">Cloud, IT, deployments</div></div>
+  <div class="stat"><div class="stat-label">New total plan</div><div class="stat-num" style="color:var(--gold)">₦219m</div><div class="stat-sub">Stretch: ₦260m</div></div>
+</div>
+
+<h2>How the three divisions reinforce each other</h2>
+<div class="tbl-wrap">
+  <table class="tbl">
+    <thead><tr><th>RMS Division</th><th>What it generates</th><th>How it feeds the others</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Research & Insights</strong></td><td>Project revenue, brand authority, client relationships</td><td>Clients trust RMS → natural upsell to licensing and IT support. Insight Portal requires Microsoft 365 accounts → licensing opportunity.</td></tr>
+      <tr><td><strong>Microsoft CSP Licensing</strong></td><td>Monthly recurring licence revenue, deep client IT access</td><td>Being inside a client's IT tenant reveals software gaps → B2B tech services. Monthly billing creates constant client touchpoint for research upsells.</td></tr>
+      <tr><td><strong>B2B Tech Services</strong></td><td>High-margin project and retainer revenue</td><td>Cloud migration and IT deployments give RMS IT admin access → natural Microsoft renewal conversations. IT-enabled clients are better consumers of research dashboards.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Competitive advantage: what no competitor currently offers in Lagos</h2>
+<div class="grid3">
+  <div class="card card-ms"><h3 style="color:var(--ms);margin-top:0">Research + Licensing combo</h3><p style="font-size:13px;margin:0">CMRG does research. IT firms do licensing. Nobody in Lagos combines both under one roof, billed monthly.</p></div>
+  <div class="card card-b2b"><h3 style="color:var(--b2b);margin-top:0">SME-friendly IT packages</h3><p style="font-size:13px;margin:0">Most IT firms ignore sub-50-seat SMEs. RMS Tech targets the exact SME segment our research desk already serves.</p></div>
+  <div class="card card-gold"><h3 style="color:var(--amber);margin-top:0">Insight + dashboard delivery</h3><p style="font-size:13px;margin:0">Our Power BI dashboards are more compelling to clients who already trust us to provision and manage their Microsoft environment.</p></div>
+</div>
+</section>
+
+<!-- ══ MS CSP ══ -->
+<section class="section" id="section-ms">
+<div class="sec-eye" style="color:var(--ms)">Division 1 — Microsoft CSP</div>
+<div class="sec-title" style="color:var(--navy)">Microsoft Licence Provisioning</div>
+<div class="sec-desc">RMS becomes a Microsoft CSP Indirect Reseller — buying licences from a distributor and reselling to Nigerian and African companies and SMEs, managing billing, provisioning, and first-line support.</div>
+
+<div class="hl hl-ms">
+  <h3 style="color:var(--ms);margin-top:0">What is Microsoft CSP?</h3>
+  <p style="margin:0;font-size:13.5px;color:var(--ink2)">The Cloud Solution Provider (CSP) programme is Microsoft's official channel for reselling Microsoft 365, Azure, Dynamics 365, and other cloud products. As an <strong>Indirect Reseller</strong>, RMS signs up under a distributor (Westcon-Comstor Africa or Ingram Micro) who handles the direct Microsoft relationship and billing. RMS then sells, provisions, and supports licences to our clients, earning a reseller margin on every seat per month. Being in Nigeria's Africa CSP region means we can sell to clients across all 18 African countries in that region.</p>
+</div>
+
+<h2>What RMS can sell as a CSP reseller</h2>
+<div class="grid3" style="margin-bottom:24px">
+  <div class="prod">
+    <div class="prod-hdr" style="background:var(--ms2)">
+      <div class="prod-name" style="color:var(--ms)">Microsoft 365 Business</div>
+      <div class="prod-tagline">Email, Teams, Office apps, OneDrive</div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-price" style="color:var(--ms)">From $6 <span style="font-size:12px;font-weight:400;color:var(--ink3)">/user/month</span></div>
+      <div class="prod-note">RMS margin: ~15–25% on each seat</div>
+      <ul class="prod-list">
+        <li>Business Basic — email + Teams + web Office</li>
+        <li>Business Standard — full desktop apps + Teams</li>
+        <li>Business Premium — security + device management</li>
+        <li>Apps for Business — Office apps only</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prod">
+    <div class="prod-hdr" style="background:#e8f4e8">
+      <div class="prod-name" style="color:var(--b2b)">Microsoft Azure</div>
+      <div class="prod-tagline">Cloud compute, storage, databases, AI</div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-price" style="color:var(--b2b)">Pay-as-you-go <span style="font-size:12px;font-weight:400;color:var(--ink3)">or reserved</span></div>
+      <div class="prod-note">RMS margin: ~10–18% on consumption</div>
+      <ul class="prod-list">
+        <li>Azure Virtual Machines</li>
+        <li>Azure SQL / Cosmos DB</li>
+        <li>Azure AI + Cognitive Services</li>
+        <li>Azure DevOps & Backup</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prod">
+    <div class="prod-hdr" style="background:var(--purple-bg)">
+      <div class="prod-name" style="color:var(--purple)">Microsoft Copilot & AI</div>
+      <div class="prod-tagline">AI assistant add-on for Microsoft 365</div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-price" style="color:var(--purple)">$30 <span style="font-size:12px;font-weight:400;color:var(--ink3)">/user/month</span></div>
+      <div class="prod-note">RMS margin: ~15–20% · fast-growing segment</div>
+      <ul class="prod-list">
+        <li>Copilot for Microsoft 365</li>
+        <li>Copilot for Sales / Service</li>
+        <li>Copilot Studio (custom agents)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prod">
+    <div class="prod-hdr" style="background:var(--amber-bg)">
+      <div class="prod-name" style="color:var(--amber)">Microsoft Dynamics 365</div>
+      <div class="prod-tagline">CRM and ERP for growing businesses</div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-price" style="color:var(--amber)">From $65 <span style="font-size:12px;font-weight:400;color:var(--ink3)">/user/month</span></div>
+      <div class="prod-note">RMS margin: ~15–20% · high ticket value</div>
+      <ul class="prod-list">
+        <li>Sales, Customer Service, Marketing</li>
+        <li>Business Central (SME ERP)</li>
+        <li>Finance & Operations (Enterprise)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prod">
+    <div class="prod-hdr" style="background:var(--red-bg)">
+      <div class="prod-name" style="color:var(--red)">Microsoft Security</div>
+      <div class="prod-tagline">Identity, endpoint, and email protection</div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-price" style="color:var(--red)">From $3 <span style="font-size:12px;font-weight:400;color:var(--ink3)">/user/month</span></div>
+      <div class="prod-note">RMS margin: ~15–22%</div>
+      <ul class="prod-list">
+        <li>Microsoft Defender for Business</li>
+        <li>Entra ID (Azure AD) Premium</li>
+        <li>Intune device management</li>
+        <li>Microsoft Sentinel (SIEM)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prod">
+    <div class="prod-hdr" style="background:var(--green-bg)">
+      <div class="prod-name" style="color:var(--green)">Education & Non-Profit</div>
+      <div class="prod-tagline">Discounted plans for NGOs, schools, govt</div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-price" style="color:var(--green)">Up to 75% <span style="font-size:12px;font-weight:400;color:var(--ink3)">discount vs standard</span></div>
+      <div class="prod-note">NGO pricing unlocked via CSP — competitive edge vs peers</div>
+      <ul class="prod-list">
+        <li>Microsoft 365 for Nonprofits (free tier)</li>
+        <li>Azure credits for qualifying NGOs</li>
+        <li>Teams for Education & Gov</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2>RMS Licensing Packages (bundled for ease of sale)</h2>
+<div class="tbl-wrap">
+  <table class="tbl">
+    <thead><tr><th>Package</th><th>Target</th><th>What's included</th><th>Seat range</th><th>Monthly price to client</th><th>RMS monthly margin est.</th></tr></thead>
+    <tbody>
+      <tr><td><strong>RMS Starter</strong></td><td>SME (1–10 seats)</td><td>M365 Business Basic + setup + 1hr support/month</td><td>1–10</td><td>$8–$10/seat</td><td>$2.50–$4/seat</td></tr>
+      <tr><td><strong>RMS Business</strong></td><td>SME (10–50 seats)</td><td>M365 Business Standard + OneDrive + Teams setup</td><td>10–50</td><td>$14–$18/seat</td><td>$3–$6/seat</td></tr>
+      <tr><td><strong>RMS Professional</strong></td><td>Mid-market (50–200)</td><td>M365 Business Premium + Defender + Intune + monthly check-in</td><td>50–200</td><td>$20–$26/seat</td><td>$5–$8/seat</td></tr>
+      <tr><td><strong>RMS Enterprise</strong></td><td>Corporate (200+)</td><td>M365 E3/E5 + Azure + Copilot + dedicated account mgr</td><td>200+</td><td>Quoted</td><td>$6–$12/seat</td></tr>
+      <tr><td><strong>RMS NGO/Edu</strong></td><td>NGOs, schools, govt</td><td>Microsoft 365 Nonprofit + Azure credits + Teams training</td><td>Any</td><td>Subsidised rate + RMS service fee</td><td>Service fee + margin</td></tr>
+      <tr><td><strong>Copilot Add-on</strong></td><td>Any existing client</td><td>Microsoft 365 Copilot provisioned on existing tenant</td><td>Any</td><td>$32–$35/seat</td><td>$5–$7/seat</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ══ MS SETUP ══ -->
+<section class="section" id="section-ms-setup">
+<div class="sec-eye" style="color:var(--ms)">Step-by-step CSP registration</div>
+<div class="sec-title" style="color:var(--navy)">How to become a Microsoft CSP Indirect Reseller</div>
+<div class="sec-desc">This is the exact sequence to follow. Total time from start to first licence sold: approximately 3–10 business days. All steps are online.</div>
+
+<ul class="check-list">
+  <li class="check-item">
+    <span class="cbox urgent">1</span>
+    <div>
+      <div class="check-title">Create a Microsoft work account (M365 tenant) <span class="tag tag-urg">Day 1</span></div>
+      <div class="check-note">Go to microsoft.com/en-ng/microsoft-365 and sign up for a Microsoft 365 Business trial. Use your business email domain (@reliablemarketsurvey.com). This creates your "work account" (Azure AD tenant) needed for Partner Center. Note: you must have set up your company domain first — this ties to your professional email you already set up on Google Workspace OR create a separate Microsoft 365 tenant for the company.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox urgent">2</span>
+    <div>
+      <div class="check-title">Join the Microsoft AI Cloud Partner Programme (MAICPP) <span class="tag tag-urg">Day 1</span></div>
+      <div class="check-note">Go to: partner.microsoft.com → click "Join now" → sign in with your work account. Complete the registration form with your CAC-registered company details (legal name, address, phone). A Microsoft Partner Network (MPN) ID will be issued within minutes. Save this ID — it is required for every subsequent step. Free to join.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox urgent">3</span>
+    <div>
+      <div class="check-title">Enroll as CSP Indirect Reseller in Partner Center <span class="tag tag-urg">Day 1–2</span></div>
+      <div class="check-note">Go to: partnercenter.microsoft.com → Account settings → Enroll → Select "Cloud Solution Provider" → Select "Indirect Reseller." Fill in company legal details, support contact information (email + phone RMS will use for client support), and accept the Microsoft Partner Agreement (MPA). Microsoft will verify your account — this typically takes 3–5 business days. You'll receive an email to macount@microsoft.com confirming verification status.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox todo"></span>
+    <div>
+      <div class="check-title">Choose and connect with a Distributor (Indirect Provider) <span class="tag tag-wk">Week 1–2</span></div>
+      <div class="check-note">You MUST connect with an approved Microsoft distributor in the Africa region before you can transact. Two recommended options for Nigeria:<br>
+      <strong>Option A — Westcon-Comstor Africa:</strong> westconcomstor.com — Africa's primary Microsoft distributor, strong Nigeria presence. Contact: africa.microsoft@westcon.com<br>
+      <strong>Option B — Ingram Micro Africa:</strong> ingrammicro.com — global leader, automated cloud marketplace. Contact their Africa team.<br>
+      <strong>Option C — Dynamics Africa (4Sight):</strong> dynamicsafrica.biz — specialist Microsoft CSP provider in Africa. Email: csp@dynamicsafrica.biz<br>
+      The distributor handles billing with Microsoft; RMS owns the customer relationship and charges clients directly.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox todo"></span>
+    <div>
+      <div class="check-title">Accept Distributor Partnership Invitation <span class="tag tag-wk">Week 2</span></div>
+      <div class="check-note">Once you contact a distributor and they agree to onboard you, they will send a 1-click partnership invitation link via email to your Partner Center Global Admin account. Accept it in Partner Center. Once accepted, your distributor's name will appear under your "Indirect providers" list. You can now place orders through their portal on behalf of your clients.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox todo"></span>
+    <div>
+      <div class="check-title">Set up Partner Center billing and payment <span class="tag tag-wk">Week 2</span></div>
+      <div class="check-note">Add your business bank account (or credit card) for your distributor's billing. Most Africa distributors invoice monthly in USD or local currency equivalent. Your company will be billed by the distributor; you then invoice your clients in Naira at your marked-up rate. Set up a dedicated USD account (which you already have as a domiciliary account) to handle FX settlement with distributors.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox todo"></span>
+    <div>
+      <div class="check-title">Complete Microsoft partner verification (identity + business) <span class="tag tag-wk">Week 2</span></div>
+      <div class="check-note">Microsoft will conduct business verification including: company name vs CAC records, email domain ownership, employment/identity verification of primary contact (CEO). Keep your CAC certificate, utility bill (office address), and BVN ready. Verification status appears in Partner Center under Account Settings → Legal Info. If not verified within 5 business days, contact Partner Center support.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox todo"></span>
+    <div>
+      <div class="check-title">Sign the Microsoft Partner Agreement (MPA) <span class="tag tag-wk">Week 2</span></div>
+      <div class="check-note">A digital agreement in Partner Center. The Global Admin of your Microsoft tenant must review and accept it. This is a standard digital signature — no physical document required. Required before you can transact any CSP subscription. Sign it during your Partner Center enrollment steps.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox todo"></span>
+    <div>
+      <div class="check-title">Provision your first test client (internal) <span class="tag tag-wk">Week 2–3</span></div>
+      <div class="check-note">Before selling to external clients, provision Microsoft 365 Business Basic for RMS itself through Partner Center. This validates your distributor relationship, confirms billing flows, and gives your team hands-on experience with the provisioning process. Walk through: creating a customer tenant → assigning licences → confirming the client receives their login credentials.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox todo"></span>
+    <div>
+      <div class="check-title">Build your client onboarding kit <span class="tag tag-mo">Month 1</span></div>
+      <div class="check-note">Create the documents your clients will need: (1) Microsoft Customer Agreement (MCA) — the client must sign this before RMS can provision licences on their behalf. (2) RMS Licence Order Form — captures client company name, tenant domain, number of seats, product SKU, billing preference. (3) Provisioning SOP — step-by-step guide for your Tech team to follow each time. (4) Monthly invoice template for client billing in Naira.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox todo"></span>
+    <div>
+      <div class="check-title">Join Microsoft SMB & CSP training programmes <span class="tag tag-mo">Month 1–2</span></div>
+      <div class="check-note">Enroll in free Microsoft Partner training via Microsoft Learn (learn.microsoft.com) and Partner Center. Recommended courses: Microsoft 365 Sales & Technical Fundamentals, Azure Sales Fundamentals, Security Fundamentals. Completing these earns "Solution Partner" designations which increase your credibility, margin rates, and access to Microsoft co-sell opportunities.</div>
+    </div>
+  </li>
+  <li class="check-item">
+    <span class="cbox todo"></span>
+    <div>
+      <div class="check-title">Set Naira pricing and FX policy <span class="tag tag-mo">Month 1</span></div>
+      <div class="check-note">Microsoft licences are priced in USD. You will bill clients in Naira. Policy: Use CBN official rate + 3–5% FX buffer at time of invoice, locked for the billing month. Review and reset monthly. Add a clause to client agreements stating that pricing is subject to FX adjustment with 30 days notice. This protects RMS from Naira devaluation risk.</div>
+    </div>
+  </li>
+</ul>
+</section>
+
+<!-- ══ B2B ══ -->
+<section class="section" id="section-b2b">
+<div class="sec-eye" style="color:var(--b2b)">Division 2 — B2B Tech Services</div>
+<div class="sec-title" style="color:var(--navy)">B2B Technology Services</div>
+<div class="sec-desc">Beyond licensing, RMS Tech offers a suite of managed technology services to companies and SMEs — covering cloud migration, IT support, Microsoft 365 deployment, cybersecurity, and digital transformation advisory.</div>
+
+<div class="hl hl-b2b">
+  <h3 style="color:var(--b2b);margin-top:0">Why B2B tech services — not just licensing</h3>
+  <p style="margin:0;font-size:13.5px;color:var(--ink2)">Licence provisioning has thin margins (~15–25%). B2B tech services — deployment, migration, support retainers, training — carry 60–70% margins and create deep client stickiness. A client who has RMS managing their IT environment does not leave. They also become significantly more likely to commission research (they've already decided to trust us). The services arm converts our CSP licensing clients into long-term managed service relationships, and converts our research clients into IT clients. This is the stickiest revenue model available to an SME-focused professional services firm.</p>
+</div>
+
+<h2>Service Lines</h2>
+<div class="grid2" style="margin-bottom:24px">
+  <div class="card card-b2b">
+    <h3 style="color:var(--b2b);margin-top:0">Cloud Migration Services</h3>
+    <p style="font-size:13px;margin-bottom:8px;color:var(--ink2)">Move client infrastructure, email, files, and applications to Microsoft Azure or Microsoft 365 cloud. Scoped, phased migrations with minimal downtime.</p>
+    <p style="font-size:12px;color:var(--ink3);margin:0">Typical scope: on-prem → M365, legacy email → Exchange Online, file servers → SharePoint/OneDrive, on-prem SQL → Azure SQL</p>
+  </div>
+  <div class="card card-ms">
+    <h3 style="color:var(--ms);margin-top:0">Microsoft 365 Deployment & Setup</h3>
+    <p style="font-size:13px;margin-bottom:8px;color:var(--ink2)">Full deployment, configuration, and staff training for new Microsoft 365 tenants. Includes email migration, Teams setup, SharePoint intranet, OneDrive rollout.</p>
+    <p style="font-size:12px;color:var(--ink3);margin:0">Covers 5-seat SMEs to 200-seat corporates. Training workshops included.</p>
+  </div>
+  <div class="card card-b2b">
+    <h3 style="color:var(--b2b);margin-top:0">Managed IT Support Retainers</h3>
+    <p style="font-size:13px;margin-bottom:8px;color:var(--ink2)">Monthly retainer covering first-line and second-line IT support for Microsoft environments. Remote helpdesk, user account management, licence renewals, patch management.</p>
+    <p style="font-size:12px;color:var(--ink3);margin:0">Tiered plans from ₦150k/month (up to 10 users) to ₦800k/month (up to 100 users)</p>
+  </div>
+  <div class="card card-ms">
+    <h3 style="color:var(--ms);margin-top:0">Cybersecurity & Compliance</h3>
+    <p style="font-size:13px;margin-bottom:8px;color:var(--ink2)">Deploy Microsoft Defender, Intune, Conditional Access, and Multi-Factor Authentication. NDPR compliance gap assessments and remediation. Email security (anti-phishing, spam filtering).</p>
+    <p style="font-size:12px;color:var(--ink3);margin:0">Critical upsell for financial services and healthcare clients</p>
+  </div>
+  <div class="card card-b2b">
+    <h3 style="color:var(--b2b);margin-top:0">Microsoft Copilot & AI Enablement</h3>
+    <p style="font-size:13px;margin-bottom:8px;color:var(--ink2)">Provision and deploy Microsoft 365 Copilot. Workshops on prompt engineering, Copilot for Teams, Word, Excel, and Outlook. Custom Copilot agents via Copilot Studio.</p>
+    <p style="font-size:12px;color:var(--ink3);margin:0">Fast-growing segment — Nigeria Copilot adoption is early-stage, high margin opportunity</p>
+  </div>
+  <div class="card card-ms">
+    <h3 style="color:var(--ms);margin-top:0">Power Platform & Business Apps</h3>
+    <p style="font-size:13px;margin-bottom:8px;color:var(--ink2)">Build business apps, automation flows, and dashboards using Power Apps, Power Automate, and Power BI — all within the Microsoft 365 licensing clients already have.</p>
+    <p style="font-size:12px;color:var(--ink3);margin:0">Cross-sell: RMS Power BI research dashboards are a natural entry point here</p>
+  </div>
+  <div class="card card-b2b">
+    <h3 style="color:var(--b2b);margin-top:0">IT Procurement & Hardware Advisory</h3>
+    <p style="font-size:13px;margin-bottom:8px;color:var(--ink2)">Advisory on laptop, server, network, and peripheral procurement for SMEs setting up or upgrading their IT infrastructure. Vendor-neutral recommendations, procurement facilitation.</p>
+    <p style="font-size:12px;color:var(--ink3);margin:0">Commission-based referral model — low risk, moderate revenue</p>
+  </div>
+  <div class="card card-ms">
+    <h3 style="color:var(--ms);margin-top:0">Microsoft Training & Adoption</h3>
+    <p style="font-size:13px;margin-bottom:8px;color:var(--ink2)">Staff training programmes on Microsoft 365 tools — Teams, SharePoint, Power BI, Outlook, Word, Excel. In-person or virtual. Tailored to the client's actual environment.</p>
+    <p style="font-size:12px;color:var(--ink3);margin:0">Day rates from ₦250k (virtual, up to 20 users) to ₦500k (in-person, full day)</p>
+  </div>
+</div>
+</section>
+
+<!-- ══ PRODUCTS ══ -->
+<section class="section" id="section-products">
+<div class="sec-eye" style="color:var(--gold)">Full Product Catalog</div>
+<div class="sec-title" style="color:var(--navy)">RMS Tech — Pricing & Packages</div>
+<div class="sec-desc">All tech division products with fee ranges, timelines, and what's included. These sit alongside the research catalog on all client-facing materials.</div>
+
+<h2>Microsoft Licensing Packages (monthly recurring)</h2>
+<div class="tbl-wrap" style="margin-bottom:24px">
+  <table class="tbl">
+    <thead><tr><th>Package name</th><th>Seats</th><th>Monthly per seat (₦)</th><th>Setup fee</th><th>Includes</th><th>RMS margin %</th></tr></thead>
+    <tbody>
+      <tr><td><strong>RMS Starter</strong><br><span style="font-size:11px;color:var(--ink3)">M365 Business Basic</span></td><td>1–10</td><td>₦6,000–₦8,000</td><td>₦50,000 flat</td><td>Exchange email, Teams, OneDrive 1TB, web Office apps</td><td>~22%</td></tr>
+      <tr><td><strong>RMS Business</strong><br><span style="font-size:11px;color:var(--ink3)">M365 Business Standard</span></td><td>10–50</td><td>₦10,000–₦13,000</td><td>₦120,000 flat</td><td>All Starter + desktop Office apps, SharePoint, Stream, 1hr support/month</td><td>~20%</td></tr>
+      <tr><td><strong>RMS Professional</strong><br><span style="font-size:11px;color:var(--ink3)">M365 Business Premium</span></td><td>50–200</td><td>₦15,000–₦20,000</td><td>₦300,000 flat</td><td>All Business + Defender, Intune MDM, Entra ID P1, 3hr support/month</td><td>~18%</td></tr>
+      <tr><td><strong>RMS Enterprise</strong><br><span style="font-size:11px;color:var(--ink3)">M365 E3 / E5</span></td><td>200+</td><td>Quoted in USD</td><td>Quoted</td><td>Full suite + compliance, e-discovery, advanced analytics, dedicated account mgr</td><td>~15–18%</td></tr>
+      <tr><td><strong>RMS Azure</strong><br><span style="font-size:11px;color:var(--ink3)">Azure consumption</span></td><td>n/a</td><td>Pass-through + 12% markup</td><td>Free</td><td>VM, storage, SQL, AI services, backup — managed billing via RMS</td><td>~12%</td></tr>
+      <tr><td><strong>Copilot Add-on</strong><br><span style="font-size:11px;color:var(--ink3)">M365 Copilot</span></td><td>Any</td><td>₦25,000–₦32,000</td><td>₦80,000</td><td>Copilot for all M365 apps + 2hr enablement workshop</td><td>~18%</td></tr>
+      <tr><td><strong>NGO/Edu Plan</strong><br><span style="font-size:11px;color:var(--ink3)">Nonprofit pricing</span></td><td>Any</td><td>₦2,000–₦4,000</td><td>₦100,000 setup</td><td>Discounted M365 + Teams + compliance + quarterly check-in</td><td>Service fee model</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>B2B Tech Services — Project & Retainer Pricing</h2>
+<div class="tbl-wrap">
+  <table class="tbl">
+    <thead><tr><th>Service</th><th>Segment</th><th>Delivery model</th><th>Fee range</th><th>Timeline</th><th>Gross margin</th></tr></thead>
+    <tbody>
+      <tr><td><strong>M365 Tenant Setup (basic)</strong></td><td>SME 1–20 seats</td><td>One-time project</td><td>₦150k–₦350k</td><td>3–5 days</td><td>~70%</td></tr>
+      <tr><td><strong>M365 Full Deployment</strong></td><td>SME 20–100 seats</td><td>One-time project</td><td>₦400k–₦1.2m</td><td>2–4 weeks</td><td>~65%</td></tr>
+      <tr><td><strong>Email Migration</strong></td><td>Any</td><td>One-time project</td><td>₦200k–₦800k</td><td>1–2 weeks</td><td>~65%</td></tr>
+      <tr><td><strong>Cloud Migration (full)</strong></td><td>Corporate / SME</td><td>One-time project</td><td>₦1.5m–₦8m</td><td>4–12 weeks</td><td>~55%</td></tr>
+      <tr><td><strong>IT Support Retainer — Basic</strong></td><td>SME up to 10 users</td><td>Monthly retainer</td><td>₦150k/month</td><td>Ongoing</td><td>~70%</td></tr>
+      <tr><td><strong>IT Support Retainer — Standard</strong></td><td>SME 10–50 users</td><td>Monthly retainer</td><td>₦300k–₦500k/month</td><td>Ongoing</td><td>~68%</td></tr>
+      <tr><td><strong>IT Support Retainer — Premium</strong></td><td>50–200 users</td><td>Monthly retainer</td><td>₦600k–₦1.2m/month</td><td>Ongoing</td><td>~62%</td></tr>
+      <tr><td><strong>Cybersecurity Assessment + Deployment</strong></td><td>Financial services / NGO</td><td>Project</td><td>₦500k–₦2.5m</td><td>2–6 weeks</td><td>~60%</td></tr>
+      <tr><td><strong>Copilot Deployment + Workshop</strong></td><td>Any M365 client</td><td>Project</td><td>₦400k–₦1.5m</td><td>1–2 weeks</td><td>~72%</td></tr>
+      <tr><td><strong>Power BI Dashboard (tech delivery)</strong></td><td>Any</td><td>Project</td><td>₦600k–₦2m</td><td>3–6 weeks</td><td>~65%</td></tr>
+      <tr><td><strong>Microsoft Training Workshop</strong></td><td>Any</td><td>Per session</td><td>₦250k–₦500k/day</td><td>1–3 days</td><td>~75%</td></tr>
+      <tr><td><strong>NDPR Tech Compliance</strong></td><td>Any with PII data</td><td>Project</td><td>₦400k–₦1.5m</td><td>2–4 weeks</td><td>~65%</td></tr>
+      <tr><td><strong>IT Procurement Advisory</strong></td><td>SME</td><td>Commission / advisory fee</td><td>5–8% of hardware value</td><td>1–3 weeks</td><td>~90% (advisory)</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ══ CLIENTS ══ -->
+<section class="section" id="section-clients">
+<div class="sec-eye" style="color:var(--navy)">Target clients — Tech Division</div>
+<div class="sec-title" style="color:var(--navy)">Who we sell Microsoft & B2B Tech to</div>
+<div class="sec-desc">Our primary pool is existing RMS research clients — warm relationships we already have. Secondary pool is new SME and corporate acquisition through tech channels.</div>
+
+<h2>Tier 1 — Existing RMS clients (warm upsell)</h2>
+<div class="tbl-wrap" style="margin-bottom:24px">
+  <table class="tbl">
+    <thead><tr><th>Client</th><th>Current RMS relationship</th><th>Tech upsell opportunity</th><th>Est. annual tech value</th></tr></thead>
+    <tbody>
+      <tr><td><strong>UNICEF Nigeria</strong></td><td>Baseline surveys, Rapid Pulse</td><td>Microsoft 365 Nonprofit (free/discounted) + Azure data storage + Teams for programme teams</td><td>₦1.8m–₦3.5m</td></tr>
+      <tr><td><strong>Palladium / USAID IPs</strong></td><td>DFI midline survey</td><td>M365 NGO plan + SharePoint for programme document management + compliance tools</td><td>₦1.5m–₦2.5m</td></tr>
+      <tr><td><strong>DAI Nigeria</strong></td><td>KAP survey + M&E</td><td>Azure data environment for M&E data collection + Power BI dashboards (tech delivery)</td><td>₦2m–₦4m</td></tr>
+      <tr><td><strong>Paga</strong></td><td>PMF sprint + Rapid Pulse</td><td>M365 Business Premium + Copilot for product team + IT support retainer</td><td>₦3m–₦6m</td></tr>
+      <tr><td><strong>PalmPay</strong></td><td>Pricing sensitivity study</td><td>M365 E3 + cybersecurity deployment (Defender for Business) + Copilot</td><td>₦4m–₦8m</td></tr>
+      <tr><td><strong>Zenith Bank</strong></td><td>Digital onboarding UX research</td><td>Microsoft Sentinel SIEM evaluation + Copilot for compliance team</td><td>₦3m–₦6m</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Tier 2 — New SME acquisition via tech channels</h2>
+<div class="tbl-wrap" style="margin-bottom:24px">
+  <table class="tbl">
+    <thead><tr><th>Segment</th><th>Acquisition channel</th><th>Primary product</th><th>Path to research upsell</th><th>Q targets (seats/clients)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lagos tech startups</strong></td><td>Co-creation Hub, Ventures Platform, tech communities</td><td>RMS Starter / Business M365 + M365 Copilot</td><td>"You're growing — do you know your customer retention score?" → Rapid Pulse</td><td>Q2: 5 clients · Q3: 15 · Q4: 25</td></tr>
+      <tr><td><strong>Professional services firms</strong></td><td>LinkedIn, ICAN events, consulting networks</td><td>M365 Business Standard + IT support retainer</td><td>Brand health or NPS study — "how do your clients rate you?"</td><td>Q2: 3 clients · Q3: 8 · Q4: 14</td></tr>
+      <tr><td><strong>Healthcare & clinics</strong></td><td>NMA events, hospital associations</td><td>M365 + NDPR tech compliance + cybersecurity</td><td>Patient satisfaction surveys, brand tracking</td><td>Q3: 4 · Q4: 8</td></tr>
+      <tr><td><strong>Schools & universities</strong></td><td>NAPPS, education associations</td><td>Microsoft 365 Education (subsidised)</td><td>Parent/student satisfaction studies</td><td>Q3: 3 · Q4: 6</td></tr>
+      <tr><td><strong>Manufacturing & agribusiness</strong></td><td>MAN, NAFDAC supply chains</td><td>M365 Business + Azure IoT/data</td><td>Market research, channel audits, pricing studies</td><td>Q4: 5</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Tech Division client conversation starter (for BizDev)</h2>
+<div class="card card-gold">
+  <p style="font-size:14px;font-style:italic;color:var(--ink);margin:0">"We already help you understand your market. We can also set up and manage the Microsoft tools your team uses every day — at a better price than your current provider and with the same people you already trust. Would it be worth a 20-minute call to review your current Microsoft licences?"</p>
+</div>
+</section>
+
+<!-- ══ REVENUE ══ -->
+<section class="section" id="section-revenue">
+<div class="sec-eye" style="color:var(--gold)">Updated revenue plan</div>
+<div class="sec-title" style="color:var(--navy)">₦219m Total — all three divisions</div>
+<div class="sec-desc">Research (₦152m) + SME (₦25m) + Microsoft Licensing (₦18m) + B2B Tech Services (₦24m) = ₦219m plan. Stretch with strong tech adoption: ₦260m.</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-label">Research & Insights</div><div class="stat-num" style="color:var(--navy)">₦152m</div><div class="stat-sub">20 corporate accounts</div></div>
+  <div class="stat"><div class="stat-label">SME Research</div><div class="stat-num" style="color:var(--gold)">₦25m</div><div class="stat-sub">70+ engagements</div></div>
+  <div class="stat"><div class="stat-label">MS Licensing (CSP)</div><div class="stat-num" style="color:var(--ms)">₦18m</div><div class="stat-sub">150+ seats managed</div></div>
+  <div class="stat"><div class="stat-label">B2B Tech Services</div><div class="stat-num" style="color:var(--b2b)">₦24m</div><div class="stat-sub">Projects + retainers</div></div>
+</div>
+
+<h2>Revenue build — all divisions by quarter</h2>
+<div class="tbl-wrap" style="margin-bottom:24px">
+  <table class="tbl">
+    <thead><tr><th>Division</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Full Year</th><th>% of Total</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Research — Corporate</strong></td><td>₦30.75m</td><td>₦38.75m</td><td>₦37.75m</td><td>₦45.05m</td><td>₦152.3m</td><td>70%</td></tr>
+      <tr><td><strong>SME Research</strong></td><td>₦3.0m</td><td>₦6.0m</td><td>₦8.0m</td><td>₦8.0m</td><td>₦25.0m</td><td>11%</td></tr>
+      <tr><td><strong>Microsoft Licensing (CSP)</strong></td><td>₦0.5m</td><td>₦3.5m</td><td>₦6.0m</td><td>₦8.0m</td><td>₦18.0m</td><td>8%</td></tr>
+      <tr><td><strong>B2B Tech Services</strong></td><td>₦1.0m</td><td>₦4.5m</td><td>₦8.5m</td><td>₦10.0m</td><td>₦24.0m</td><td>11%</td></tr>
+      <tr style="font-weight:600;background:var(--bg2)"><td><strong>TOTAL</strong></td><td><strong>₦35.25m</strong></td><td><strong>₦52.75m</strong></td><td><strong>₦60.25m</strong></td><td><strong>₦71.05m</strong></td><td><strong>₦219.3m</strong></td><td><strong>100%</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Revenue bars — relative contribution</h2>
+<div style="border:1px solid var(--rule);border-radius:10px;padding:16px 20px;margin-bottom:24px">
+  <div class="rev-seg"><span class="rev-label">Research corporate</span><div class="rev-bar-wrap"><div class="rev-bar-fill" style="width:70%;background:var(--navy)"></div></div><span class="rev-val">₦152m</span></div>
+  <div class="rev-seg"><span class="rev-label">SME research</span><div class="rev-bar-wrap"><div class="rev-bar-fill" style="width:11.5%;background:var(--gold)"></div></div><span class="rev-val">₦25m</span></div>
+  <div class="rev-seg"><span class="rev-label">MS licensing</span><div class="rev-bar-wrap"><div class="rev-bar-fill" style="width:8.2%;background:var(--ms)"></div></div><span class="rev-val">₦18m</span></div>
+  <div class="rev-seg"><span class="rev-label">B2B tech services</span><div class="rev-bar-wrap"><div class="rev-bar-fill" style="width:11%;background:var(--b2b)"></div></div><span class="rev-val">₦24m</span></div>
+</div>
+
+<h2>Why the tech division ramp is back-loaded</h2>
+<p>Q1 revenue from tech is deliberately low (₦1.5m combined) because CSP registration takes 2–4 weeks and the first licensing clients need to go through provisioning and the Microsoft Customer Agreement before they can be billed. B2B services projects will begin closing in Q2 once the Tech Lead is in place and the first deployment case study is complete. By Q4 the tech division should be running at ₦18m/quarter run rate, which annualises to ₦72m — making it the second-largest division in 2027.</p>
+</section>
+
+<!-- ══ ORG ══ -->
+<section class="section" id="section-org">
+<div class="sec-eye" style="color:var(--navy)">People & Structure</div>
+<div class="sec-title" style="color:var(--navy)">Tech Division — Org & Hiring</div>
+<div class="sec-desc">The Tech Division needs 3 net-new hires in 2026 plus leverages existing RMS infrastructure. The entire division is designed to run lean.</div>
+
+<h2>New roles required</h2>
+<div class="tbl-wrap" style="margin-bottom:24px">
+  <table class="tbl">
+    <thead><tr><th>Role</th><th>Start quarter</th><th>Key responsibilities</th><th>Skills required</th><th>Salary range</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tech Division Lead</strong><br><span style="font-size:11px;color:var(--ink3)">(Head of RMS Tech)</span></td><td>Q1</td><td>Overall P&L for tech division. CSP reseller setup and distributor relationship. First B2B tech client delivery. Manage IT support retainers.</td><td>Microsoft certifications (MS-900, AZ-900 minimum). CSP experience preferred. Strong commercial skills. 5+ yrs IT experience.</td><td>₦4.5m–₦7.2m/year</td></tr>
+      <tr><td><strong>Cloud & IT Support Engineer</strong></td><td>Q2</td><td>Microsoft 365 provisioning. Tenant setup, migration, and configuration. First-line IT support for retainer clients. Copilot deployments.</td><td>Microsoft 365 certified (MS-102 or equivalent). Azure Fundamentals (AZ-900). Helpdesk and deployment experience. 2–4 yrs exp.</td><td>₦2.4m–₦3.6m/year</td></tr>
+      <tr><td><strong>Tech Sales Executive</strong></td><td>Q2</td><td>Outbound tech sales to SMEs and corporates. Upsell licensing and services to existing RMS research clients. Manage licensing pipeline.</td><td>Tech sales background. Microsoft product knowledge. Strong relationship skills. B2B sales experience 2–3 yrs.</td><td>₦1.8m–₦2.4m + commission/year</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Microsoft certifications to target (Year 1)</h2>
+<div class="grid4">
+  <div class="card card-ms"><div style="font-size:11px;color:var(--ms);font-weight:600;margin-bottom:4px">MS-900</div><div style="font-size:13px;font-weight:500">Microsoft 365 Fundamentals</div><div style="font-size:12px;color:var(--ink3);margin-top:4px">Required for all Tech team. Free study materials via Microsoft Learn.</div></div>
+  <div class="card card-ms"><div style="font-size:11px;color:var(--ms);font-weight:600;margin-bottom:4px">AZ-900</div><div style="font-size:13px;font-weight:500">Azure Fundamentals</div><div style="font-size:12px;color:var(--ink3);margin-top:4px">Required for Tech Lead and Cloud Engineer. Exam fee: ~$165.</div></div>
+  <div class="card card-ms"><div style="font-size:11px;color:var(--ms);font-weight:600;margin-bottom:4px">MS-102</div><div style="font-size:13px;font-weight:500">M365 Administrator</div><div style="font-size:12px;color:var(--ink3);margin-top:4px">Cloud Engineer priority. Covers tenant admin, identity, compliance.</div></div>
+  <div class="card card-b2b"><div style="font-size:11px;color:var(--b2b);font-weight:600;margin-bottom:4px">SC-900</div><div style="font-size:13px;font-weight:500">Security Fundamentals</div><div style="font-size:12px;color:var(--ink3);margin-top:4px">For cybersecurity and NDPR compliance services. Unlocks Defender sales.</div></div>
+</div>
+
+<h2 style="margin-top:24px">Tech Division go-live timeline</h2>
+<div class="timeline" style="margin-top:8px">
+  <div class="tl-item"><div class="tl-dot filled"></div><div class="tl-q">Q1 (Weeks 1–4) — Register & Hire</div><div class="tl-tasks"><div class="tl-task hi">Join Microsoft AI Cloud Partner Programme — get MPN ID</div><div class="tl-task hi">Enroll as CSP Indirect Reseller in Partner Center</div><div class="tl-task hi">Hire Tech Division Lead — priority hire</div><div class="tl-task">Select and connect with Westcon-Comstor or Ingram Micro Africa as distributor</div><div class="tl-task">Provision RMS internal Microsoft 365 tenant via CSP (test run)</div></div></div>
+  <div class="tl-item"><div class="tl-dot filled"></div><div class="tl-q">Q2 — First clients & services launch</div><div class="tl-tasks"><div class="tl-task hi">Hire Cloud Engineer + Tech Sales Executive</div><div class="tl-task hi">First 5 licensing clients onboarded — UNICEF, Paga, 3 SME clients</div><div class="tl-task hi">First M365 deployment project completed — build case study</div><div class="tl-task">Naira pricing policy and FX clause live on all tech invoices</div><div class="tl-task">RMS Tech page live on website — service catalog, request form</div></div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-q">Q3 — Scale retainers & services</div><div class="tl-tasks"><div class="tl-task hi">15+ licensing clients across SME and corporate segments</div><div class="tl-task hi">3 IT support retainers active generating monthly recurring revenue</div><div class="tl-task">First Copilot deployment project complete</div><div class="tl-task">Tech team MS certifications complete (MS-900, AZ-900, MS-102)</div></div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-q">Q4 — Full operation</div><div class="tl-tasks"><div class="tl-task hi">25+ licensing clients · 6+ retainers · ₦18m run rate for tech division</div><div class="tl-task">2027 plan: Microsoft Gold/Solutions Partner designation</div><div class="tl-task">Explore Dynamics 365 Business Central as ERP product for growing SME clients</div></div></div>
+</div>
+
+<div class="doc-footer">
+  <div>RMS Tech Division Strategy · CEO Document · 2026</div>
+  <div>Confidential — not for distribution without CEO approval</div>
+</div>
+</section>
+
+</div>
+
+<script>
+function show(id,el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('section-'+id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({top:document.querySelector('.nav').offsetTop-8,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
