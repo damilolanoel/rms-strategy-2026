@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RMS Tech Division — TD Africa Strategic Partnership</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c1117;--ink2:#374151;--ink3:#6b7280;
+  --rule:#e5e7eb;--rule2:#d1d5db;
+  --bg:#ffffff;--bg2:#f8fafc;--bg3:#f0f4f8;
+  --navy:#1a3a6b;--navy-d:#0f2548;
+  --gold:#c8933a;--gold-l:#fdf3e3;--gold-b:#fde3a7;
+  --td:#d4201e;--td-l:#fff1f1;--td-b:#ffc5c4;
+  --ms:#185f9a;--ms-l:#eff6ff;--ms-b:#bfdbfe;
+  --green:#0d5c3b;--green-l:#ecfdf5;
+  --purple:#4c1d95;--purple-l:#f5f3ff;
+  --slate:#334155;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;font-size:15px}
+
+/* ── Cover ── */
+.cover{background:var(--navy-d);color:#fff;padding:60px 52px 48px;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-100px;right:-100px;width:420px;height:420px;border-radius:50%;border:1px solid rgba(255,255,255,.05)}
+.cover::after{content:'';position:absolute;bottom:-80px;left:40px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(255,255,255,.04)}
+.cover-chip{display:inline-block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px}
+.cover-title{font-family:'Fraunces',serif;font-size:46px;line-height:1.05;margin-bottom:10px}
+.cover-title em{color:var(--gold);font-style:italic}
+.cover-sub{font-size:15px;color:rgba(255,255,255,.6);font-weight:300;margin-bottom:36px;max-width:520px}
+.cover-partners{display:flex;align-items:center;gap:20px;margin-bottom:32px;flex-wrap:wrap}
+.partner-pill{font-size:12px;font-weight:500;padding:7px 18px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+.rms-pill{background:rgba(26,58,107,.5);color:rgba(255,255,255,.9)}
+.td-pill{background:rgba(212,32,30,.35);color:rgba(255,255,255,.9);border-color:rgba(212,32,30,.4)}
+.plus{color:rgba(255,255,255,.35);font-size:18px}
+.cover-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+.cs-val{font-size:22px;font-weight:600;color:var(--gold)}
+.cs-lbl{font-size:11px;color:rgba(255,255,255,.45);margin-top:3px}
+
+/* ── Nav ── */
+.nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--rule)}
+.nav-inner{display:flex;overflow-x:auto;padding:0 20px}
+.ni{padding:12px 16px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;color:var(--ink3);border-bottom:2px solid transparent;transition:all .18s}
+.ni:hover{color:var(--navy)}
+.ni.active{color:var(--navy);border-bottom-color:var(--navy)}
+
+/* ── Page ── */
+.page{max-width:960px;margin:0 auto;padding:44px 28px}
+.sec{display:none}.sec.active{display:block}
+
+/* ── Section headers ── */
+.eye{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.sec-h{font-family:'Fraunces',serif;font-size:28px;margin-bottom:8px;color:var(--navy)}
+.sec-d{font-size:14px;color:var(--ink3);max-width:640px;margin-bottom:28px;line-height:1.7}
+h2{font-family:'Fraunces',serif;font-size:21px;color:var(--navy);margin:28px 0 12px}
+h3{font-size:14px;font-weight:500;color:var(--ink);margin:14px 0 6px}
+p{font-size:14px;color:var(--ink2);margin-bottom:12px;line-height:1.7}
+
+/* ── Stats ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.stat{background:var(--bg2);border:1px solid var(--rule);border-radius:8px;padding:14px 16px}
+.stat-l{font-size:10.5px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.stat-n{font-size:23px;font-weight:600;line-height:1}
+.stat-s{font-size:12px;color:var(--ink3);margin-top:3px}
+
+/* ── Cards ── */
+.card{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:18px 20px}
+.c-navy{border-left:3px solid var(--navy)}
+.c-gold{border-left:3px solid var(--gold)}
+.c-td{border-left:3px solid var(--td)}
+.c-ms{border-left:3px solid var(--ms)}
+.c-green{border-left:3px solid var(--green)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+
+/* ── Partnership model visual ── */
+.flow{display:flex;align-items:stretch;gap:0;border:1px solid var(--rule);border-radius:12px;overflow:hidden;margin-bottom:24px}
+.flow-box{flex:1;padding:20px 18px;border-right:1px solid var(--rule)}
+.flow-box:last-child{border-right:none}
+.flow-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px;font-weight:700}
+.flow-title{font-size:13px;font-weight:500;margin-bottom:6px;color:var(--ink)}
+.flow-desc{font-size:12px;color:var(--ink3);line-height:1.55}
+.flow-arrow{display:flex;align-items:center;padding:0 4px;color:var(--ink3);font-size:18px;flex-shrink:0}
+
+/* ── Revenue model ── */
+.rev-model{border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:24px}
+.rm-head{background:var(--navy);color:white;padding:10px 16px;font-size:12px;font-weight:500;display:grid;grid-template-columns:180px 1fr 120px 120px;gap:12px}
+.rm-row{padding:10px 16px;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:180px 1fr 120px 120px;gap:12px;align-items:center;font-size:13px}
+.rm-row:last-child{border-bottom:none}
+.rm-row:hover{background:var(--bg3)}
+.rm-cat{font-weight:500;color:var(--ink)}
+.rm-desc{color:var(--ink3);font-size:12px}
+.rm-comm{color:var(--green);font-weight:600}
+.rm-rev{color:var(--navy);font-weight:600}
+
+/* ── Table ── */
+.tw{border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:20px}
+.t{width:100%;border-collapse:collapse;font-size:13px}
+.t th{text-align:left;padding:9px 12px;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--ink3);border-bottom:1.5px solid var(--rule2);background:var(--bg2)}
+.t td{padding:9px 12px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:top}
+.t tr:last-child td{border-bottom:none}
+.t tr:hover td{background:var(--bg3)}
+.t td strong{color:var(--ink);font-weight:500}
+
+/* ── Product tiles ── */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.prod-tile{border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.pt-hdr{padding:12px 14px;display:flex;align-items:center;gap:10px}
+.pt-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.pt-name{font-size:13px;font-weight:500;color:var(--ink)}
+.pt-brand{font-size:11px;color:var(--ink3)}
+.pt-body{padding:10px 14px;border-top:1px solid var(--rule);background:var(--bg2)}
+.pt-comm{font-size:13px;font-weight:600;margin-bottom:3px}
+.pt-detail{font-size:11.5px;color:var(--ink3)}
+.pt-list{list-style:none;margin-top:8px}
+.pt-list li{font-size:12px;color:var(--ink2);padding:2px 0 2px 12px;position:relative}
+.pt-list li::before{content:'·';position:absolute;left:0;color:var(--gold)}
+
+/* ── Commission calculator ── */
+.calc{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:20px 22px;margin-bottom:24px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:14px}
+.calc-item{text-align:center;padding:12px;background:var(--bg);border:1px solid var(--rule);border-radius:8px}
+.calc-cat{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.calc-num{font-size:20px;font-weight:600;color:var(--navy)}
+.calc-sub{font-size:11px;color:var(--ink3);margin-top:3px}
+
+/* ── Pipeline ── */
+.pipe-stage{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--rule)}
+.pipe-stage:last-child{border-bottom:none}
+.pipe-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.pipe-num.rms{background:var(--ms-l);color:var(--ms)}
+.pipe-num.td{background:var(--td-l);color:var(--td)}
+.pipe-num.both{background:var(--gold-l);color:var(--gold)}
+.pipe-content{}
+.pipe-title{font-size:13.5px;font-weight:500;color:var(--ink)}
+.pipe-who{font-size:11px;font-weight:600;padding:1px 7px;border-radius:10px;display:inline-block;margin-left:8px;vertical-align:middle}
+.who-rms{background:var(--ms-l);color:var(--ms)}
+.who-td{background:var(--td-l);color:var(--td)}
+.who-both{background:var(--gold-l);color:var(--gold)}
+.pipe-desc{font-size:12.5px;color:var(--ink3);margin-top:3px;line-height:1.5}
+
+/* ── P&L ── */
+.pl{border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:24px}
+.pl-row{display:flex;justify-content:space-between;padding:8px 14px;font-size:13.5px;border-bottom:1px solid var(--rule)}
+.pl-row:last-child{border-bottom:none}
+.pl-row.hd{background:var(--navy);color:white;font-weight:500;font-size:11.5px;letter-spacing:.4px;padding:7px 14px}
+.pl-row.tot{font-weight:600;background:var(--bg2)}
+.pl-row.grand{background:var(--navy-d);color:white;font-weight:600;font-size:15px}
+.pos{color:var(--green);font-weight:600}
+.neg{color:#b91c1c}
+
+/* ── Agreement checklist ── */
+.agree-list{list-style:none}
+.agree-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);align-items:flex-start}
+.agree-item:last-child{border-bottom:none}
+.abox{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.a-done{background:var(--green);color:white}
+.a-urg{background:var(--gold);color:white}
+.a-todo{background:white;border:1.5px solid var(--rule2)}
+.atag{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;margin-left:8px;vertical-align:middle}
+.tag-urg{background:var(--gold-l);color:var(--gold)}
+.tag-wk{background:var(--ms-l);color:var(--ms)}
+.tag-mo{background:var(--purple-l);color:var(--purple)}
+
+/* ── Highlights ── */
+.hl{border-radius:12px;padding:20px 22px;margin-bottom:22px}
+.hl-gold{background:var(--gold-l);border:1px solid var(--gold-b)}
+.hl-td{background:var(--td-l);border:1px solid var(--td-b)}
+.hl-navy{background:#e8eef8;border:1px solid #bfcfe8}
+
+/* ── Footer ── */
+.doc-footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:12px;color:var(--ink3)}
+
+@media(max-width:640px){
+  .stats,.grid2,.grid3,.prod-grid,.calc-grid{grid-template-columns:1fr}
+  .cover{padding:32px 20px 28px}
+  .cover-title{font-size:32px}
+  .cover-stats{grid-template-columns:1fr 1fr}
+  .page{padding:28px 16px}
+  .flow{flex-direction:column}
+  .flow-arrow{transform:rotate(90deg)}
+  .rm-head,.rm-row{grid-template-columns:1fr 1fr}
+  .rm-desc{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-chip">RMS Tech Division · CEO Strategy Document · 2026</div>
+  <div class="cover-title">RMS <em>×</em> TD Africa</div>
+  <div class="cover-sub">A pure sales-and-commission model — RMS brings the clients, TD Africa delivers everything. Zero deployment risk. Zero inventory. Maximum margin on relationships.</div>
+  <div class="cover-partners">
+    <span class="partner-pill rms-pill">RMS — Lead generation & Sales</span>
+    <span class="plus">+</span>
+    <span class="partner-pill td-pill">TD Africa — Supply, Deployment & Support</span>
+  </div>
+  <div class="cover-stats">
+    <div><div class="cs-val">₦35m</div><div class="cs-lbl">2026 Tech revenue target</div></div>
+    <div><div class="cs-val">₦212m</div><div class="cs-lbl">New RMS total plan</div></div>
+    <div><div class="cs-val">Zero</div><div class="cs-lbl">Tech headcount needed</div></div>
+    <div><div class="cs-val">Pure</div><div class="cs-lbl">Commission / margin model</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="ni active" onclick="sw('model',this)">Partnership Model</div>
+    <div class="ni" onclick="sw('products',this)">What We Sell</div>
+    <div class="ni" onclick="sw('revenue',this)">Revenue & Commission</div>
+    <div class="ni" onclick="sw('pipeline',this)">Sales Pipeline</div>
+    <div class="ni" onclick="sw('clients',this)">Target Clients</div>
+    <div class="ni" onclick="sw('agreement',this)">Partnership Agreement</div>
+    <div class="ni" onclick="sw('fullplan',this)">Full ₦212m Plan</div>
+  </div>
+</nav>
+
+<div class="page">
+
+<!-- ══ MODEL ══ -->
+<section class="sec active" id="sec-model">
+<div class="eye" style="color:var(--gold)">How the partnership works</div>
+<div class="sec-h">The RMS × TD Africa model</div>
+<div class="sec-d">RMS is the sales engine. TD Africa is the fulfilment engine. Every tech deal has a clear division of responsibility — and both parties earn from every transaction.</div>
+
+<div class="hl hl-td">
+  <h3 style="color:var(--td);margin-top:0">Who is TD Africa?</h3>
+  <p style="margin:0;font-size:14px;color:var(--ink2)"><strong>TD Africa (Technology Distributions Limited)</strong> is Africa's leading technology distributor, founded in Lagos in 1999. They are the authorised distributor for <strong>HP, Microsoft, Dell, Cisco, Apple, Lenovo, Samsung, APC (Schneider Electric), IBM, D-Link, Huawei, Bosch</strong> and over 20 other global brands. They have 350+ employees, offices in 8 African countries, and a network of over 1,500 resellers. They handle product supply, warehousing, delivery, deployment, installation, and after-sales support. RMS's strategic partnership with TD Africa gives us access to this entire ecosystem — without owning a single product or employing a single engineer.</p>
+</div>
+
+<h2>How every deal works</h2>
+<div class="flow">
+  <div class="flow-box" style="background:var(--ms-l)">
+    <div class="flow-icon" style="background:#bfdbfe;color:var(--ms)">RMS</div>
+    <div class="flow-title">RMS identifies the need</div>
+    <div class="flow-desc">During research projects, SME consultations, or prospecting — RMS discovers a client needs Microsoft licences, laptops, networking, or IT services. RMS makes the introduction and closes the sale.</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box" style="background:var(--gold-l)">
+    <div class="flow-icon" style="background:var(--gold-b);color:var(--gold)">₦</div>
+    <div class="flow-title">RMS submits referral to TD Africa</div>
+    <div class="flow-desc">RMS passes the qualified lead and agreed scope to TD Africa via the partnership channel. TD Africa provides a quote, which RMS marks up or earns commission on as agreed in the partnership terms.</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box" style="background:var(--td-l)">
+    <div class="flow-icon" style="background:var(--td-b);color:var(--td)">TD</div>
+    <div class="flow-title">TD Africa delivers everything</div>
+    <div class="flow-desc">TD Africa handles procurement, delivery, deployment, installation, Microsoft provisioning, and after-sales support. RMS is not involved in delivery — but remains the client's primary relationship.</div>
+  </div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box" style="background:var(--green-l)">
+    <div class="flow-icon" style="background:#a7f3d0;color:var(--green)">✓</div>
+    <div class="flow-title">RMS earns commission</div>
+    <div class="flow-desc">RMS receives agreed commission or margin from TD Africa on completion of the sale. Monthly for recurring licences. On delivery for hardware. On completion for services.</div>
+  </div>
+</div>
+
+<h2>Why this model is superior to hiring a tech team</h2>
+<div class="grid3">
+  <div class="card c-gold">
+    <h3 style="color:var(--gold);margin-top:0">Zero capital risk</h3>
+    <p style="font-size:13px;margin:0">No inventory, no warehousing, no equipment to depreciate. RMS never holds stock or takes on hardware debt. Every deal is asset-light and fully variable cost.</p>
+  </div>
+  <div class="card c-navy">
+    <h3 style="color:var(--navy);margin-top:0">Zero technical headcount</h3>
+    <p style="font-size:13px;margin:0">No engineers, no IT support staff, no Microsoft certifications required. TD Africa's 350+ employees and 25 years of deployment experience are RMS's team by proxy.</p>
+  </div>
+  <div class="card c-td">
+    <h3 style="color:var(--td);margin-top:0">Instant product range</h3>
+    <p style="font-size:13px;margin:0">TD Africa's portfolio covers every tech need a client could have — 20+ global brands, Microsoft licensing, cloud services, hardware, networking, power solutions, and gadgets. RMS sells all of it from day one.</p>
+  </div>
+  <div class="card c-green">
+    <h3 style="color:var(--green);margin-top:0">TD Africa's credibility</h3>
+    <p style="font-size:13px;margin:0">When RMS brings TD Africa into a deal, the client gets Africa's most trusted tech distributor — 25-year track record, manufacturer-authorised, HP Distributor of the Year award winner.</p>
+  </div>
+  <div class="card c-ms">
+    <h3 style="color:var(--ms);margin-top:0">Focus stays on research</h3>
+    <p style="font-size:13px;margin:0">RMS's competitive advantage is insight, relationships, and data. The tech division adds revenue without diluting that focus — it stays in its lane while TD Africa stays in theirs.</p>
+  </div>
+  <div class="card c-gold">
+    <h3 style="color:var(--gold);margin-top:0">West Africa reach built in</h3>
+    <p style="font-size:13px;margin:0">TD Africa operates in 8 African countries. RMS can sell tech to clients in Ghana, Cameroon, Kenya, and more — and TD Africa fulfils it locally. Instant regional scale.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══ PRODUCTS ══ -->
+<section class="sec" id="sec-products">
+<div class="eye" style="color:var(--td)">What RMS sells via TD Africa</div>
+<div class="sec-h">Full product & service portfolio</div>
+<div class="sec-d">Every product TD Africa distributes is available for RMS to sell. These are the priority categories with highest commission potential and strongest client demand.</div>
+
+<h2>Microsoft Licensing (via TD Africa as authorised Microsoft distributor)</h2>
+<div class="tw" style="margin-bottom:24px">
+  <table class="t">
+    <thead><tr><th>Product</th><th>Who needs it</th><th>Entry price</th><th>RMS commission</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Microsoft 365 Business Basic</strong></td><td>SMEs, NGOs, startups</td><td>~$6/user/month</td><td>10–15% recurring</td><td>Email, Teams, OneDrive — most common entry point</td></tr>
+      <tr><td><strong>Microsoft 365 Business Standard</strong></td><td>SMEs 10–50 seats</td><td>~$12.50/user/month</td><td>12–18% recurring</td><td>Adds desktop Office apps — biggest SME seller</td></tr>
+      <tr><td><strong>Microsoft 365 Business Premium</strong></td><td>SMEs needing security</td><td>~$22/user/month</td><td>12–18% recurring</td><td>Adds Defender, Intune — good for fintech/healthcare</td></tr>
+      <tr><td><strong>Microsoft 365 E3/E5</strong></td><td>Corporates 50+ seats</td><td>$36–$57/user/month</td><td>10–15% recurring</td><td>High ticket value — one corporate client = ₦3m+/year</td></tr>
+      <tr><td><strong>Microsoft Azure</strong></td><td>Tech companies, NGOs</td><td>Pay-as-you-go</td><td>8–12% on consumption</td><td>Cloud infrastructure — recurring monthly</td></tr>
+      <tr><td><strong>Microsoft 365 Copilot</strong></td><td>Any M365 client</td><td>$30/user/month add-on</td><td>12–15% recurring</td><td>Fastest growing SKU in 2026 — easy upsell</td></tr>
+      <tr><td><strong>Microsoft Nonprofit plans</strong></td><td>NGOs, UN agencies</td><td>Free / heavily discounted</td><td>Service fee model</td><td>Perfect for UNICEF, DAI, Palladium — setup fee applies</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Hardware — Laptops, Desktops & Devices</h2>
+<div class="prod-grid">
+  <div class="prod-tile">
+    <div class="pt-hdr" style="background:#eff6ff">
+      <div class="pt-icon" style="background:#bfdbfe;color:#185f9a">HP</div>
+      <div><div class="pt-name">HP Laptops & Desktops</div><div class="pt-brand">Consumer · Business · Enterprise</div></div>
+    </div>
+    <div class="pt-body">
+      <div class="pt-comm" style="color:var(--green)">5–10% commission per unit</div>
+      <div class="pt-detail">₦250k–₦2.5m per device</div>
+      <ul class="pt-list">
+        <li>HP ProBook / EliteBook (business)</li>
+        <li>HP Pavilion / Spectre (consumer)</li>
+        <li>HP Z Workstations</li>
+        <li>HP all-in-one desktops</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prod-tile">
+    <div class="pt-hdr" style="background:#f0f9ff">
+      <div class="pt-icon" style="background:#bae6fd;color:#0369a1">Dell</div>
+      <div><div class="pt-name">Dell Technologies</div><div class="pt-brand">Laptops · Servers · Storage</div></div>
+    </div>
+    <div class="pt-body">
+      <div class="pt-comm" style="color:var(--green)">5–10% commission per unit</div>
+      <div class="pt-detail">₦280k–₦3m per device</div>
+      <ul class="pt-list">
+        <li>Dell Latitude / Inspiron</li>
+        <li>Dell XPS premium range</li>
+        <li>Dell PowerEdge servers</li>
+        <li>Dell EMC storage solutions</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prod-tile">
+    <div class="pt-hdr" style="background:#f0fdf4">
+      <div class="pt-icon" style="background:#bbf7d0;color:#15803d">Lnv</div>
+      <div><div class="pt-name">Lenovo</div><div class="pt-brand">ThinkPad · IdeaPad · Tablets</div></div>
+    </div>
+    <div class="pt-body">
+      <div class="pt-comm" style="color:var(--green)">5–10% commission per unit</div>
+      <div class="pt-detail">₦200k–₦2.2m per device</div>
+      <ul class="pt-list">
+        <li>ThinkPad (enterprise favourite)</li>
+        <li>IdeaPad (SME sweet spot)</li>
+        <li>Lenovo Tab tablets</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prod-tile">
+    <div class="pt-hdr" style="background:#fff7ed">
+      <div class="pt-icon" style="background:#fed7aa;color:#c2410c">Apl</div>
+      <div><div class="pt-name">Apple Devices</div><div class="pt-brand">MacBook · iPad · iPhone</div></div>
+    </div>
+    <div class="pt-body">
+      <div class="pt-comm" style="color:var(--green)">3–6% commission per unit</div>
+      <div class="pt-detail">₦400k–₦3.5m per device</div>
+      <ul class="pt-list">
+        <li>MacBook Pro / Air</li>
+        <li>iPad Pro / Air</li>
+        <li>iPhone (bulk corporate orders)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prod-tile">
+    <div class="pt-hdr" style="background:#fdf4ff">
+      <div class="pt-icon" style="background:#e9d5ff;color:#7e22ce">Sam</div>
+      <div><div class="pt-name">Samsung & Tecno/Infinix</div><div class="pt-brand">Smartphones · Tablets · Monitors</div></div>
+    </div>
+    <div class="pt-body">
+      <div class="pt-comm" style="color:var(--green)">5–8% commission per unit</div>
+      <div class="pt-detail">₦50k–₦800k per device</div>
+      <ul class="pt-list">
+        <li>Samsung Galaxy (flagship + mid)</li>
+        <li>Tecno / Infinix (SME budget)</li>
+        <li>Samsung monitors + TVs</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prod-tile">
+    <div class="pt-hdr" style="background:#f0fdf4">
+      <div class="pt-icon" style="background:#bbf7d0;color:#15803d">Znx</div>
+      <div><div class="pt-name">Zinox Technologies</div><div class="pt-brand">Made-in-Nigeria laptops & PCs</div></div>
+    </div>
+    <div class="pt-body">
+      <div class="pt-comm" style="color:var(--green)">8–12% commission per unit</div>
+      <div class="pt-detail">₦180k–₦1.2m per device</div>
+      <ul class="pt-list">
+        <li>Zinox laptops (government/edu)</li>
+        <li>Zinox desktops & all-in-ones</li>
+        <li>Solar + battery backup systems</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2>Networking, Power & Infrastructure</h2>
+<div class="tw">
+  <table class="t">
+    <thead><tr><th>Category</th><th>Brands (via TD Africa)</th><th>Products</th><th>Target clients</th><th>Commission</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Networking equipment</strong></td><td>Cisco, D-Link, Huawei</td><td>Routers, switches, access points, firewalls, managed LAN</td><td>Corporate offices, hotels, hospitals, co-working spaces</td><td>5–10%</td></tr>
+      <tr><td><strong>Power solutions (UPS)</strong></td><td>APC by Schneider Electric, Vertiv</td><td>UPS systems, server room PDUs, rack power, surge protectors</td><td>Banks, data centres, hospitals, schools</td><td>6–10%</td></tr>
+      <tr><td><strong>Servers & storage</strong></td><td>HP Enterprise (HPE), Dell, IBM</td><td>Rack servers, NAS storage, backup appliances</td><td>Financial services, government, hospitals</td><td>5–8%</td></tr>
+      <tr><td><strong>Printers & peripherals</strong></td><td>HP, Epson, Canon, Logitech</td><td>Laser printers, MFPs, webcams, keyboards, mice, headsets</td><td>All segments — easy add-on to every laptop sale</td><td>5–8%</td></tr>
+      <tr><td><strong>Security & surveillance</strong></td><td>Bosch, Hikvision, Ring (Amazon)</td><td>CCTV cameras, access control, alarm systems</td><td>SMEs, retail, offices, NGOs</td><td>8–12%</td></tr>
+      <tr><td><strong>Starlink (satellite internet)</strong></td><td>SpaceX / TD Africa</td><td>Starlink terminal kits for business and remote locations</td><td>Rural NGOs, field offices, estates, agribusiness</td><td>8–12%</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Digital Gadgets & Lifestyle Tech</h2>
+<div class="grid3">
+  <div class="card c-gold">
+    <h3 style="color:var(--gold);margin-top:0">Smart accessories</h3>
+    <p style="font-size:13px;margin:0;color:var(--ink3)">Smartwatches (Samsung, Apple Watch), wireless earbuds, power banks, smart speakers — Bosch, Philips, Samsung. Strong SME gifting and lifestyle market.</p>
+    <p style="font-size:12px;color:var(--green);margin:6px 0 0;font-weight:600">Commission: 6–10%</p>
+  </div>
+  <div class="card c-td">
+    <h3 style="color:var(--td);margin-top:0">Audio-visual & conferencing</h3>
+    <p style="font-size:13px;margin:0;color:var(--ink3)">Projectors, large-format displays, video conferencing kits (camera + mic + screen). Growing demand as hybrid work becomes standard across Lagos offices.</p>
+    <p style="font-size:12px;color:var(--green);margin:6px 0 0;font-weight:600">Commission: 6–10%</p>
+  </div>
+  <div class="card c-navy">
+    <h3 style="color:var(--navy);margin-top:0">Mobile devices (bulk)</h3>
+    <p style="font-size:13px;margin:0;color:var(--ink3)">Corporate bulk orders of smartphones for field teams — Tecno, Infinix, Samsung. FMCG field teams, NGO enumerators, bank agents. Natural link to RMS field ops.</p>
+    <p style="font-size:12px;color:var(--green);margin:6px 0 0;font-weight:600">Commission: 5–8% per unit</p>
+  </div>
+</div>
+</section>
+
+<!-- ══ REVENUE ══ -->
+<section class="sec" id="sec-revenue">
+<div class="eye" style="color:var(--green)">How RMS earns — commission model</div>
+<div class="sec-h">Revenue & commission structure</div>
+<div class="sec-d">RMS earns in two ways — a commission from TD Africa on every sale referred, and a markup on Microsoft licensing where RMS invoices the client directly at a margin. All revenue is recognised when TD Africa confirms delivery/activation.</div>
+
+<div class="hl hl-gold">
+  <h3 style="color:var(--gold);margin-top:0">Two earning modes</h3>
+  <div class="grid2" style="margin-top:10px;gap:12px">
+    <div style="background:var(--bg);border-radius:8px;padding:14px">
+      <div style="font-size:13px;font-weight:500;margin-bottom:6px;color:var(--navy)">Mode A — Referral commission</div>
+      <p style="font-size:13px;margin:0;color:var(--ink3)">RMS refers the client to TD Africa. TD Africa invoices the client directly. TD Africa pays RMS a pre-agreed commission (8–15%) on the invoice value within 30 days of client payment. Used for hardware, networking, and services.</p>
+    </div>
+    <div style="background:var(--bg);border-radius:8px;padding:14px">
+      <div style="font-size:13px;font-weight:500;margin-bottom:6px;color:var(--navy)">Mode B — Reseller margin</div>
+      <p style="font-size:13px;margin:0;color:var(--ink3)">RMS invoices the client directly at the retail price, buys from TD Africa at the reseller price, keeps the margin. Best used for Microsoft licensing (recurring monthly). RMS owns the client billing relationship.</p>
+    </div>
+  </div>
+</div>
+
+<h2>Commission rate reference</h2>
+<div class="rev-model">
+  <div class="rm-head"><span>Category</span><span>Description</span><span>Commission %</span><span>2026 target (₦)</span></div>
+  <div class="rm-row"><span class="rm-cat">Microsoft 365 licences</span><span class="rm-desc">Monthly recurring — all M365 Business/Enterprise SKUs</span><span class="rm-comm">10–18% recurring</span><span class="rm-rev">₦8.0m</span></div>
+  <div class="rm-row"><span class="rm-cat">Azure & cloud</span><span class="rm-desc">Monthly consumption billing via TD Africa</span><span class="rm-comm">8–12% recurring</span><span class="rm-rev">₦2.5m</span></div>
+  <div class="rm-row"><span class="rm-cat">Copilot add-ons</span><span class="rm-desc">Microsoft 365 Copilot seat provisioning</span><span class="rm-comm">12–15% recurring</span><span class="rm-rev">₦2.0m</span></div>
+  <div class="rm-row"><span class="rm-cat">Laptops & desktops</span><span class="rm-desc">HP, Dell, Lenovo, Apple, Zinox — all segments</span><span class="rm-comm">5–10% per sale</span><span class="rm-rev">₦9.0m</span></div>
+  <div class="rm-row"><span class="rm-cat">Networking & power</span><span class="rm-desc">Cisco, D-Link, APC, Vertiv, Huawei</span><span class="rm-comm">6–10% per sale</span><span class="rm-rev">₦5.0m</span></div>
+  <div class="rm-row"><span class="rm-cat">Starlink kits</span><span class="rm-desc">Business & residential satellite internet</span><span class="rm-comm">8–12% per kit</span><span class="rm-rev">₦2.0m</span></div>
+  <div class="rm-row"><span class="rm-cat">Phones & gadgets</span><span class="rm-desc">Bulk mobile devices, lifestyle tech, AV</span><span class="rm-comm">5–8% per unit</span><span class="rm-rev">₦3.5m</span></div>
+  <div class="rm-row"><span class="rm-cat">Printers & peripherals</span><span class="rm-desc">HP, Epson, Logitech add-ons with every deal</span><span class="rm-comm">5–8% per sale</span><span class="rm-rev">₦3.0m</span></div>
+  <div class="rm-row" style="font-weight:600;background:var(--bg2)"><span>TOTAL</span><span></span><span></span><span class="rm-rev">₦35.0m</span></div>
+</div>
+
+<div class="calc">
+  <h3 style="margin-top:0;color:var(--navy)">What ₦35m looks like in actual deals</h3>
+  <div class="calc-grid">
+    <div class="calc-item">
+      <div class="calc-cat">Microsoft 365 recurring</div>
+      <div class="calc-num" style="color:var(--ms)">150 seats</div>
+      <div class="calc-sub">avg $15/seat/month × 12 months × 15% margin = ₦12.5m/year</div>
+    </div>
+    <div class="calc-item">
+      <div class="calc-cat">Hardware deals needed</div>
+      <div class="calc-num" style="color:var(--td)">~45 deals</div>
+      <div class="calc-sub">avg ₦500k deal value × 8% commission = ₦1.8m each — need ~12 deals/quarter</div>
+    </div>
+    <div class="calc-item">
+      <div class="calc-cat">Networking projects</div>
+      <div class="calc-num" style="color:var(--green)">~15 projects</div>
+      <div class="calc-sub">avg ₦1.2m deal × 8% commission = ₦96k each — ₦1.44m per project cluster</div>
+    </div>
+  </div>
+</div>
+
+<h2>P&L — Tech Division only (₦35m revenue)</h2>
+<div class="pl">
+  <div class="pl-row hd"><span>TECH DIVISION P&L</span><span>₦m</span></div>
+  <div class="pl-row"><span>Microsoft licensing commission (recurring)</span><span>12.5</span></div>
+  <div class="pl-row"><span>Hardware referral commissions (one-time)</span><span>14.5</span></div>
+  <div class="pl-row"><span>Networking & power commissions</span><span>5.0</span></div>
+  <div class="pl-row"><span>Gadgets & peripherals commissions</span><span>3.0</span></div>
+  <div class="pl-row tot"><span>Total Tech Revenue</span><span class="pos">35.0</span></div>
+  <div class="pl-row hd"><span>COSTS (Tech Division)</span><span></span></div>
+  <div class="pl-row"><span>Tech Sales Executive salary + commission</span><span>(3.6)</span></div>
+  <div class="pl-row"><span>BizDev Lead allocated time (20% of salary)</span><span>(1.2)</span></div>
+  <div class="pl-row"><span>Marketing materials, demos, events</span><span>(0.8)</span></div>
+  <div class="pl-row"><span>CRM, proposal tools, travel</span><span>(0.5)</span></div>
+  <div class="pl-row tot"><span>Total Tech Costs</span><span class="neg">(6.1)</span></div>
+  <div class="pl-row grand"><span>Tech Division Net Contribution</span><span>28.9 (83% margin)</span></div>
+</div>
+<p style="font-size:13px;color:var(--ink3)">The 83% net contribution margin is achievable because RMS carries zero cost of goods, zero inventory, and zero delivery cost. Every cost is people and sales activity only.</p>
+</section>
+
+<!-- ══ PIPELINE ══ -->
+<section class="sec" id="sec-pipeline">
+<div class="eye" style="color:var(--navy)">How we sell</div>
+<div class="sec-h">Sales pipeline — from spot to close</div>
+<div class="sec-d">The sales process is simple. RMS identifies the need. TD Africa fulfils it. Here is every stage with clear ownership.</div>
+
+<div style="border:1px solid var(--rule);border-radius:10px;padding:18px 20px;margin-bottom:24px">
+  <div class="pipe-stage">
+    <div class="pipe-num rms">1</div>
+    <div class="pipe-content">
+      <div class="pipe-title">Spot the opportunity <span class="pipe-who who-rms">RMS</span></div>
+      <div class="pipe-desc">During a research project debrief, SME consultation, or prospect call — the client mentions needing laptops, IT setup, Microsoft licences, networking, or gadgets. The RMS account manager flags this immediately. <strong>Key trigger questions:</strong> "What laptops does your team use?" / "How do you manage your Microsoft licences?" / "Do you have reliable internet at your field offices?"</div>
+    </div>
+  </div>
+  <div class="pipe-stage">
+    <div class="pipe-num rms">2</div>
+    <div class="pipe-content">
+      <div class="pipe-title">Qualify the need <span class="pipe-who who-rms">RMS</span></div>
+      <div class="pipe-desc">RMS asks 4 questions: (1) What is needed? (2) How many units / seats? (3) What is the budget range? (4) What is the timeline? This takes 10 minutes in a meeting. RMS does NOT attempt to spec or recommend — that is TD Africa's job. Just capture the requirement.</div>
+    </div>
+  </div>
+  <div class="pipe-stage">
+    <div class="pipe-num both">3</div>
+    <div class="pipe-content">
+      <div class="pipe-title">Submit to TD Africa for quote <span class="pipe-who who-both">RMS + TD Africa</span></div>
+      <div class="pipe-desc">RMS sends the requirement to the dedicated TD Africa account contact via WhatsApp/email using a standard RMS referral form. TD Africa provides a quote within 24–48 hours. RMS reviews, adds their commission margin, and presents to client as an "RMS Tech quotation."</div>
+    </div>
+  </div>
+  <div class="pipe-stage">
+    <div class="pipe-num rms">4</div>
+    <div class="pipe-content">
+      <div class="pipe-title">Present quote to client <span class="pipe-who who-rms">RMS</span></div>
+      <div class="pipe-desc">RMS presents the quotation on RMS letterhead. The client relationship remains with RMS throughout — TD Africa is the "fulfilment partner" mentioned if asked, but RMS owns the conversation. Present total value: hardware quality + TD Africa's warranty + RMS's ongoing relationship.</div>
+    </div>
+  </div>
+  <div class="pipe-stage">
+    <div class="pipe-num both">5</div>
+    <div class="pipe-content">
+      <div class="pipe-title">Client pays, TD Africa delivers <span class="pipe-who who-both">RMS + TD Africa</span></div>
+      <div class="pipe-desc">Client pays RMS (Mode B — reseller) OR TD Africa directly (Mode A — referral). TD Africa handles logistics, delivery, installation, and activation. For Microsoft licences, TD Africa provisions the tenant and RMS receives monthly billing reports.</div>
+    </div>
+  </div>
+  <div class="pipe-stage">
+    <div class="pipe-num rms">6</div>
+    <div class="pipe-content">
+      <div class="pipe-title">RMS collects commission <span class="pipe-who who-rms">RMS</span></div>
+      <div class="pipe-desc">TD Africa pays RMS commission within 30 days of client payment (referral model) or RMS retains margin at invoicing (reseller model). RMS Finance logs the transaction, reconciles against TD Africa's monthly statement, and records it in the accounts.</div>
+    </div>
+  </div>
+  <div class="pipe-stage">
+    <div class="pipe-num rms">7</div>
+    <div class="pipe-content">
+      <div class="pipe-title">Upsell & renew <span class="pipe-who who-rms">RMS</span></div>
+      <div class="pipe-desc">Microsoft licences auto-renew monthly — RMS earns every month with no additional sales effort. Hardware upsell cycles at 2–3 years. RMS account managers schedule quarterly check-ins with tech clients to identify the next need: "How are the laptops working? Has the team grown? Do you need Copilot yet?"</div>
+    </div>
+  </div>
+</div>
+
+<h2>Standard referral form (send to TD Africa for every deal)</h2>
+<div class="card c-gold">
+  <p style="font-size:13px;color:var(--ink3);margin-bottom:10px">Copy this into WhatsApp or email to your TD Africa account contact when submitting a referral:</p>
+  <div style="background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:14px;font-family:var(--font-mono);font-size:12.5px;color:var(--ink2);line-height:1.8">
+    <strong>RMS TECH REFERRAL — [Date]</strong><br>
+    Client name: [Company name]<br>
+    Contact person: [Name + phone]<br>
+    Requirement: [e.g. 15 HP ProBook laptops + networking setup for new office]<br>
+    Quantity / seats: [Number]<br>
+    Budget range: [₦ or "unspecified"]<br>
+    Delivery location: [Lagos / State]<br>
+    Timeline needed by: [Date]<br>
+    Earning mode: [Referral commission OR RMS reseller margin]<br>
+    RMS account manager: [Name]
+  </div>
+</div>
+</section>
+
+<!-- ══ CLIENTS ══ -->
+<section class="sec" id="sec-clients">
+<div class="eye" style="color:var(--navy)">Who we target</div>
+<div class="sec-h">Priority tech clients in 2026</div>
+<div class="sec-d">Our best leads are already in the room — existing RMS research clients. Every company that has commissioned research from us is also buying tech from someone else. That is our first call.</div>
+
+<h2>Immediate pipeline — existing RMS clients</h2>
+<div class="tw" style="margin-bottom:24px">
+  <table class="t">
+    <thead><tr><th>Client</th><th>Current RMS work</th><th>Tech opportunity</th><th>Product</th><th>Est. value</th></tr></thead>
+    <tbody>
+      <tr><td><strong>UNICEF Nigeria</strong></td><td>Baseline + Rapid Pulse surveys</td><td>Microsoft 365 Nonprofit for programme staff — subsidised pricing via TD Africa</td><td>M365 Nonprofit + Azure data storage</td><td>₦1.5m–₦2.5m/yr</td></tr>
+      <tr><td><strong>Palladium (USAID)</strong></td><td>DFI midline evaluation</td><td>Field teams need laptops for CAPI data collection + SharePoint for document management</td><td>Laptops (15–20 units) + M365</td><td>₦3.5m–₦5m</td></tr>
+      <tr><td><strong>DAI Nigeria</strong></td><td>KAP survey + M&E</td><td>Staff laptops + Microsoft Teams for remote team collaboration across programme states</td><td>Lenovo ThinkPads + M365 Business</td><td>₦2.5m–₦4m</td></tr>
+      <tr><td><strong>Shoprite Nigeria</strong></td><td>Mystery shopping + basket analysis</td><td>Networking refresh for store offices + UPS systems for till areas</td><td>Cisco switches + APC UPS</td><td>₦3m–₦6m</td></tr>
+      <tr><td><strong>Paga / PalmPay</strong></td><td>CX and pricing research</td><td>Agent tablets for field teams + Microsoft Copilot for product/analytics team</td><td>Samsung tablets (bulk) + Copilot</td><td>₦2.5m–₦4.5m</td></tr>
+      <tr><td><strong>Nigerian Breweries</strong></td><td>Brand health tracker</td><td>Laptop refresh cycle for sales team + Cisco Meraki WiFi for head office</td><td>HP EliteBooks (30–40 units) + networking</td><td>₦5m–₦9m</td></tr>
+      <tr><td><strong>State Govt (Lagos/Kano)</strong></td><td>Household & MSME survey</td><td>Desktop computers + printers for MDAs, Microsoft 365 Government licensing</td><td>HP desktops + printers + M365</td><td>₦4m–₦10m</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>New SME targets — tech-first entry (then cross-sell research)</h2>
+<div class="tw">
+  <table class="t">
+    <thead><tr><th>SME segment</th><th>Tech need</th><th>Entry product</th><th>Research cross-sell</th><th>Channel to reach them</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Startups / scale-ups</strong></td><td>Microsoft 365 setup, laptops, cloud</td><td>M365 Business Standard (10–30 seats)</td><td>Customer discovery / PMF sprint after 3 months</td><td>Co-creation Hub, Ventures Platform, LinkedIn</td></tr>
+      <tr><td><strong>Retail chains (2–10 outlets)</strong></td><td>Networking, CCTV, POS systems, UPS</td><td>Cisco/D-Link networking + Bosch CCTV</td><td>Mystery shopping, shopper survey after setup</td><td>LCCI business association events</td></tr>
+      <tr><td><strong>Professional firms (law, accounting)</strong></td><td>Laptops, M365, cybersecurity</td><td>M365 Business Premium + HP laptops</td><td>Client satisfaction NPS study</td><td>ICAN, NBA (legal) professional networks</td></tr>
+      <tr><td><strong>Schools & universities</strong></td><td>Computers, projectors, WiFi, M365 Edu</td><td>Lenovo desktops + Cisco WiFi + M365 Edu</td><td>Student / parent satisfaction survey</td><td>NAPPS, education association events</td></tr>
+      <tr><td><strong>Healthcare / clinics</strong></td><td>Laptops, tablets, UPS, server backup</td><td>HP laptops + APC UPS + server backup</td><td>Patient satisfaction research</td><td>NMA events, hospital associations</td></tr>
+      <tr><td><strong>Agribusiness & cooperatives</strong></td><td>Rugged laptops, Starlink internet, tablets</td><td>Lenovo rugged + Starlink business kit</td><td>Market research, pricing studies</td><td>NAFDAC supply chains, AFAN</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ══ AGREEMENT ══ -->
+<section class="sec" id="sec-agreement">
+<div class="eye" style="color:var(--td)">Formalising the partnership</div>
+<div class="sec-h">Partnership agreement with TD Africa</div>
+<div class="sec-d">The partnership needs to be documented before any deals are referred. Here are the terms to negotiate and the steps to formalise the arrangement.</div>
+
+<div class="hl hl-td">
+  <h3 style="color:var(--td);margin-top:0">TD Africa contact for partnership formalisation</h3>
+  <p style="margin:0;font-size:13.5px;color:var(--ink2)">TD Africa's business development contact: <strong>tdmarketing@tdafrica.com</strong> or call <strong>+234 902 917 4191</strong>. Alternatively, visit <strong>tdafrica.com/become-a-partner</strong> to initiate the reseller/partner registration process. Ask specifically for the <strong>Channel Partner Programme</strong> and confirm they have an established commission structure for referral partners.</p>
+</div>
+
+<h2>Key terms to negotiate in the partnership agreement</h2>
+<ul class="agree-list">
+  <li class="agree-item">
+    <span class="abox a-urg">1</span>
+    <div>
+      <div style="font-weight:500;font-size:13.5px;color:var(--ink)">Commission rates by product category <span class="atag tag-urg">Negotiate first</span></div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:3px">Get specific percentage agreements in writing for each category — Microsoft licences, hardware (by brand), networking, power, gadgets. Target: 10–15% on Microsoft, 8–12% on hardware, 8–12% on networking. These rates are negotiable based on volume commitment.</div>
+    </div>
+  </li>
+  <li class="agree-item">
+    <span class="abox a-urg">2</span>
+    <div>
+      <div style="font-weight:500;font-size:13.5px;color:var(--ink)">Commission payment terms <span class="atag tag-urg">Negotiate first</span></div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:3px">Request: commission paid within 30 days of confirmed client payment. Monthly statement from TD Africa listing all RMS-referred deals and amounts due. Direct bank transfer to RMS account. This is standard for their reseller network.</div>
+    </div>
+  </li>
+  <li class="agree-item">
+    <span class="abox a-urg">3</span>
+    <div>
+      <div style="font-weight:500;font-size:13.5px;color:var(--ink)">Client ownership clause <span class="atag tag-urg">Negotiate first</span></div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:3px">Critical: the agreement must state that any client referred by RMS remains RMS's client for future tech needs — TD Africa cannot directly solicit or approach RMS-referred clients for new business without RMS. Protects your relationship and recurring commission stream.</div>
+    </div>
+  </li>
+  <li class="agree-item">
+    <span class="abox a-todo"></span>
+    <div>
+      <div style="font-weight:500;font-size:13.5px;color:var(--ink)">Pricing transparency <span class="atag tag-wk">Week 1</span></div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:3px">Request access to TD Africa's reseller price list for all key SKUs — HP, Dell, Lenovo, Cisco, Microsoft. This allows RMS to build quotations for clients and know the margin before presenting. Usually shared under NDA with registered partners.</div>
+    </div>
+  </li>
+  <li class="agree-item">
+    <span class="abox a-todo"></span>
+    <div>
+      <div style="font-weight:500;font-size:13.5px;color:var(--ink)">Dedicated account contact at TD Africa <span class="atag tag-wk">Week 1</span></div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:3px">Request a named account manager at TD Africa who handles all RMS referrals — responds to quote requests within 24 hours, provides delivery updates, and escalates issues. Without a dedicated contact, turnaround times will be inconsistent.</div>
+    </div>
+  </li>
+  <li class="agree-item">
+    <span class="abox a-todo"></span>
+    <div>
+      <div style="font-weight:500;font-size:13.5px;color:var(--ink)">Volume targets and tier bonuses <span class="atag tag-wk">Week 2</span></div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:3px">Negotiate a tiered commission structure: once RMS refers ₦50m+ in annual business, commission rates step up by 2–3%. This incentivises both parties to grow the channel and gives RMS upside as the relationship matures.</div>
+    </div>
+  </li>
+  <li class="agree-item">
+    <span class="abox a-todo"></span>
+    <div>
+      <div style="font-weight:500;font-size:13.5px;color:var(--ink)">Warranty and after-sales service standards <span class="atag tag-wk">Week 2</span></div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:3px">Confirm TD Africa's warranty commitment to RMS-referred clients: minimum 1-year warranty on all hardware, response time for repairs via TDPlus (their service arm), replacement policy for DOA (dead on arrival) devices. These become RMS's service promises to clients.</div>
+    </div>
+  </li>
+  <li class="agree-item">
+    <span class="abox a-todo"></span>
+    <div>
+      <div style="font-weight:500;font-size:13.5px;color:var(--ink)">Co-marketing opportunities <span class="atag tag-mo">Month 1–2</span></div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:3px">Explore: joint Insight Breakfast events (RMS research + TD Africa tech showcase), co-branded SME tech + research packages, joint LinkedIn content, and RMS listing as an authorised TD Africa channel partner on their website.</div>
+    </div>
+  </li>
+</ul>
+
+<h2>What RMS needs to provide to TD Africa</h2>
+<div class="grid2">
+  <div class="card c-navy">
+    <h3 style="color:var(--navy);margin-top:0">Company documents</h3>
+    <p style="font-size:13px;margin:0;color:var(--ink3)">CAC Certificate, TIN, company profile (1-pager), bank details, signed NDA. TD Africa will run basic due diligence before formalising — same as any reseller onboarding.</p>
+  </div>
+  <div class="card c-gold">
+    <h3 style="color:var(--gold);margin-top:0">Signed partnership agreement</h3>
+    <p style="font-size:13px;margin:0;color:var(--ink3)">Request their standard Channel Partner Agreement, review with your commercial solicitor, negotiate the 3 priority terms above, then execute. File a copy in the RMS contracts library.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══ FULL PLAN ══ -->
+<section class="sec" id="sec-fullplan">
+<div class="eye" style="color:var(--gold)">Updated master plan</div>
+<div class="sec-h">₦212m — all four divisions</div>
+<div class="sec-desc">Research ₦152m + SME ₦25m + Microsoft/Tech via TD Africa ₦35m = ₦212m. Stretch: ₦250m.</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-l">Research corporate</div><div class="stat-n" style="color:var(--navy)">₦152m</div><div class="stat-s">20 core accounts</div></div>
+  <div class="stat"><div class="stat-l">SME research</div><div class="stat-n" style="color:var(--gold)">₦25m</div><div class="stat-s">70+ engagements</div></div>
+  <div class="stat"><div class="stat-l">Tech — TD Africa partnership</div><div class="stat-n" style="color:var(--td)">₦35m</div><div class="stat-s">Commission model</div></div>
+  <div class="stat"><div class="stat-l">Total plan</div><div class="stat-n" style="color:var(--green)">₦212m</div><div class="stat-s">Stretch: ₦250m</div></div>
+</div>
+
+<h2>Revenue by quarter — all divisions</h2>
+<div class="tw">
+  <table class="t">
+    <thead><tr><th>Division</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Full Year</th><th>%</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Research — Corporate</strong></td><td>₦30.75m</td><td>₦38.75m</td><td>₦37.75m</td><td>₦45.05m</td><td>₦152.3m</td><td>72%</td></tr>
+      <tr><td><strong>SME Research</strong></td><td>₦3.0m</td><td>₦6.0m</td><td>₦8.0m</td><td>₦8.0m</td><td>₦25.0m</td><td>12%</td></tr>
+      <tr><td><strong>Tech (TD Africa — Microsoft)</strong></td><td>₦1.0m</td><td>₦3.5m</td><td>₦6.5m</td><td>₦6.5m</td><td>₦17.5m</td><td>8%</td></tr>
+      <tr><td><strong>Tech (TD Africa — Hardware/Gadgets)</strong></td><td>₦1.5m</td><td>₦3.5m</td><td>₦5.5m</td><td>₦7.0m</td><td>₦17.5m</td><td>8%</td></tr>
+      <tr style="font-weight:600;background:var(--bg2)"><td><strong>TOTAL</strong></td><td><strong>₦36.25m</strong></td><td><strong>₦51.75m</strong></td><td><strong>₦57.75m</strong></td><td><strong>₦66.55m</strong></td><td><strong>₦212.3m</strong></td><td><strong>100%</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>What changed from the original tech plan</h2>
+<div class="grid2">
+  <div class="card c-td" style="border-left-color:var(--td)">
+    <h3 style="color:var(--td);margin-top:0">What we removed</h3>
+    <p style="font-size:13px;margin:0;color:var(--ink3)">Tech Division Lead hire (₦6m cost), Cloud Engineer hire (₦3m), IT support delivery workload, Microsoft CSP direct registration complexity, technical SLAs, deployment risk, PLA ID management, Partner Center admin burden.</p>
+  </div>
+  <div class="card c-green">
+    <h3 style="color:var(--green);margin-top:0">What we gained</h3>
+    <p style="font-size:13px;margin:0;color:var(--ink3)">83% net margin on tech revenue (vs 55–65% with in-house delivery), zero capital risk, access to 20+ global tech brands instantly, TD Africa's 25 years of credibility behind every deal, West Africa fulfillment built in, one Tech Sales Executive needed instead of three hires.</p>
+  </div>
+</div>
+
+<h2>One new hire only — Tech Sales Executive</h2>
+<div class="card c-navy">
+  <p style="font-size:14px;color:var(--ink2);margin:0">The only new hire the tech division requires is a <strong>Tech Sales Executive</strong> — someone with existing relationships in the Lagos SME and corporate tech market, who understands Microsoft products and hardware, and can qualify opportunities and submit referrals to TD Africa. Salary: ₦1.8m–₦2.4m base + 5% commission on all tech deals closed. This role pays for itself after the first ₦40m in referred deals. They report to the BizDev Lead and work alongside the SME Desk Manager to cross-sell research and tech as a bundle.</p>
+</div>
+
+<div class="doc-footer">
+  <div>RMS Tech Division — TD Africa Partnership Strategy · 2026</div>
+  <div>Confidential CEO Document</div>
+</div>
+</section>
+
+</div>
+
+<script>
+function sw(id,el){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({top:document.querySelector('.nav').offsetTop-8,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
