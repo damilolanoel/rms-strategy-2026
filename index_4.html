@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reliable Market Survey Limited — Insight You Can Build On</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1A3A6B;
+    --navy-deep: #0D2147;
+    --navy-mid: #1E4580;
+    --gold: #C8933A;
+    --gold-light: #E0AA55;
+    --gold-pale: #F5E6C8;
+    --ink: #0F1117;
+    --smoke: #F4F2EE;
+    --white: #FDFCFA;
+    --muted: #6B7280;
+    --border: rgba(26,58,107,0.12);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .display { font-family: 'Cormorant Garamond', serif; }
+  h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; line-height: 1.15; }
+  h1 { font-size: clamp(3rem, 6vw, 5.5rem); }
+  h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+  h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
+
+  /* ── LOGO ── */
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+  }
+  .logo-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .logo-rms {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .logo-tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 3px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 5%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(253,252,250,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(13,33,71,0.08); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--navy);
+    color: var(--white) !important;
+    padding: 9px 22px;
+    border-radius: 2px;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.12em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 6% 80px 8%;
+    position: relative;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero h1 {
+    color: var(--navy-deep);
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 48px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 32px;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--navy);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: gap 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { gap: 14px; color: var(--gold); }
+  .btn-ghost::after { content: '→'; }
+
+  .hero-right {
+    background: var(--navy-deep);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,147,58,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(26,58,107,0.6) 0%, transparent 70%);
+  }
+  .hero-visual {
+    position: relative;
+    z-index: 2;
+    padding: 60px;
+    text-align: center;
+  }
+  .hero-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    width: 360px;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 32px 28px;
+    text-align: left;
+    transition: background 0.3s;
+  }
+  .hero-stat:hover { background: rgba(200,147,58,0.1); }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .hero-stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    font-weight: 400;
+  }
+  .hero-stat:nth-child(1) { border-top-left-radius: 2px; }
+  .hero-stat:nth-child(2) { border-top-right-radius: 2px; }
+  .hero-stat:nth-child(3) { border-bottom-left-radius: 2px; }
+  .hero-stat:nth-child(4) { border-bottom-right-radius: 2px; }
+
+  /* Decorative gold line in hero left */
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    right: 0;
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 100px 8%; }
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  /* ── WHAT WE DO ── */
+  .services { background: var(--smoke); }
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+  .services-header p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 44px 36px;
+    border-top: 3px solid transparent;
+    transition: border-color 0.25s, transform 0.25s;
+    cursor: default;
+  }
+  .service-card:hover {
+    border-top-color: var(--gold);
+    transform: translateY(-3px);
+  }
+  .service-icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 24px;
+    color: var(--navy);
+  }
+  .service-card h3 {
+    color: var(--navy-deep);
+    margin-bottom: 14px;
+    font-size: 1.3rem;
+  }
+  .service-card p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .service-price {
+    margin-top: 20px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ── SME SPOTLIGHT ── */
+  .sme {
+    background: var(--navy-deep);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .sme::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,147,58,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sme-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+  }
+  .sme .section-label { color: var(--gold-light); }
+  .sme .section-label::before { background: var(--gold-light); }
+  .sme h2 { color: var(--white); margin-bottom: 24px; }
+  .sme p { color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.8; margin-bottom: 32px; }
+  .sme-packages {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .sme-pkg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 2px;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .sme-pkg:hover { background: rgba(200,147,58,0.1); }
+  .sme-pkg-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .sme-pkg-sub {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 2px;
+  }
+  .sme-pkg-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    color: var(--gold-light);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  /* ── SECTORS ── */
+  .sectors-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    margin-top: 56px;
+  }
+  .sector-item {
+    padding: 40px 28px;
+    background: var(--smoke);
+    text-align: center;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .sector-item:hover { background: var(--gold-pale); }
+  .sector-icon-wrap {
+    width: 48px; height: 48px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: var(--gold);
+  }
+  .sector-item h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--navy-deep);
+    margin-bottom: 8px;
+  }
+  .sector-item p {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── TECH DIVISION BANNER ── */
+  .tech-banner {
+    background: var(--gold);
+    padding: 60px 8%;
+  }
+  .tech-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .tech-banner h3 {
+    font-size: 1.8rem;
+    color: var(--white);
+    max-width: 500px;
+  }
+  .tech-banner p {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    max-width: 340px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .btn-white {
+    background: var(--white);
+    color: var(--gold);
+    padding: 13px 28px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 2px;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+  }
+  .btn-white:hover { background: var(--navy); color: var(--white); transform: translateY(-1px); }
+
+  /* ── WHY RMS ── */
+  .why { background: var(--white); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-top: 56px;
+  }
+  .why-item { border-left: 1px solid var(--border); padding-left: 28px; }
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    color: var(--gold-pale);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .why-item h4 {
+    color: var(--navy-deep);
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+  .why-item p {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ── REVENUE PLAN ── */
+  .revenue { background: var(--smoke); }
+  .revenue-table-wrap { margin-top: 48px; overflow-x: auto; }
+  .revenue-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .revenue-table th {
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .revenue-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .revenue-table tr:last-child td {
+    background: var(--navy-deep);
+    color: var(--white);
+    font-weight: 500;
+    border-bottom: none;
+  }
+  .revenue-table tr:hover td { background: var(--gold-pale); }
+  .revenue-table tr:last-child:hover td { background: var(--navy-deep); }
+  .gold-text { color: var(--gold); font-weight: 500; }
+
+  /* ── CONTACT / CTA ── */
+  .contact {
+    background: var(--navy-deep);
+    color: var(--white);
+    text-align: center;
+    padding: 120px 8%;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,147,58,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact h2 {
+    color: var(--white);
+    max-width: 600px;
+    margin: 0 auto 20px;
+  }
+  .contact p {
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    max-width: 460px;
+    margin: 0 auto 40px;
+    font-size: 1rem;
+  }
+  .contact-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--white);
+    padding: 14px 32px;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline-white {
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--white);
+    padding: 13px 32px;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+  }
+  .btn-outline-white:hover { border-color: var(--gold); background: rgba(200,147,58,0.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.45);
+    padding: 56px 8% 36px;
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 32px;
+  }
+  .footer-brand .logo-rms { color: var(--white); }
+  .footer-brand p {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    font-weight: 300;
+    color: rgba(255,255,255,0.35);
+  }
+  .footer-col h5 {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { display: none; }
+    .services-header { grid-template-columns: 1fr; gap: 24px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .sectors-grid { grid-template-columns: repeat(3, 1fr); }
+    .sme-inner { grid-template-columns: 1fr; gap: 48px; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    section { padding: 72px 6%; }
+    h1 { font-size: 2.6rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .sectors-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-left { padding: 60px 6% 60px; }
+  }
+
+  /* Marquee strip */
+  .marquee-strip {
+    background: var(--navy);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 30s linear infinite;
+    gap: 0;
+  }
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 40px;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    font-weight: 400;
+  }
+  .marquee-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo-mark">
+    <!-- SVG Logo Mark -->
+    <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="21" cy="21" r="20" stroke="#1A3A6B" stroke-width="1.2"/>
+      <!-- Data bar chart abstraction -->
+      <rect x="10" y="26" width="5" height="8" fill="#1A3A6B" opacity="0.25"/>
+      <rect x="17" y="20" width="5" height="14" fill="#1A3A6B" opacity="0.5"/>
+      <rect x="24" y="14" width="5" height="20" fill="#1A3A6B"/>
+      <!-- Gold accent rising line -->
+      <polyline points="12,25 19.5,19 26.5,13" stroke="#C8933A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <!-- Gold dot at peak -->
+      <circle cx="26.5" cy="13" r="2" fill="#C8933A"/>
+    </svg>
+    <div class="logo-text-block">
+      <span class="logo-rms">RMS</span>
+      <span class="logo-tagline">Insight You Can Build On</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#sectors">Sectors</a></li>
+    <li><a href="#sme">SME Desk</a></li>
+    <li><a href="#tech">Tech Division</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Lagos, Nigeria · Est. 2026</div>
+    <h1>Market Intelligence<br><em>Built for Action.</em></h1>
+    <p class="hero-sub">Rigorous nationwide research, real-time dashboards, and data that moves businesses forward — from growing SMEs to West Africa's largest multinationals.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#contact" class="btn-ghost">Commission Research</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-stat-grid">
+        <div class="hero-stat">
+          <div class="hero-stat-num">₦219m</div>
+          <div class="hero-stat-label">2026 Revenue Plan</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">15k+</div>
+          <div class="hero-stat-label">Respondent Panel</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">48h</div>
+          <div class="hero-stat-label">Rapid Pulse Turnaround</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">12</div>
+          <div class="hero-stat-label">States Field Coverage</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">Market Research<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Brand Health Tracking<span class="marquee-dot"></span></span>
+    <span class="marquee-item">SME Feasibility Studies<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Rapid Pulse · 48 Hours<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Microsoft CSP Licensing<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Power BI Dashboards<span class="marquee-dot"></span></span>
+    <span class="marquee-item">NGO &amp; Development Research<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Pricing &amp; Conjoint Studies<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Market Research<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Brand Health Tracking<span class="marquee-dot"></span></span>
+    <span class="marquee-item">SME Feasibility Studies<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Rapid Pulse · 48 Hours<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Microsoft CSP Licensing<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Power BI Dashboards<span class="marquee-dot"></span></span>
+    <span class="marquee-item">NGO &amp; Development Research<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Pricing &amp; Conjoint Studies<span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What We Do</div>
+      <h2>Research that earns<br><em>its seat at the table.</em></h2>
+    </div>
+    <p>From 48-hour decision flashes to multi-state baseline surveys, every RMS engagement ends with a clear "so what and now what" — not just a report.</p>
+  </div>
+  <div class="services-grid fade-up">
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none"><rect x="6" y="24" width="6" height="14" fill="#1A3A6B" opacity="0.3"/><rect x="14" y="18" width="6" height="20" fill="#1A3A6B" opacity="0.6"/><rect x="22" y="10" width="6" height="28" fill="#1A3A6B"/><rect x="30" y="14" width="6" height="24" fill="#C8933A" opacity="0.7"/><polyline points="9,22 17,16 25,8 33,12" stroke="#C8933A" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      <h3>Quantitative Research</h3>
+      <p>Usage &amp; Attitude studies, Brand Health Trackers, NPS/CX measurement, Pricing research — nationwide CAPI and CAWI at scale.</p>
+      <div class="service-price">From ₦3m · 3–8 weeks</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="18" r="8" stroke="#1A3A6B" stroke-width="1.5" fill="none"/><circle cx="22" cy="18" r="3" fill="#C8933A"/><path d="M12 36c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#1A3A6B" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      <h3>Qualitative Research</h3>
+      <p>Focus Group Discussions, In-Depth Interviews, Ethnography, and Concept Tests — uncovering the human truth behind the numbers.</p>
+      <div class="service-price">From ₦1.5m · 2–4 weeks</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none"><rect x="6" y="6" width="32" height="32" rx="3" stroke="#1A3A6B" stroke-width="1.5" fill="none"/><line x1="6" y1="16" x2="38" y2="16" stroke="#1A3A6B" stroke-width="1" opacity="0.3"/><rect x="12" y="22" width="8" height="10" fill="#1A3A6B" opacity="0.2"/><rect x="24" y="19" width="8" height="13" fill="#C8933A" opacity="0.7"/></svg>
+      <h3>BI Dashboards &amp; Analytics</h3>
+      <p>Live Power BI dashboards, the RMS Insight Portal, and advanced driver modelling — turning your data into a tool your team uses daily.</p>
+      <div class="service-price">From ₦4m · 4–6 weeks</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none"><path d="M8 22L22 8l14 14" stroke="#1A3A6B" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M14 28l8-8 8 8" stroke="#C8933A" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="22" y1="8" x2="22" y2="38" stroke="#1A3A6B" stroke-width="1" stroke-dasharray="2,3" opacity="0.4"/></svg>
+      <h3>Retail &amp; Field Audit</h3>
+      <p>GPS-verified census of distribution, shelf compliance, and agent quality across 12+ states. Geo-heat maps delivered with every study.</p>
+      <div class="service-price">From ₦4m · 4–8 weeks</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="14" stroke="#1A3A6B" stroke-width="1.5" fill="none"/><path d="M22 8v6M22 30v6M8 22h6M30 22h6" stroke="#C8933A" stroke-width="1.5" stroke-linecap="round"/><circle cx="22" cy="22" r="4" fill="#1A3A6B"/></svg>
+      <h3>Syndicated &amp; Omnibus</h3>
+      <p>Shared-cost surveys for budget-smart intelligence. Nigeria Shopper Tracker, MSME Credit Tracker, and Youth Digital Pulse — licensed quarterly.</p>
+      <div class="service-price">From ₦350k/question</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 44 44" fill="none"><rect x="8" y="12" width="28" height="20" rx="2" stroke="#1A3A6B" stroke-width="1.5" fill="none"/><line x1="8" y1="20" x2="36" y2="20" stroke="#C8933A" stroke-width="1" opacity="0.6"/><line x1="20" y1="12" x2="20" y2="32" stroke="#1A3A6B" stroke-width="1" opacity="0.3"/><circle cx="14" cy="16" r="2" fill="#C8933A"/><circle cx="26" cy="25" r="2" fill="#1A3A6B"/></svg>
+      <h3>Development &amp; NGO Research</h3>
+      <p>Baseline, midline, endline surveys. KAP studies. IRB-ready methodology, MEAL frameworks, and USAID/World Bank procurement alignment.</p>
+      <div class="service-price">From ₦6m · 6–14 weeks</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="sectors" id="sectors">
+  <div class="section-label">Industries We Serve</div>
+  <h2>Five verticals.<br>One trusted partner.</h2>
+  <div class="sectors-grid fade-up">
+    <div class="sector-item">
+      <div class="sector-icon-wrap">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="8" width="4" height="11" fill="currentColor" opacity="0.5"/><rect x="9" y="5" width="4" height="14" fill="currentColor"/><rect x="15" y="2" width="4" height="17" fill="currentColor" opacity="0.7"/></svg>
+      </div>
+      <h4>Telco &amp; Tech</h4>
+      <p>Churn modelling, pricing elasticity, NPS tracking</p>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon-wrap">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M11 3v4M11 15v4M3 11h4M15 11h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <h4>FMCG &amp; Retail</h4>
+      <p>Brand health, retail audit, shopper intercept</p>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon-wrap">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="7" y1="10" x2="15" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="14" x2="11" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <h4>Financial Services</h4>
+      <p>Digital onboarding UX, agent audits, CX tracking</p>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon-wrap">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L3 7v6c0 4.418 3.582 7 8 7s8-2.582 8-7V7L11 2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      </div>
+      <h4>Public &amp; NGO</h4>
+      <p>Baseline/endline, KAP surveys, M&amp;E frameworks</p>
+    </div>
+    <div class="sector-item">
+      <div class="sector-icon-wrap">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 18V8l7-5 7 5v10H4z" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="9" y="13" width="4" height="5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+      </div>
+      <h4>SMEs &amp; Startups</h4>
+      <p>Quick scans, feasibility studies, Rapid Pulse</p>
+    </div>
+  </div>
+</section>
+
+<!-- SME SECTION -->
+<section class="sme" id="sme">
+  <div class="sme-inner">
+    <div>
+      <div class="section-label">SME Desk</div>
+      <h2>Professional research.<br><em>At a price that makes sense.</em></h2>
+      <p>Nigeria's 39.6 million MSMEs contribute 50% of GDP yet fewer than 3% have ever commissioned formal research. RMS was purpose-built to close this gap — with standardised, affordable products that deliver real insight for every business.</p>
+      <a href="#contact" class="btn-gold">Talk to Our SME Desk</a>
+    </div>
+    <div class="sme-packages">
+      <div class="sme-pkg">
+        <div>
+          <div class="sme-pkg-name">Rapid Pulse</div>
+          <div class="sme-pkg-sub">One focused question · 48 working hours</div>
+        </div>
+        <div class="sme-pkg-price">₦250k – ₦400k</div>
+      </div>
+      <div class="sme-pkg">
+        <div>
+          <div class="sme-pkg-name">Quick Market Scan</div>
+          <div class="sme-pkg-sub">Desk research + secondary data · 3–5 days</div>
+        </div>
+        <div class="sme-pkg-price">₦300k – ₦500k</div>
+      </div>
+      <div class="sme-pkg">
+        <div>
+          <div class="sme-pkg-name">Customer Pulse Survey</div>
+          <div class="sme-pkg-sub">n=100–200 customers · 7–10 days</div>
+        </div>
+        <div class="sme-pkg-price">₦550k – ₦900k</div>
+      </div>
+      <div class="sme-pkg">
+        <div>
+          <div class="sme-pkg-name">Feasibility Study</div>
+          <div class="sme-pkg-sub">Bankable · BoI/bank-compliant · 10–15 days</div>
+        </div>
+        <div class="sme-pkg-price">₦900k – ₦1.5m</div>
+      </div>
+      <div class="sme-pkg">
+        <div>
+          <div class="sme-pkg-name">Annual Research Retainer</div>
+          <div class="sme-pkg-sub">Quarterly pulse + monthly dashboard</div>
+        </div>
+        <div class="sme-pkg-price">₦200k / month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH BANNER -->
+<div class="tech-banner" id="tech">
+  <div class="tech-banner-inner">
+    <div>
+      <h3 class="display">Introducing RMS <em>Tech Division</em></h3>
+      <p style="margin-top:12px;">Microsoft 365 licensing, Azure cloud migration, IT support retainers, and Copilot deployment — for the same clients who already trust our research.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="font-size:0.8rem;color:rgba(255,255,255,0.75);letter-spacing:0.08em;text-transform:uppercase;font-weight:500;">Microsoft CSP Reseller · Azure · Copilot</div>
+      <a href="#contact" class="btn-white">Explore Tech Services</a>
+    </div>
+  </div>
+</div>
+
+<!-- WHY RMS -->
+<section class="why">
+  <div class="section-label">Why RMS</div>
+  <h2>Built different<br><em>by design.</em></h2>
+  <div class="why-grid fade-up">
+    <div class="why-item">
+      <div class="why-num">01</div>
+      <h4>Speed as a product</h4>
+      <p>Rapid Pulse answers one focused business question in 48 hours. No competitor in Lagos matches this. Speed is not a feature — it is a service line.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">02</div>
+      <h4>Technology-first delivery</h4>
+      <p>Every engagement comes with a live Power BI dashboard. The RMS Insight Portal gives clients self-serve access to their data — not a PDF in an email.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">03</div>
+      <h4>The SME desk nobody else has</h4>
+      <p>A dedicated desk, six affordable products from ₦250k, and a manager whose only job is SME clients. No other Lagos agency has built this.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">04</div>
+      <h4>Nationwide fieldwork integrity</h4>
+      <p>GPS-verified, audio-audited CAPI across 12+ states. 15,000+ respondent panel. Every data point traceable.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">05</div>
+      <h4>Insight, not just data</h4>
+      <p>Every engagement ends with a clear "so what and now what." Driver models, conjoint analysis, NLP text analytics — tools your team can act on.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">06</div>
+      <h4>Research + Technology under one roof</h4>
+      <p>Microsoft CSP licensing and B2B tech services run alongside our research division — one trusted partner managing both your data and your infrastructure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE PLAN -->
+<section class="revenue">
+  <div class="section-label">2026 Revenue Plan</div>
+  <h2>₦219m across<br><em>three divisions.</em></h2>
+  <div class="revenue-table-wrap fade-up">
+    <table class="revenue-table">
+      <thead>
+        <tr>
+          <th>Division</th>
+          <th>Q1</th>
+          <th>Q2</th>
+          <th>Q3</th>
+          <th>Q4</th>
+          <th>Full Year</th>
+          <th>% of Plan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Research — Corporate</td>
+          <td>₦30.75m</td><td>₦38.75m</td><td>₦37.75m</td><td>₦45.05m</td>
+          <td class="gold-text">₦152.3m</td><td>70%</td>
+        </tr>
+        <tr>
+          <td>SME Research Desk</td>
+          <td>₦3.0m</td><td>₦6.0m</td><td>₦8.0m</td><td>₦8.0m</td>
+          <td class="gold-text">₦25.0m</td><td>11%</td>
+        </tr>
+        <tr>
+          <td>Microsoft Licensing (CSP)</td>
+          <td>₦0.5m</td><td>₦3.5m</td><td>₦6.0m</td><td>₦8.0m</td>
+          <td class="gold-text">₦18.0m</td><td>8%</td>
+        </tr>
+        <tr>
+          <td>B2B Tech Services</td>
+          <td>₦1.0m</td><td>₦4.5m</td><td>₦8.5m</td><td>₦10.0m</td>
+          <td class="gold-text">₦24.0m</td><td>11%</td>
+        </tr>
+        <tr>
+          <td><strong>TOTAL</strong></td>
+          <td><strong>₦35.25m</strong></td><td><strong>₦52.75m</strong></td><td><strong>₦60.25m</strong></td><td><strong>₦71.05m</strong></td>
+          <td><strong>₦219.3m</strong></td><td><strong>100%</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label" style="justify-content:center;color:rgba(200,147,58,0.8);">
+    <span style="background:var(--gold);width:24px;height:1px;display:block;"></span>
+    Commission Research
+  </div>
+  <h2>Ready to turn data<br><em>into decisions?</em></h2>
+  <p>Whether you need a 48-hour Rapid Pulse or a 12-state field study, our team is ready. First conversation is always free.</p>
+  <div class="contact-actions">
+    <a href="mailto:hello@reliablemarketsurvey.com" class="btn-gold">hello@reliablemarketsurvey.com</a>
+    <a href="#services" class="btn-outline-white">Browse Services</a>
+  </div>
+  <p style="margin-top:40px;font-size:0.78rem;color:rgba(255,255,255,0.25);letter-spacing:0.1em;">Lagos, Nigeria · reliablemarketsurvey.com</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo-mark" style="text-decoration:none;">
+        <svg width="36" height="36" viewBox="0 0 42 42" fill="none">
+          <circle cx="21" cy="21" r="20" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
+          <rect x="10" y="26" width="5" height="8" fill="white" opacity="0.15"/>
+          <rect x="17" y="20" width="5" height="14" fill="white" opacity="0.35"/>
+          <rect x="24" y="14" width="5" height="20" fill="white" opacity="0.6"/>
+          <polyline points="12,25 19.5,19 26.5,13" stroke="#C8933A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="26.5" cy="13" r="2" fill="#C8933A"/>
+        </svg>
+        <div class="logo-text-block">
+          <span class="logo-rms" style="color:white;">RMS</span>
+          <span class="logo-tagline">Insight You Can Build On</span>
+        </div>
+      </a>
+      <p>Reliable Market Survey Limited — West Africa's technology-enabled market intelligence partner. Lagos, Nigeria.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Research</h5>
+      <ul>
+        <li><a href="#">Quantitative Studies</a></li>
+        <li><a href="#">Qualitative Research</a></li>
+        <li><a href="#">Rapid Pulse (48h)</a></li>
+        <li><a href="#">Retail Audit</a></li>
+        <li><a href="#">Syndicated Reports</a></li>
+        <li><a href="#">NGO &amp; Development</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>SME Desk</h5>
+      <ul>
+        <li><a href="#">Quick Market Scan</a></li>
+        <li><a href="#">Customer Pulse</a></li>
+        <li><a href="#">Feasibility Study</a></li>
+        <li><a href="#">Annual Retainer</a></li>
+        <li><a href="#">Loan Support Research</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Tech Division</h5>
+      <ul>
+        <li><a href="#">Microsoft 365 Licensing</a></li>
+        <li><a href="#">Azure Cloud Migration</a></li>
+        <li><a href="#">IT Support Retainers</a></li>
+        <li><a href="#">Copilot Deployment</a></li>
+        <li><a href="#">NDPR Compliance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Reliable Market Survey Limited · RC No. [CAC] · Lagos, Nigeria</span>
+    <span>Confidential — CEO Strategy Document · Not for external distribution</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fade up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
