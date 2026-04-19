@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RMS Deep Strategic Brief — Ekiti State Agricultural Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#040B1A;--bg2:#071326;--bg3:#0D2147;--bg4:#122558;
+  --gold:#C8933A;--gold2:#E5B060;--gl:rgba(200,147,58,0.10);--gb:rgba(200,147,58,0.28);
+  --white:#F5F0E8;--w2:#C4BEB4;--w3:#7a756e;--w4:#4a4540;
+  --rule:rgba(200,147,58,0.12);--rule2:rgba(200,147,58,0.28);
+  --green:#15803D;--greenl:rgba(21,128,61,0.13);--greenb:rgba(21,128,61,0.3);
+  --red:#dc2626;--redl:rgba(220,38,38,0.12);
+  --blue:#2563eb;--bluel:rgba(37,99,235,0.12);
+  --amber:#d97706;--amberl:rgba(217,119,6,0.12);
+  --purple:#7c3aed;--purplel:rgba(124,58,237,0.12);
+  --teal:#0d9488;--teall:rgba(13,148,136,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:14px;scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);line-height:1.65}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(200,147,58,.022)1px,transparent 1px),linear-gradient(90deg,rgba(200,147,58,.022)1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0}
+
+/* ── HEADER ── */
+.hdr{background:var(--bg2);border-bottom:1px solid var(--rule2);padding:14px 28px;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center}
+.hdr-brand{display:flex;align-items:center;gap:11px}
+.hdr-brand svg{width:28px;height:28px;flex-shrink:0}
+.hdr-name{font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:var(--white);line-height:1}
+.hdr-sub{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:2px}
+.hdr-right{font-size:12px;color:var(--w3)}
+.hdr-right strong{color:var(--gold);font-weight:600}
+
+/* ── NAV TABS ── */
+.nav{background:var(--bg3);border-bottom:1px solid var(--rule);padding:0 28px;display:flex;gap:0;overflow-x:auto;position:sticky;top:56px;z-index:90}
+.nav-tab{font-size:11.5px;font-weight:500;padding:11px 16px;cursor:pointer;color:var(--w3);border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s;margin-bottom:-1px}
+.nav-tab:hover{color:var(--gold)}
+.nav-tab.on{color:var(--gold);border-bottom-color:var(--gold);font-weight:600}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1060px;margin:0 auto;padding:28px 22px 60px;position:relative;z-index:1}
+.panel{display:none}.panel.on{display:block}
+
+/* ── SECTION TITLES ── */
+.sec-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:var(--white);margin-bottom:6px}
+.sec-sub{font-size:13px;color:var(--w3);margin-bottom:24px;line-height:1.5}
+.sec-divider{height:1px;background:var(--rule2);margin:32px 0}
+
+/* ── CARDS ── */
+.card{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:20px 22px;margin-bottom:16px}
+.card-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.card-sub{font-size:12px;color:var(--w3);margin-bottom:14px}
+.card p{font-size:13px;color:var(--w2);line-height:1.7;margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+
+/* ── STUDY CARDS ── */
+.study-card{border:1px solid var(--rule);border-radius:12px;overflow:hidden;margin-bottom:24px}
+.study-head{background:var(--bg3);padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid var(--rule)}
+.study-num{font-family:'Fraunces',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1;flex-shrink:0}
+.study-title{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--white);line-height:1.25;margin-bottom:4px}
+.study-ref{font-size:10.5px;color:var(--w3);letter-spacing:.5px}
+.study-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.smeta{font-size:10.5px;padding:3px 9px;border-radius:20px;font-weight:600}
+.body-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:700px){.body-grid{grid-template-columns:1fr}}
+.body-col{padding:18px 20px;border-right:1px solid var(--rule)}
+.body-col:last-child{border-right:none}
+.col-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.body-col p{font-size:12.5px;color:var(--w2);line-height:1.65;margin-bottom:8px}
+.body-col p:last-child{margin-bottom:0}
+
+/* ── INTEL BOX ── */
+.intel{background:var(--bg3);border:1px solid var(--rule2);border-radius:10px;padding:15px 18px;margin-bottom:12px}
+.intel-label{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.intel p{font-size:13px;color:var(--w2);line-height:1.65;margin-bottom:6px}
+.intel p:last-child{margin-bottom:0}
+
+/* ── OBJECTION CARDS ── */
+.obj-card{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;margin-bottom:12px}
+.obj-q{font-size:13px;font-weight:600;color:var(--red);margin-bottom:10px;display:flex;gap:8px;align-items:flex-start}
+.obj-q::before{content:'Q';background:var(--redl);color:var(--red);font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;flex-shrink:0;margin-top:1px}
+.obj-a{font-size:13px;color:var(--w2);line-height:1.65;padding-left:16px;border-left:2px solid var(--green)}
+
+/* ── STAKEHOLDER TABLE ── */
+.stk-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+.stk-table th{text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--w3);padding:8px 12px;border-bottom:1px solid var(--rule2);background:var(--bg3)}
+.stk-table td{padding:10px 12px;border-bottom:1px solid var(--rule);font-size:12.5px;color:var(--w2);vertical-align:top}
+.stk-table tr:last-child td{border-bottom:none}
+.stk-table tr:hover td{background:rgba(200,147,58,.03)}
+
+/* ── BADGES ── */
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+.b-hot{background:var(--redl);color:var(--red)}
+.b-warm{background:var(--amberl);color:var(--amber)}
+.b-normal{background:var(--greenl);color:var(--green)}
+.b-blue{background:var(--bluel);color:var(--blue)}
+.b-purple{background:var(--purplel);color:var(--purple)}
+.b-teal{background:var(--teall);color:var(--teal)}
+.b-gold{background:var(--gl);color:var(--gold);border:1px solid var(--gb)}
+
+/* ── SCRIPT BOX ── */
+.script{background:rgba(200,147,58,.06);border:1px solid var(--gb);border-radius:10px;padding:15px 18px;margin-bottom:14px}
+.script-label{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.script-text{font-size:13px;font-style:italic;color:var(--w2);line-height:1.7}
+
+/* ── KV ROWS ── */
+.kv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px}
+.kv{background:var(--bg3);border:1px solid var(--rule);border-radius:8px;padding:12px 14px}
+.kv-key{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--w3);margin-bottom:4px}
+.kv-val{font-size:13px;color:var(--white);font-weight:500}
+.kv-note{font-size:11px;color:var(--w3);margin-top:3px}
+
+/* ── TIMELINE ── */
+.timeline{padding-left:20px;border-left:2px solid var(--rule2);margin-bottom:20px}
+.tl-item{position:relative;margin-bottom:18px;padding-left:18px}
+.tl-item::before{content:'';position:absolute;left:-25px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
+.tl-week{font-size:10.5px;font-weight:700;color:var(--gold);margin-bottom:3px}
+.tl-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px}
+.tl-desc{font-size:12px;color:var(--w3)}
+
+/* ── DONOR TABLE ── */
+.donor-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+@media(max-width:600px){.donor-grid{grid-template-columns:1fr}}
+.donor{background:var(--bg3);border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
+.donor-name{font-size:13.5px;font-weight:600;color:var(--white);margin-bottom:4px}
+.donor-desc{font-size:12px;color:var(--w3);margin-bottom:8px;line-height:1.5}
+.donor-angle{font-size:12px;color:var(--w2);padding-left:12px;border-left:2px solid var(--gold)}
+
+/* ── COMPETITIVE ── */
+.comp-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:700px){.comp-row{grid-template-columns:1fr}}
+.comp{background:var(--bg3);border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
+.comp.rms{border-color:var(--gb)}
+.comp-name{font-size:12px;font-weight:700;color:var(--white);margin-bottom:6px}
+.comp.rms .comp-name{color:var(--gold)}
+.comp-item{font-size:11.5px;color:var(--w3);padding:3px 0;border-bottom:1px solid var(--rule)}
+.comp-item:last-child{border-bottom:none}
+.comp-item.win{color:var(--green)}
+.comp-item.lose{color:var(--red)}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-brand">
+    <svg viewBox="0 0 42 42" fill="none">
+      <rect x="3" y="26" width="7" height="13" rx="1" fill="#C8933A" opacity=".5"/>
+      <rect x="13" y="18" width="7" height="21" rx="1" fill="#C8933A" opacity=".7"/>
+      <rect x="23" y="10" width="7" height="29" rx="1" fill="#C8933A"/>
+      <rect x="33" y="4" width="6" height="35" rx="1" fill="#E5B060"/>
+      <polyline points="6,27 16,19 26,11 36,5" stroke="#F5D08A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <circle cx="36" cy="5" r="2.5" fill="#F5D08A"/>
+    </svg>
+    <div><div class="hdr-name">RMS Strategic Brief</div><div class="hdr-sub">Ekiti Agric Research · CEO Intel</div></div>
+  </div>
+  <div class="hdr-right">CONFIDENTIAL — CEO & BizDev only · <strong>5 Studies · ₦[X]m pipeline</strong></div>
+</div>
+
+<div class="nav">
+  <div class="nav-tab on" onclick="showPanel('context',this)">Context & Landscape</div>
+  <div class="nav-tab" onclick="showPanel('stakeholders',this)">Stakeholders</div>
+  <div class="nav-tab" onclick="showPanel('studies',this)">Study Briefs</div>
+  <div class="nav-tab" onclick="showPanel('donors',this)">Donor Angles</div>
+  <div class="nav-tab" onclick="showPanel('competitive',this)">Competition</div>
+  <div class="nav-tab" onclick="showPanel('objections',this)">Objections & Responses</div>
+  <div class="nav-tab" onclick="showPanel('pitch',this)">Pitch Strategy & Scripts</div>
+  <div class="nav-tab" onclick="showPanel('winning',this)">What Wins This</div>
+</div>
+
+<div class="wrap">
+
+<!-- ══ CONTEXT ══════════════════════════════════════════════ -->
+<div class="panel on" id="panel-context">
+  <div class="sec-title">Ekiti State — Political, Agricultural & Institutional Landscape</div>
+  <div class="sec-sub">Everything you need to know about the operating environment before walking into the Ministry</div>
+
+  <div class="card">
+    <div class="card-title">The state of Ekiti agriculture right now</div>
+    <p>Ekiti State is a small landlocked state (5,887 sq km) in southwestern Nigeria with an estimated population of 3.5 million. Agriculture accounts for the largest share of livelihoods — between 65 and 70% of rural households are directly engaged in farming. The four dominant crops are yam (Nigeria's largest yam-producing state), cassava, cocoa (a major cash crop), and rice (a growing priority under the national food security agenda).</p>
+    <p>The state's agricultural performance is constrained by the same three structural problems seen across southwest Nigeria: inadequate input access (certified seed and fertiliser reach less than 30% of farmers), poor market infrastructure (most farmers sell at farm gate to itinerant traders, capturing 35–40% of retail price), and underperforming extension services (extension worker-to-farmer ratios far below the 1:750 FAO standard). Climate variability — shifting rainfall, longer dry seasons in the north, flooding in valley communities — is adding a fourth layer of stress.</p>
+    <p>The Oyebanji administration (elected 2022, re-elected 2026) has made agriculture a centrepiece of its six-pillar development agenda, specifically human capital development and economic development. Budget 2025 was ₦475.7 billion, with agriculture receiving capital allocations, though actual disbursement has been constrained by revenue shortfalls. The Ministry of Agriculture is one of the more active ministries in seeking donor partnerships and has existing relationships with World Bank FADAMA III+, APPEALS, and IFAD VCDP programmes.</p>
+  </div>
+
+  <div class="kv-grid">
+    <div class="kv"><div class="kv-key">Governor</div><div class="kv-val">Biodun Abayomi Oyebanji</div><div class="kv-note">2nd term · Six-pillar agenda · Agriculture priority</div></div>
+    <div class="kv"><div class="kv-key">State capital</div><div class="kv-val">Ado-Ekiti</div><div class="kv-note">Ministry HQ location — all meetings here</div></div>
+    <div class="kv"><div class="kv-key">LGAs</div><div class="kv-val">16 Local Governments</div><div class="kv-note">All 16 covered in Studies 1, 2, 3, and 4</div></div>
+    <div class="kv"><div class="kv-key">Budget 2025</div><div class="kv-val">₦475.7 billion</div><div class="kv-note">Capital: ₦183.4bn · Recurrent: ₦192.3bn</div></div>
+    <div class="kv"><div class="kv-key">Agriculture MDA</div><div class="kv-val">Ministry of Agriculture & Natural Resources</div><div class="kv-note">Primary client for all 5 studies</div></div>
+    <div class="kv"><div class="kv-key">Farm Settlement</div><div class="kv-val">Active programme</div><div class="kv-note">Youth settlers · Never independently evaluated</div></div>
+    <div class="kv"><div class="kv-key">Donor presence</div><div class="kv-val">World Bank, IFAD, EU, USAID</div><div class="kv-note">All active in Ekiti agric programmes</div></div>
+    <div class="kv"><div class="kv-key">Key entry point</div><div class="kv-val">EKDIPA (Investment Promotion)</div><div class="kv-note">Needs agricultural data for investor pitch — Study 1 critical</div></div>
+  </div>
+
+  <div class="sec-divider"></div>
+
+  <div class="card">
+    <div class="card-title">Why the Ministry needs this research — right now</div>
+    <p><strong style="color:var(--gold)">Budget defence pressure.</strong> The Ekiti State House of Assembly's Speaker has publicly demanded that all MDAs defend their budget proposals with evidence. The Ministry of Agriculture cannot defend capital programme allocations — farm settlement expansion, input subsidy programmes, market infrastructure investment — without data on current farmer status, programme outcomes, and need. Studies 1, 2, and 5 directly address this pressure.</p>
+    <p><strong style="color:var(--gold)">Donor programme requirements.</strong> Every active donor programme in Ekiti State's agriculture sector requires independent baseline, monitoring, or evaluation data. World Bank FADAMA requires beneficiary surveys. IFAD VCDP requires market chain assessments. The EU Green Climate Fund requires climate vulnerability baselines. RMS's five studies are precisely the data products that unlock continued and expanded donor funding. The Commissioner knows this.</p>
+    <p><strong style="color:var(--gold)">EKDIPA investor attraction.</strong> The Ekiti Development and Investment Promotion Agency (EKDIPA) actively pitches Ekiti to agricultural investors — but its investor pitch pack lacks credible, current production data. Study 1 (Agricultural Household Survey) generates exactly the data EKDIPA needs: yield per hectare by crop, input use rates, market gap analysis. This is a compelling cross-Ministry justification that the CEO should lead with.</p>
+    <p><strong style="color:var(--gold)">Farm Settlement political urgency.</strong> The Farm Settlement Programme has been running for multiple cohorts but has never been independently evaluated. With a new administration having re-inherited the programme, there is political appetite for an honest assessment — both to claim credit for what works and to justify any redesign. Study 5 lands in a genuine political window.</p>
+    <p><strong style="color:var(--gold)">Climate finance access.</strong> Nigeria's participation in the Global Climate Fund and Green Climate Fund requires state-level climate vulnerability assessments. Ekiti's environmental agencies are not equipped to produce this data. Study 4 provides the climate adaptation baseline and the climate finance readiness brief that the Ministry and EPA need to access international climate finance.</p>
+  </div>
+
+  <div class="sec-divider"></div>
+
+  <div class="card">
+    <div class="card-title">The procurement process — how government research gets commissioned in Ekiti State</div>
+    <p><strong style="color:var(--gold)">How decisions are made.</strong> In Ekiti State, research and consultancy procurement follows the Ekiti State Public Procurement Law. Awards above a threshold (typically ₦10 million) require a procurement process — but Commissioner-directed sole-source procurement is common for specialised research where there is no competitive bid pool. RMS should position for direct award through the Commissioner's office, not through open tender where possible.</p>
+    <p><strong style="color:var(--gold)">Budget timing.</strong> Ekiti State runs a January–December fiscal year. Budget is passed typically in Q1. Capital release for research and consultancy happens in Q2–Q3. The best time to get a research brief signed is April–June, when ministries have received budget releases and are looking to spend before the Q3 review. Present now, sign Q2.</p>
+    <p><strong style="color:var(--gold)">The pathway.</strong> The typical pathway for an unsolicited proposal in Ekiti is: Director of Planning or Director of Statistics (technical entry point) → Permanent Secretary (administrative approval) → Commissioner (political sign-off) → Ministry of Finance (payment authorisation). The CEO should target the Commissioner and PS simultaneously — not work up from the technical level, which is slow.</p>
+    <p><strong style="color:var(--gold)">Donor co-funding angle.</strong> If a donor programme (World Bank, IFAD, UNICEF) is willing to co-fund or directly commission the research, the procurement process is bypassed and procurement follows the donor's own rules. This is the fastest route for Studies 3, 4, and 5. The CEO should contact World Bank FADAMA III+ programme officers in Ado-Ekiti and IFAD VCDP coordinators directly, positioning RMS as the implementing research partner.</p>
+  </div>
+</div>
+
+<!-- ══ STAKEHOLDERS ══════════════════════════════════════════ -->
+<div class="panel" id="panel-stakeholders">
+  <div class="sec-title">Stakeholder Map — Who You Need, What They Care About</div>
+  <div class="sec-sub">Target these people in this order. Each has different motivations — address them specifically.</div>
+
+  <div class="intel" style="margin-bottom:20px">
+    <div class="intel-label">CEO instruction</div>
+    <p>Do not send the proposal to a junior officer and wait. Get to the Commissioner and Permanent Secretary directly. The Director of Planning/Statistics is your technical champion — cultivate them, but they cannot sign. The Commissioner signs politically; the PS signs administratively. Get to both within the first two weeks.</p>
+  </div>
+
+  <table class="stk-table">
+    <thead><tr>
+      <th>Stakeholder</th><th>Role & relevance</th><th>What they care about most</th><th>Your pitch to them</th><th>Priority</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong style="color:var(--white)">Commissioner for Agriculture</strong><br><span style="font-size:11px;color:var(--w3)">Political head of Ministry</span></td>
+        <td>Signs the LOA. Sets Ministry priorities. Has direct access to Governor. Represents Ministry in EXCO meetings.</td>
+        <td>Making the Governor look good. Defending the Ministry budget. Accessing donor funds. Not being embarrassed by programme failures.</td>
+        <td>"Commissioner, these five studies give you the evidence to defend every agriculture budget line — and give EKDIPA the investor-ready data Ekiti needs."</td>
+        <td><span class="badge b-hot">Critical</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">Permanent Secretary (Agriculture)</strong><br><span style="font-size:11px;color:var(--w3)">Administrative head</span></td>
+        <td>Signs procurement documents. Manages Ministry budget execution. Controls payment processing.</td>
+        <td>Clean procurement process. On-budget delivery. No embarrassing audit findings. Compliance with state procurement law.</td>
+        <td>"We can structure the procurement as a direct consultancy award under the specialised services threshold — here is the justification memo for your procurement file."</td>
+        <td><span class="badge b-hot">Critical</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">Director of Planning / Statistics</strong><br><span style="font-size:11px;color:var(--w3)">Technical champion</span></td>
+        <td>Reviews methodology. Approves instruments. Most likely to understand the research value. Prepares the brief for PS and Commissioner.</td>
+        <td>Technically sound methodology. Recognition within the Ministry. Data they can actually use. Not being blamed if research quality is poor.</td>
+        <td>"Here are the five detailed proposals — let me walk you through the methodology on Study 1 first. We've built in a pilot test and community validation specifically to address rural Ekiti data quality."</td>
+        <td><span class="badge b-hot">Critical</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">World Bank FADAMA III+ Programme Coordinator</strong><br><span style="font-size:11px;color:var(--w3)">Donor co-funding route</span></td>
+        <td>Manages World Bank FADAMA programme in Ekiti. Has discretionary budget for studies and evaluations. Can commission RMS directly without State procurement.</td>
+        <td>Rigorous M&E data. Beneficiary survey quality. OPCS-compliant methodology. Results Framework reporting.</td>
+        <td>"We understand World Bank M&E requirements. Studies 1, 2, and 3 align directly with FADAMA III+ results framework indicators — we can produce data in World Bank-compatible format."</td>
+        <td><span class="badge b-warm">High</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">IFAD VCDP Coordinator (Ekiti)</strong><br><span style="font-size:11px;color:var(--w3)">Value chain donor</span></td>
+        <td>Manages IFAD Value Chain Development Programme in Ekiti. Study 2 (inputs, credit, markets) aligns directly with VCDP mandate.</td>
+        <td>Value chain performance data. Smallholder income impact. Gender-disaggregated results. RIMS (IFAD Results & Impact Management).</td>
+        <td>"Study 2 generates exactly the RIMS Level 2 indicators that VCDP needs for your next supervision mission. We can structure the data collection to be IFAD-reporting compatible."</td>
+        <td><span class="badge b-warm">High</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">EKDIPA Director</strong><br><span style="font-size:11px;color:var(--w3)">Investment promotion</span></td>
+        <td>Needs agricultural production data to pitch Ekiti to investors. Currently has no current, credible production baseline.</td>
+        <td>Investor-ready data. Credible numbers for pitch decks. LGA-level investment opportunity mapping.</td>
+        <td>"Study 1 produces LGA-level yield, input access, and market gap data — exactly the investor-grade baseline EKDIPA needs to attract agribusiness partners."</td>
+        <td><span class="badge b-warm">High</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">State House of Assembly — Agriculture Committee Chair</strong><br><span style="font-size:11px;color:var(--w3)">Budget scrutiny</span></td>
+        <td>Chairs the committee that scrutinises the agriculture budget. Can recommend or block capital allocations.</td>
+        <td>Evidence that agricultural spending delivers results. Avoiding public embarrassment. Constituency agriculture outcomes.</td>
+        <td>Secondary contact — the Commissioner will manage this. But brief the CEO to reference "Assembly budget defence requirements" in all Ministry conversations.</td>
+        <td><span class="badge b-normal">Medium</span></td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--white)">Directorate of Farm Settlement</strong><br><span style="font-size:11px;color:var(--w3)">Study 5 sponsor</span></td>
+        <td>Manages the Farm Settlement Programme. Nervous about independent evaluation but needs external validation to justify continued budget.</td>
+        <td>Programme continuation. Not being exposed. Getting credit for what works. Evidence for expansion budget request.</td>
+        <td>"This evaluation is designed to surface what's working well and build the evidence case for continued — potentially expanded — government investment. It's a programme defence tool, not an audit."</td>
+        <td><span class="badge b-warm">High</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ STUDY BRIEFS ══════════════════════════════════════════ -->
+<div class="panel" id="panel-studies">
+  <div class="sec-title">Deep Brief — Each Study</div>
+  <div class="sec-sub">The full strategic context for each of the five research briefs. What the data will actually enable, and why the Ministry needs it now.</div>
+
+  <!-- Study 1 -->
+  <div class="study-card">
+    <div class="study-head">
+      <div>
+        <div style="font-size:9px;color:var(--gold);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Study 01 · RMS-EK-GOV-2026-001</div>
+        <div class="study-title">Agricultural Household Survey<br>Yam · Rice · Cocoa · Cassava</div>
+        <div class="study-meta">
+          <span class="smeta b-hot">Hot priority</span>
+          <span class="smeta b-blue">n = 2,400 · 16 LGAs</span>
+          <span class="smeta b-gold">14 weeks</span>
+          <span class="smeta" style="background:var(--greenl);color:var(--green)">CAPI · GPS · Ekiti Yoruba</span>
+        </div>
+      </div>
+      <div class="study-num">01</div>
+    </div>
+    <div class="body-grid">
+      <div class="body-col">
+        <div class="col-title">Why this study is the most important of the five</div>
+        <p>This is the foundation study. Every other study in this programme references a target population ("Ekiti farmers") — and without a current, representative household survey, none of the other studies can be properly framed, sampled, or weighted. Study 1 is the master sampling frame and baseline for the entire evidence programme.</p>
+        <p>More critically, Ekiti State has not conducted a comprehensive agricultural household survey in over a decade. The Ministry currently relies on FAO/CBN estimates and NBS AgriStat — both of which are national-level interpolations, not Ekiti-specific primary data. The Commissioner cannot tell you with confidence what yam yield per hectare is in Ikole LGA versus Ado. This study changes that permanently.</p>
+        <p>For EKDIPA, this is the single most valuable data asset the Ministry could produce. International agribusiness investors — Olam, ADM, Louis Dreyfus, Tolaro Global — need LGA-level production data, supply chain depth, and input use profiles before committing capital. Study 1 generates exactly that. The CEO should frame this as "Ekiti's investor prospectus for agriculture."</p>
+        <div class="col-title" style="margin-top:16px">What the 9 survey modules actually reveal</div>
+        <p>The 9-module questionnaire is structured to generate 5 categories of output: (1) production baselines by crop and LGA, (2) input use and supply chain gaps, (3) post-harvest loss assessment, (4) market channel and price analysis, and (5) household income and welfare profiling. The GIS outputs — LGA-level choropleth maps of yield, input access, and market distance — are the visuals that will appear in EKDIPA investor pitches, Ministry press releases, and World Bank programme reports.</p>
+      </div>
+      <div class="body-col">
+        <div class="col-title">What this data unlocks</div>
+        <p><strong style="color:var(--gold)">Budget defence:</strong> The Ministry can tell the House of Assembly exactly how many farmers are in each LGA, what they produce, and where investment gaps are — backed by n=2,400 household interviews, not estimates.</p>
+        <p><strong style="color:var(--gold)">Input subsidy targeting:</strong> With data on which LGAs have lowest certified input use rates, the Ministry can target its subsidy budget precisely rather than distributing equally (which typically means urban-biased distribution).</p>
+        <p><strong style="color:var(--gold)">FADAMA programme design:</strong> World Bank FADAMA requires beneficiary targeting data. This survey provides the population frame from which FADAMA beneficiary lists can be drawn.</p>
+        <p><strong style="color:var(--gold)">Private sector partnerships:</strong> Agro-dealers, aggregators, and processors need volume and location data before establishing Ekiti operations. Study 1 provides this commercially.</p>
+        <div class="col-title" style="margin-top:14px">Key risks to manage</div>
+        <p><strong style="color:var(--red)">Seasonal timing risk:</strong> Yam harvesting season in Ekiti runs October–December. Planting season is April–June. The questionnaire captures recall data, but accuracy is highest during or immediately after harvest. Confirm fieldwork timing with the Director of Agriculture.</p>
+        <p><strong style="color:var(--red)">Respondent trust:</strong> Farmers in Ekiti may be suspicious of data collection if they associate it with tax assessment or subsidy exclusion. The community liaison officer role and Ministry letter of authority are critical for response quality.</p>
+        <p><strong style="color:var(--red)">Plot size self-reporting bias:</strong> Farmers consistently under-report or over-report plot size. Build in GPS plot measurement for a 10% sub-sample to anchor self-reported data.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Study 2 -->
+  <div class="study-card">
+    <div class="study-head">
+      <div>
+        <div style="font-size:9px;color:var(--gold);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Study 02 · RMS-EK-GOV-2026-002</div>
+        <div class="study-title">Farmer Access to Inputs, Credit & Markets</div>
+        <div class="study-meta">
+          <span class="smeta b-hot">Hot priority</span>
+          <span class="smeta b-blue">n=1,600 + 8 FGDs + 16 IDIs</span>
+          <span class="smeta b-gold">10 weeks</span>
+          <span class="smeta" style="background:var(--purplel);color:var(--purple)">Mixed methods</span>
+        </div>
+      </div>
+      <div class="study-num">02</div>
+    </div>
+    <div class="body-grid">
+      <div class="body-col">
+        <div class="col-title">The structural problem this study investigates</div>
+        <p>Nigeria loses an estimated 40% of food crop value between farm and consumer due to supply chain inefficiencies. In Ekiti, this problem manifests as three compounding failures: input markets that are thin (few certified agro-dealers outside Ado-Ekiti), expensive (transport cost inflates urban input prices by 30–60% by the time they reach rural farmers), and unreliable (counterfeit fertiliser and seed are estimated to account for 30–40% of rural input sales nationally).</p>
+        <p>Credit is the other critical gap. Ekiti's formal agricultural credit penetration is estimated below 15%. The Bank of Agriculture (BOA) presence is limited to the state capital. Most smallholders finance their farming from personal savings, family transfers, or informal moneylenders at rates of 10–30% per month. The absence of formal credit is not just a welfare issue — it is the single largest constraint on input adoption and yield improvement.</p>
+        <p>On the market side, most Ekiti farmers sell at farm gate to itinerant traders (locally called "middlemen" or "onibara"), capturing 35–45% of final consumer price. The absence of organised market information means farmers cannot compare prices or hold produce for better offers.</p>
+        <div class="col-title" style="margin-top:14px">The supply-side IDIs — what makes this study distinctive</div>
+        <p>Most agricultural access studies interview only farmers. This study interviews the supply side too: 6 agro-dealer managers (what their margin structure is, why they won't expand to rural areas), 4 microfinance bank credit officers (their actual agricultural loan default experience and the collateral requirements they impose), and 4 market traders (how price-setting works, where margins go). This triangulated picture is something the Ministry has never had.</p>
+      </div>
+      <div class="body-col">
+        <div class="col-title">What this data directly enables</div>
+        <p><strong style="color:var(--gold)">Input subsidy programme redesign:</strong> If data shows that 65% of rural farmers cannot reach a certified agro-dealer within 10km, the Ministry knows exactly where to license new agro-dealer points — rather than subsidising inputs that farmers cannot access.</p>
+        <p><strong style="color:var(--gold)">MFB engagement strategy:</strong> If data shows MFBs won't lend to farmers primarily due to collateral requirements (not credit risk), the Ministry can negotiate collateral-free agricultural credit schemes with specific banks — something several state governments have done successfully.</p>
+        <p><strong style="color:var(--gold)">Market infrastructure investment prioritisation:</strong> LGA-level market access scores tell the Ministry exactly which LGAs need aggregation hub investment — a direct capital budget input.</p>
+        <p><strong style="color:var(--gold)">IFAD VCDP alignment:</strong> IFAD's Value Chain Development Programme requires demand-side market assessments. This study's structure aligns with IFAD RIMS Level 2 indicators and can feed directly into VCDP supervision reports.</p>
+        <div class="col-title" style="margin-top:14px">Methodological note — FGDs</div>
+        <p>The 8 FGDs are separated by gender (4 male groups, 4 female groups) specifically because female farmers in Ekiti face different market access barriers — restricted mobility, social norms around trading, spousal control of income. Mixing genders in FGDs suppresses female voice on these topics. The gender-separated design is a methodological commitment RMS should explicitly highlight in the Ministry pitch.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Study 3 -->
+  <div class="study-card">
+    <div class="study-head">
+      <div>
+        <div style="font-size:9px;color:var(--gold);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Study 03 · RMS-EK-GOV-2026-003</div>
+        <div class="study-title">Agricultural Extension Service Effectiveness Evaluation</div>
+        <div class="study-meta">
+          <span class="smeta b-warm">Politically sensitive</span>
+          <span class="smeta b-blue">n=1,200 + ~100 workers + 20 IDIs</span>
+          <span class="smeta b-gold">11 weeks</span>
+          <span class="smeta" style="background:var(--teall);color:var(--teal)">OECD-DAC framework</span>
+        </div>
+      </div>
+      <div class="study-num">03</div>
+    </div>
+    <div class="body-grid">
+      <div class="body-col">
+        <div class="col-title">Why this study is politically sensitive — and how to handle it</div>
+        <p>This study evaluates the performance of the Ministry's own staff — the extension workers. That makes it the most politically sensitive of the five. Extension workers are civil servants with union representation. A study that shows low visit frequency or poor advisory quality will embarrass the Ministry's agricultural extension directorate and could be seen as threatening extension worker employment.</p>
+        <p>The CEO must frame this study very carefully in the Ministry pitch: <em>this is not a performance audit of individual workers — it is a systems evaluation that examines why the extension system underperforms, with the aim of fixing it.</em> The focus is on structural constraints (mobility, caseload, tools, supervision) not individual worker blame. Make this explicit in the pitch and in the proposal cover letter.</p>
+        <p>The political window for this study is actually good right now. The current administration inherited the extension system from its predecessor. Any weaknesses found are attributable to the old system. A new administration commissioning an honest evaluation signals governance confidence and gives the Commissioner political cover to implement reforms — which in turn strengthens their position with donors and the Governor.</p>
+        <div class="col-title" style="margin-top:14px">The LGA Extension Effectiveness Index</div>
+        <p>The most powerful deliverable from this study is the LGA Extension Effectiveness Index — a ranked scorecard of all 16 LGAs on five dimensions: reach, advisory quality, adoption rates, efficiency, and sustainability. This index can be published (or selectively shared) to create internal competition among LGA Agriculture Officers to improve their scores. It becomes a management tool for the Director of Agricultural Extension.</p>
+      </div>
+      <div class="body-col">
+        <div class="col-title">What the Ministry can do with these findings</div>
+        <p><strong style="color:var(--gold)">Redeployment decisions:</strong> Data on LGA-level extension worker-to-farmer ratios tells the PS exactly where redeployment would have the highest impact — without needing to commission a separate staffing review.</p>
+        <p><strong style="color:var(--gold)">Training budget justification:</strong> If the evaluation shows that extension worker advisory quality is constrained by outdated training content (a common finding nationally), the Ministry can use this as evidence for an extension worker retraining budget line.</p>
+        <p><strong style="color:var(--gold)">Digital extension tools case:</strong> If low visit frequency is driven by transport constraints (also a common finding), the evaluation creates the evidence base for a digital extension tool pilot — SMS advisory services, WhatsApp extension groups — which several donor programmes are willing to co-fund.</p>
+        <p><strong style="color:var(--gold)">World Bank M&E:</strong> FADAMA III+ requires extension service performance data as part of its results framework. This evaluation satisfies that requirement and demonstrates the Ministry's commitment to evidence-based management to World Bank task teams.</p>
+        <div class="col-title" style="margin-top:14px">Observation component — what it adds</div>
+        <p>The structured observation of 10 extension worker farm visits is unusual and adds significant credibility. It allows RMS to triangulate farmer self-report ("the extension worker visited once and said nothing useful") against what actually happens during visits. This direct observation component is what separates this from a standard satisfaction survey — and it's what the World Bank will note in the methodology review.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Study 4 -->
+  <div class="study-card">
+    <div class="study-head">
+      <div>
+        <div style="font-size:9px;color:var(--gold);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Study 04 · RMS-EK-GOV-2026-004</div>
+        <div class="study-title">Climate Adaptation Practices Study Among Rural Farmers</div>
+        <div class="study-meta">
+          <span class="smeta b-hot">Climate finance gateway</span>
+          <span class="smeta b-blue">n=1,600 · 3 agroeco zones</span>
+          <span class="smeta b-gold">12 weeks</span>
+          <span class="smeta" style="background:var(--greenl);color:var(--green)">GEF / GCF aligned</span>
+        </div>
+      </div>
+      <div class="study-num">04</div>
+    </div>
+    <div class="body-grid">
+      <div class="body-col">
+        <div class="col-title">The climate finance opportunity — and why this study is the key</div>
+        <p>This study is the least obviously urgent to the Ministry — but it has the largest potential financial return. Nigeria is a signatory to the Paris Agreement and has National Adaptation Plans (NAPs) in place. Ekiti State, however, has no state-level climate vulnerability baseline, no documented adaptation practice inventory, and no community group capacity assessment. Without these, the state cannot access funds from the Green Climate Fund (GCF), the Global Environment Facility (GEF), the EU's GCCA+, or the African Development Bank's Climate Action Facility.</p>
+        <p>The GCF has allocated over $2 billion for African climate adaptation projects. Nigeria's access has been constrained partly by the absence of state-level evidence packages. Study 4 produces exactly the evidence package that the Federal Ministry of Environment and UNFCCC focal point need to submit an Ekiti State-level GCF funding proposal. This is a strategic opportunity worth multiples of the research cost.</p>
+        <p>The CEO should frame Study 4 as: <em>"This study costs ₦[X]m and could unlock ₦500m+ in climate finance for Ekiti agriculture."</em> No Commissioner can ignore that framing.</p>
+        <div class="col-title" style="margin-top:14px">The three agroecological zones — why this matters</div>
+        <p>Ekiti is unusual in spanning three distinct zones: lowland forest (south), forest-savanna transition (centre), and derived savanna (north). Climate impacts differ materially across these zones — flooding risk is highest in the forest zone; drought stress is highest in the derived savanna; disease pressure from climate-sensitive pests varies by zone. A single state-level analysis would miss these differences. The zone-stratified design is technically essential — and it shows donors and climate scientists that RMS understands the agroecology of Ekiti.</p>
+      </div>
+      <div class="body-col">
+        <div class="col-title">The Climate Finance Readiness Package — what it contains</div>
+        <p><strong style="color:var(--gold)">LGA Climate Vulnerability Index:</strong> Each of Ekiti's 16 LGAs scored on six dimensions: rainfall variability exposure, temperature stress, flood risk, drought frequency, crop yield sensitivity, and community adaptive capacity. This index can be reproduced in GCF proposals as the evidence of programme targeting rationale.</p>
+        <p><strong style="color:var(--gold)">Community group capacity assessment:</strong> GCF and GEF require demonstration that community-level implementing groups exist and have the institutional capacity to manage programme funds. The study includes a community group capacity assessment across the 16 LGAs — covering governance structure, financial management, and gender inclusion.</p>
+        <p><strong style="color:var(--gold)">Climate Finance Readiness Brief:</strong> A 2-page brief written specifically for World Bank, GEF, and GCF programme officers. Formatted to their standards, citing their indicators, demonstrating Ekiti's eligibility. The Commissioner can hand this brief directly to a visiting donor delegation.</p>
+        <div class="col-title" style="margin-top:14px">NIMET data integration</div>
+        <p>The study integrates secondary agro-meteorological data from NIMET (Nigerian Meteorological Agency) and the Federal University of Technology Akure's climate records to contextualise farmer-reported observations against measured climate trends. This secondary data integration — which no local research firm routinely does — is what makes the climate vulnerability analysis scientifically credible to international reviewers.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Study 5 -->
+  <div class="study-card">
+    <div class="study-head">
+      <div>
+        <div style="font-size:9px;color:var(--gold);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Study 05 · RMS-EK-GOV-2026-005</div>
+        <div class="study-title">Ekiti Farm Settlement Programme — Impact Assessment</div>
+        <div class="study-meta">
+          <span class="smeta b-hot">Political window open</span>
+          <span class="smeta b-blue">Census + n=400 comparison</span>
+          <span class="smeta b-gold">13 weeks</span>
+          <span class="smeta" style="background:var(--redl);color:var(--red)">PSM counterfactual</span>
+        </div>
+      </div>
+      <div class="study-num">05</div>
+    </div>
+    <div class="body-grid">
+      <div class="body-col">
+        <div class="col-title">The political context for this evaluation</div>
+        <p>The Ekiti Farm Settlement Programme is a recurring feature of Ekiti State government — it has existed in various forms under multiple administrations. Each administration inherits it, modifies it somewhat, and continues it. The current administration is in its second term. The Farm Settlement Directorate wants to expand the programme. The Ministry of Finance wants to know if existing cohorts justify continued budget.</p>
+        <p>This is the ideal moment for an independent evaluation. The new administration can claim any positive findings as validation of their governance. Any problems found are attributable to programme design inherited from predecessors. And the Redesign Options Brief gives the current Commissioner three credible paths forward — all of which position them as evidence-driven, modern policymakers.</p>
+        <p>The CEO should note in the pitch: <em>"An honest evaluation by an independent firm is the single most powerful tool you have to access World Bank and IFAD co-financing for the next phase of the programme. Without it, donors will not co-fund."</em> This is true — IFAD's VCDP and the World Bank's FADAMA both require M&E evidence of past programme effectiveness before co-funding new phases.</p>
+        <div class="col-title" style="margin-top:14px">The PSM counterfactual — why it matters</div>
+        <p>The most common weakness in government programme evaluations is the absence of a comparison group. Without one, you cannot tell whether observed improvements are due to the programme or to other factors (general economic growth, better rainfall, national input subsidies). Propensity Score Matching (PSM) constructs a statistically matched group of non-beneficiary farmers — matched on age, gender, LGA, crop, and farm size — and compares their outcomes to enrolled settlers. This is what international donors require for programme impact claims. No Ekiti-based consultancy currently offers this methodology.</p>
+      </div>
+      <div class="body-col">
+        <div class="col-title">Three unique deliverables that justify the premium</div>
+        <p><strong style="color:var(--gold)">Programme Redesign Options Brief:</strong> Three fully costed redesign scenarios — e.g., (1) continue at current scale with targeted improvements, (2) restructure as a matching grant programme, (3) pivot to a commercial agribusiness incubator model. The Commissioner can present these to the Governor as evidence-based governance options, not just opinion.</p>
+        <p><strong style="color:var(--gold)">Funder-Ready Impact Summary:</strong> A 4-page document formatted for World Bank, IFAD, and AfDB programme officers. This is the document that the Commissioner hands to a visiting World Bank task team. It contains: programme theory of change, counterfactual impact estimates, cost-effectiveness ratio, and a forward-looking investment case. This single document could unlock co-funding worth multiples of the evaluation cost.</p>
+        <p><strong style="color:var(--gold)">PSM Technical Annex:</strong> The full statistical methodology — matching variables, balance diagnostics, sensitivity analysis, treatment effect estimates. For any external review or peer assessment, this annex demonstrates that the impact claims are methodologically defensible.</p>
+        <div class="col-title" style="margin-top:14px">Managing the Farm Settlement Directorate</div>
+        <p>The Farm Settlement Directorate will be nervous. Their budget depends on the programme continuing. The CEO should meet the Director privately before the evaluation begins and explain: <em>"Our job is to surface evidence, not to recommend closure. If the programme has problems, we will identify fixable root causes — not issue an execution order."</em> Build them into the process — their cooperation on site access and beneficiary lists is essential.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DONORS ══════════════════════════════════════════════ -->
+<div class="panel" id="panel-donors">
+  <div class="sec-title">Donor Landscape — Who Is Funding Ekiti Agriculture</div>
+  <div class="sec-sub">These organisations are either already present in Ekiti or eligible to fund these studies. Each represents a co-commissioning or co-funding opportunity that bypasses state procurement entirely.</div>
+
+  <div class="intel" style="margin-bottom:20px">
+    <div class="intel-label">Strategic note for CEO</div>
+    <p>Donor co-funding is the fastest procurement route AND the most credible source of commissioning authority. If a World Bank programme officer co-commissions Study 1 alongside the Ministry, two things happen: (1) the study gets procured under World Bank rules, which are faster and more transparent than state rules; (2) the Ministry treats the data as internationally-validated, which increases its internal authority. Always pursue the dual-commissioning angle.</p>
+  </div>
+
+  <div class="donor-grid">
+    <div class="donor">
+      <div class="donor-name">World Bank — FADAMA III+</div>
+      <div class="donor-desc">Active agricultural development programme in Ekiti. Focus: smallholder farmer productivity, value chain development, rural infrastructure.</div>
+      <div class="donor-angle"><strong>Studies 1, 2, 3</strong> align with FADAMA results framework. Reach World Bank programme coordinator at Ado-Ekiti State Project Coordinating Unit. Entry phrase: "FADAMA Results Framework indicator data collection."</div>
+    </div>
+    <div class="donor">
+      <div class="donor-name">IFAD — Value Chain Development Programme (VCDP)</div>
+      <div class="donor-desc">Multi-state IFAD programme covering Ekiti. Focus: agro-processing, market linkages, rural finance access for smallholder farmers.</div>
+      <div class="donor-angle"><strong>Study 2</strong> (inputs, credit, markets) is a direct VCDP M&E need. RIMS Level 2 indicators require market access and income data. Contact VCDP State Coordinator through the Ministry's VCDP desk.</div>
+    </div>
+    <div class="donor">
+      <div class="donor-name">Green Climate Fund (GCF)</div>
+      <div class="donor-desc">Global climate finance mechanism. Nigeria is an accredited GCF country. State-level climate vulnerability evidence required for project proposals.</div>
+      <div class="donor-angle"><strong>Study 4</strong> produces the evidence package required for a GCF funding application. Entry through Nigeria's GCF National Designated Authority — the Federal Ministry of Finance (Department of Climate Change). RMS can assist the Ministry in making this connection.</div>
+    </div>
+    <div class="donor">
+      <div class="donor-name">Global Environment Facility (GEF)</div>
+      <div class="donor-desc">Funds biodiversity, climate, and land degradation projects globally. Active in Nigerian agriculture through UNDP and FAO as implementing agencies.</div>
+      <div class="donor-angle"><strong>Study 4</strong> (climate) and secondarily Study 1 (land use) align with GEF's Land Degradation Neutrality (LDN) programme. Contact FAO Nigeria's GEF focal point for alignment on study design.</div>
+    </div>
+    <div class="donor">
+      <div class="donor-name">EU — Delegation to Nigeria</div>
+      <div class="donor-desc">EU's GCCA+ (Global Climate Change Alliance+) supports state-level climate action. Also active in agricultural value chains through PROPCOM Mai-karfi successor programmes.</div>
+      <div class="donor-angle"><strong>Study 4</strong> climate readiness and <strong>Study 2</strong> market access align with EU priorities. Entry through the EU Delegation in Abuja — request meeting with the Rural Development and Agriculture Attaché.</div>
+    </div>
+    <div class="donor">
+      <div class="donor-name">USAID — Feed the Future Nigeria</div>
+      <div class="donor-desc">USAID's flagship agricultural development programme in Nigeria. Implementing partners include Palladium and DAI — both RMS potential clients.</div>
+      <div class="donor-angle"><strong>Studies 1 and 2</strong> align with Feed the Future indicators. Do not pitch USAID directly — pitch Palladium and DAI who implement Feed the Future in southwest Nigeria. RMS has prior contact with both.</div>
+    </div>
+    <div class="donor">
+      <div class="donor-name">African Development Bank — AFAWA</div>
+      <div class="donor-desc">AfDB's agricultural finance and women's access to agricultural credit programme. Active in southwest Nigeria.</div>
+      <div class="donor-angle"><strong>Study 2</strong> (credit access) directly supports AFAWA's evidence requirements. Contact AfDB Nigeria Country Office with the Study 2 proposal — gender-disaggregated credit access data is precisely what AFAWA funds.</div>
+    </div>
+    <div class="donor">
+      <div class="donor-name">Ekiti State — APPEALS Programme (World Bank)</div>
+      <div class="donor-desc">The Agro-Processing, Productivity Enhancement and Livelihood Improvement Support Programme — a World Bank-supported programme already active in Ekiti for youth agribusiness.</div>
+      <div class="donor-angle">APPEALS has its own M&E requirements. <strong>Study 1</strong> (household survey) and <strong>Study 5</strong> (farm settlement) both overlap with APPEALS beneficiary populations. Approach the APPEALS programme coordinator at the Ministry directly for joint data collection.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ COMPETITIVE ══════════════════════════════════════════ -->
+<div class="panel" id="panel-competitive">
+  <div class="sec-title">Competitive Landscape — Who Else Might Win These Studies</div>
+  <div class="sec-sub">Be honest about who you are competing against — and where your genuine edges are.</div>
+
+  <div class="intel" style="margin-bottom:20px">
+    <div class="intel-label">CEO's honest assessment</div>
+    <p>The realistic competition for these studies falls into three categories: Lagos-based research agencies (CMRG, NOI Polls, Research Afrika), international development consultancies with Nigeria offices (Oxford Policy Management, Cambridge Economic Policy Associates, IDinsight), and university-based research centres (University of Ibadan, Obafemi Awolowo University research units). Each has different strengths and weaknesses. RMS's edges are real but only count if they are made explicit in the pitch.</p>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp">
+      <div class="comp-name">CMRG (Centre for Market Research and Governance)</div>
+      <div class="comp-item">Established: 2000</div>
+      <div class="comp-item">Location: Ikeja, Lagos</div>
+      <div class="comp-item">NiMRA past president</div>
+      <div class="comp-item lose">No stated rural/agricultural specialisation</div>
+      <div class="comp-item lose">No farm-level survey track record visible</div>
+      <div class="comp-item lose">No Power BI / dashboard delivery</div>
+      <div class="comp-item lose">No OECD-DAC evaluation capability visible</div>
+      <div class="comp-item">Likely to bid on Studies 1 and 2</div>
+    </div>
+    <div class="comp">
+      <div class="comp-name">Oxford Policy Management / CEPA</div>
+      <div class="comp-item">International development consultancies</div>
+      <div class="comp-item">Extensive OECD-DAC evaluation experience</div>
+      <div class="comp-item lose">Very high day rates — 3–5× RMS pricing</div>
+      <div class="comp-item lose">Limited Nigeria rural field network</div>
+      <div class="comp-item lose">Will subcontract field operations locally</div>
+      <div class="comp-item lose">Slow procurement engagement</div>
+      <div class="comp-item">Likely to bid only if donor-funded (Study 4, 5)</div>
+    </div>
+    <div class="comp rms">
+      <div class="comp-name">RMS — Reliable Market Survey Limited</div>
+      <div class="comp-item win">Lagos-based, Nigeria-specific cost structure</div>
+      <div class="comp-item win">Ekiti field operations capability</div>
+      <div class="comp-item win">Ekiti Yoruba translation in-house</div>
+      <div class="comp-item win">Power BI dashboards as standard delivery</div>
+      <div class="comp-item win">OECD-DAC + PSM methodology (Study 5)</div>
+      <div class="comp-item win">NDPR-compliant data handling</div>
+      <div class="comp-item win">CEO attends Ministry meetings directly</div>
+      <div class="comp-item win">Package pricing for all 5 studies</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:4px">
+    <div class="card-title">How to win against each competitor type</div>
+    <p><strong style="color:var(--gold)">Against CMRG:</strong> CMRG's reputation is in corporate brand tracking and consumer research. They do not have a credible agricultural research profile. In the Ministry pitch, emphasise your rural fieldwork credentials, the Ekiti Yoruba instrument capability, and the GPS/audio QA system. If CMRG is invited to compete, request that the Ministry include agricultural household survey experience as a mandatory evaluation criterion — which immediately disqualifies purely corporate research firms.</p>
+    <p><strong style="color:var(--gold)">Against international consultancies:</strong> Their pricing kills them on Ministry-funded commissions. For Studies 1–3 (Ministry budget), they are unlikely to be competitive. For donor-co-funded studies (4 and 5), they are serious competition — but their local field capability is weak. Emphasise that RMS executes its own fieldwork in Ekiti without subcontracting, which means quality control stays in-house. International firms subcontract to unknown local firms; RMS is the local firm.</p>
+    <p><strong style="color:var(--gold)">Against university research centres:</strong> Universities are slow, have ethics committee approval delays, and often lack professional survey infrastructure (SurveyCTO, GPS tracking, centralised data management). They are well-regarded academically but not operationally. Frame RMS as "the professional execution engine that delivers what universities design but cannot implement at scale."</p>
+  </div>
+</div>
+
+<!-- ══ OBJECTIONS ══════════════════════════════════════════ -->
+<div class="panel" id="panel-objections">
+  <div class="sec-title">Objections — What the Ministry Will Ask, and How to Answer</div>
+  <div class="sec-sub">Prepare for every one of these before the first meeting. The ones marked with 🔴 are the most dangerous.</div>
+
+  <div class="obj-card">
+    <div class="obj-q">We have limited budget for consultancy research this year.</div>
+    <div class="obj-a">Understood — and that is exactly why we structured all five studies with 50% mobilisation on signing. You commit now, execute across Q2–Q4, and manage cash flow across the fiscal year. More importantly, Studies 1, 2, and 4 are designed to be co-funded with donor programmes already active in Ekiti — World Bank FADAMA and IFAD VCDP can cover a significant portion of the cost if we structure the proposals jointly. Would it help if RMS drafted the donor co-funding request letter as part of our proposal package?</div>
+  </div>
+  <div class="obj-card">
+    <div class="obj-q">🔴 We don't know your company — you have no track record with Ekiti State government.</div>
+    <div class="obj-a">That is a fair concern, and we anticipated it. Here is how we address it: (1) We are offering a pilot study option — commission Study 1 alone first. Evaluate our quality, our field team, our reporting, and our relationship. Then commission Studies 2–5 with full confidence. (2) We are willing to include a Ministry representative as an observer during the enumerator training and pilot fieldwork — at no extra charge — so your team can verify our process directly before final payment. (3) We can provide contact references from [X recent client] who commissioned similar fieldwork through us.</div>
+  </div>
+  <div class="obj-card">
+    <div class="obj-q">How will you ensure data quality in rural Ekiti communities where enumerators may fabricate interviews?</div>
+    <div class="obj-a">This is the most important technical question you can ask, and the answer is our 8-layer QA system. Every interview is GPS-tagged — we can show you the exact coordinates of every interview on a map. 15% of interviews are audio-recorded. 10% are back-checked by phone within 48 hours. Our Field Manager monitors a daily paradata dashboard showing every enumerator's submission times, GPS locations, and average interview durations. An enumerator sitting at home fabricating interviews takes 3 minutes per questionnaire — but a genuine farmer interview takes 50 minutes. The timing data alone would expose fabrication. We've caught and dismissed enumerators for this in previous projects and will do so here.</div>
+  </div>
+  <div class="obj-card">
+    <div class="obj-q">🔴 Study 3 (extension evaluation) will demoralise our extension workers.</div>
+    <div class="obj-a">We have designed this evaluation specifically to avoid that outcome. Extension worker data is collected anonymously and reported only at LGA level — no individual worker is identified in any output. The evaluation framework focuses on systemic constraints (mobility, tools, caseload, supervision) rather than individual performance. In our experience, extension workers are often the most frustrated by the system's constraints — this evaluation gives them a formal channel to document those constraints and have them addressed. We would recommend a pre-evaluation briefing session with extension workers, facilitated by RMS, explaining the study purpose and protections. Workers who understand the evaluation typically become its strongest advocates.</div>
+  </div>
+  <div class="obj-card">
+    <div class="obj-q">Five studies is too ambitious — we don't have the internal capacity to manage five concurrent research projects.</div>
+    <div class="obj-a">You would not be managing five concurrent projects. You would be managing one relationship — with RMS. We handle all five studies under a single point of contact: one Project Director, one monthly progress call with the Ministry, one reporting format, one invoice schedule. The five studies are designed to share field infrastructure wherever possible: the same enumerator pool, the same community liaison network, the same QA system. The Ministry's interaction is a monthly oversight call and deliverable review — we handle all operational complexity. The Package Option is designed specifically to make this easy for you, not harder.</div>
+  </div>
+  <div class="obj-card">
+    <div class="obj-q">🔴 Our procurement rules require competitive bidding — we cannot award this directly to you.</div>
+    <div class="obj-a">We understand the procurement requirements of the Ekiti State Public Procurement Law. There are two clean options. First, under the Specialised Consultancy Services provision, the Commissioner has authority to issue a sole-source award for studies requiring specialised technical expertise — and we can provide the supporting justification document. Second, if you prefer a competitive process, RMS is willing to participate in a Request for Proposals — and we believe our methodology, team, and package pricing will be competitive. We are confident in an open process. Which route would the Ministry prefer?</div>
+  </div>
+  <div class="obj-card">
+    <div class="obj-q">What happens to our data after the study? Who owns it?</div>
+    <div class="obj-a">All data belongs entirely to the Ekiti State Ministry of Agriculture upon full payment. This is stated explicitly in Section 14 of every proposal and in our standard SOW. RMS receives no rights to publish, share, or monetise the data. The clean dataset, codebook, and all interview recordings are delivered to the Ministry. We delete our copies according to the agreed retention schedule. The Power BI dashboard is transferred to Ministry administration. The only thing RMS retains is the right to reference the study type in our credentials — not any findings.</div>
+  </div>
+  <div class="obj-card">
+    <div class="obj-q">Can you guarantee findings that support our programme?</div>
+    <div class="obj-a">No — and you should not want us to. Research that has been adjusted to show what the client wants is not research — it is a document of unknown credibility. When you present these findings to the World Bank, to the House of Assembly, or to the Governor, their value depends entirely on their independence. The moment it becomes known that findings were adjusted, every finding in every study loses its credibility — including the positive ones. We guarantee rigorous, honest methodology and findings. We guarantee you a fair hearing if you disagree with how we've presented something. But we cannot change findings. That is the value we provide.</div>
+  </div>
+</div>
+
+<!-- ══ PITCH STRATEGY ══════════════════════════════════════ -->
+<div class="panel" id="panel-pitch">
+  <div class="sec-title">Pitch Strategy — How to Win the Meeting</div>
+  <div class="sec-sub">A step-by-step playbook for the first Ministry meeting, the clarification session, and the closing</div>
+
+  <div class="sec-divider" style="margin-top:0"></div>
+
+  <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--gold);margin-bottom:12px">Phase 1: Before the Meeting</div>
+
+  <div class="card">
+    <div class="card-title">Preparation checklist — 5 things to do before meeting the Commissioner</div>
+    <p><strong style="color:var(--gold)">1. Read the Ekiti State 2025 budget agriculture chapter.</strong> The budget document is public. Find it, read the agriculture section, and identify specific programme names and allocations. Reference these by name in the meeting — it signals that you have done your homework and are not just a generic Lagos agency pitching a generic proposal.</p>
+    <p><strong style="color:var(--gold)">2. Call the Director of Planning before the Commissioner meeting.</strong> Get a 15-minute phone call with the Director of Planning or Statistics first. Ask what data they currently rely on for planning decisions. Note the gaps they mention. Reference those specific gaps in the Commissioner meeting. The Director becomes your internal advocate if you've already engaged them technically.</p>
+    <p><strong style="color:var(--gold)">3. Prepare one printed one-pager per study.</strong> Five A4 one-pagers — one per study — in a branded RMS folder. These stay on the Commissioner's desk after you leave. The pitch deck is on-screen; the one-pagers are what the PS reviews during budget meetings. Print on quality paper.</p>
+    <p><strong style="color:var(--gold)">4. Know the current World Bank and IFAD programme names in Ekiti.</strong> Look up FADAMA III+ in Ekiti — know the programme coordinator's name if possible. Mention it by name: "We understand FADAMA III+ is active in Ekiti and our Study 1 data would integrate directly with its results framework." This signals donor awareness that most local consultancies lack.</p>
+    <p><strong style="color:var(--gold)">5. Have pricing tiers ready but don't lead with price.</strong> Have three pricing scenarios prepared: (A) all five studies as a package, (B) Studies 1+2+5 as a priority cluster, (C) Study 1 alone as a pilot. Don't mention price until the Commissioner asks. Lead with value, end with investment.</p>
+  </div>
+
+  <div class="sec-divider"></div>
+  <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--gold);margin-bottom:12px">Phase 2: The Meeting</div>
+
+  <div class="script">
+    <div class="script-label">Opening — first 3 minutes (say this almost verbatim)</div>
+    <div class="script-text">"Commissioner, thank you for the time. We are not here to sell you research — we are here because Ekiti State has a specific evidence gap that is costing the Ministry money and limiting donor access. Let me be direct about what that gap is, what it enables, and what it would take to close it. Then I'd like to hear your priorities and see where the fit is."</div>
+  </div>
+  <div class="script">
+    <div class="script-label">The evidence gap — say this if the Commissioner seems sceptical</div>
+    <div class="script-text">"Commissioner, I'll ask you one question. When the House of Assembly agriculture committee asks you next month to justify the Farm Settlement budget — what data do you cite? If the answer is 'our internal records and estimates,' that's the gap. These five studies give you independent, third-party validated evidence that no committee chairman can dismiss."</div>
+  </div>
+  <div class="script">
+    <div class="script-label">The donor angle — use this if budget is raised as an objection</div>
+    <div class="script-text">"I understand budget is constrained. Here is an option we haven't mentioned yet: Studies 1, 2, and 4 are directly co-fundable through FADAMA, IFAD-VCDP, and the Green Climate Fund. RMS can draft the co-funding request letter as part of our engagement. In a best case, the Ministry's net investment could be 30–40% of the sticker price. Would it help if we mapped the donor co-funding options for each study before our next meeting?"</div>
+  </div>
+  <div class="script">
+    <div class="script-label">The package close — say this at the end</div>
+    <div class="script-text">"We've structured these as five individual studies, but the real value is in the integrated evidence programme — one partner, shared field infrastructure, one dashboard, consistent methodology. The package pricing reflects that integration. I'd like to propose that we agree in principle on Studies 1 and 5 today, and I'll come back with a formal SOW and package price for all five within the week. Is that a reasonable next step?"</div>
+  </div>
+
+  <div class="sec-divider"></div>
+  <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--gold);margin-bottom:12px">Phase 3: Closing the Deal</div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-week">Week 0 — First meeting</div>
+      <div class="tl-title">Leave five one-pagers + pitch deck on USB</div>
+      <div class="tl-desc">Do not leave printed proposals (too long to read at this stage). One-pagers only. Follow up within 48 hours with a short email and the five proposals as PDF attachments.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-week">Week 1 — Technical follow-up</div>
+      <div class="tl-title">Meet the Director of Planning / Statistics</div>
+      <div class="tl-desc">Separate from the Commissioner meeting. This is a 45-minute technical session — walk through Study 1 methodology in detail. Answer their technical questions. This person will brief the PS on whether RMS is credible. Win them.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-week">Week 2 — Clarification session</div>
+      <div class="tl-title">Request formal clarification meeting + presentation</div>
+      <div class="tl-desc">Use the 20-slide pitch deck. Present to Commissioner + PS + Director of Planning together. Address any outstanding questions. Ask directly: "Which studies are you most interested in commissioning first?" — this is a buying signal question.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-week">Week 3 — Package proposal</div>
+      <div class="tl-title">Submit revised SOW with final pricing</div>
+      <div class="tl-desc">Include three scenarios: All 5 (package rate), Priority 3 (Studies 1+2+5), Pilot (Study 1 only). Include the donor co-funding mapping. Make it easy to say yes to at least the pilot option.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-week">Week 4–5 — Negotiation</div>
+      <div class="tl-title">Expect one round of pricing negotiation</div>
+      <div class="tl-desc">Government clients almost always negotiate. Build a 10–15% negotiation buffer into your initial pricing. Be willing to reduce scope before reducing margin — offer to drop a deliverable rather than cut day rates.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-week">Week 5–6 — Close</div>
+      <div class="tl-title">PO / LOA → SOW signing → Mobilisation</div>
+      <div class="tl-desc">Push for DocuSign / electronic signing to accelerate. Once SOW is signed, mobilisation payment has a 7-day target. Have your field team on standby from Week 4 so you can launch within days of fund receipt.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WHAT WINS ══════════════════════════════════════════ -->
+<div class="panel" id="panel-winning">
+  <div class="sec-title">What Ultimately Wins This — The Non-Negotiables</div>
+  <div class="sec-sub">Seven things that determine whether RMS wins this programme or loses it to a competitor</div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--gold)">1 · Personal access to the Commissioner — not just the Director</div>
+    <p>The single most important determinant of a government research contract in Nigeria is whether the CEO has a direct relationship with the Commissioner. Not an email — a meeting, a phone call, a WhatsApp message. The Commissioner is the only person who can direct the Ministry to commission research. If the CEO only meets the Director of Planning, the proposal will sit in a file for six months. Get to the Commissioner directly. Use every network connection you have — LCCI, professional associations, mutual contacts, government relations firms if necessary. One 20-minute meeting with the Commissioner is worth more than ten emails to the Director.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--gold)">2 · Demonstrating you understand Ekiti specifically — not just "agriculture"</div>
+    <p>Nigerian government officials are experienced at identifying generic proposals that have been recycled from other states. Your proposals are Ekiti-specific (they reference the Farm Settlement Programme, EKDIPA, FADAMA in Ekiti, and the agroecological zones) — but you must reinforce this specificity verbally in the pitch. Know that Ekiti is Nigeria's largest yam producer. Know that the derived savanna in the north faces different climate challenges than the forest south. Know the names of the programmes the Ministry is running. This specificity signals genuine preparation and distinguishes RMS from every other agency that sends a generic capability statement.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--gold)">3 · The donor co-funding angle — make it concrete, not theoretical</div>
+    <p>Saying "this study can be co-funded by donors" is common in proposals. What wins is making it specific and actionable: "We have already spoken with the World Bank FADAMA coordinator about Study 1 data integration, and they expressed strong interest in discussing co-funding." Even an exploratory call with a donor programme officer before the Ministry meeting transforms a theoretical claim into a concrete one. If the Commissioner thinks there's a real chance the Ministry only pays 40% of the cost, the urgency to commission immediately increases dramatically. Make those calls before the pitch.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--gold)">4 · Offering the pilot option — lower risk, same relationship</div>
+    <p>Every government official is risk-averse about a first engagement with an unknown vendor. The pilot option — commission Study 1 alone, evaluate quality, then proceed to Studies 2–5 — removes the barrier to getting started. It also means you have a foot in the door: once Study 1 is underway and the Ministry can see the quality of your fieldwork and reporting, the remaining four studies become much easier to close because the risk has been demonstrated to be low. Resist the temptation to push for all five from day one if the Commissioner is hesitant. A signed Study 1 is worth infinitely more than a pending five-study proposal.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--gold)">5 · Demonstrating data quality obsession — not just claiming it</div>
+    <p>Every consultancy tells a government client that their data is high quality. The way to make this claim credible is to be specific: "We GPS-tag every interview and we can show you the map of every interview location from our last project." "We audio-audit 15% of interviews and send the supervisor-reviewed files to the client." "Our back-check rate is 10% and we report back-check discrepancy rates in every weekly progress report." Specificity converts a generic claim into a verifiable commitment. Bring a printed example of a field QA daily report from a previous project (anonymised) to the technical meeting with the Director of Planning.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--gold)">6 · The Power BI dashboard as a living decision tool</div>
+    <p>This is RMS's single strongest differentiator in the Ekiti pitch and it should be demonstrated — not just described. Before the first Ministry meeting, build a demo Power BI dashboard using publicly available Ekiti agriculture data (NBS AgriStat, KNBS, FAO Nigeria data). Show it on a laptop in the meeting. Let the Commissioner filter by LGA. Let them click on a crop and see the data update. This 5-minute demonstration does more for winning the contract than 20 slides of methodology. No other research agency pitching Ekiti agriculture is doing this. It is immediately differentiating.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--gold)">7 · Speed — the government client's most underrated need</div>
+    <p>Government commissioners live in a constant cycle of pressure — budget defences, donor supervision missions, Assembly scrutiny, Governor's reviews. What they need most is a research partner who can turn around quality work faster than any other option. RMS's timelines (Study 1: 14 weeks, Study 2: 10 weeks) are already faster than university research centres or international consultancies would promise. In the pitch, emphasise: "We can have Study 1 fieldwork launched within 3 weeks of SOW signing. Your topline findings can be in your hands before the next Assembly budget review." Timing the delivery of findings to a known political or budget milestone is one of the most powerful sales tools in government research.</p>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+function showPanel(id, el) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('on'));
+  document.getElementById('panel-' + id).classList.add('on');
+  el.classList.add('on');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
