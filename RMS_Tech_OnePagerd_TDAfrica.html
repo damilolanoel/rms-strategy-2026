@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RMS Tech Division — Client One-Pager</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:210mm;min-height:297mm;font-family:'Outfit',sans-serif;background:#fff;color:#0c1117;font-size:9.5pt;line-height:1.5}
+:root{--navy:#0f2548;--gold:#C8933A;--gold2:#E5B060;--ink:#1a2535;--ink2:#374151;--ink3:#6b7280;--rule:#e5e7eb;--td:#D4201E}
+
+/* Top bar */
+.topbar{background:var(--navy);padding:10mm 14mm 8mm;display:flex;justify-content:space-between;align-items:flex-end}
+.tb-left{}
+.tb-logo{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.tb-logo svg{width:28px;height:28px}
+.tb-name{font-family:'Cormorant Garamond',serif;font-size:15pt;font-weight:700;color:#fff;line-height:1}
+.tb-tag{font-size:7pt;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:3px;display:block}
+.tb-right{text-align:right}
+.tb-title{font-family:'Cormorant Garamond',serif;font-size:20pt;font-weight:700;color:#fff;line-height:1.1}
+.tb-title em{font-style:italic;color:var(--gold)}
+.tb-sub{font-size:8pt;color:rgba(255,255,255,0.55);margin-top:4px;font-weight:300}
+
+/* TD badge */
+.td-bar{background:rgba(212,32,30,0.1);border-bottom:1px solid rgba(212,32,30,0.2);padding:5px 14mm;display:flex;align-items:center;gap:10px}
+.td-bar-txt{font-size:8pt;color:var(--td);font-weight:600}
+.td-bar-desc{font-size:8pt;color:var(--ink3)}
+
+/* Body */
+.body-wrap{padding:6mm 14mm 8mm}
+
+/* Section header */
+.sh{display:flex;align-items:center;gap:8px;margin:5mm 0 3mm}
+.sh-line{height:1.5px;flex:1;background:var(--gold);opacity:.25}
+.sh-label{font-size:7pt;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--gold);white-space:nowrap}
+
+/* Flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:5mm}
+.flow-box{border:1px solid var(--rule);border-radius:3px;padding:8px 9px;position:relative}
+.flow-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8pt;font-weight:700;margin-bottom:6px}
+.flow-title{font-size:8pt;font-weight:600;color:var(--ink);margin-bottom:4px}
+.flow-desc{font-size:7.5pt;color:var(--ink3);line-height:1.45}
+.flow-who{display:inline-block;font-size:7pt;font-weight:700;padding:1px 6px;border-radius:10px;margin-top:5px}
+.flow-arrow{display:none}
+
+/* Product grid */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:4mm}
+.ptile{border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.ptile-hdr{padding:7px 9px;border-bottom:1px solid var(--rule)}
+.ptile-brand{font-size:7pt;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.ptile-name{font-size:8.5pt;font-weight:600;color:var(--ink)}
+.ptile-body{padding:7px 9px;background:#f9fafb}
+.ptile-comm{font-size:8pt;font-weight:700;color:#0d5c3b;margin-bottom:3px}
+.ptile-items{list-style:none}
+.ptile-items li{font-size:7.5pt;color:var(--ink2);padding:1.5px 0 1.5px 10px;position:relative}
+.ptile-items li::before{content:'·';position:absolute;left:0;color:var(--gold)}
+
+/* MS table */
+.ms-tbl{width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:4mm}
+.ms-tbl th{text-align:left;padding:6px 9px;font-size:7pt;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);border-bottom:1.5px solid #E5E7EB;background:#f9fafb}
+.ms-tbl td{padding:6px 9px;border-bottom:1px solid #F3F4F6;color:var(--ink2);vertical-align:top}
+.ms-tbl tr:last-child td{border-bottom:none}
+.ms-tbl .comm{color:#0d5c3b;font-weight:600}
+
+/* Bottom CTA */
+.cta-bar{background:var(--navy);padding:6mm 14mm;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+.cta-text{font-family:'Cormorant Garamond',serif;font-size:13pt;font-weight:600;color:#fff;font-style:italic}
+.cta-contact{text-align:right}
+.cta-line{font-size:8pt;color:rgba(255,255,255,.6);margin-bottom:2px}
+.cta-email{font-size:9pt;font-weight:600;color:var(--gold)}
+
+/* Stats row */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);border-radius:3px;overflow:hidden;margin-bottom:4mm}
+.sr-item{padding:8px 10px;border-right:1px solid var(--rule);text-align:center}
+.sr-item:last-child{border-right:none}
+.sr-num{font-family:'Cormorant Garamond',serif;font-size:14pt;font-weight:700;color:var(--gold);line-height:1}
+.sr-label{font-size:7pt;color:var(--ink3);margin-top:2px}
+
+/* Two col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4mm}
+.info-box{background:#f9fafb;border:1px solid var(--rule);border-radius:3px;padding:9px 10px}
+.info-box h4{font-size:8pt;font-weight:600;color:var(--navy);margin-bottom:5px;border-bottom:1px solid #E5E7EB;padding-bottom:4px}
+.info-box p{font-size:8pt;color:var(--ink2);line-height:1.5}
+.info-box ul{list-style:none;margin:0}
+.info-box ul li{font-size:7.5pt;color:var(--ink2);padding:2px 0 2px 10px;position:relative;line-height:1.45}
+.info-box ul li::before{content:'→';position:absolute;left:0;font-size:7pt;color:var(--gold)}
+
+@media print{
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{size:A4;margin:0}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="tb-left">
+    <div class="tb-logo">
+      <svg viewBox="0 0 42 42" fill="none"><rect x="3" y="26" width="7" height="13" rx="1" fill="#C8933A" opacity=".5"/><rect x="13" y="18" width="7" height="21" rx="1" fill="#C8933A" opacity=".7"/><rect x="23" y="10" width="7" height="29" rx="1" fill="#C8933A"/><rect x="33" y="4" width="6" height="35" rx="1" fill="#E5B060"/><polyline points="6,27 16,19 26,11 36,5" stroke="#F5D08A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="36" cy="5" r="2.5" fill="#F5D08A"/></svg>
+      <div><div class="tb-name">Reliable Market Survey Ltd</div><span class="tb-tag">Insight You Can Build On</span></div>
+    </div>
+  </div>
+  <div class="tb-right">
+    <div class="tb-title">Tech Division<br><em>Service One-Pager</em></div>
+    <div class="tb-sub">Microsoft Licensing · Hardware · Networking · Gadgets · 2026</div>
+  </div>
+</div>
+
+<!-- TD AFRICA BAR -->
+<div class="td-bar">
+  <span style="font-size:7pt;font-weight:700;padding:2px 8px;background:rgba(212,32,30,0.12);color:var(--td);border-radius:10px;border:1px solid rgba(212,32,30,0.2)">Strategic Partner</span>
+  <span class="td-bar-txt">TD Africa (Technology Distributions Limited)</span>
+  <span class="td-bar-desc">— Africa's leading authorised distributor of HP · Microsoft · Dell · Cisco · Apple · Lenovo · Samsung · APC · Huawei · Bosch · Starlink and 15+ global brands since 1999. RMS sells. TD Africa delivers.</span>
+</div>
+
+<div class="body-wrap">
+
+<!-- Stats row -->
+<div class="stats-row">
+  <div class="sr-item"><div class="sr-num">20+</div><div class="sr-label">Global tech brands available</div></div>
+  <div class="sr-item"><div class="sr-num">8–18%</div><div class="sr-label">Commission on every sale</div></div>
+  <div class="sr-item"><div class="sr-num">83%</div><div class="sr-label">Tech division net margin</div></div>
+  <div class="sr-item"><div class="sr-num">₦35m</div><div class="sr-label">2026 tech revenue target</div></div>
+</div>
+
+<!-- How it works -->
+<div class="sh"><div class="sh-line"></div><div class="sh-label">How Every Deal Works</div><div class="sh-line"></div></div>
+<div class="flow">
+  <div class="flow-box">
+    <div class="flow-num" style="background:rgba(200,147,58,0.15);color:#C8933A">1</div>
+    <div class="flow-title">RMS identifies the need</div>
+    <div class="flow-desc">During research, SME consultation, or prospecting — client mentions needing laptops, licences, networking, or gadgets.</div>
+    <div class="flow-who" style="background:rgba(200,147,58,0.12);color:#C8933A">RMS</div>
+  </div>
+  <div class="flow-box">
+    <div class="flow-num" style="background:rgba(200,147,58,0.15);color:#C8933A">2</div>
+    <div class="flow-title">RMS gets TD Africa quote</div>
+    <div class="flow-desc">Submit requirement to TD Africa via WhatsApp/email. TD Africa responds in 24–48 hrs. RMS adds margin and presents to client.</div>
+    <div class="flow-who" style="background:rgba(200,147,58,0.12);color:#C8933A">RMS + TD Africa</div>
+  </div>
+  <div class="flow-box">
+    <div class="flow-num" style="background:rgba(212,32,30,0.12);color:#D4201E">3</div>
+    <div class="flow-title">TD Africa delivers</div>
+    <div class="flow-desc">Hardware procurement, delivery, installation, Microsoft provisioning, and after-sales support. RMS is not in the delivery chain.</div>
+    <div class="flow-who" style="background:rgba(212,32,30,0.08);color:#D4201E">TD Africa</div>
+  </div>
+  <div class="flow-box">
+    <div class="flow-num" style="background:rgba(13,92,59,0.15);color:#0d5c3b">4</div>
+    <div class="flow-title">RMS earns commission</div>
+    <div class="flow-desc">8–18% on every sale. Microsoft licences are recurring monthly. Hardware on delivery. Zero cost of goods, zero inventory risk.</div>
+    <div class="flow-who" style="background:rgba(13,92,59,0.1);color:#0d5c3b">RMS</div>
+  </div>
+</div>
+
+<!-- Microsoft Licensing -->
+<div class="sh"><div class="sh-line"></div><div class="sh-label">Microsoft Licensing (Monthly Recurring)</div><div class="sh-line"></div></div>
+<table class="ms-tbl">
+  <thead><tr><th>Package</th><th>Seats</th><th>Monthly per seat (₦)</th><th>What's included</th><th>RMS commission</th></tr></thead>
+  <tbody>
+    <tr><td><strong>M365 Business Basic</strong></td><td>1–10</td><td>₦6,000–₦8,000</td><td>Exchange email · Teams · OneDrive · web Office apps</td><td class="comm">~22%</td></tr>
+    <tr><td><strong>M365 Business Standard</strong></td><td>10–50</td><td>₦10,000–₦13,000</td><td>All Basic + desktop Office apps · SharePoint · Stream</td><td class="comm">~20%</td></tr>
+    <tr><td><strong>M365 Business Premium</strong></td><td>50–200</td><td>₦15,000–₦20,000</td><td>All Standard + Defender for Business · Intune · Entra ID P1</td><td class="comm">~18%</td></tr>
+    <tr><td><strong>M365 E3 / E5 (Enterprise)</strong></td><td>200+</td><td>USD quoted</td><td>Full enterprise suite · compliance · e-discovery · advanced security</td><td class="comm">~15%</td></tr>
+    <tr><td><strong>Microsoft 365 Copilot (AI)</strong></td><td>Any M365 client</td><td>₦25,000–₦32,000</td><td>AI assistant across all M365 apps + 2-hour enablement session</td><td class="comm">~18%</td></tr>
+    <tr><td><strong>Microsoft Nonprofit / Edu</strong></td><td>Any</td><td>₦2,000–₦4,000</td><td>Heavily discounted M365 for NGOs, UN agencies, schools</td><td class="comm">Service fee</td></tr>
+    <tr><td><strong>Microsoft Azure</strong></td><td>N/A</td><td>Usage + 12% markup</td><td>Cloud compute · storage · databases · Azure AI services</td><td class="comm">~12%</td></tr>
+  </tbody>
+</table>
+
+<!-- Hardware -->
+<div class="sh"><div class="sh-line"></div><div class="sh-label">Hardware, Networking, Power &amp; Gadgets</div><div class="sh-line"></div></div>
+<div class="pgrid">
+  <div class="ptile">
+    <div class="ptile-hdr"><div class="ptile-brand">Laptops &amp; Desktops</div><div class="ptile-name">HP · Dell · Lenovo · Apple · Zinox</div></div>
+    <div class="ptile-body"><div class="ptile-comm">5–10% commission per unit</div><ul class="ptile-items"><li>HP ProBook / EliteBook (business)</li><li>Dell Latitude / XPS range</li><li>Lenovo ThinkPad / IdeaPad</li><li>Apple MacBook Pro / Air</li><li>Zinox (Nigerian-made · gov/edu)</li></ul></div>
+  </div>
+  <div class="ptile">
+    <div class="ptile-hdr"><div class="ptile-brand">Networking &amp; Power</div><div class="ptile-name">Cisco · D-Link · APC · Vertiv · Huawei</div></div>
+    <div class="ptile-body"><div class="ptile-comm">6–10% commission per project</div><ul class="ptile-items"><li>Cisco Meraki switches &amp; firewalls</li><li>D-Link access points &amp; routers</li><li>APC UPS systems (Schneider)</li><li>Vertiv rack power &amp; PDUs</li><li>Full office networking setup</li></ul></div>
+  </div>
+  <div class="ptile">
+    <div class="ptile-hdr"><div class="ptile-brand">Phones · Gadgets · Security</div><div class="ptile-name">Samsung · Tecno · Bosch · Starlink</div></div>
+    <div class="ptile-body"><div class="ptile-comm">5–12% commission per unit / project</div><ul class="ptile-items"><li>Samsung Galaxy (consumer + business)</li><li>Tecno / Infinix (bulk field devices)</li><li>Bosch / Ring CCTV &amp; access control</li><li>Starlink business kits (rural / NGO)</li><li>Logitech peripherals &amp; headsets</li></ul></div>
+  </div>
+</div>
+
+<!-- Why + Target clients -->
+<div class="two-col">
+  <div class="info-box">
+    <h4>Why every RMS client is a tech prospect</h4>
+    <ul>
+      <li>Every research client is already paying someone else for Microsoft licences — that money should come through RMS</li>
+      <li>NGO and donor-funded clients qualify for heavily discounted Microsoft Nonprofit plans — RMS earns a setup and management fee</li>
+      <li>FMCG field teams need rugged laptops and tablets for CAPI data collection — we supply and support</li>
+      <li>SME loan applicants need laptops and basic IT setup when their business starts — natural add-on to every feasibility study</li>
+      <li>Government clients need desktops, printers, and networking for MDAs — large-volume deals</li>
+    </ul>
+  </div>
+  <div class="info-box">
+    <h4>Priority tech targets — warm pipeline</h4>
+    <ul>
+      <li><strong>UNICEF Nigeria</strong> — M365 Nonprofit + Azure data environment</li>
+      <li><strong>Palladium / DAI (USAID)</strong> — Field laptops (15–20 units) + SharePoint</li>
+      <li><strong>Paga / PalmPay</strong> — M365 Premium + Copilot for product teams</li>
+      <li><strong>Shoprite Nigeria</strong> — Cisco networking + APC UPS for store offices</li>
+      <li><strong>Nigerian Breweries</strong> — HP laptop refresh (30–40 units) for sales team</li>
+      <li><strong>State Government (Lagos/Kano)</strong> — HP desktops + printers + M365 Govt</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /body-wrap -->
+
+<!-- CTA BAR -->
+<div class="cta-bar">
+  <div class="cta-text">"We bring the clients. TD Africa delivers the technology.<br>You get one trusted partner for research and tech."</div>
+  <div class="cta-contact">
+    <div class="cta-line">To discuss a tech requirement:</div>
+    <div class="cta-email">info@reliablemarketsurvey.com</div>
+    <div class="cta-line" style="margin-top:3px">+234 [number] · reliablemarketsurvey.com/tech</div>
+  </div>
+</div>
+
+</body>
+</html>
