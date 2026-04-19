@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RMS Tech Store — Lagos SME Prospect List</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Fraunces:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#040B1A;--bg2:#071326;--bg3:#0D2147;--bg4:#122558;
+  --gold:#C8933A;--gold2:#E5B060;--gold-l:rgba(200,147,58,0.1);--gold-b:rgba(200,147,58,0.25);
+  --white:#F5F0E8;--white2:#C8C3B9;--white3:#7a756e;
+  --rule:rgba(200,147,58,0.12);--rule2:rgba(200,147,58,0.25);
+  --green:#10b981;--green-l:rgba(16,185,129,0.12);
+  --blue:#3b82f6;--blue-l:rgba(59,130,246,0.12);
+  --red:#ef4444;--red-l:rgba(239,68,68,0.1);
+  --purple:#a78bfa;--purple-l:rgba(167,139,250,0.1);
+  --amber:#f59e0b;--amber-l:rgba(245,158,11,0.1);
+  --teal:#14b8a6;--teal-l:rgba(20,184,166,0.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;font-size:14px}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(200,147,58,0.025)1px,transparent 1px),linear-gradient(90deg,rgba(200,147,58,0.025)1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
+
+/* Header */
+.hdr{background:var(--bg2);border-bottom:1px solid var(--rule2);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.hdr-left{display:flex;align-items:center;gap:12px}
+.logo svg{width:30px;height:30px}
+.brand{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--white);line-height:1}
+.brand-sub{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:2px}
+.hdr-right{display:flex;gap:10px;align-items:center}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:8px 16px;border-radius:6px;cursor:pointer;transition:all .15s;font-family:'Outfit',sans-serif;border:none;letter-spacing:.2px}
+.btn-gold{background:var(--gold);color:var(--bg)}
+.btn-gold:hover{background:var(--gold2)}
+.btn-ghost{background:transparent;border:1px solid var(--rule2);color:var(--white3)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-danger{background:var(--red-l);border:1px solid rgba(239,68,68,0.25);color:var(--red)}
+.btn-danger:hover{background:rgba(239,68,68,0.2)}
+.btn-sm{padding:5px 11px;font-size:11px}
+.btn-icon{width:32px;height:32px;padding:0;justify-content:center;border-radius:6px}
+
+/* Wrap */
+.wrap{max-width:1260px;margin:0 auto;padding:24px 24px;position:relative;z-index:1}
+
+/* Stats bar */
+.stats-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
+.sb{background:var(--bg3);border:1px solid var(--rule);border-radius:8px;padding:12px 16px;text-align:center}
+.sb-num{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--gold);line-height:1}
+.sb-label{font-size:11px;color:var(--white3);margin-top:3px}
+
+/* Controls */
+.controls{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:14px 18px;margin-bottom:16px}
+.ctrl-row1{display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.ctrl-search{flex:1;min-width:220px;background:var(--bg3);border:1px solid var(--rule2);border-radius:6px;padding:9px 14px;color:var(--white);font-family:'Outfit',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.ctrl-search::placeholder{color:var(--white3)}
+.ctrl-search:focus{border-color:var(--gold)}
+.ctrl-select{background:var(--bg3);border:1px solid var(--rule2);border-radius:6px;padding:9px 12px;color:var(--white2);font-family:'Outfit',sans-serif;font-size:13px;outline:none;cursor:pointer}
+.ctrl-select option{background:var(--bg3)}
+.ctrl-label{font-size:11px;color:var(--white3);letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{font-size:11px;padding:5px 12px;border-radius:20px;border:1px solid var(--rule2);background:transparent;color:var(--white3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
+.chip.on{background:var(--gold-l);border-color:var(--gold);color:var(--gold);font-weight:500}
+
+/* Sort row */
+.sort-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.sort-info{font-size:13px;color:var(--white3)}
+.sort-info strong{color:var(--white);font-weight:500}
+.sort-btns{display:flex;gap:6px}
+.sort-btn{font-size:11px;padding:5px 11px;border-radius:6px;border:1px solid var(--rule);background:transparent;color:var(--white3);cursor:pointer;transition:all .15s;font-family:'Outfit',sans-serif}
+.sort-btn.on{background:var(--gold-l);border-color:var(--gold);color:var(--gold)}
+
+/* Table */
+.tbl-wrap{border:1px solid var(--rule);border-radius:10px;overflow:hidden;overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;min-width:900px}
+.tbl thead tr{background:var(--bg3)}
+.tbl th{text-align:left;padding:10px 13px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--white3);border-bottom:1px solid var(--rule2);white-space:nowrap}
+.tbl td{padding:11px 13px;border-bottom:1px solid var(--rule);color:var(--white2);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover td{background:rgba(200,147,58,0.03)}
+.co-name{font-weight:500;color:var(--white);font-size:13px;line-height:1.2}
+.co-sub{font-size:11px;color:var(--white3);margin-top:2px}
+.tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.tag-fintech{background:var(--blue-l);color:var(--blue)}
+.tag-legal{background:var(--purple-l);color:var(--purple)}
+.tag-accounting{background:var(--teal-l);color:var(--teal)}
+.tag-hr{background:var(--amber-l);color:var(--amber)}
+.tag-logistics{background:var(--green-l);color:var(--green)}
+.tag-agency{background:rgba(236,72,153,0.12);color:#f472b6}
+.tag-healthcare{background:var(--red-l);color:var(--red)}
+.tag-education{background:rgba(99,102,241,0.12);color:#818cf8}
+.tag-realestate{background:rgba(245,158,11,0.12);color:var(--amber)}
+.tag-food{background:rgba(16,185,129,0.12);color:var(--green)}
+.tag-other{background:rgba(255,255,255,0.07);color:var(--white3)}
+.prio{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:600;padding:3px 8px;border-radius:10px}
+.prio-hot{background:rgba(239,68,68,0.15);color:#f87171}
+.prio-warm{background:var(--amber-l);color:var(--amber)}
+.prio-normal{background:var(--green-l);color:var(--green)}
+.status-pill{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;cursor:pointer}
+.status-new{background:rgba(200,147,58,0.1);color:var(--gold);border:1px solid rgba(200,147,58,0.2)}
+.status-contacted{background:var(--blue-l);color:var(--blue);border:1px solid rgba(59,130,246,0.2)}
+.status-quoted{background:var(--amber-l);color:var(--amber);border:1px solid rgba(245,158,11,0.2)}
+.status-won{background:var(--green-l);color:var(--green);border:1px solid rgba(16,185,129,0.2)}
+.status-lost{background:var(--red-l);color:var(--red);border:1px solid rgba(239,68,68,0.2)}
+.val{font-weight:600;color:var(--gold);font-size:13px;white-space:nowrap}
+.prod-pill{display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;border:1px solid var(--rule2);color:var(--white3);margin:2px 2px 2px 0}
+.row-actions{display:flex;gap:5px;opacity:0;transition:opacity .15s}
+.tbl tbody tr:hover .row-actions{opacity:1}
+
+/* Empty */
+.empty{text-align:center;padding:48px 24px;color:var(--white3)}
+
+/* ── MODAL ── */
+.overlay{position:fixed;inset:0;background:rgba(4,11,26,0.9);z-index:200;display:flex;align-items:center;justify-content:center;padding:16px}
+.overlay.hide{display:none}
+.modal{background:var(--bg2);border:1px solid var(--rule2);border-radius:12px;width:100%;max-width:620px;max-height:92vh;overflow-y:auto}
+.modal-hd{padding:18px 22px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--bg2);z-index:10}
+.modal-title{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--white)}
+.close-btn{background:none;border:none;color:var(--white3);font-size:20px;cursor:pointer;line-height:1;padding:2px 6px}
+.close-btn:hover{color:var(--white)}
+.modal-bd{padding:20px 22px}
+
+/* Form */
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--white3);margin-bottom:7px}
+.fi{width:100%;background:var(--bg3);border:1px solid var(--rule2);border-radius:6px;padding:10px 13px;color:var(--white);font-family:'Outfit',sans-serif;font-size:13.5px;outline:none;transition:border-color .2s}
+.fi:focus{border-color:var(--gold)}
+.fi::placeholder{color:var(--white3)}
+select.fi option{background:var(--bg3);color:var(--white)}
+textarea.fi{resize:vertical;min-height:80px;line-height:1.5}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-actions{display:flex;gap:10px;justify-content:flex-end;padding-top:6px;border-top:1px solid var(--rule);margin-top:4px}
+
+/* View modal */
+.det-row{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--rule);align-items:flex-start}
+.det-row:last-child{border-bottom:none}
+.det-k{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--white3);min-width:120px;flex-shrink:0;margin-top:2px}
+.det-v{font-size:13px;color:var(--white2);line-height:1.5}
+.pitch-box{background:var(--bg3);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;margin-top:14px}
+.pitch-lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.pitch-txt{font-size:13px;color:var(--white2);font-style:italic;line-height:1.65}
+
+/* Delete confirm */
+.del-modal .modal-bd{text-align:center;padding:28px 24px}
+.del-icon{font-size:36px;margin-bottom:12px}
+.del-title{font-size:17px;font-weight:600;color:var(--white);margin-bottom:8px}
+.del-sub{font-size:13px;color:var(--white3);margin-bottom:24px}
+.del-actions{display:flex;gap:10px;justify-content:center}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg4);border:1px solid var(--rule2);border-radius:8px;padding:12px 18px;font-size:13px;color:var(--white);z-index:300;transform:translateY(80px);opacity:0;transition:all .25s}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.toast-ok{border-color:rgba(16,185,129,0.3);color:var(--green)}
+.toast.toast-err{border-color:rgba(239,68,68,0.3);color:var(--red)}
+
+@media(max-width:700px){.stats-bar{grid-template-columns:1fr 1fr}.fg-row{grid-template-columns:1fr}.hdr-right .btn-ghost{display:none}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">
+      <svg viewBox="0 0 42 42" fill="none"><rect x="3" y="26" width="7" height="13" rx="1" fill="#C8933A" opacity=".5"/><rect x="13" y="18" width="7" height="21" rx="1" fill="#C8933A" opacity=".7"/><rect x="23" y="10" width="7" height="29" rx="1" fill="#C8933A"/><rect x="33" y="4" width="6" height="35" rx="1" fill="#E5B060"/><polyline points="6,27 16,19 26,11 36,5" stroke="#F5D08A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="36" cy="5" r="2.5" fill="#F5D08A"/></svg>
+    </div>
+    <div><div class="brand">RMS Tech Store</div><div class="brand-sub">Prospect List · Lagos</div></div>
+  </div>
+  <div class="hdr-right">
+    <button class="btn btn-ghost btn-sm" onclick="exportCSV()">⬇ Export CSV</button>
+    <button class="btn btn-ghost btn-sm" onclick="resetToDefaults()">↺ Reset</button>
+    <button class="btn btn-gold" onclick="openAddModal()">+ Add Prospect</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stats-bar">
+    <div class="sb"><div class="sb-num" id="s-total">—</div><div class="sb-label">Total prospects</div></div>
+    <div class="sb"><div class="sb-num" id="s-hot" style="color:#f87171">—</div><div class="sb-label">Hot priority</div></div>
+    <div class="sb"><div class="sb-num" id="s-contacted" style="color:var(--blue)">—</div><div class="sb-label">Contacted</div></div>
+    <div class="sb"><div class="sb-num" id="s-won" style="color:var(--green)">—</div><div class="sb-label">Won / Quoted</div></div>
+    <div class="sb"><div class="sb-num" id="s-value">—</div><div class="sb-label">Est. pipeline</div></div>
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-row1">
+      <span class="ctrl-label">Search</span>
+      <input class="ctrl-search" id="search-input" placeholder="Company name, location, need…" oninput="render()">
+      <span class="ctrl-label">Status</span>
+      <select class="ctrl-select" id="status-filter" onchange="render()">
+        <option value="all">All statuses</option>
+        <option value="new">New</option>
+        <option value="contacted">Contacted</option>
+        <option value="quoted">Quoted</option>
+        <option value="won">Won</option>
+        <option value="lost">Lost</option>
+      </select>
+      <span class="ctrl-label">Priority</span>
+      <select class="ctrl-select" id="prio-filter" onchange="render()">
+        <option value="all">All</option>
+        <option value="hot">🔥 Hot</option>
+        <option value="warm">Warm</option>
+        <option value="normal">Normal</option>
+      </select>
+    </div>
+    <div class="chips" id="sector-chips">
+      <div class="chip on" onclick="setSector('all',this)">All sectors</div>
+      <div class="chip" onclick="setSector('fintech',this)">Fintech</div>
+      <div class="chip" onclick="setSector('legal',this)">Legal</div>
+      <div class="chip" onclick="setSector('accounting',this)">Accounting</div>
+      <div class="chip" onclick="setSector('hr',this)">HR</div>
+      <div class="chip" onclick="setSector('agency',this)">Agency</div>
+      <div class="chip" onclick="setSector('logistics',this)">Logistics</div>
+      <div class="chip" onclick="setSector('healthcare',this)">Healthcare</div>
+      <div class="chip" onclick="setSector('education',this)">Education</div>
+      <div class="chip" onclick="setSector('food',this)">Food & Retail</div>
+      <div class="chip" onclick="setSector('realestate',this)">Real Estate</div>
+      <div class="chip" onclick="setSector('other',this)">Other</div>
+    </div>
+  </div>
+
+  <div class="sort-row">
+    <div class="sort-info">Showing <strong id="showing">—</strong> prospects</div>
+    <div class="sort-btns">
+      <button class="sort-btn on" onclick="setSort('priority',this)">Priority</button>
+      <button class="sort-btn" onclick="setSort('value',this)">Value ↓</button>
+      <button class="sort-btn" onclick="setSort('sector',this)">Sector</button>
+      <button class="sort-btn" onclick="setSort('status',this)">Status</button>
+      <button class="sort-btn" onclick="setSort('name',this)">A–Z</button>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr>
+        <th>Company</th>
+        <th>Sector</th>
+        <th>Location · Size</th>
+        <th>Primary need</th>
+        <th>Products</th>
+        <th>Est. value</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th></th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="empty hide" id="empty">
+      <div style="font-size:32px;margin-bottom:10px">🔍</div>
+      <div>No prospects match your filters.</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:12px" onclick="clearFilters()">Clear filters</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD / EDIT MODAL -->
+<div class="overlay hide" id="form-overlay">
+  <div class="modal">
+    <div class="modal-hd">
+      <div class="modal-title" id="form-title">Add prospect</div>
+      <button class="close-btn" onclick="closeFormModal()">✕</button>
+    </div>
+    <div class="modal-bd">
+      <input type="hidden" id="f-id">
+      <div class="fg-row">
+        <div class="fg"><label>Company name *</label><input class="fi" id="f-name" placeholder="e.g. Brass Technology"></div>
+        <div class="fg"><label>Short description *</label><input class="fi" id="f-sub" placeholder="e.g. Business banking platform"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg">
+          <label>Sector *</label>
+          <select class="fi" id="f-sector">
+            <option value="">Select sector</option>
+            <option value="fintech">Fintech</option>
+            <option value="legal">Legal</option>
+            <option value="accounting">Accounting</option>
+            <option value="hr">HR</option>
+            <option value="agency">Agency / Marketing</option>
+            <option value="logistics">Logistics</option>
+            <option value="healthcare">Healthcare</option>
+            <option value="education">Education</option>
+            <option value="food">Food & Retail</option>
+            <option value="realestate">Real Estate</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Priority *</label>
+          <select class="fi" id="f-priority">
+            <option value="hot">🔥 Hot</option>
+            <option value="warm">Warm</option>
+            <option value="normal">Normal</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Location (Lagos area)</label><input class="fi" id="f-location" placeholder="e.g. Lekki, Yaba, VI"></div>
+        <div class="fg"><label>Team size</label><input class="fi" id="f-size" placeholder="e.g. 10–30 staff"></div>
+      </div>
+      <div class="fg"><label>Tech need / what to pitch</label><textarea class="fi" id="f-need" placeholder="e.g. M365 Business Standard + Dell laptops + managed IT support"></textarea></div>
+      <div class="fg"><label>Products (comma-separated)</label><input class="fi" id="f-products" placeholder="e.g. M365 Standard, Laptops, Managed IT"></div>
+      <div class="fg-row">
+        <div class="fg"><label>Est. deal value (₦)</label><input class="fi" id="f-value" placeholder="e.g. ₦3.5m" type="text"></div>
+        <div class="fg">
+          <label>Status</label>
+          <select class="fi" id="f-status">
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="quoted">Quoted</option>
+            <option value="won">Won</option>
+            <option value="lost">Lost</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Website</label><input class="fi" id="f-web" placeholder="e.g. www.company.com"></div>
+      <div class="fg"><label>Opening pitch line</label><textarea class="fi" id="f-pitch" placeholder="Your personalised opening line for this prospect…" style="min-height:64px"></textarea></div>
+      <div class="fg"><label>Notes</label><textarea class="fi" id="f-notes" placeholder="Any additional notes, contacts, history…" style="min-height:56px"></textarea></div>
+      <div class="form-actions">
+        <button class="btn btn-ghost" onclick="closeFormModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="saveProspect()">Save prospect</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VIEW MODAL -->
+<div class="overlay hide" id="view-overlay">
+  <div class="modal">
+    <div class="modal-hd">
+      <div>
+        <div class="modal-title" id="v-name">—</div>
+        <div style="font-size:12px;color:var(--white3);margin-top:3px" id="v-sub">—</div>
+      </div>
+      <button class="close-btn" onclick="closeViewModal()">✕</button>
+    </div>
+    <div class="modal-bd" id="v-body"></div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM -->
+<div class="overlay hide" id="del-overlay">
+  <div class="modal del-modal" style="max-width:400px">
+    <div class="modal-bd">
+      <div class="del-icon">🗑</div>
+      <div class="del-title" id="del-title">Delete this prospect?</div>
+      <div class="del-sub" id="del-sub">This cannot be undone.</div>
+      <div class="del-actions">
+        <button class="btn btn-ghost" onclick="closeDelModal()">Cancel</button>
+        <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY = 'rms_prospects_v1';
+const PRIO = {hot:0,warm:1,normal:2};
+const STATUS_ORDER = {new:0,contacted:1,quoted:2,won:3,lost:4};
+let currentSector = 'all', currentSort = 'priority', deleteTargetId = null;
+
+const DEFAULT_PROSPECTS = [
+  {id:'d1',name:'Brass Technology',sub:'Business banking platform',sector:'fintech',location:'Yaba',size:'30–60 staff',need:'M365 Business Standard + Azure + Copilot for engineering team',products:['M365 Standard','Azure','Copilot'],value:'₦4.2m',valNum:4.2,priority:'hot',status:'new',web:'www.trybrass.com',pitch:'Brass serves SMEs — your own IT infrastructure should mirror the professionalism you sell. We provision M365 for your team and set up Azure-backed secure storage in 5 days.',notes:''},
+  {id:'d2',name:'Fliqpay',sub:'Crypto & payments platform',sector:'fintech',location:'Lekki',size:'15–25 staff',need:'M365 Business Premium + cybersecurity + NDPR compliance',products:['M365 Premium','Defender','NDPR'],value:'₦5.1m',valNum:5.1,priority:'hot',status:'new',web:'www.fliqpay.com',pitch:'Payments companies face the highest NDPR scrutiny. We deploy M365 Business Premium with Defender and Intune — full compliance out of the box.',notes:''},
+  {id:'d3',name:'Anchor (BaaS)',sub:'Banking-as-a-Service startup',sector:'fintech',location:'Victoria Island',size:'25–50 staff',need:'M365 E3 + Azure DevOps + Copilot',products:['M365 E3','Azure','Copilot'],value:'₦7.5m',valNum:7.5,priority:'hot',status:'new',web:'www.getanchor.co',pitch:'BaaS players need enterprise-grade security. M365 E3 gives your engineering and ops team eDiscovery, Defender, and Intune — all in one invoice.',notes:''},
+  {id:'d4',name:'Cowrywise',sub:'Investment & savings app',sector:'fintech',location:'Yaba',size:'30–50 staff',need:'M365 Premium + managed IT + Copilot AI',products:['M365 Premium','Managed IT','Copilot'],value:'₦6.0m',valNum:6.0,priority:'hot',status:'new',web:'www.cowrywise.com',pitch:'Your users trust Cowrywise with their savings — your own IT infrastructure should be equally secure. We provision M365 Premium with managed support.',notes:''},
+  {id:'d5',name:'Kuda Bank (SME ops)',sub:'Digital-first neobank',sector:'fintech',location:'Victoria Island',size:'50–80 staff',need:'M365 E3 + bulk laptop refresh + Azure + Copilot',products:['M365 E3','Laptops','Copilot'],value:'₦12.0m',valNum:12.0,priority:'hot',status:'new',web:'www.kuda.com',pitch:'Kuda\'s growth pace demands enterprise IT. We handle bulk HP/Dell laptop procurement via TD Africa wholesale and provision M365 E3 for your ops and product teams.',notes:''},
+  {id:'d6',name:'Suplias',sub:'B2B supply chain platform',sector:'fintech',location:'Yaba',size:'20–40 staff',need:'Laptop refresh (Dell/Lenovo) + M365 Business Standard',products:['Laptops','M365 Standard'],value:'₦3.5m',valNum:3.5,priority:'hot',status:'new',web:'www.suplias.com',pitch:'Supply chain moves fast — your team\'s IT should too. We supply Dell or Lenovo business laptops from TD Africa at wholesale and bundle M365 in one invoice.',notes:''},
+  {id:'d7',name:'Topship',sub:'Logistics & shipping fintech',sector:'fintech',location:'Lagos Island',size:'20–35 staff',need:'M365 + Azure backup + Cisco networking',products:['M365 Standard','Azure','Networking'],value:'₦3.8m',valNum:3.8,priority:'warm',status:'new',web:'www.topship.africa',pitch:'Your shipping platform is built on reliability. Your internal IT should be too — we handle the full Microsoft stack and office networking.',notes:''},
+  {id:'d8',name:'BFree Africa',sub:'Ethical debt collection fintech',sector:'fintech',location:'Ikeja',size:'20–35 staff',need:'M365 Standard + NDPR compliance + email security',products:['M365 Standard','NDPR','Defender'],value:'₦4.0m',valNum:4.0,priority:'warm',status:'new',web:'www.bfree.africa',pitch:'Handling customer financial data means NDPR is non-negotiable. We set up M365 with email security and NDPR compliance documentation in two weeks.',notes:''},
+  {id:'d9',name:'Adeola Oyinlade & Co',sub:'Corporate & commercial law',sector:'legal',location:'Lagos Island',size:'10–20 staff',need:'M365 Standard + SharePoint document management',products:['M365 Standard','SharePoint'],value:'₦2.4m',valNum:2.4,priority:'hot',status:'new',web:'www.aoclegal.com',pitch:'Law firms handle confidential client documents daily. M365 with SharePoint gives you secure, searchable document storage — far safer than local hard drives.',notes:''},
+  {id:'d10',name:'Vazi Legal Attorneys',sub:'Tech & internet law',sector:'legal',location:'Lagos',size:'5–15 staff',need:'M365 Basic + laptops + NDPR compliance',products:['M365 Basic','Laptops','NDPR'],value:'₦1.8m',valNum:1.8,priority:'hot',status:'new',web:'www.vazilegal.com',pitch:'A tech-law firm running on outdated IT sends the wrong message. We set up your entire M365 environment — email, Teams, OneDrive — in 3 days.',notes:''},
+  {id:'d11',name:'Stransact Chartered Accountants',sub:'Tax law & IT managed services',sector:'legal',location:'Ikeja',size:'15–30 staff',need:'M365 Premium + managed IT + APC UPS',products:['M365 Premium','Managed IT','UPS'],value:'₦3.6m',valNum:3.6,priority:'hot',status:'new',web:'www.stransact.com',pitch:'You offer IT managed services — your own infrastructure should be exemplary. We provision M365 Premium and provide managed IT support backbone.',notes:''},
+  {id:'d12',name:'FSC Professionals',sub:'Accounting & audit — Lekki',sector:'accounting',location:'Lekki',size:'10–25 staff',need:'M365 Standard + OneDrive for client file sharing + UPS',products:['M365 Standard','OneDrive','UPS'],value:'₦2.6m',valNum:2.6,priority:'hot',status:'new',web:'www.fscprofessionals.com',pitch:'Sharing audit files via WhatsApp is a compliance risk. M365 with SharePoint gives your team secure client file rooms. Set up in 5 days.',notes:''},
+  {id:'d13',name:'SIAO Partners',sub:'Audit, tax & advisory',sector:'accounting',location:'Victoria Island',size:'40–80 staff',need:'M365 E3 + bulk laptops (20+ units) + Azure backup',products:['M365 E3','Laptops','Azure'],value:'₦9.5m',valNum:9.5,priority:'hot',status:'new',web:'www.siao.ng',pitch:'An 80-person firm needs enterprise-grade IT. M365 E3 with Azure backup for audit data — TD Africa wholesale on hardware. One partner, one invoice.',notes:''},
+  {id:'d14',name:'MOORE Bishop & Rooks',sub:'Mid-sized audit firm',sector:'accounting',location:'Lagos',size:'20–50 staff',need:'M365 Premium + managed IT + cybersecurity',products:['M365 Premium','Managed IT','Defender'],value:'₦5.5m',valNum:5.5,priority:'hot',status:'new',web:'N/A',pitch:'Audit firms face increasing cyber threats. M365 Business Premium with Defender for Business — one monthly invoice.',notes:''},
+  {id:'d15',name:'Novatia Consulting',sub:'Management consulting',sector:'accounting',location:'Lagos',size:'15–30 staff',need:'M365 Standard + Copilot for consultants',products:['M365 Standard','Copilot'],value:'₦3.4m',valNum:3.4,priority:'warm',status:'new',web:'www.novatiaconsulting.com',pitch:'Management consultants using Copilot produce better decks faster. We provision Copilot on your existing M365 licences — full enablement workshop included.',notes:''},
+  {id:'d16',name:'SeamlessHR',sub:'HR software company',sector:'hr',location:'Victoria Island',size:'30–60 staff',need:'M365 Premium + Azure + Copilot for product team',products:['M365 Premium','Azure','Copilot'],value:'₦6.5m',valNum:6.5,priority:'hot',status:'new',web:'www.seamlesshr.com',pitch:'SeamlessHR builds HR tools for Africa — your own IT stack should be best-in-class. M365 Premium + Copilot for product and engineering teams.',notes:''},
+  {id:'d17',name:'Romanspage',sub:'HR services for SMEs',sector:'hr',location:'Lagos',size:'10–20 staff',need:'M365 Basic + SharePoint HR portal + Teams',products:['M365 Basic','SharePoint'],value:'₦2.0m',valNum:2.0,priority:'hot',status:'new',web:'N/A',pitch:'HR firms storing employee records on local drives face NDPR risk. M365 with SharePoint gives you a secure HR portal.',notes:''},
+  {id:'d18',name:'CKDIGITAL',sub:'Web design & digital marketing',sector:'agency',location:'Lagos',size:'15–30 staff',need:'M365 Standard + HP laptops + Samsung monitors',products:['M365 Standard','Laptops','Monitors'],value:'₦3.0m',valNum:3.0,priority:'hot',status:'new',web:'www.ckdigital.ng',pitch:'Creative agency running on personal laptops? HP ProBook + Samsung QHD monitors from TD Africa wholesale — your team works faster.',notes:''},
+  {id:'d19',name:'Unotech Media',sub:'Web dev & corporate digital',sector:'agency',location:'Lagos',size:'15–25 staff',need:'M365 Standard + Azure hosting + Lenovo workstations',products:['M365 Standard','Azure','Workstations'],value:'₦4.2m',valNum:4.2,priority:'hot',status:'new',web:'N/A',pitch:'Your clients expect enterprise web solutions — your internal setup should match. Azure hosting + M365 + Lenovo workstations. One invoice covers everything.',notes:''},
+  {id:'d20',name:'OmoolaEx',sub:'IT consulting & web development',sector:'agency',location:'Lagos',size:'10–20 staff',need:'M365 Premium + cybersecurity + Copilot',products:['M365 Premium','Defender','Copilot'],value:'₦3.5m',valNum:3.5,priority:'hot',status:'new',web:'www.omoolaex.com.ng',pitch:'IT consulting firms should have the most secure infrastructure. M365 Business Premium with Defender and Copilot — lead by example.',notes:''},
+  {id:'d21',name:'Kobo360',sub:'Digital logistics platform',sector:'logistics',location:'Lagos Island',size:'30–60 staff',need:'M365 E3 + bulk laptops + Cisco networking + UPS',products:['M365 E3','Laptops','Networking','UPS'],value:'₦10.0m',valNum:10.0,priority:'hot',status:'new',web:'www.kobo360.com',pitch:'Logistics ops at scale need enterprise IT. M365 E3 for your ops team, Cisco networking for the office, APC UPS for always-on operations.',notes:''},
+  {id:'d22',name:'GIG Logistics (Lagos)',sub:'Parcel & courier services',sector:'logistics',location:'Ikeja',size:'20–40 staff',need:'Desktops + HP printers + M365 + UPS',products:['Desktops','Printers','M365 Basic','UPS'],value:'₦4.0m',valNum:4.0,priority:'warm',status:'new',web:'www.giglogistics.com',pitch:'Branch offices need reliable printers and desktops. HP desktops + LaserJet printers + APC UPS from TD Africa — full branch IT in one package.',notes:''},
+  {id:'d23',name:'Kwik Delivery',sub:'Last-mile logistics',sector:'logistics',location:'Lagos',size:'15–30 staff',need:'Samsung phones (bulk riders) + M365 HQ + networking',products:['Phones','M365 Basic','Networking'],value:'₦3.0m',valNum:3.0,priority:'warm',status:'new',web:'www.kwik.delivery',pitch:'Your riders need Samsung devices and your HQ team needs M365. We quote both together — bulk device pricing via TD Africa wholesale.',notes:''},
+  {id:'d24',name:'Lifebank Nigeria',sub:'Blood & medical supply chain',sector:'healthcare',location:'Yaba',size:'20–40 staff',need:'M365 Standard + rugged tablets + UPS + Azure data',products:['M365 Standard','Tablets','Azure','UPS'],value:'₦5.0m',valNum:5.0,priority:'hot',status:'new',web:'www.lifebank.ng',pitch:'LifeBank\'s logistics depend on always-connected devices. Samsung rugged tablets + Azure data backup + APC UPS — critical infrastructure bundle.',notes:''},
+  {id:'d25',name:'Helium Health',sub:'Hospital management software',sector:'healthcare',location:'Yaba',size:'30–55 staff',need:'M365 E3 + HP laptops + Azure cloud infrastructure',products:['M365 E3','Laptops','Azure'],value:'₦8.0m',valNum:8.0,priority:'hot',status:'new',web:'www.heliumhealth.com',pitch:'Healthcare SaaS needs enterprise IT. M365 E3 with Azure infrastructure — we provision and manage. HP EliteBook for your engineering team from TD Africa.',notes:''},
+  {id:'d26',name:'Kangpe Health',sub:'Telemedicine platform',sector:'healthcare',location:'Lagos',size:'15–25 staff',need:'M365 Premium + NDPR compliance + secure messaging',products:['M365 Premium','NDPR','Defender'],value:'₦4.2m',valNum:4.2,priority:'hot',status:'new',web:'N/A',pitch:'Patient data under NDPR requires M365 Business Premium with Defender and Information Protection. We deploy and document for your compliance audit.',notes:''},
+  {id:'d27',name:'Utiva',sub:'Digital skills bootcamp',sector:'education',location:'Lagos',size:'20–35 staff',need:'M365 Standard + HP laptops (training lab) + WiFi',products:['M365 Standard','Laptops','WiFi'],value:'₦4.5m',valNum:4.5,priority:'hot',status:'new',web:'www.utiva.io',pitch:'Your students learn on your machines — HP ProBook training lab laptops from TD Africa wholesale + reliable Cisco WiFi. One project for your next cohort.',notes:''},
+  {id:'d28',name:'Semicolon Africa',sub:'Software engineering training',sector:'education',location:'Yaba',size:'15–25 staff',need:'HP/Dell workstations + M365 Edu + WiFi infrastructure',products:['Workstations','M365 Edu','WiFi'],value:'₦5.2m',valNum:5.2,priority:'hot',status:'new',web:'www.semicolon.africa',pitch:'Coding bootcamps need powerful workstations and reliable WiFi. Dell Precision workstations + Cisco Meraki WiFi — TD Africa wholesale pricing.',notes:''},
+  {id:'d29',name:'Jobberman Nigeria',sub:'Recruitment & upskilling platform',sector:'education',location:'Lagos',size:'25–45 staff',need:'M365 Standard + bulk HP laptops + Teams',products:['M365 Standard','Laptops'],value:'₦4.0m',valNum:4.0,priority:'warm',status:'new',web:'www.jobberman.com',pitch:'Your team helps Nigerians find jobs — their own IT should be seamless. Bulk HP laptops + M365 Teams from one invoice.',notes:''},
+  {id:'d30',name:'Alerzo',sub:'B2B retail distribution',sector:'food',location:'Lagos / Ibadan',size:'30–60 staff',need:'Samsung devices (bulk field) + M365 + Starlink',products:['Phones','M365 Basic','Starlink'],value:'₦5.5m',valNum:5.5,priority:'hot',status:'new',web:'www.alerzo.com',pitch:'Field sales teams in remote locations need Starlink connectivity + Samsung devices. TD Africa supplies both — we bundle with M365 in one quote.',notes:''},
+  {id:'d31',name:'Chowdeck',sub:'Food delivery platform',sector:'food',location:'Lagos',size:'20–40 staff',need:'M365 Standard + HP laptops + Bosch CCTV',products:['M365 Standard','Laptops','CCTV'],value:'₦3.8m',valNum:3.8,priority:'warm',status:'new',web:'www.chowdeck.com',pitch:'Office security and reliable IT. Bosch CCTV + HP laptops + M365 — three products, one invoice, one trusted partner.',notes:''},
+  {id:'d32',name:'SmallSmall',sub:'Proptech rental platform',sector:'realestate',location:'Lekki',size:'15–25 staff',need:'M365 Standard + HP laptops + Bosch CCTV systems',products:['M365 Standard','Laptops','CCTV'],value:'₦3.2m',valNum:3.2,priority:'warm',status:'new',web:'N/A',pitch:'Proptech platforms deal in trust — your IT infrastructure sets the tone. HP laptops + Bosch CCTV for the office + M365 for your property team.',notes:''},
+];
+
+function loadData() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_PROSPECTS));
+}
+
+function saveData(data) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e){}
+}
+
+function getData() { return loadData(); }
+
+function uid() { return 'p' + Date.now() + Math.floor(Math.random()*1000); }
+
+function setSector(s, el) {
+  currentSector = s;
+  document.querySelectorAll('#sector-chips .chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  render();
+}
+
+function setSort(s, el) {
+  currentSort = s;
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('on'));
+  el.classList.add('on');
+  render();
+}
+
+function getFiltered() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const sf = document.getElementById('status-filter').value;
+  const pf = document.getElementById('prio-filter').value;
+  let data = getData().filter(p => {
+    const ms = !q || [p.name,p.sub,p.location,p.sector,p.need].join(' ').toLowerCase().includes(q);
+    const msc = sf === 'all' || p.status === sf;
+    const mp = pf === 'all' || p.priority === pf;
+    const mse = currentSector === 'all' || p.sector === currentSector;
+    return ms && msc && mp && mse;
+  });
+  data.sort((a,b) => {
+    if (currentSort === 'priority') return PRIO[a.priority] - PRIO[b.priority];
+    if (currentSort === 'value') return b.valNum - a.valNum;
+    if (currentSort === 'sector') return a.sector.localeCompare(b.sector);
+    if (currentSort === 'status') return STATUS_ORDER[a.status] - STATUS_ORDER[b.status];
+    if (currentSort === 'name') return a.name.localeCompare(b.name);
+    return 0;
+  });
+  return data;
+}
+
+function render() {
+  const all = getData();
+  const shown = getFiltered();
+  document.getElementById('s-total').textContent = all.length;
+  document.getElementById('s-hot').textContent = all.filter(p=>p.priority==='hot').length;
+  document.getElementById('s-contacted').textContent = all.filter(p=>p.status==='contacted').length;
+  document.getElementById('s-won').textContent = all.filter(p=>p.status==='won'||p.status==='quoted').length;
+  const total = all.reduce((a,p)=>a+p.valNum,0);
+  document.getElementById('s-value').textContent = '₦' + total.toFixed(0) + 'm';
+  document.getElementById('showing').textContent = shown.length;
+  const tbody = document.getElementById('tbody');
+  const empty = document.getElementById('empty');
+  if (!shown.length) { tbody.innerHTML=''; empty.classList.remove('hide'); return; }
+  empty.classList.add('hide');
+  tbody.innerHTML = shown.map(p => {
+    const stag = `<span class="tag tag-${p.sector}">${p.sector}</span>`;
+    const prios = {hot:'<span class="prio prio-hot">🔥 Hot</span>',warm:'<span class="prio prio-warm">● Warm</span>',normal:'<span class="prio prio-normal">● Normal</span>'};
+    const statuses = {new:'status-new',contacted:'status-contacted',quoted:'status-quoted',won:'status-won',lost:'status-lost'};
+    const prods = p.products.map(pr=>`<span class="prod-pill">${pr}</span>`).join('');
+    return `<tr>
+      <td><div class="co-name">${p.name}</div><div class="co-sub">${p.sub}</div></td>
+      <td>${stag}</td>
+      <td><div style="font-size:13px">${p.location}</div><div style="font-size:11px;color:var(--white3);margin-top:2px">${p.size}</div></td>
+      <td style="max-width:180px;font-size:12px;color:var(--white3);line-height:1.4">${(p.need||'').length>65?p.need.substring(0,65)+'…':p.need}</td>
+      <td style="min-width:140px">${prods}</td>
+      <td><span class="val">${p.value}</span></td>
+      <td>${prios[p.priority]||''}</td>
+      <td><span class="status-pill ${statuses[p.status]||'status-new'}" onclick="cycleStatus('${p.id}',event)">${p.status}</span></td>
+      <td>
+        <div class="row-actions">
+          <button class="btn btn-ghost btn-sm btn-icon" title="View" onclick="openViewModal('${p.id}')">👁</button>
+          <button class="btn btn-ghost btn-sm btn-icon" title="Edit" onclick="openEditModal('${p.id}')">✏️</button>
+          <button class="btn btn-danger btn-sm btn-icon" title="Delete" onclick="openDelModal('${p.id}')">🗑</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function cycleStatus(id, e) {
+  e.stopPropagation();
+  const cycle = ['new','contacted','quoted','won','lost'];
+  const data = getData();
+  const p = data.find(x=>x.id===id);
+  if (!p) return;
+  p.status = cycle[(cycle.indexOf(p.status)+1) % cycle.length];
+  saveData(data);
+  render();
+  showToast(`${p.name} → ${p.status}`, 'ok');
+}
+
+// ADD / EDIT
+function openAddModal() {
+  document.getElementById('form-title').textContent = 'Add prospect';
+  document.getElementById('f-id').value = '';
+  ['f-name','f-sub','f-location','f-size','f-need','f-products','f-value','f-web','f-pitch','f-notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('f-sector').value = '';
+  document.getElementById('f-priority').value = 'warm';
+  document.getElementById('f-status').value = 'new';
+  document.getElementById('form-overlay').classList.remove('hide');
+}
+
+function openEditModal(id) {
+  const p = getData().find(x=>x.id===id);
+  if (!p) return;
+  document.getElementById('form-title').textContent = 'Edit prospect';
+  document.getElementById('f-id').value = p.id;
+  document.getElementById('f-name').value = p.name;
+  document.getElementById('f-sub').value = p.sub;
+  document.getElementById('f-sector').value = p.sector;
+  document.getElementById('f-priority').value = p.priority;
+  document.getElementById('f-location').value = p.location;
+  document.getElementById('f-size').value = p.size;
+  document.getElementById('f-need').value = p.need;
+  document.getElementById('f-products').value = (p.products||[]).join(', ');
+  document.getElementById('f-value').value = p.value;
+  document.getElementById('f-status').value = p.status;
+  document.getElementById('f-web').value = p.web||'';
+  document.getElementById('f-pitch').value = p.pitch||'';
+  document.getElementById('f-notes').value = p.notes||'';
+  document.getElementById('form-overlay').classList.remove('hide');
+}
+
+function closeFormModal() { document.getElementById('form-overlay').classList.add('hide'); }
+
+function saveProspect() {
+  const name = document.getElementById('f-name').value.trim();
+  const sector = document.getElementById('f-sector').value;
+  if (!name) { showToast('Company name is required', 'err'); return; }
+  if (!sector) { showToast('Please select a sector', 'err'); return; }
+  const rawVal = document.getElementById('f-value').value.replace(/[₦,m]/gi,'').trim();
+  const valNum = parseFloat(rawVal) || 0;
+  const prods = document.getElementById('f-products').value.split(',').map(s=>s.trim()).filter(Boolean);
+  const data = getData();
+  const existingId = document.getElementById('f-id').value;
+  if (existingId) {
+    const idx = data.findIndex(x=>x.id===existingId);
+    if (idx>=0) {
+      data[idx] = { ...data[idx], name, sub:document.getElementById('f-sub').value.trim(), sector, priority:document.getElementById('f-priority').value, location:document.getElementById('f-location').value.trim(), size:document.getElementById('f-size').value.trim(), need:document.getElementById('f-need').value.trim(), products:prods, value:document.getElementById('f-value').value.trim(), valNum, status:document.getElementById('f-status').value, web:document.getElementById('f-web').value.trim(), pitch:document.getElementById('f-pitch').value.trim(), notes:document.getElementById('f-notes').value.trim() };
+    }
+    showToast('Prospect updated ✓', 'ok');
+  } else {
+    data.push({ id:uid(), name, sub:document.getElementById('f-sub').value.trim(), sector, priority:document.getElementById('f-priority').value, location:document.getElementById('f-location').value.trim()||'Lagos', size:document.getElementById('f-size').value.trim(), need:document.getElementById('f-need').value.trim(), products:prods, value:document.getElementById('f-value').value.trim(), valNum, status:document.getElementById('f-status').value, web:document.getElementById('f-web').value.trim(), pitch:document.getElementById('f-pitch').value.trim(), notes:document.getElementById('f-notes').value.trim() });
+    showToast('Prospect added ✓', 'ok');
+  }
+  saveData(data);
+  closeFormModal();
+  render();
+}
+
+// VIEW
+function openViewModal(id) {
+  const p = getData().find(x=>x.id===id);
+  if (!p) return;
+  document.getElementById('v-name').textContent = p.name;
+  document.getElementById('v-sub').textContent = p.sub + ' · ' + p.location;
+  const prios = {hot:'🔥 Hot priority',warm:'● Warm',normal:'● Normal'};
+  document.getElementById('v-body').innerHTML = `
+    <div class="det-row"><span class="det-k">Sector</span><span class="det-v"><span class="tag tag-${p.sector}">${p.sector}</span></span></div>
+    <div class="det-row"><span class="det-k">Location</span><span class="det-v">${p.location}, Lagos</span></div>
+    <div class="det-row"><span class="det-k">Team size</span><span class="det-v">${p.size||'—'}</span></div>
+    <div class="det-row"><span class="det-k">Tech need</span><span class="det-v">${p.need||'—'}</span></div>
+    <div class="det-row"><span class="det-k">Products</span><span class="det-v">${(p.products||[]).map(pr=>`<span class="prod-pill">${pr}</span>`).join(' ')}</span></div>
+    <div class="det-row"><span class="det-k">Est. value</span><span class="det-v" style="color:var(--gold);font-weight:600;font-size:15px">${p.value}</span></div>
+    <div class="det-row"><span class="det-k">Priority</span><span class="det-v">${prios[p.priority]||p.priority}</span></div>
+    <div class="det-row"><span class="det-k">Status</span><span class="det-v"><span class="status-pill status-${p.status}">${p.status}</span></span></div>
+    ${p.web&&p.web!=='N/A'?`<div class="det-row"><span class="det-k">Website</span><span class="det-v" style="color:var(--gold)">${p.web}</span></div>`:''}
+    ${p.notes?`<div class="det-row"><span class="det-k">Notes</span><span class="det-v">${p.notes}</span></div>`:''}
+    ${p.pitch?`<div class="pitch-box"><div class="pitch-lbl">Opening pitch line</div><div class="pitch-txt">"${p.pitch}"</div></div>`:''}
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <button class="btn btn-ghost" style="flex:1" onclick="closeViewModal();openEditModal('${p.id}')">✏️ Edit</button>
+      <button class="btn btn-danger" style="flex:1" onclick="closeViewModal();openDelModal('${p.id}')">🗑 Delete</button>
+    </div>`;
+  document.getElementById('view-overlay').classList.remove('hide');
+}
+function closeViewModal() { document.getElementById('view-overlay').classList.add('hide'); }
+
+// DELETE
+function openDelModal(id) {
+  const p = getData().find(x=>x.id===id);
+  if (!p) return;
+  deleteTargetId = id;
+  document.getElementById('del-title').textContent = `Delete "${p.name}"?`;
+  document.getElementById('del-sub').textContent = 'This prospect will be permanently removed from your list.';
+  document.getElementById('del-overlay').classList.remove('hide');
+}
+function closeDelModal() { document.getElementById('del-overlay').classList.add('hide'); deleteTargetId=null; }
+function confirmDelete() {
+  if (!deleteTargetId) return;
+  const data = getData().filter(p=>p.id!==deleteTargetId);
+  saveData(data);
+  closeDelModal();
+  render();
+  showToast('Prospect deleted', 'ok');
+}
+
+// OVERLAY CLOSE ON BG CLICK
+['form-overlay','view-overlay','del-overlay'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function(e){ if(e.target===this) this.classList.add('hide'); });
+});
+
+// EXPORT CSV
+function exportCSV() {
+  const data = getFiltered();
+  const cols = ['Name','Sub','Sector','Location','Size','Need','Products','Value','Priority','Status','Web','Notes'];
+  const rows = data.map(p=>[p.name,p.sub,p.sector,p.location,p.size,p.need,(p.products||[]).join('; '),p.value,p.priority,p.status,p.web||'',p.notes||''].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(','));
+  const csv = [cols.join(','),...rows].join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'rms_prospects_lagos.csv';
+  a.click();
+  showToast('CSV downloaded ✓', 'ok');
+}
+
+// RESET
+function resetToDefaults() {
+  if (!confirm('Reset to the original 32 default prospects? Your additions will be lost.')) return;
+  saveData(JSON.parse(JSON.stringify(DEFAULT_PROSPECTS)));
+  render();
+  showToast('Reset to defaults ✓', 'ok');
+}
+
+// CLEAR FILTERS
+function clearFilters() {
+  document.getElementById('search-input').value='';
+  document.getElementById('status-filter').value='all';
+  document.getElementById('prio-filter').value='all';
+  currentSector='all';
+  document.querySelectorAll('#sector-chips .chip').forEach(c=>c.classList.remove('on'));
+  document.querySelector('#sector-chips .chip').classList.add('on');
+  render();
+}
+
+// TOAST
+function showToast(msg, type='ok') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show toast-'+type;
+  setTimeout(()=>t.className='toast',2600);
+}
+
+render();
+</script>
+</body>
+</html>
