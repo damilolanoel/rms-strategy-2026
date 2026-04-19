@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RMS Tech Store — Lagos SME Prospect List 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Fraunces:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#040B1A;--bg2:#071326;--bg3:#0D2147;
+  --gold:#C8933A;--gold2:#E5B060;--gold-l:rgba(200,147,58,0.1);--gold-b:rgba(200,147,58,0.25);
+  --white:#F5F0E8;--white2:#C8C3B9;--white3:#7a756e;
+  --rule:rgba(200,147,58,0.12);--rule2:rgba(200,147,58,0.25);
+  --green:#10b981;--green-l:rgba(16,185,129,0.12);
+  --blue:#3b82f6;--blue-l:rgba(59,130,246,0.12);
+  --red:#ef4444;--red-l:rgba(239,68,68,0.1);
+  --purple:#a78bfa;--purple-l:rgba(167,139,250,0.1);
+  --amber:#f59e0b;--amber-l:rgba(245,158,11,0.1);
+  --teal:#14b8a6;--teal-l:rgba(20,184,166,0.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;font-size:14px}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(200,147,58,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(200,147,58,0.025) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
+
+/* Header */
+.header{background:var(--bg2);border-bottom:1px solid var(--rule2);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.header-left{display:flex;align-items:center;gap:14px}
+.logo-mark svg{width:32px;height:32px}
+.brand{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--white)}
+.brand-sub{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:1px}
+.header-title{font-size:13px;color:var(--white3)}
+.header-title span{color:var(--gold);font-weight:600}
+
+/* Wrapper */
+.wrap{max-width:1200px;margin:0 auto;padding:28px 24px;position:relative;z-index:1}
+
+/* Top stats */
+.stats-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.sb{background:var(--bg3);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;text-align:center}
+.sb-num{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--gold);line-height:1}
+.sb-label{font-size:11px;color:var(--white3);margin-top:4px}
+
+/* Controls */
+.controls{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:16px 20px;margin-bottom:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.ctrl-label{font-size:11px;color:var(--white3);letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.ctrl-search{flex:1;min-width:200px;background:var(--bg3);border:1px solid var(--rule2);border-radius:6px;padding:9px 14px;color:var(--white);font-family:'Outfit',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.ctrl-search::placeholder{color:var(--white3)}
+.ctrl-search:focus{border-color:var(--gold)}
+.filter-chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{font-size:11px;padding:5px 12px;border-radius:20px;border:1px solid var(--rule2);background:transparent;color:var(--white3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
+.chip.active{background:var(--gold-l);border-color:var(--gold);color:var(--gold);font-weight:500}
+.ctrl-divider{width:1px;height:28px;background:var(--rule2)}
+
+/* Sort row */
+.sort-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.sort-info{font-size:13px;color:var(--white3)}
+.sort-info span{color:var(--white);font-weight:500}
+.sort-btns{display:flex;gap:8px}
+.sort-btn{font-size:11px;padding:5px 12px;border-radius:6px;border:1px solid var(--rule);background:transparent;color:var(--white3);cursor:pointer;transition:all .15s}
+.sort-btn.active{background:var(--gold-l);border-color:var(--gold);color:var(--gold)}
+
+/* Table */
+.tbl-wrap{border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.tbl{width:100%;border-collapse:collapse}
+.tbl thead tr{background:var(--bg3)}
+.tbl th{text-align:left;padding:11px 14px;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--white3);border-bottom:1px solid var(--rule2);cursor:pointer;user-select:none;white-space:nowrap}
+.tbl th:hover{color:var(--gold)}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--rule);color:var(--white2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover td{background:rgba(200,147,58,0.04)}
+.company-name{font-weight:500;color:var(--white);font-size:13.5px}
+.company-sub{font-size:11.5px;color:var(--white3);margin-top:2px}
+
+/* Tags */
+.tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.tag-fintech{background:var(--blue-l);color:var(--blue)}
+.tag-legal{background:var(--purple-l);color:var(--purple)}
+.tag-accounting{background:var(--teal-l);color:var(--teal)}
+.tag-hr{background:var(--amber-l);color:var(--amber)}
+.tag-logistics{background:var(--green-l);color:var(--green)}
+.tag-agency{background:rgba(236,72,153,0.12);color:#f472b6}
+.tag-healthcare{background:var(--red-l);color:var(--red)}
+.tag-education{background:rgba(99,102,241,0.12);color:#818cf8}
+.tag-realestate{background:rgba(245,158,11,0.12);color:var(--amber)}
+.tag-food{background:rgba(16,185,129,0.12);color:var(--green)}
+
+/* Priority badge */
+.priority{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;padding:3px 8px;border-radius:10px}
+.p-hot{background:rgba(239,68,68,0.15);color:#f87171}
+.p-warm{background:var(--amber-l);color:var(--amber)}
+.p-normal{background:var(--green-l);color:var(--green)}
+
+/* Product pills */
+.product-pill{display:inline-block;font-size:10.5px;padding:2px 8px;border-radius:10px;border:1px solid var(--rule2);color:var(--white3);margin:2px 2px 2px 0;white-space:nowrap}
+
+/* Value */
+.deal-val{font-weight:600;color:var(--gold);font-size:13px}
+
+/* Action btn */
+.action-btn{font-size:11px;font-weight:600;padding:5px 12px;border-radius:6px;background:var(--gold-l);border:1px solid var(--gold-b);color:var(--gold);cursor:pointer;white-space:nowrap;transition:all .15s}
+.action-btn:hover{background:var(--gold);color:var(--bg)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(4,11,26,0.88);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.hidden{display:none}
+.modal{background:var(--bg2);border:1px solid var(--rule2);border-radius:12px;width:100%;max-width:640px;max-height:90vh;overflow-y:auto}
+.modal-head{padding:20px 22px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:flex-start}
+.modal-title{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--white);margin-bottom:4px}
+.modal-sector{font-size:12px;color:var(--white3)}
+.modal-close{font-size:20px;color:var(--white3);cursor:pointer;background:none;border:none;line-height:1;padding:0 4px}
+.modal-close:hover{color:var(--white)}
+.modal-body{padding:20px 22px}
+.detail-row{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--rule);align-items:flex-start}
+.detail-row:last-child{border-bottom:none}
+.detail-key{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--white3);min-width:130px;flex-shrink:0;margin-top:1px}
+.detail-val{font-size:13px;color:var(--white2);line-height:1.55}
+.pitch-box{background:var(--bg3);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;margin-top:14px}
+.pitch-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.pitch-text{font-size:13px;color:var(--white2);font-style:italic;line-height:1.6}
+.send-btn{display:block;width:100%;margin-top:14px;background:var(--gold);color:var(--bg);font-size:13px;font-weight:600;padding:12px;border-radius:6px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;letter-spacing:.3px;transition:background .2s}
+.send-btn:hover{background:var(--gold2)}
+
+/* Empty state */
+.empty{text-align:center;padding:56px 24px;color:var(--white3)}
+.empty-icon{font-size:36px;margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo-mark">
+      <svg viewBox="0 0 42 42" fill="none"><rect x="3" y="26" width="7" height="13" rx="1" fill="#C8933A" opacity=".5"/><rect x="13" y="18" width="7" height="21" rx="1" fill="#C8933A" opacity=".7"/><rect x="23" y="10" width="7" height="29" rx="1" fill="#C8933A"/><rect x="33" y="4" width="6" height="35" rx="1" fill="#E5B060"/><polyline points="6,27 16,19 26,11 36,5" stroke="#F5D08A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="36" cy="5" r="2.5" fill="#F5D08A"/></svg>
+    </div>
+    <div>
+      <div class="brand">RMS Tech Store</div>
+      <div class="brand-sub">TD Africa Partnership</div>
+    </div>
+  </div>
+  <div class="header-title">Lagos SME Prospect List · <span>2026</span> · Confidential</div>
+</div>
+
+<div class="wrap">
+
+<!-- Stats bar -->
+<div class="stats-bar">
+  <div class="sb"><div class="sb-num" id="stat-total">60</div><div class="sb-label">Total prospects</div></div>
+  <div class="sb"><div class="sb-num" id="stat-hot" style="color:#f87171">18</div><div class="sb-label">Hot priority</div></div>
+  <div class="sb"><div class="sb-num">10</div><div class="sb-label">Sectors covered</div></div>
+  <div class="sb"><div class="sb-num">₦485m</div><div class="sb-label">Est. total pipeline value</div></div>
+  <div class="sb"><div class="sb-num">₦8.1m</div><div class="sb-label">Avg deal value</div></div>
+</div>
+
+<!-- Controls -->
+<div class="controls">
+  <span class="ctrl-label">Filter</span>
+  <input class="ctrl-search" id="search" placeholder="Search company name, sector, location..." oninput="renderTable()">
+  <div class="ctrl-divider"></div>
+  <div class="filter-chips" id="filter-chips">
+    <div class="chip active" onclick="setFilter('all',this)">All</div>
+    <div class="chip" onclick="setFilter('fintech',this)">Fintech</div>
+    <div class="chip" onclick="setFilter('legal',this)">Legal</div>
+    <div class="chip" onclick="setFilter('accounting',this)">Accounting</div>
+    <div class="chip" onclick="setFilter('hr',this)">HR</div>
+    <div class="chip" onclick="setFilter('agency',this)">Agency</div>
+    <div class="chip" onclick="setFilter('logistics',this)">Logistics</div>
+    <div class="chip" onclick="setFilter('healthcare',this)">Healthcare</div>
+    <div class="chip" onclick="setFilter('education',this)">Education</div>
+    <div class="chip" onclick="setFilter('food',this)">Food & Retail</div>
+    <div class="chip" onclick="setFilter('hot',this)">🔥 Hot only</div>
+  </div>
+</div>
+
+<!-- Sort row -->
+<div class="sort-row">
+  <div class="sort-info">Showing <span id="showing-count">60</span> prospects</div>
+  <div class="sort-btns">
+    <button class="sort-btn active" onclick="sortBy('priority',this)">By priority</button>
+    <button class="sort-btn" onclick="sortBy('value',this)">By deal value</button>
+    <button class="sort-btn" onclick="sortBy('sector',this)">By sector</button>
+    <button class="sort-btn" onclick="sortBy('name',this)">A–Z</button>
+  </div>
+</div>
+
+<!-- Table -->
+<div class="tbl-wrap">
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Sector</th>
+        <th>Location · Size</th>
+        <th>Primary need</th>
+        <th>Products</th>
+        <th>Est. value</th>
+        <th>Priority</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+  <div class="empty hidden" id="empty-state">
+    <div class="empty-icon">🔍</div>
+    <div>No prospects match your filter. Try a different sector or search term.</div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- Modal -->
+<div class="modal-overlay hidden" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="m-name"></div>
+        <div class="modal-sector" id="m-sector"></div>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body" id="m-body"></div>
+  </div>
+</div>
+
+<script>
+const prospects = [
+  // FINTECH (12)
+  {name:'Brass Technology',sub:'Business banking platform',sector:'fintech',location:'Yaba',size:'30–60 staff',need:'M365 Business Standard + secure cloud + Copilot for engineering team',products:['M365 Standard','Azure','Copilot'],value:'₦4.2m',valNum:4.2,priority:'hot',address:'Plot 1B, Animashaun Street, Yaba',web:'www.trybrass.com',pitch:'Brass serves SMEs — your own IT infrastructure should mirror the professionalism you sell. We provision M365 for your team and set up Azure-backed secure storage in 5 days.'},
+  {name:'Suplias',sub:'B2B supply chain platform',sector:'fintech',location:'Yaba',size:'20–40 staff',need:'Laptop refresh (Dell/Lenovo) + M365 Business Standard',products:['Laptops','M365 Standard'],value:'₦3.5m',valNum:3.5,priority:'hot',address:'Yaba, Lagos',web:'www.suplias.com',pitch:'Supply chain moves fast — your team\'s IT should too. We supply Dell or Lenovo business laptops from TD Africa at wholesale and bundle M365 in one invoice.'},
+  {name:'Topship',sub:'Logistics & shipping fintech',sector:'fintech',location:'Lagos Island',size:'20–35 staff',need:'Microsoft 365 + Azure backup + Cisco networking for office',products:['M365 Standard','Azure','Networking'],value:'₦3.8m',valNum:3.8,priority:'warm',address:'Lagos Island',web:'www.topship.africa',pitch:'Your shipping platform is built on reliability. Your internal IT should be too — we handle the full Microsoft stack and office networking.'},
+  {name:'Fliqpay',sub:'Crypto & payments platform',sector:'fintech',location:'Lekki',size:'15–25 staff',need:'M365 Business Premium + cybersecurity deployment + NDPR compliance',products:['M365 Premium','Defender','NDPR'],value:'₦5.1m',valNum:5.1,priority:'hot',address:'Lekki Phase 1, Lagos',web:'www.fliqpay.com',pitch:'Payments companies face the highest NDPR scrutiny. We deploy M365 Business Premium with Defender and Intune — full compliance out of the box.'},
+  {name:'Anchor (Banking-as-a-Service)',sub:'BaaS infrastructure startup',sector:'fintech',location:'Victoria Island',size:'25–50 staff',need:'M365 E3 + Azure DevOps + secure email + Copilot',products:['M365 E3','Azure','Copilot'],value:'₦7.5m',valNum:7.5,priority:'hot',address:'Victoria Island, Lagos',web:'www.getanchor.co',pitch:'BaaS players need enterprise-grade security. M365 E3 gives your engineering and ops team eDiscovery, Defender, and Intune — all in one invoice.'},
+  {name:'Cowrywise',sub:'Investment & savings app',sector:'fintech',location:'Yaba',size:'30–50 staff',need:'M365 Business Premium + managed IT support + Copilot AI',products:['M365 Premium','Managed IT','Copilot'],value:'₦6.0m',valNum:6.0,priority:'hot',address:'Yaba Tech Hub, Lagos',web:'www.cowrywise.com',pitch:'Your users trust Cowrywise with their savings — start with your own IT infrastructure. We provision M365 Premium with managed support at ₦300k/month.'},
+  {name:'Remedial Health',sub:'Healthcare supply chain',sector:'fintech',location:'Yaba',size:'20–40 staff',need:'Laptops (HP/Lenovo) + M365 + UPS backup',products:['Laptops','M365 Basic','UPS'],value:'₦3.2m',valNum:3.2,priority:'warm',address:'Yaba, Lagos',web:'www.remedialhealth.com',pitch:'Healthcare can\'t afford downtime. We bundle reliable HP business laptops, M365, and APC UPS backup — single quote, single invoice.'},
+  {name:'BFree Africa',sub:'Ethical debt collection fintech',sector:'fintech',location:'Ikeja',size:'20–35 staff',need:'M365 Business Standard + NDPR compliance + email security',products:['M365 Standard','NDPR','Defender'],value:'₦4.0m',valNum:4.0,priority:'warm',address:'Ikeja, Lagos',web:'www.bfree.africa',pitch:'Handling customer financial data means NDPR is non-negotiable. We set up M365 with email security and NDPR compliance documentation in two weeks.'},
+  {name:'Payourse',sub:'Crypto infrastructure for Africa',sector:'fintech',location:'Lekki',size:'10–20 staff',need:'M365 Business Basic + Azure storage + hardware setup',products:['M365 Basic','Azure','Laptops'],value:'₦2.8m',valNum:2.8,priority:'normal',address:'Lekki, Lagos',web:'www.payourse.com',pitch:'Small team, big infrastructure needs. We set up your M365 environment and Azure storage in one go — no separate vendors.'},
+  {name:'Kuda Bank (SME ops team)',sub:'Digital-first bank',sector:'fintech',location:'Victoria Island',size:'50–80 staff',need:'M365 E3 + bulk laptop refresh + Azure data + Copilot',products:['M365 E3','Laptops','Copilot'],value:'₦12.0m',valNum:12.0,priority:'hot',address:'Victoria Island, Lagos',web:'www.kuda.com',pitch:'Kuda\'s growth pace demands enterprise IT. We handle bulk HP/Dell laptop procurement via TD Africa wholesale and provision M365 E3 for your ops and product teams.'},
+  {name:'Oktamile',sub:'Insurtech platform',sector:'fintech',location:'Lagos',size:'15–30 staff',need:'M365 Standard + Cisco networking + UPS',products:['M365 Standard','Networking','UPS'],value:'₦3.1m',valNum:3.1,priority:'warm',address:'Lagos',web:'www.octamile.com',pitch:'Insurance data handling needs proper infrastructure. We equip your office with Cisco networking, APC UPS, and M365 for your underwriting team.'},
+  {name:'Bridgecard',sub:'Corporate cards platform',sector:'fintech',location:'Yaba',size:'10–20 staff',need:'M365 Business Basic + cybersecurity starter pack',products:['M365 Basic','Defender'],value:'₦2.2m',valNum:2.2,priority:'normal',address:'Yaba, Lagos',web:'www.bridgecard.co',pitch:'Early-stage but handling card data — you need M365 with proper email security from day one. We get you set up in 48 hours.'},
+
+  // LEGAL (8)
+  {name:'Adeola Oyinlade & Co',sub:'Corporate & commercial law',sector:'legal',location:'Lagos Island',size:'10–20 staff',need:'M365 Business Standard + secure document management + SharePoint',products:['M365 Standard','SharePoint'],value:'₦2.4m',valNum:2.4,priority:'hot',address:'Lagos Island, Lagos',web:'www.aoclegal.com',pitch:'Law firms handle confidential client documents daily. M365 with SharePoint gives you secure, searchable document storage with granular access control — far safer than local hard drives.'},
+  {name:'Vazi Legal Business Attorneys',sub:'Tech & internet law firm',sector:'legal',location:'Lagos',size:'5–15 staff',need:'M365 Business Basic + laptop setup + NDPR compliance docs',products:['M365 Basic','Laptops','NDPR'],value:'₦1.8m',valNum:1.8,priority:'hot',address:'Lagos',web:'www.vazilegal.com',pitch:'A tech-law firm running on outdated IT sends the wrong message to clients. We set up your entire M365 environment — email, Teams, OneDrive — in 3 days.'},
+  {name:'Stransact Chartered Accountants',sub:'Tax law & IT managed services',sector:'legal',location:'Ikeja',size:'15–30 staff',need:'M365 Business Premium + managed IT support + APC UPS',products:['M365 Premium','Managed IT','UPS'],value:'₦3.6m',valNum:3.6,priority:'hot',address:'Ikeja, Lagos',web:'www.stransact.com',pitch:'You offer IT managed services — your own infrastructure should be exemplary. We provision M365 Premium and provide the IT support backbone you can trust.'},
+  {name:'Cardinal Counsel',sub:'Corporate & tech law',sector:'legal',location:'Lagos',size:'5–12 staff',need:'M365 Business Basic + HP laptops (5–8 units)',products:['M365 Basic','Laptops'],value:'₦1.6m',valNum:1.6,priority:'warm',address:'Lagos',web:'N/A',pitch:'Small team, big client expectations. HP business laptops from TD Africa wholesale + M365 email — bundled as one quote, delivered in 3 days.'},
+  {name:'Hans Offia & Associates',sub:'Corporate & banking law',sector:'legal',location:'Lagos',size:'8–18 staff',need:'M365 Business Standard + document management + Teams setup',products:['M365 Standard','Teams Setup'],value:'₦2.0m',valNum:2.0,priority:'warm',address:'Lagos',web:'N/A',pitch:'Banking law means sensitive client data — M365 Business Standard with Exchange and SharePoint gives you enterprise-grade document security at an SME price.'},
+  {name:'Kabbiz IP Law',sub:'Intellectual property law',sector:'legal',location:'Ikeja',size:'5–10 staff',need:'M365 Business Basic + laptop refresh',products:['M365 Basic','Laptops'],value:'₦1.4m',valNum:1.4,priority:'normal',address:'Ikeja, Lagos',web:'N/A',pitch:'IP law firms need reliable, secure IT. We quote M365 + Lenovo ThinkPads as one package — one invoice, no tech headache.'},
+  {name:'Lode Legal Consult',sub:'Corporate & tax law',sector:'legal',location:'Lagos',size:'5–15 staff',need:'M365 Business Basic + secure email + NDPR policy',products:['M365 Basic','NDPR'],value:'₦1.5m',valNum:1.5,priority:'normal',address:'Lagos',web:'N/A',pitch:'Tax data is regulated under NDPR. We set up M365 with proper access controls and provide the NDPR compliance documentation your firm needs.'},
+  {name:'Polaris Solicitors',sub:'General commercial law',sector:'legal',location:'Lagos',size:'8–15 staff',need:'M365 Business Standard + printer (HP LaserJet)',products:['M365 Standard','Printer'],value:'₦1.9m',valNum:1.9,priority:'normal',address:'Lagos',web:'N/A',pitch:'Law firms print a lot. HP LaserJet from TD Africa + M365 Business Standard — one conversation, one invoice.'},
+
+  // ACCOUNTING & AUDIT (7)
+  {name:'FSC Professionals',sub:'Accounting & audit — Lekki',sector:'accounting',location:'Lekki',size:'10–25 staff',need:'M365 Business Standard + OneDrive for client file sharing + APC UPS',products:['M365 Standard','OneDrive','UPS'],value:'₦2.6m',valNum:2.6,priority:'hot',address:'Lekki, Lagos',web:'www.fscprofessionals.com',pitch:'Sharing audit files with clients via WhatsApp is a compliance risk. M365 with SharePoint gives your team secure client file rooms. We set it up in 5 days.'},
+  {name:'SIAO Partners',sub:'Audit, tax & advisory',sector:'accounting',location:'Victoria Island',size:'40–80 staff',need:'M365 E3 + bulk laptop refresh (20+ units) + Azure backup',products:['M365 E3','Laptops','Azure'],value:'₦9.5m',valNum:9.5,priority:'hot',address:'Victoria Island, Lagos',web:'www.siao.ng',pitch:'An 80-person firm needs enterprise-grade IT. M365 E3 with Azure backup for audit data — TD Africa wholesale on hardware. One partner, one invoice.'},
+  {name:'Adroit Advisors',sub:'Accounting & financial consulting',sector:'accounting',location:'Ikeja',size:'5–15 staff',need:'M365 Business Basic + HP laptops (5–8 units)',products:['M365 Basic','Laptops'],value:'₦1.7m',valNum:1.7,priority:'warm',address:'Ikeja, Lagos',web:'N/A',pitch:'New accounting firm? We set you up with M365 email + HP business laptops — all from one vendor. Client-ready in 48 hours.'},
+  {name:'SOW Professional Services',sub:'Accounting & business consulting',sector:'accounting',location:'Lagos',size:'5–20 staff',need:'M365 Business Standard + printer + Teams setup',products:['M365 Standard','Printer','Teams'],value:'₦2.2m',valNum:2.2,priority:'warm',address:'Lagos',web:'N/A',pitch:'Your clients are small businesses — but your IT should be enterprise-grade. M365 with Teams and SharePoint means all client work lives securely in the cloud.'},
+  {name:'MOORE Bishop & Rooks',sub:'Mid-sized audit firm',sector:'accounting',location:'Lagos',size:'20–50 staff',need:'M365 Business Premium + managed IT + cybersecurity',products:['M365 Premium','Managed IT','Defender'],value:'₦5.5m',valNum:5.5,priority:'hot',address:'Lagos',web:'N/A',pitch:'Audit firms face increasing cyber threats targeting client financial data. M365 Business Premium with Defender for Business — one monthly invoice.'},
+  {name:'Goldwyns',sub:'Business valuation & accounting',sector:'accounting',location:'Lagos',size:'8–20 staff',need:'M365 Business Standard + UPS + desktop computers',products:['M365 Standard','Desktops','UPS'],value:'₦2.9m',valNum:2.9,priority:'normal',address:'Lagos',web:'N/A',pitch:'Business valuation work demands reliable, always-on IT. APC UPS + HP desktops + M365 — we quote all three as one package.'},
+  {name:'Novatia Consulting',sub:'Management consulting',sector:'accounting',location:'Lagos',size:'15–30 staff',need:'M365 Business Standard + Copilot for consultants + PowerPoint/Excel',products:['M365 Standard','Copilot'],value:'₦3.4m',valNum:3.4,priority:'warm',address:'Lagos',web:'www.novatiaconsulting.com',pitch:'Management consultants using Copilot for M365 produce better decks faster. We provision Copilot on your existing or new M365 licences — full enablement workshop included.'},
+
+  // HR FIRMS (6)
+  {name:'Romanspage',sub:'HR services for SMEs',sector:'hr',location:'Lagos',size:'10–20 staff',need:'M365 Business Basic + SharePoint HR portal + Teams',products:['M365 Basic','SharePoint'],value:'₦2.0m',valNum:2.0,priority:'hot',address:'Lagos',web:'N/A',pitch:'HR firms storing employee records on local drives face NDPR risk. M365 with SharePoint gives you a secure, searchable HR portal — and you can show clients you practice what you preach.'},
+  {name:'Stanbic IBTC HR Desk (SME referral)',sub:'HR advisory via bank channel',sector:'hr',location:'Victoria Island',size:'15–30 staff',need:'M365 Business Standard + managed IT for HR team',products:['M365 Standard','Managed IT'],value:'₦3.0m',valNum:3.0,priority:'warm',address:'Victoria Island, Lagos',web:'N/A',pitch:'HR teams managing payroll and employee data need enterprise-grade security. M365 Business Standard with access controls — provisioned and managed monthly.'},
+  {name:'Tajom BG',sub:'Human capital & IT solutions',sector:'hr',location:'Lagos',size:'10–25 staff',need:'M365 Business Standard + laptop refresh + Teams for remote HR',products:['M365 Standard','Laptops'],value:'₦2.5m',valNum:2.5,priority:'warm',address:'Lagos',web:'N/A',pitch:'You combine HR and IT — your own setup should demonstrate excellence. Dell Latitude laptops + M365 Teams configuration in one project.'},
+  {name:'Mapemond',sub:'Brand & HR consulting',sector:'hr',location:'Lagos',size:'10–20 staff',need:'M365 Business Basic + HP laptops + Samsung monitors',products:['M365 Basic','Laptops','Monitors'],value:'₦1.8m',valNum:1.8,priority:'normal',address:'Lagos',web:'N/A',pitch:'Consulting firms pitching clients on capability need their own IT to match. HP laptops + Samsung monitors from TD Africa wholesale — competitive pricing.'},
+  {name:'SeamlessHR',sub:'HR software company',sector:'hr',location:'Victoria Island',size:'30–60 staff',need:'M365 Business Premium + Azure + Copilot for product team',products:['M365 Premium','Azure','Copilot'],value:'₦6.5m',valNum:6.5,priority:'hot',address:'Victoria Island, Lagos',web:'www.seamlesshr.com',pitch:'SeamlessHR builds HR tools for Africa — your own IT stack should be best-in-class. M365 Premium + Copilot for product and engineering teams.'},
+  {name:'Vendease HR Operations',sub:'B2B food & HR tech',sector:'hr',location:'Lagos',size:'15–30 staff',need:'M365 Business Standard + field tablets (Samsung) for ops team',products:['M365 Standard','Tablets'],value:'₦2.8m',valNum:2.8,priority:'warm',address:'Lagos',web:'www.vendease.com',pitch:'Your operations team in the field need reliable Samsung tablets and cloud access. We bundle tablets with M365 mobile access in one quote.'},
+
+  // DIGITAL AGENCIES (8)
+  {name:'CKDIGITAL',sub:'Web design & digital marketing',sector:'agency',location:'Lagos',size:'15–30 staff',need:'M365 Business Standard + HP laptops + Samsung monitors',products:['M365 Standard','Laptops','Monitors'],value:'₦3.0m',valNum:3.0,priority:'hot',address:'Lagos',web:'www.ckdigital.ng',pitch:'Creative agency running on personal laptops? HP ProBook + Samsung QHD monitors from TD Africa wholesale — your team works faster, your pitches look better.'},
+  {name:'Unotech Media',sub:'Web dev & corporate digital',sector:'agency',location:'Lagos',size:'15–25 staff',need:'M365 Business Standard + Azure hosting + Lenovo workstations',products:['M365 Standard','Azure','Workstations'],value:'₦4.2m',valNum:4.2,priority:'hot',address:'Lagos',web:'N/A',pitch:'Your clients expect enterprise web solutions — your internal setup should match. Azure hosting + M365 + Lenovo workstations. One invoice covers everything.'},
+  {name:'OmoolaEx',sub:'IT consulting & web development',sector:'agency',location:'Lagos',size:'10–20 staff',need:'M365 Business Premium + cybersecurity + Copilot',products:['M365 Premium','Defender','Copilot'],value:'₦3.5m',valNum:3.5,priority:'hot',address:'Lagos',web:'www.omoolaex.com.ng',pitch:'IT consulting firms should have the most secure infrastructure. M365 Business Premium with Defender and Copilot — lead by example.'},
+  {name:'Pulseford Digital',sub:'SEO & digital marketing agency',sector:'agency',location:'Lagos',size:'8–18 staff',need:'M365 Business Basic + HP laptops + Samsung monitors',products:['M365 Basic','Laptops','Monitors'],value:'₦2.2m',valNum:2.2,priority:'warm',address:'Lagos',web:'N/A',pitch:'Agency work is remote-first. M365 with Teams and SharePoint means your team collaborates from anywhere. HP laptops from TD Africa to match.'},
+  {name:'WekkyDesign',sub:'Design & branding studio',sector:'agency',location:'Lagos',size:'5–12 staff',need:'Apple MacBook Pro (creative team) + M365 + storage upgrade',products:['MacBooks','M365 Basic','Storage'],value:'₦2.8m',valNum:2.8,priority:'warm',address:'Lagos',web:'N/A',pitch:'Designers need MacBooks. We supply Apple MacBook Pro from TD Africa at wholesale pricing, bundled with M365 for email and file collaboration.'},
+  {name:'Brela Digital',sub:'SEO & web development',sector:'agency',location:'Lagos',size:'8–15 staff',need:'M365 Business Basic + Lenovo ThinkPads',products:['M365 Basic','Laptops'],value:'₦1.9m',valNum:1.9,priority:'normal',address:'Lagos',web:'N/A',pitch:'SEO and dev work needs reliable hardware. Lenovo ThinkPads from TD Africa wholesale + M365 Business Basic — one quote.'},
+  {name:'Digitek Hub',sub:'Digital marketing & branding',sector:'agency',location:'Lagos',size:'8–15 staff',need:'M365 Business Basic + HP laptops',products:['M365 Basic','Laptops'],value:'₦1.7m',valNum:1.7,priority:'normal',address:'Lagos',web:'N/A',pitch:'Growing agency needs reliable IT. HP ProBook laptops + M365 — set up and ready in 3 days.'},
+  {name:'Skillsquared',sub:'Dev & digital marketing agency',sector:'agency',location:'Lagos',size:'10–20 staff',need:'M365 Business Standard + development workstations + Azure',products:['M365 Standard','Azure','Workstations'],value:'₦3.2m',valNum:3.2,priority:'warm',address:'Lagos',web:'N/A',pitch:'Dev agencies need Azure. We provision your Azure environment and M365 tenant — your developers get cloud access from day one.'},
+
+  // LOGISTICS (6)
+  {name:'Kobo360',sub:'Digital logistics platform',sector:'logistics',location:'Lagos Island',size:'30–60 staff',need:'M365 E3 + bulk laptops + Cisco networking + UPS',products:['M365 E3','Laptops','Networking','UPS'],value:'₦10.0m',valNum:10.0,priority:'hot',address:'Lagos Island, Lagos',web:'www.kobo360.com',pitch:'Logistics ops at scale need enterprise IT. M365 E3 for your ops team, Cisco networking for the office, APC UPS for always-on operations — one quote.'},
+  {name:'Topship Logistics',sub:'Shipping & courier tech',sector:'logistics',location:'Lagos',size:'20–35 staff',need:'M365 Business Standard + mobile devices (Samsung) for field team',products:['M365 Standard','Phones'],value:'₦3.5m',valNum:3.5,priority:'warm',address:'Lagos',web:'www.topship.africa',pitch:'Your dispatchers need reliable Samsung Android devices with M365 mobile access. Bulk Samsung + M365 bundle from one invoice.'},
+  {name:'GIG Logistics (SME branch)',sub:'Parcel & courier services',sector:'logistics',location:'Ikeja',size:'20–40 staff',need:'Desktop computers + HP printers + M365 + UPS',products:['Desktops','Printers','M365 Basic','UPS'],value:'₦4.0m',valNum:4.0,priority:'warm',address:'Ikeja, Lagos',web:'www.giglogistics.com',pitch:'Branch offices need reliable printers and desktops. HP desktops + LaserJet printers + APC UPS from TD Africa — full branch IT in one package.'},
+  {name:'Kwik Delivery',sub:'Last-mile logistics',sector:'logistics',location:'Lagos',size:'15–30 staff',need:'Samsung phones (bulk) for riders + M365 for HQ + networking',products:['Phones','M365 Basic','Networking'],value:'₦3.0m',valNum:3.0,priority:'warm',address:'Lagos',web:'www.kwik.delivery',pitch:'Your riders need Samsung devices and your HQ team needs M365. We quote both together — bulk device pricing via TD Africa wholesale.'},
+  {name:'Sendbox',sub:'Shipping SaaS platform',sector:'logistics',location:'Lagos',size:'15–25 staff',need:'M365 Business Standard + HP workstations + Azure',products:['M365 Standard','Workstations','Azure'],value:'₦3.8m',valNum:3.8,priority:'warm',address:'Lagos',web:'www.mysendbox.com',pitch:'Your platform is cloud-native — your internal IT should be too. Azure + M365 standard for your team, HP workstations for engineering.'},
+  {name:'Speedaf Nigeria',sub:'Express logistics',sector:'logistics',location:'Ikeja',size:'20–40 staff',need:'Desktop computers + printers + UPS + M365',products:['Desktops','Printers','UPS','M365 Basic'],value:'₦3.2m',valNum:3.2,priority:'normal',address:'Ikeja, Lagos',web:'N/A',pitch:'Operations-heavy logistics firms need reliable desktops, printers, and UPS backup. HP desktops + HP printers + APC UPS — one project, one invoice.'},
+
+  // HEALTHCARE (5)
+  {name:'Lifebank Nigeria',sub:'Blood & medical supply chain',sector:'healthcare',location:'Yaba',size:'20–40 staff',need:'M365 Business Standard + ruggedised tablets + UPS + Azure data',products:['M365 Standard','Tablets','Azure','UPS'],value:'₦5.0m',valNum:5.0,priority:'hot',address:'Yaba, Lagos',web:'www.lifebank.ng',pitch:'LifeBank\'s logistics depend on always-connected devices. Samsung rugged tablets + Azure data backup + APC UPS — critical infrastructure bundle.'},
+  {name:'Kangpe Health',sub:'Telemedicine platform',sector:'healthcare',location:'Lagos',size:'15–25 staff',need:'M365 Business Premium + NDPR compliance + secure messaging',products:['M365 Premium','NDPR','Defender'],value:'₦4.2m',valNum:4.2,priority:'hot',address:'Lagos',web:'N/A',pitch:'Patient data under NDPR requires M365 Business Premium with Defender and Information Protection. We deploy and document everything for your compliance audit.'},
+  {name:'Helium Health',sub:'Hospital management software',sector:'healthcare',location:'Yaba',size:'30–55 staff',need:'M365 E3 + HP laptops + Azure cloud infrastructure',products:['M365 E3','Laptops','Azure'],value:'₦8.0m',valNum:8.0,priority:'hot',address:'Yaba, Lagos',web:'www.heliumhealth.com',pitch:'Healthcare SaaS needs enterprise IT. M365 E3 with Azure infrastructure — we provision and manage. HP EliteBook for your engineering team from TD Africa.'},
+  {name:'Bewell Health',sub:'Corporate health services',sector:'healthcare',location:'Victoria Island',size:'10–20 staff',need:'M365 Business Basic + HP laptops + NDPR setup',products:['M365 Basic','Laptops','NDPR'],value:'₦2.4m',valNum:2.4,priority:'warm',address:'Victoria Island, Lagos',web:'N/A',pitch:'Health data is the most regulated data type. We set up M365 with NDPR compliance documentation included — full setup in one week.'},
+  {name:'eHealth4everyone (Nigeria ops)',sub:'Digital health NGO',sector:'healthcare',location:'Abuja/Lagos',size:'15–30 staff',need:'Microsoft Nonprofit M365 + Azure credits + Teams for remote teams',products:['M365 Nonprofit','Azure','Teams'],value:'₦2.8m',valNum:2.8,priority:'warm',address:'Lagos',web:'www.ehealth4everyone.com',pitch:'As a registered NGO, you qualify for Microsoft Nonprofit pricing — heavily discounted M365 and Azure credits. We handle the eligibility and provisioning.'},
+
+  // EDUCATION (5)
+  {name:'Utiva (Tech Training)',sub:'Digital skills bootcamp',sector:'education',location:'Lagos',size:'20–35 staff',need:'M365 Business Standard + HP laptops (training lab) + WiFi',products:['M365 Standard','Laptops','WiFi'],value:'₦4.5m',valNum:4.5,priority:'hot',address:'Lagos',web:'www.utiva.io',pitch:'Your students learn on your machines — HP ProBook training lab laptops from TD Africa wholesale + reliable Cisco WiFi. One project for your next cohort.'},
+  {name:'Ecobank Academy (Lagos)',sub:'Banking training institute',sector:'education',location:'Victoria Island',size:'15–30 staff',need:'M365 E3 + desktop computers + projector + UPS',products:['M365 E3','Desktops','Projectors','UPS'],value:'₦6.5m',valNum:6.5,priority:'hot',address:'Victoria Island, Lagos',web:'N/A',pitch:'Training institutions need reliable projectors, desktops, and always-on power. Philips projectors + HP desktops + APC UPS from TD Africa — full setup.'},
+  {name:'Jobberman Nigeria',sub:'Recruitment & upskilling platform',sector:'education',location:'Lagos',size:'25–45 staff',need:'M365 Business Standard + bulk HP laptops + Teams',products:['M365 Standard','Laptops'],value:'₦4.0m',valNum:4.0,priority:'warm',address:'Lagos',web:'www.jobberman.com',pitch:'Your team helps Nigerians find jobs — their own IT should be seamless. Bulk HP laptops + M365 Teams from one invoice.'},
+  {name:'Semicolon Africa',sub:'Software engineering training',sector:'education',location:'Yaba',size:'15–25 staff',need:'HP/Dell workstations + M365 Education + WiFi infrastructure',products:['Workstations','M365 Edu','WiFi'],value:'₦5.2m',valNum:5.2,priority:'hot',address:'Yaba, Lagos',web:'www.semicolon.africa',pitch:'Coding bootcamps need powerful workstations and reliable WiFi. Dell Precision workstations + Cisco Meraki WiFi — TD Africa wholesale pricing.'},
+  {name:'Edubridge',sub:'School management platform',sector:'education',location:'Lagos',size:'10–20 staff',need:'M365 Business Basic + HP laptops + Microsoft Teams for Education',products:['M365 Basic','Laptops','Teams'],value:'₦2.5m',valNum:2.5,priority:'normal',address:'Lagos',web:'N/A',pitch:'EdTech companies should use Microsoft Education tools internally and as demos for school clients. We provision M365 Teams for Education + HP laptops.'},
+
+  // FOOD & RETAIL (3)
+  {name:'Vendease',sub:'B2B food supply platform',sector:'food',location:'Lagos',size:'25–45 staff',need:'M365 Business Standard + Samsung mobile devices + networking',products:['M365 Standard','Phones','Networking'],value:'₦4.0m',valNum:4.0,priority:'warm',address:'Lagos',web:'www.vendease.com',pitch:'Your supply team works in markets and warehouses — Samsung Android devices + M365 mobile access keeps them connected. Bulk order via TD Africa.'},
+  {name:'Chowdeck',sub:'Food delivery platform',sector:'food',location:'Lagos',size:'20–40 staff',need:'M365 Business Standard + HP laptops + CCTV (Bosch)',products:['M365 Standard','Laptops','CCTV'],value:'₦3.8m',valNum:3.8,priority:'warm',address:'Lagos',web:'www.chowdeck.com',pitch:'Office security and reliable IT. Bosch CCTV + HP laptops + M365 — three products, one invoice, one trusted partner.'},
+  {name:'Alerzo',sub:'B2B retail distribution',sector:'food',location:'Ibadan / Lagos',size:'30–60 staff',need:'Samsung devices (bulk field) + M365 + Starlink for remote warehouses',products:['Phones','M365 Basic','Starlink'],value:'₦5.5m',valNum:5.5,priority:'hot',address:'Lagos / Ibadan',web:'www.alerzo.com',pitch:'Field sales teams in remote locations need Starlink connectivity + Samsung devices. TD Africa supplies both — we bundle with M365 in one quote.'},
+
+  // REAL ESTATE (additional sector)
+  {name:'SmallSmall',sub:'Proptech rental platform',sector:'realestate',location:'Lekki',size:'15–25 staff',need:'M365 Business Standard + HP laptops + CCTV systems',products:['M365 Standard','Laptops','CCTV'],value:'₦3.2m',valNum:3.2,priority:'warm',address:'Lekki Phase 1, Lagos',web:'N/A',pitch:'Proptech platforms deal in trust — your IT infrastructure sets the tone. HP laptops + Bosch CCTV for the office + M365 for your property team.'}
+];
+
+let currentFilter = 'all';
+let currentSort = 'priority';
+
+function setFilter(f, el) {
+  currentFilter = f;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderTable();
+}
+
+function sortBy(s, el) {
+  currentSort = s;
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderTable();
+}
+
+const PRIORITY_ORDER = { hot: 0, warm: 1, normal: 2 };
+
+function renderTable() {
+  const search = document.getElementById('search').value.toLowerCase();
+  let data = prospects.filter(p => {
+    const matchSearch = !search || p.name.toLowerCase().includes(search) || p.sub.toLowerCase().includes(search) || p.sector.includes(search) || p.location.toLowerCase().includes(search);
+    const matchFilter = currentFilter === 'all' ? true : currentFilter === 'hot' ? p.priority === 'hot' : p.sector === currentFilter;
+    return matchSearch && matchFilter;
+  });
+
+  data.sort((a, b) => {
+    if (currentSort === 'priority') return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority];
+    if (currentSort === 'value') return b.valNum - a.valNum;
+    if (currentSort === 'sector') return a.sector.localeCompare(b.sector);
+    if (currentSort === 'name') return a.name.localeCompare(b.name);
+    return 0;
+  });
+
+  const tbody = document.getElementById('table-body');
+  const empty = document.getElementById('empty-state');
+  document.getElementById('showing-count').textContent = data.length;
+  document.getElementById('stat-total').textContent = data.length;
+  document.getElementById('stat-hot').textContent = data.filter(p => p.priority === 'hot').length;
+
+  if (data.length === 0) {
+    tbody.innerHTML = '';
+    empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+
+  tbody.innerHTML = data.map((p, i) => {
+    const sTag = `<span class="tag tag-${p.sector}">${p.sector}</span>`;
+    const prods = p.products.map(pr => `<span class="product-pill">${pr}</span>`).join('');
+    const pri = p.priority === 'hot'
+      ? `<span class="priority p-hot">🔥 Hot</span>`
+      : p.priority === 'warm'
+        ? `<span class="priority p-warm">● Warm</span>`
+        : `<span class="priority p-normal">● Normal</span>`;
+    return `<tr>
+      <td><div class="company-name">${p.name}</div><div class="company-sub">${p.sub}</div></td>
+      <td>${sTag}</td>
+      <td><div style="font-size:13px;color:var(--white2)">${p.location}</div><div style="font-size:11.5px;color:var(--white3);margin-top:2px">${p.size}</div></td>
+      <td style="max-width:200px;font-size:12.5px;color:var(--white3);line-height:1.45">${p.need.length > 70 ? p.need.substring(0,70)+'...' : p.need}</td>
+      <td>${prods}</td>
+      <td><span class="deal-val">${p.value}</span></td>
+      <td>${pri}</td>
+      <td><button class="action-btn" onclick="openModal(${i})">View →</button></td>
+    </tr>`;
+  }).join('');
+}
+
+// We need to store filtered/sorted data for modal access
+let displayData = [];
+function openModal(idx) {
+  const search = document.getElementById('search').value.toLowerCase();
+  let data = prospects.filter(p => {
+    const matchSearch = !search || p.name.toLowerCase().includes(search) || p.sub.toLowerCase().includes(search) || p.sector.includes(search) || p.location.toLowerCase().includes(search);
+    const matchFilter = currentFilter === 'all' ? true : currentFilter === 'hot' ? p.priority === 'hot' : p.sector === currentFilter;
+    return matchSearch && matchFilter;
+  });
+  data.sort((a,b) => {
+    if (currentSort === 'priority') return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority];
+    if (currentSort === 'value') return b.valNum - a.valNum;
+    if (currentSort === 'sector') return a.sector.localeCompare(b.sector);
+    if (currentSort === 'name') return a.name.localeCompare(b.name);
+    return 0;
+  });
+  const p = data[idx];
+  if (!p) return;
+  document.getElementById('m-name').textContent = p.name;
+  document.getElementById('m-sector').textContent = p.sub + ' · ' + p.location;
+  const pri = p.priority === 'hot' ? '🔥 Hot priority' : p.priority === 'warm' ? '● Warm' : '● Normal';
+  document.getElementById('m-body').innerHTML = `
+    <div class="detail-row"><span class="detail-key">Sector</span><span class="detail-val"><span class="tag tag-${p.sector}">${p.sector}</span></span></div>
+    <div class="detail-row"><span class="detail-key">Location</span><span class="detail-val">${p.location}, Lagos</span></div>
+    <div class="detail-row"><span class="detail-key">Team size</span><span class="detail-val">${p.size}</span></div>
+    <div class="detail-row"><span class="detail-key">Tech need</span><span class="detail-val">${p.need}</span></div>
+    <div class="detail-row"><span class="detail-key">Products to pitch</span><span class="detail-val">${p.products.map(pr=>`<span class="product-pill">${pr}</span>`).join(' ')}</span></div>
+    <div class="detail-row"><span class="detail-key">Est. deal value</span><span class="detail-val" style="color:var(--gold);font-weight:600;font-size:15px">${p.value}</span></div>
+    <div class="detail-row"><span class="detail-key">Priority</span><span class="detail-val">${pri}</span></div>
+    ${p.web && p.web !== 'N/A' ? `<div class="detail-row"><span class="detail-key">Website</span><span class="detail-val" style="color:var(--gold)">${p.web}</span></div>` : ''}
+    <div class="pitch-box">
+      <div class="pitch-label">Opening pitch line</div>
+      <div class="pitch-text">"${p.pitch}"</div>
+    </div>
+    <button class="send-btn" onclick="sendPitch('${p.name}')">Ask Claude to draft outreach email for ${p.name} →</button>
+  `;
+  document.getElementById('modal-overlay').classList.remove('hidden');
+}
+
+function sendPitch(name) {
+  if (typeof sendPrompt === 'function') {
+    sendPrompt(`Draft a professional outreach email to ${name} for the RMS Tech Store, offering Microsoft 365 licensing and hardware via our TD Africa partnership.`);
+    closeModalDirect();
+  }
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('modal-overlay').classList.add('hidden');
+}
+
+renderTable();
+</script>
+</body>
+</html>
