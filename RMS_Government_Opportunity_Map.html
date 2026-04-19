@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RMS — Government Opportunity Map: Lagos & Ekiti 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#040B1A;--bg2:#071326;--bg3:#0D2147;--bg4:#122558;
+  --gold:#C8933A;--gold2:#E5B060;--gl:rgba(200,147,58,0.1);--gb:rgba(200,147,58,0.22);
+  --white:#F5F0E8;--white2:#C8C3B9;--white3:#7a756e;
+  --rule:rgba(200,147,58,0.12);--rule2:rgba(200,147,58,0.25);
+  --lagos:#0f4c8a;--lagos-l:rgba(15,76,138,0.15);--lagos-b:rgba(15,76,138,0.35);
+  --ekiti:#1b6b3a;--ekiti-l:rgba(27,107,58,0.15);--ekiti-b:rgba(27,107,58,0.35);
+  --research:#7c3aed;--research-l:rgba(124,58,237,0.12);
+  --tech:#d97706;--tech-l:rgba(217,119,6,0.12);
+  --both:#0891b2;--both-l:rgba(8,145,178,0.12);
+  --green:#10b981;--red:#ef4444;--amber:#f59e0b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);font-size:14px;line-height:1.65}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(200,147,58,.025)1px,transparent 1px),linear-gradient(90deg,rgba(200,147,58,.025)1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
+
+/* Header */
+.hdr{background:var(--bg2);border-bottom:1px solid var(--rule2);padding:16px 32px;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.hdr-inner{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hdr-logo{display:flex;align-items:center;gap:12px}
+.hdr-logo svg{width:30px;height:30px}
+.brand{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--white)}
+.brand-sub{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:2px}
+.hdr-title{font-size:13px;color:var(--white3)}
+.hdr-title span{color:var(--gold);font-weight:600}
+
+/* Wrap */
+.wrap{max-width:1240px;margin:0 auto;padding:28px 24px;position:relative;z-index:1}
+
+/* Hero banner */
+.banner{background:var(--bg3);border:1px solid var(--rule2);border-radius:12px;padding:28px 32px;margin-bottom:28px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.banner-title{font-family:'Fraunces',serif;font-size:26px;color:var(--white);margin-bottom:8px}
+.banner-title em{font-style:italic;color:var(--gold)}
+.banner-desc{font-size:14px;color:var(--white2);line-height:1.7;margin-bottom:16px}
+.banner-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bst{background:rgba(0,0,0,0.2);border-radius:8px;padding:12px 14px;text-align:center;border:1px solid var(--rule)}
+.bst-num{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--gold);line-height:1}
+.bst-lbl{font-size:11px;color:var(--white3);margin-top:3px}
+.banner-right{display:flex;flex-direction:column;gap:10px}
+.state-card{border-radius:8px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.sc-lagos{background:var(--lagos-l);border:1px solid var(--lagos-b)}
+.sc-ekiti{background:var(--ekiti-l);border:1px solid var(--ekiti-b)}
+.sc-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.sc-title{font-size:13px;font-weight:600;margin-bottom:4px}
+.sc-desc{font-size:12px;color:var(--white3);line-height:1.5}
+
+/* Tabs */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--rule2);margin-bottom:24px}
+.tab{padding:12px 24px;font-size:13px;font-weight:500;cursor:pointer;color:var(--white3);border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.tab:hover{color:var(--white)}
+.tab.on{border-bottom-color:var(--gold);color:var(--gold)}
+
+/* Controls */
+.ctrl-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
+.search-input{flex:1;min-width:200px;background:var(--bg3);border:1px solid var(--rule2);border-radius:6px;padding:9px 14px;color:var(--white);font-family:'Outfit',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.search-input::placeholder{color:var(--white3)}
+.search-input:focus{border-color:var(--gold)}
+.filter-sel{background:var(--bg3);border:1px solid var(--rule2);border-radius:6px;padding:9px 12px;color:var(--white2);font-family:'Outfit',sans-serif;font-size:13px;outline:none;cursor:pointer}
+.filter-sel option{background:var(--bg3)}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{font-size:11px;padding:5px 12px;border-radius:20px;border:1px solid var(--rule2);background:transparent;color:var(--white3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.chip:hover,.chip.on{background:var(--gl);border-color:var(--gold);color:var(--gold);font-weight:500}
+
+/* Count row */
+.count-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.count-txt{font-size:13px;color:var(--white3)}
+.count-txt strong{color:var(--white)}
+
+/* Opportunity cards */
+.opp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.opp-card{border-radius:10px;border:1px solid var(--rule);background:var(--bg2);overflow:hidden;transition:border-color .2s}
+.opp-card:hover{border-color:var(--rule2)}
+.opp-head{padding:14px 16px;border-bottom:1px solid var(--rule);display:flex;gap:10px;align-items:flex-start}
+.opp-state-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.dot-lagos{background:var(--lagos)}
+.dot-ekiti{background:var(--ekiti)}
+.dot-both{background:var(--both)}
+.opp-agency{font-size:13.5px;font-weight:500;color:var(--white);line-height:1.25;flex:1}
+.opp-ministry{font-size:11.5px;color:var(--white3);margin-top:2px}
+.opp-badges{display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0;align-items:flex-start}
+.badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.b-research{background:var(--research-l);color:#c4b5fd}
+.b-tech{background:var(--tech-l);color:#fcd34d}
+.b-both{background:var(--both-l);color:#67e8f9}
+.b-lagos{background:var(--lagos-l);color:#93c5fd}
+.b-ekiti{background:var(--ekiti-l);color:#6ee7b7}
+.opp-body{padding:14px 16px}
+.opp-section{margin-bottom:12px}
+.opp-section:last-child{margin-bottom:0}
+.opp-section-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.lbl-research{color:#c4b5fd}
+.lbl-tech{color:#fcd34d}
+.opp-items{list-style:none;display:flex;flex-direction:column;gap:4px}
+.opp-item{font-size:12.5px;color:var(--white2);padding-left:14px;position:relative;line-height:1.45}
+.opp-item::before{content:'→';position:absolute;left:0;font-size:10px;color:var(--gold);top:2px}
+.opp-footer{padding:10px 16px;background:rgba(0,0,0,0.15);border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.opp-value{font-size:13px;font-weight:600;color:var(--gold)}
+.opp-priority{font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:10px}
+.p-high{background:rgba(239,68,68,0.15);color:#f87171}
+.p-med{background:rgba(245,158,11,0.15);color:var(--amber)}
+.p-std{background:rgba(16,185,129,0.15);color:var(--green)}
+.opp-channel{font-size:11px;color:var(--white3)}
+
+/* View toggle */
+.view-toggle{display:flex;gap:6px;margin-left:auto}
+.vt-btn{padding:6px 12px;font-size:11px;border-radius:6px;border:1px solid var(--rule);background:transparent;color:var(--white3);cursor:pointer;font-family:'Outfit',sans-serif}
+.vt-btn.on{background:var(--gl);border-color:var(--gold);color:var(--gold)}
+
+/* List view */
+.opp-list{display:none;flex-direction:column;gap:8px}
+.opp-list.show{display:flex}
+.opp-grid.show{display:grid}
+.opp-row{background:var(--bg2);border:1px solid var(--rule);border-radius:8px;padding:12px 16px;display:grid;grid-template-columns:20px 1fr 100px 120px 80px 90px;gap:12px;align-items:center;font-size:13px}
+.opp-row:hover{border-color:var(--rule2)}
+
+/* Summary section */
+.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.sg-card{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:18px 20px}
+.sg-head{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.sg-icon{font-size:20px}
+.sg-title{font-size:14px;font-weight:500;color:var(--white)}
+.sg-items{list-style:none;display:flex;flex-direction:column;gap:6px}
+.sg-item{font-size:12.5px;color:var(--white2);padding-left:12px;position:relative}
+.sg-item::before{content:'·';position:absolute;left:0;color:var(--gold)}
+
+/* Entry point guide */
+.entry-section{background:var(--bg3);border:1px solid var(--rule2);border-radius:10px;padding:22px 24px;margin-bottom:24px}
+.entry-title{font-family:'Fraunces',serif;font-size:18px;color:var(--white);margin-bottom:16px}
+.entry-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.entry-card{background:var(--bg2);border-radius:8px;padding:14px 16px;border:1px solid var(--rule)}
+.entry-step{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.entry-action{font-size:13.5px;font-weight:500;color:var(--white);margin-bottom:6px}
+.entry-detail{font-size:12.5px;color:var(--white3);line-height:1.5}
+
+/* Empty */
+.empty{text-align:center;padding:48px;color:var(--white3)}
+
+/* Responsive */
+@media(max-width:800px){.opp-grid{grid-template-columns:1fr}.banner{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr}.entry-grid{grid-template-columns:1fr}.wrap{padding:18px 14px}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-logo">
+      <svg viewBox="0 0 42 42" fill="none"><rect x="3" y="26" width="7" height="13" rx="1" fill="#C8933A" opacity=".5"/><rect x="13" y="18" width="7" height="21" rx="1" fill="#C8933A" opacity=".7"/><rect x="23" y="10" width="7" height="29" rx="1" fill="#C8933A"/><rect x="33" y="4" width="6" height="35" rx="1" fill="#E5B060"/><polyline points="6,27 16,19 26,11 36,5" stroke="#F5D08A" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="36" cy="5" r="2.5" fill="#F5D08A"/></svg>
+      <div><div class="brand">Reliable Market Survey Ltd</div><div class="brand-sub">Government Opportunity Map</div></div>
+    </div>
+    <div class="hdr-title">Lagos State + Ekiti State · <span>Research & Tech Division · 2026</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- Banner -->
+<div class="banner">
+  <div>
+    <div class="banner-title">Government Opportunity <em>Map.</em></div>
+    <p class="banner-desc">A complete mapping of research and technology business opportunities across Lagos State and Ekiti State government agencies — covering every MDA with a credible RMS entry point for either our research division, tech division (via TD Africa), or both.</p>
+    <div class="banner-stats">
+      <div class="bst"><div class="bst-num">68</div><div class="bst-lbl">Total opportunities</div></div>
+      <div class="bst"><div class="bst-num">₦1.2b+</div><div class="bst-lbl">Est. pipeline value</div></div>
+      <div class="bst"><div class="bst-num">28</div><div class="bst-lbl">High priority targets</div></div>
+    </div>
+  </div>
+  <div class="banner-right">
+    <div class="state-card sc-lagos">
+      <div class="sc-dot" style="background:var(--lagos)"></div>
+      <div>
+        <div class="sc-title" style="color:#93c5fd">Lagos State Government</div>
+        <div class="sc-desc">54+ MDAs undergoing restructuring. ₦3.36 trillion 2025 budget. OTCI-driven digital transformation. LSETF, LASRRA, LASG, LSETF, and 10+ agencies with direct research and IT procurement needs. Nigeria's largest state economy — #1 IGR nationally.</div>
+      </div>
+    </div>
+    <div class="state-card sc-ekiti">
+      <div class="sc-dot" style="background:var(--ekiti)"></div>
+      <div>
+        <div class="sc-title" style="color:#6ee7b7">Ekiti State Government</div>
+        <div class="sc-desc">E-governance is one of Gov. Oyebanji's 6 pillars. Ekiti Knowledge Zone backed by $80m African Development Bank. Bureau of ICT governs all MDA hardware/software procurement. 95.7% literacy rate — third highest in Nigeria. Active MSME ICT Hub and digital transformation programme.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab on" onclick="switchTab('all',this)">All Opportunities (68)</div>
+  <div class="tab" onclick="switchTab('lagos',this)">Lagos State (42)</div>
+  <div class="tab" onclick="switchTab('ekiti',this)">Ekiti State (26)</div>
+  <div class="tab" onclick="switchTab('guide',this)">How to Enter</div>
+</div>
+
+<!-- OPPORTUNITIES TAB -->
+<div id="tab-all">
+  <div class="ctrl-bar">
+    <input class="search-input" id="search" placeholder="Search agency, ministry, service type…" oninput="render()">
+    <select class="filter-sel" id="type-filter" onchange="render()">
+      <option value="all">All types</option>
+      <option value="research">Research only</option>
+      <option value="tech">Tech only</option>
+      <option value="both">Both</option>
+    </select>
+    <select class="filter-sel" id="prio-filter" onchange="render()">
+      <option value="all">All priorities</option>
+      <option value="high">High priority</option>
+      <option value="medium">Medium</option>
+      <option value="standard">Standard</option>
+    </select>
+    <div class="view-toggle">
+      <button class="vt-btn on" onclick="setView('grid',this)">Grid</button>
+      <button class="vt-btn" onclick="setView('list',this)">List</button>
+    </div>
+  </div>
+  <div class="count-row">
+    <div class="count-txt">Showing <strong id="showing">68</strong> opportunities</div>
+  </div>
+  <div class="opp-grid show" id="opp-grid"></div>
+  <div class="opp-list" id="opp-list"></div>
+  <div class="empty" id="empty" style="display:none">No opportunities match your filter.</div>
+</div>
+
+<!-- HOW TO ENTER TAB -->
+<div id="tab-guide" style="display:none">
+  <div class="entry-section">
+    <div class="entry-title">How to Enter Government Contracts — Practical Playbook</div>
+    <div class="entry-grid">
+      <div class="entry-card">
+        <div class="entry-step">Step 1 — Registration</div>
+        <div class="entry-action">Get on vendor lists first</div>
+        <div class="entry-detail">Register RMS with the Lagos State Public Procurement Agency (PPA) and Ekiti State Bureau of Public Procurement (EKBPP). Submit CAC certificate, TIN, professional profile, and company profile. This is the gateway — without it, you cannot be awarded any government contract. Takes 2–4 weeks.</div>
+      </div>
+      <div class="entry-card">
+        <div class="entry-step">Step 2 — NiMRA Membership</div>
+        <div class="entry-action">Professional credibility for research bids</div>
+        <div class="entry-detail">NiMRA (Nigeria Marketing Research Association) membership is the professional credential government agencies look for when evaluating research proposals. Contact nimra.ng. Annual fee applies. Also register with APCON (Advertising Practitioners Council of Nigeria) for communications research work.</div>
+      </div>
+      <div class="entry-card">
+        <div class="entry-step">Step 3 — Relationship building</div>
+        <div class="entry-action">Identify the procurement officer in each MDA</div>
+        <div class="entry-detail">Every MDA has a Director of Finance & Administration and a Procurement Officer. These are your entry contacts, not the Commissioner. Send a formal company introduction letter to each target MDA — physical letter, not email. Follow up with a visit. This is how government vendor relationships are built in Nigeria.</div>
+      </div>
+      <div class="entry-card">
+        <div class="entry-step">Step 4 — Expression of Interest (EOI)</div>
+        <div class="entry-action">Submit EOIs proactively, don't wait for RFPs</div>
+        <div class="entry-detail">Most government research work is awarded through EOIs and direct engagements, not open tenders. Submit unsolicited proposals to MDAs with clear research needs (LSETF, LASG Health, Ekiti Ministry of Education). Frame it as "we propose to support your 2026 programme evaluation at no upfront cost — pay only on delivery."</div>
+      </div>
+      <div class="entry-card">
+        <div class="entry-step">Step 5 — For tech contracts (Lagos)</div>
+        <div class="entry-action">Route through TD Africa's government channel</div>
+        <div class="entry-detail">TD Africa already has existing relationships with Lagos State MDAs as an authorised distributor. Work with your TD Africa account contact to identify which MDAs are in active procurement cycles for IT equipment. They can name you as the referring partner in their government bids, and you earn the referral commission.</div>
+      </div>
+      <div class="entry-card">
+        <div class="entry-step">Step 6 — For tech contracts (Ekiti)</div>
+        <div class="entry-action">Engage the Bureau of ICT directly</div>
+        <div class="entry-detail">Ekiti's Bureau of ICT regulates ALL hardware and software acquisition across MDAs. A single relationship with the Director of the Bureau gives RMS visibility across every Ekiti agency needing computers, networking, and Microsoft licensing. Reach out to: Bureau of ICT, Ekiti State Secretariat, Ado-Ekiti. Reference the EDTP (Ekiti Digital Transformation Programme).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="sg-card">
+      <div class="sg-head"><div class="sg-icon">📋</div><div class="sg-title">Research contract types</div></div>
+      <ul class="sg-items">
+        <li class="sg-item">KAP surveys (health, education, environment)</li>
+        <li class="sg-item">Citizen satisfaction / service delivery surveys</li>
+        <li class="sg-item">Programme baseline, midline & endline studies</li>
+        <li class="sg-item">Economic / market sizing studies</li>
+        <li class="sg-item">Household surveys (welfare, MSME, poverty)</li>
+        <li class="sg-item">Policy research & public opinion studies</li>
+        <li class="sg-item">Social audit & accountability surveys</li>
+        <li class="sg-item">M&E framework design & data collection</li>
+      </ul>
+    </div>
+    <div class="sg-card">
+      <div class="sg-head"><div class="sg-icon">💻</div><div class="sg-title">Tech contract types</div></div>
+      <ul class="sg-items">
+        <li class="sg-item">Desktop computers & laptops (HP, Dell, Lenovo)</li>
+        <li class="sg-item">Microsoft 365 Government licensing (via TD Africa)</li>
+        <li class="sg-item">Networking equipment (Cisco, D-Link)</li>
+        <li class="sg-item">UPS & power backup (APC/Schneider)</li>
+        <li class="sg-item">Printers & peripherals (HP LaserJet)</li>
+        <li class="sg-item">Projectors & smart boards (Philips)</li>
+        <li class="sg-item">CCTV & security systems (Bosch)</li>
+        <li class="sg-item">Server & storage (HP Enterprise, Dell)</li>
+      </ul>
+    </div>
+    <div class="sg-card">
+      <div class="sg-head"><div class="sg-icon">⚠️</div><div class="sg-title">Important compliance notes</div></div>
+      <ul class="sg-items">
+        <li class="sg-item">All contracts above ₦50m require Public Procurement Agency approval</li>
+        <li class="sg-item">Research firms need evidence of past government work or academic partnerships</li>
+        <li class="sg-item">For donor-funded govt programmes (World Bank, AfDB), procurement follows donor guidelines — not Nigerian procurement law</li>
+        <li class="sg-item">Payment terms for government: typically 60–90 days post-invoice with ITAS clearance</li>
+        <li class="sg-item">Budget cycle: submit EOIs Oct–Dec for next year's budget allocation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const opportunities = [
+  // ═══════════════ LAGOS STATE ═══════════════
+  // Social/Health
+  {id:1,state:'lagos',agency:'Lagos State Ministry of Health',ministry:'Min. of Health',type:'both',priority:'high',
+   research:['Citizens healthcare satisfaction survey (NPS/CSAT across public hospitals)','KAP survey — health-seeking behaviour in LGAs','Baseline/endline for Lagos Primary Healthcare programme','Health insurance awareness & uptake study (LASHMA)','Household health expenditure survey'],
+   tech:['Desktop computers for PHC centres (HP desktops x200+)','Microsoft 365 licensing for ministry staff','UPS backup for hospital records offices','Network infrastructure for health management system'],
+   value:'₦35m–₦60m',channel:'Direct engagement + WHO/UNFPA donor routes',est:50},
+  {id:2,state:'lagos',agency:'Lagos State Primary Health Care Board',ministry:'Min. of Health',type:'both',priority:'high',
+   research:['Community health worker KAP survey','Immunisation coverage & cold chain assessment','Maternal mortality perception study','MNCH service delivery evaluation across 57 LGAs/LCDAs'],
+   tech:['Rugged tablets for community health workers (Samsung x500+)','M365 licensing for HQ team','Portable printers for field teams','Starlink for remote PHC offices (Badagry, Epe, Ikorodu)'],
+   value:'₦28m–₦45m',channel:'UNICEF/WHO programme partnership + EOI to DG',est:38},
+  {id:3,state:'lagos',agency:'Lagos State AIDS Control Agency (LSACA)',ministry:'Min. of Health',type:'research',priority:'high',
+   research:['HIV/AIDS KAP survey — awareness, testing, stigma among youth','Behaviour change communication (BCC) evaluation','Community-based distribution programme assessment','Condom use & partner notification practices study'],
+   tech:[],
+   value:'₦12m–₦20m',channel:'USAID/PEPFAR-funded programmes via IHVN, APIN',est:16},
+  {id:4,state:'lagos',agency:'Lagos State Ministry of Education',ministry:'Min. of Education',type:'both',priority:'high',
+   research:['Out-of-school children study (EMIS gap analysis)','Teacher satisfaction & performance survey','Parental engagement & school quality perception survey','Literacy & numeracy baseline assessment (LSEER)','Private school market survey (regulation & compliance)'],
+   tech:['Desktop computers for public secondary schools (HP/Dell x500+)','Projectors & smart boards for classrooms (Philips)','Microsoft 365 Education licensing for administrative staff','HP printers for zonal education officers','Networking for administrative offices across 6 zones'],
+   value:'₦45m–₦80m',channel:'World Bank SEPIP programme + direct Ministry EOI',est:65},
+  {id:5,state:'lagos',agency:'Lagos State Employment Trust Fund (LSETF)',ministry:'Min. of Wealth Creation',type:'both',priority:'high',
+   research:['MSME programme impact evaluation (loan disbursement outcomes)','Youth unemployment KAP study','Entrepreneur satisfaction survey — all LSETF programmes','Lagos economic inclusion baseline study','Digital skills uptake & income impact study (DigiSkills)'],
+   tech:['Laptops for LSETF staff (Lenovo ThinkPad x30)','Microsoft 365 Business Standard for HQ','Power BI dashboard for programme monitoring','Server backup for loan database'],
+   value:'₦22m–₦35m',channel:'Direct EOI to LSETF CEO + World Bank project route',est:29},
+  {id:6,state:'lagos',agency:'Office of Transformation, Creativity & Innovation (OTCI)',ministry:'Governor\'s Office',type:'both',priority:'high',
+   research:['Citizen perception of government service delivery (54 MDAs assessment)','Public satisfaction with digital services survey','MDA service quality benchmarking study','Lagos ease-of-doing-business perception survey'],
+   tech:['Microsoft 365 E3 for OTCI team','HP EliteBook laptops for transformation officers','Power BI dashboard for MDA performance tracking','Network infrastructure for OTCI offices'],
+   value:'₦18m–₦30m',channel:'Direct to OTCI Director + Governor\'s Office procurement',est:25},
+  {id:7,state:'lagos',agency:'Lagos State Residents Registration Agency (LASRRA)',ministry:'Ministry of Information',type:'both',priority:'high',
+   research:['Resident awareness of LASRRA ID programme','LAG-ID registration uptake barriers study','Perception survey of LASRRA digital services'],
+   tech:['Desktop computers for registration centres (HP desktops x100+)','HP LaserJet printers (network-enabled) for ID printing','UPS backup for always-on registration systems','Microsoft 365 for LASRRA staff'],
+   value:'₦20m–₦32m',channel:'Direct to LASRRA DG + LASG procurement',est:26},
+  {id:8,state:'lagos',agency:'Lagos State Ministry of Agriculture & Food Systems',ministry:'Min. of Agriculture',type:'both',priority:'medium',
+   research:['Agribusiness enterprise survey (value chain assessment)','Food price & supply tracking study — Lagos markets','Youth in agric participation study (LAP programme)','Livestock & aquaculture census (Epe, Badagry, Ikorodu)'],
+   tech:['Desktop computers for zonal agriculture offices (HP x50)','Samsung tablets for field extension officers','UPS backup for farm service centres','Microsoft 365 for ministry staff'],
+   value:'₦16m–₦26m',channel:'Ministry Agriculture EOI + FAO/IFAD programme route',est:21},
+  {id:9,state:'lagos',agency:'Lagos State Ministry of Environment & Water Resources',ministry:'Min. of Environment',type:'research',priority:'medium',
+   research:['Household waste management behaviour study','Air quality perception survey across Lagos LGAs','Climate change awareness & adaptation KAP study','Environmental compliance perception survey (LASEPA)','Waste collection service satisfaction survey (LAWMA)'],
+   tech:[],
+   value:'₦14m–₦22m',channel:'LASEPA + LAWMA + UNEP programme routes',est:18},
+  {id:10,state:'lagos',agency:'Lagos State Signage & Advertisement Agency (LASAA)',ministry:'Min. of Economic Planning',type:'research',priority:'medium',
+   research:['Out-of-home advertising effectiveness study','Billboard & signage compliance audit (mystery visit field study)','Business perception of LASAA regulatory service'],
+   tech:[],
+   value:'₦8m–₦14m',channel:'Direct to LASAA Director-General',est:11},
+  {id:11,state:'lagos',agency:'Lagos State Inland Revenue Service (LIRS)',ministry:'Min. of Finance',type:'both',priority:'high',
+   research:['Taxpayer satisfaction & service quality survey','Tax compliance perception study — SMEs & corporates','Awareness of LIRS digital tax filing platform','Informal sector tax compliance barriers study'],
+   tech:['Microsoft 365 E3 licensing for LIRS HQ (300+ staff)','HP desktops for district tax offices','Network refresh for LIRS offices (Cisco)','Power BI for revenue analytics dashboard'],
+   value:'₦30m–₦50m',channel:'LIRS Procurement Department + Governor\'s Office budget',est:40},
+  {id:12,state:'lagos',agency:'Lagos State Ministry of Commerce, Cooperative, Trade & Investment',ministry:'Min. of Commerce',type:'research',priority:'medium',
+   research:['Business climate survey — ease of registering & operating in Lagos','Cooperative society needs assessment (LGA-by-LGA)','Investment attraction perception study (domestic & diaspora)','Market survey for Lagos Free Trade Zone'],
+   tech:[],
+   value:'₦12m–₦18m',channel:'Ministry Commerce EOI + LASG procurement',est:15},
+  {id:13,state:'lagos',agency:'Lagos State Ministry of Transportation',ministry:'Min. of Transportation',type:'both',priority:'medium',
+   research:['Commuter satisfaction survey — BRT, ferries, rail (Lagos Rail Mass Transit)','Traffic congestion perception & mobility study','Road safety knowledge & attitude survey (TRACE)','Lagos waterway usage & demand study (LAWMA)'],
+   tech:['Desktop computers for transport authority offices','Samsung tablets for traffic management officers','HP printers for driving licence centres','UPS for real-time traffic monitoring systems'],
+   value:'₦18m–₦28m',channel:'LAMATA + TRACE + LAGFERRY procurement offices',est:23},
+  {id:14,state:'lagos',agency:'Ministry of Women Affairs & Poverty Alleviation (MWAPA)',ministry:'Min. of Women Affairs',type:'research',priority:'medium',
+   research:['Gender-based violence KAP study (in collaboration with DSVA)','Women economic empowerment programme evaluation','Female entrepreneurship barriers study (Lagos MSMEs)','Child welfare & domestic violence perception survey'],
+   tech:[],
+   value:'₦10m–₦16m',channel:'UN Women / UNFPA donor routes + direct Ministry EOI',est:13},
+  {id:15,state:'lagos',agency:'Lagos State Ministry of Youth & Social Development',ministry:'Min. of Youth',type:'research',priority:'medium',
+   research:['Youth unemployment & aspirations study','Digital skills gap assessment among Lagos youth (18–35)','Drug use & substance abuse prevalence study','Youth enterprise programme impact evaluation (LYP)'],
+   tech:[],
+   value:'₦10m–₦18m',channel:'UNDP/UNICEF youth programme routes + direct EOI',est:14},
+  {id:16,state:'lagos',agency:'Lagos State Urban Renewal Agency (LASURA)',ministry:'Min. of Housing',type:'research',priority:'medium',
+   research:['Community perception study — slum upgrading & urban renewal','Affordable housing demand & willingness-to-pay study','Resident satisfaction with government housing schemes'],
+   tech:[],
+   value:'₦8m–₦14m',channel:'UN-Habitat programme routes + direct EOI',est:11},
+  {id:17,state:'lagos',agency:'Lagos State Ministry of Housing',ministry:'Min. of Housing',type:'tech',priority:'medium',
+   research:[],
+   tech:['Desktop computers for housing registry offices (HP x80)','Microsoft 365 for ministry staff','HP LaserJet printers for permit processing offices','UPS backup for housing registration system'],
+   value:'₦12m–₦20m',channel:'Ministry procurement department + LASG budget',est:16},
+  {id:18,state:'lagos',agency:'Lagos State Ministry of Economic Planning & Budget',ministry:'Min. of Economic Planning',type:'research',priority:'high',
+   research:['Lagos State household income & expenditure survey','MSME census & economic contribution study','Investment climate monitoring survey','Lagos GDP estimation support study','Public debt perception & fiscal literacy survey'],
+   tech:[],
+   value:'₦20m–₦35m',channel:'World Bank / NBS data partnership routes + direct EOI',est:28},
+  {id:19,state:'lagos',agency:'Lagos State Safety Commission',ministry:'Min. of Physical Planning',type:'research',priority:'standard',
+   research:['Workplace safety compliance perception survey','Building regulation awareness study among contractors','Fire safety knowledge & practice study (commercial properties)'],
+   tech:[],
+   value:'₦6m–₦10m',channel:'Direct EOI to Safety Commission',est:8},
+  {id:20,state:'lagos',agency:'Lagos State Water Corporation',ministry:'Min. of Environment',type:'both',priority:'medium',
+   research:['Household water access & satisfaction survey','Willingness to pay for piped water study','Water quality perception survey (LGA-level)'],
+   tech:['Desktop computers for district water offices','Microsoft 365 for staff','UPS for water treatment plants (APC/Vertiv)'],
+   value:'₦14m–₦22m',channel:'World Bank WASH programme + direct procurement EOI',est:18},
+  {id:21,state:'lagos',agency:'Lagos State Universal Basic Education Board (LASUBEB)',ministry:'Min. of Education',type:'both',priority:'high',
+   research:['Primary school quality assessment survey','Teacher deployment & pupil–teacher ratio study','School feeding programme satisfaction survey (NSSP evaluation)','Parental engagement in primary education study'],
+   tech:['Desktop computers for LASUBEB HQ & zonal offices (HP x100)','HP printers for administrative purposes','Microsoft 365 for LASUBEB staff','Projectors for model primary schools (Philips)'],
+   value:'₦22m–₦38m',channel:'World Bank AGILE programme + UNICEF education route',est:30},
+  {id:22,state:'lagos',agency:'Lagos State Ministry of Justice',ministry:'Min. of Justice',type:'tech',priority:'standard',
+   research:[],
+   tech:['Microsoft 365 Business Premium for Ministry legal team','Dell laptops for legal officers','HP LaserJet printers for court document preparation','Network refresh for Ministry of Justice offices'],
+   value:'₦10m–₦16m',channel:'Ministry procurement office direct engagement',est:13},
+  {id:23,state:'lagos',agency:'Lagos State Internal Revenue Service — New Taxpayer Edu.',ministry:'Min. of Finance',type:'research',priority:'medium',
+   research:['Informal sector tax compliance & awareness study','Taxpayer perception of fairness & service quality','Digital tax platform adoption barriers research'],
+   tech:[],
+   value:'₦8m–₦14m',channel:'LIRS Strategic Partnerships unit + GIZ/IMF TA routes',est:11},
+  {id:24,state:'lagos',agency:'Lagos State Ministry of Innovation, Science & Technology',ministry:'Min. of Innovation',type:'both',priority:'high',
+   research:['Technology adoption & digital literacy survey — Lagos residents','Lagos startup ecosystem survey','Broadband access & internet usage study','Perceived barriers to tech entrepreneurship'],
+   tech:['Microsoft 365 E3 for Ministry innovation team','HP laptops & desktops for innovation hub staff','Azure cloud infrastructure for Lagos tech platform','Smart boards for Lagos Digital Economy Centre (Philips)'],
+   value:'₦18m–₦30m',channel:'Direct to Commissioner for Innovation + LASG tech budget',est:24},
+  {id:25,state:'lagos',agency:'Lagos State Traffic Management Authority (LASTMA)',ministry:'Min. of Transportation',type:'tech',priority:'medium',
+   research:[],
+   tech:['Desktop computers for LASTMA district offices (HP x60)','Samsung mobile devices for traffic officers','CCTV cameras for key intersections (Bosch)','UPS backup for control centre (APC)','Microsoft 365 for LASTMA admin team'],
+   value:'₦18m–₦28m',channel:'LASTMA procurement office + LASG capital budget',est:23},
+  {id:26,state:'lagos',agency:'Office of PPP (Public-Private Partnerships)',ministry:'Governor\'s Office',type:'research',priority:'medium',
+   research:['Private sector perception of PPP investment climate in Lagos','Feasibility & demand studies for PPP infrastructure projects','Business community perception of policy stability'],
+   tech:[],
+   value:'₦10m–₦18m',channel:'Governor\'s Office PPP unit direct engagement',est:14},
+
+  // ═══════════════ EKITI STATE ═══════════════
+  {id:27,state:'ekiti',agency:'Ekiti State Bureau of ICT',ministry:'Governor\'s Office / Digital Transformation',type:'tech',priority:'high',
+   research:[],
+   tech:['Microsoft 365 Government licensing — all Ekiti MDAs (500+ seats)','Desktop computers for MDA offices across 16 LGAs (HP/Dell x300+)','Cisco networking infrastructure for state secretariat','HP LaserJet printers for key MDAs','APC UPS systems for government offices','Microsoft Azure for Ekiti Digital Transformation Programme (EDTP)','HP servers for government data centre','Smart boards for digital skills training centres'],
+   value:'₦50m–₦90m',channel:'Direct engagement with Bureau of ICT Director — route all Ekiti IT through here',est:70},
+  {id:28,state:'ekiti',agency:'Ekiti Knowledge Zone (EKZ)',ministry:'Min. of Innovation / AfDB Programme',type:'both',priority:'high',
+   research:['Baseline study — knowledge economy readiness among Ekiti youth','Digital skills demand & supply gap analysis','Private sector appetite for knowledge economy investment','Ekiti tech entrepreneur survey & ecosystem mapping'],
+   tech:['Microsoft 365 licensing for EKZ staff & trainees','HP workstations for EKZ innovation labs','Azure cloud credits for EKZ startups','Cisco networking for EKZ campus','Projectors & smart boards (Philips) for training spaces'],
+   value:'₦30m–₦55m',channel:'AfDB project management unit + Commissioner for Innovation (Seun Fakuade)',est:43},
+  {id:29,state:'ekiti',agency:'Ekiti State Ministry of Education, Science & Technology',ministry:'Min. of Education',type:'both',priority:'high',
+   research:['Primary & secondary school quality survey (203 schools)','Teacher performance & satisfaction study','Pupil learning outcomes assessment','Ekiti school infrastructure perception survey','ICT in education adoption study'],
+   tech:['Smart boards for secondary schools (203 schools — Wowbii/Philips)','HP desktop computers for schools x200+','M365 Education licensing for administrative staff','Printers for school offices x74 (as in current procurement)','Projectors & attendace devices for SMART schools'],
+   value:'₦35m–₦60m',channel:'World Bank IDEAS project + Ministry EOI + AfDB EKZ route',est:48},
+  {id:30,state:'ekiti',agency:'Ekiti State Ministry of Health',ministry:'Min. of Health',type:'both',priority:'high',
+   research:['Primary healthcare utilisation & satisfaction survey','Community health worker KAP study','Maternal & child health service delivery assessment','Malaria prevention knowledge & practice study','Health insurance awareness study (EKESSHIA)'],
+   tech:['Desktop computers for state hospitals & PHCs (HP x100)','Samsung tablets for community health workers','UPS backup for hospital record-keeping systems (APC)','Microsoft 365 for Ministry health team'],
+   value:'₦20m–₦35m',channel:'UNICEF/WHO Ekiti programme + direct Ministry EOI',est:28},
+  {id:31,state:'ekiti',agency:'Ekiti State Ministry of Agriculture & Food Security',ministry:'Min. of Agriculture',type:'both',priority:'medium',
+   research:['Smallholder farmer needs assessment (16 LGAs)','Agricultural extension service satisfaction study','Food security & nutrition KAP survey','Cocoa & cassava value chain assessment','Youth in agriculture programme evaluation'],
+   tech:['Rugged Samsung tablets for agricultural extension workers','Desktop computers for state agriculture offices (HP x40)','UPS backup for veterinary clinics','Microsoft 365 for ministry staff','Starlink for rural agricultural stations'],
+   value:'₦16m–₦26m',channel:'IFAD/FAO Ekiti programme routes + direct Ministry EOI',est:21},
+  {id:32,state:'ekiti',agency:'Ekiti State Ministry of Trade, Industry, Investment & Cooperatives',ministry:'Min. of Trade',type:'both',priority:'high',
+   research:['MSME census & economic mapping (16 LGAs)','Business environment & investment climate study','Cooperative society needs assessment','Digital literacy & e-commerce readiness among Ekiti SMEs','MSME ICT Hub impact evaluation (Wakocode programme)'],
+   tech:['Laptops for MSME ICT Hub training (HP x50)','Microsoft 365 for Hub and Ministry staff','Cisco WiFi for MSME ICT Hub campus','Projectors for business development workshops (Philips)'],
+   value:'₦18m–₦30m',channel:'Ministry of Trade direct + MSME ICT Hub coordination + World Bank SMEDAN',est:24},
+  {id:33,state:'ekiti',agency:'Ekiti State Ministry of Finance',ministry:'Min. of Finance',type:'both',priority:'medium',
+   research:['Taxpayer compliance study (formal & informal sector)','Public perception of Ekiti fiscal management','Budget transparency awareness survey'],
+   tech:['Microsoft 365 licensing for Ministry of Finance staff','HP desktops for EKIRS offices','UPS & network refresh for financial reporting systems'],
+   value:'₦14m–₦22m',channel:'Ekiti State Internal Revenue Service + direct Ministry procurement',est:18},
+  {id:34,state:'ekiti',agency:'Ekiti State Teaching Service Commission (TESCOM)',ministry:'Min. of Education',type:'both',priority:'medium',
+   research:['Teacher job satisfaction & retention survey','Professional development needs assessment','Teacher deployment equity study across LGAs'],
+   tech:['HP desktops for TESCOM headquarters','Microsoft 365 for commission staff','HP LaserJet printers for teacher records processing'],
+   value:'₦8m–₦14m',channel:'Ministry of Education EOI + TESCOM procurement unit',est:11},
+  {id:35,state:'ekiti',agency:'Ekiti State Ministry of Works & Transportation',ministry:'Min. of Works',type:'both',priority:'medium',
+   research:['Road infrastructure satisfaction & perception survey','Public transport needs & gap assessment across 16 LGAs','Road maintenance reporting perception study'],
+   tech:['Desktop computers for works department offices','Microsoft 365 for engineering staff','UPS backup for ministry offices','HP printers for project documentation'],
+   value:'₦10m–₦16m',channel:'Ministry procurement office + AfDB/World Bank infrastructure routes',est:13},
+  {id:36,state:'ekiti',agency:'Ekiti State Water Corporation',ministry:'Min. of Environment',type:'both',priority:'medium',
+   research:['Household water access & satisfaction survey (16 LGAs)','Willingness to pay for clean water in Ado-Ekiti & rural areas','Water quality perception study'],
+   tech:['Desktop computers for water corporation offices','UPS backup for pump stations (APC/Vertiv)','Microsoft 365 for water corporation team','Samsung mobile devices for field inspection teams'],
+   value:'₦12m–₦18m',channel:'World Bank RUWATSAN programme + direct procurement',est:15},
+  {id:37,state:'ekiti',agency:'Ekiti State University (EKSU)',ministry:'Min. of Education',type:'both',priority:'high',
+   research:['Student satisfaction survey — academic & welfare services','Graduate employment outcomes tracking study','Research output & industry linkage assessment','University brand perception & rankings positioning study'],
+   tech:['HP desktops for faculty & admin offices (x200+)','Microsoft 365 Education for staff & students','Cisco networking for campus WiFi upgrade','HP LaserJet printers for academic departments','UPS backup for library & data centre (APC)','Dell servers for university IT infrastructure'],
+   value:'₦25m–₦45m',channel:'EKSU Bursary & Procurement office + NUC development grant routes',est:35},
+  {id:38,state:'ekiti',agency:'Federal Polytechnic Ado-Ekiti',ministry:'Federal (within Ekiti)',type:'both',priority:'medium',
+   research:['Student welfare & academic satisfaction survey','Graduate skills & labour market readiness study','Enterprise development programme impact assessment'],
+   tech:['HP desktops for engineering lab & admin (x100+)','Microsoft 365 for polytechnic staff','Cisco WiFi for campus networking','Projectors & smart boards for engineering workshops'],
+   value:'₦14m–₦24m',channel:'Polytechnic Bursary Office + TETFund capital procurement',est:19},
+  {id:39,state:'ekiti',agency:'Ekiti State Agency for Adult & Non-Formal Education',ministry:'Min. of Education',type:'both',priority:'standard',
+   research:['Adult literacy programme impact evaluation','Non-formal education uptake & barriers study','Community perception of adult education centres'],
+   tech:['Desktop computers for adult education centres (HP x30)','Microsoft 365 for agency staff','Samsung tablets for field literacy workers'],
+   value:'₦6m–₦10m',channel:'UNESCO non-formal education routes + direct agency EOI',est:8},
+  {id:40,state:'ekiti',agency:'Ekiti State Ministry of Local Government Affairs',ministry:'Min. of Local Govt',type:'both',priority:'medium',
+   research:['Citizen satisfaction with LGA service delivery (16 LGAs)','Local government transparency & accountability perception','Community infrastructure needs assessment'],
+   tech:['Desktop computers for all 16 LGA secretariats (HP x64)','Microsoft 365 for LGA administrative staff','HP printers for LGA offices','UPS backup for LGA record systems'],
+   value:'₦18m–₦28m',channel:'Ministry of Local Govt direct + ALGON Ekiti chapter',est:23},
+  {id:41,state:'ekiti',agency:'Ekiti State Board for Technical & Vocational Education',ministry:'Min. of Education',type:'both',priority:'medium',
+   research:['Technical education demand & employer perception study','Graduate employment & earnings outcomes study (TVETs)','Industry linkage & workplace readiness assessment'],
+   tech:['HP desktops for technical college labs (x80)','Microsoft 365 licensing for TVET institutions','Projectors & smart boards for vocational training halls','HP LaserJet printers for admin offices'],
+   value:'₦10m–₦18m',channel:'NBTE/TETFund capital programme + Ministry EOI',est:14},
+  {id:42,state:'ekiti',agency:'Ekiti State Civil Service Commission',ministry:'Governor\'s Office',type:'both',priority:'standard',
+   research:['Civil service job satisfaction & retention survey','Public perception of Ekiti civil service efficiency','Capacity needs assessment across MDAs'],
+   tech:['Microsoft 365 for Commission secretariat staff','HP desktops for Commission offices','HP printers for HR records processing'],
+   value:'₦8m–₦14m',channel:'Direct to Commission Secretary-General',est:11},
+  {id:43,state:'ekiti',agency:'Ekiti State Ministry of Women Affairs & Social Development',ministry:'Min. of Women Affairs',type:'research',priority:'medium',
+   research:['GBV prevalence & reporting barriers study (16 LGAs)','Women economic empowerment programme evaluation','Social protection programme (ESSPIN) satisfaction survey','Child welfare & vulnerable population study'],
+   tech:[],
+   value:'₦10m–₦16m',channel:'UN Women / UNICEF Ekiti programme routes',est:13},
+  {id:44,state:'ekiti',agency:'Ekiti State Internal Revenue Service (EKIRS)',ministry:'Min. of Finance',type:'both',priority:'medium',
+   research:['Taxpayer perception & satisfaction survey','Informal sector tax compliance study (artisans, traders)','Business community perception of tax administration'],
+   tech:['HP desktops for EKIRS district tax offices','Microsoft 365 for revenue service staff','UPS backup for tax database systems','HP printers for tax clearance certificate issuance'],
+   value:'₦10m–₦16m',channel:'EKIRS Director + Governor\'s fiscal reform agenda route',est:13},
+  {id:45,state:'ekiti',agency:'Office of Capacity Development & Reforms',ministry:'Governor\'s Office',type:'research',priority:'medium',
+   research:['Public service competency & training needs assessment','MDAs performance gap study (aligned with OTCI-type assessment)','Citizen perception of government service improvement'],
+   tech:[],
+   value:'₦8m–₦12m',channel:'Direct to Director, Office of Capacity Development',est:10},
+  {id:46,state:'ekiti',agency:'Ekiti State Mineral Resources Development Agency',ministry:'Min. of Natural Resources',type:'research',priority:'standard',
+   research:['Mining community perception & livelihood study','Artisanal mining safety knowledge & practice study','Mineral resource potential market study for investors'],
+   tech:[],
+   value:'₦6m–₦10m',channel:'Ministry of Natural Resources direct EOI + MSMD',est:8},
+  {id:47,state:'both',agency:'World Bank / IDA-funded programmes (both states)',ministry:'Cross-state donor programme',type:'research',priority:'high',
+   research:['State-level programme evaluations (education, health, social protection)','Beneficiary satisfaction surveys for IDA projects','State-level poverty & welfare surveys','MSME support programme impact assessments'],
+   tech:[],
+   value:'₦40m–₦80m',channel:'World Bank Nigeria country office procurement — register on STEP procurement system',est:60},
+  {id:48,state:'both',agency:'UNICEF Nigeria — State offices (Lagos & Ekiti)',ministry:'Cross-state UN programme',type:'both',priority:'high',
+   research:['Child rights & welfare KAP studies','WASH KAP surveys at state & LGA level','Education access baseline/endline studies','Nutrition KAP surveys','Community engagement & participation surveys'],
+   tech:['Microsoft 365 Nonprofit for UNICEF state offices','Samsung tablets for field data collection teams','Rugged devices for enumerators','Azure data storage for UNICEF survey databases'],
+   value:'₦25m–₦45m',channel:'UNICEF Supply Division + state field office programme coordinators',est:35},
+  {id:49,state:'lagos',agency:'Lagos State Environmental Protection Agency (LASEPA)',ministry:'Min. of Environment',type:'research',priority:'standard',
+   research:['Industrial compliance & pollution perception survey','Environmental impact assessment community perception studies','Hazardous waste disposal knowledge & practice survey','Air quality awareness study in industrial estates (Apapa, Ojo, Ikeja)'],
+   tech:[],
+   value:'₦8m–₦14m',channel:'LASEPA DG office direct EOI + UNEP programme route',est:11},
+  {id:50,state:'lagos',agency:'Lagos State Ministry of Wealth Creation & Employment',ministry:'Min. of Wealth Creation',type:'research',priority:'medium',
+   research:['Youth employment programme impact evaluation','Skills acquisition training effectiveness study','Poverty mapping & vulnerability study for targeted interventions','Lagos CARES programme beneficiary satisfaction survey'],
+   tech:[],
+   value:'₦12m–₦20m',channel:'Ministry direct EOI + World Bank Lagos Urban Resilience route',est:16},
+  {id:51,state:'lagos',agency:'Lagos State Public Works Corporation',ministry:'Min. of Works',type:'tech',priority:'medium',
+   research:[],
+   tech:['HP desktops for district public works offices (x80)','Microsoft 365 for engineering staff','UPS backup for design/GIS workstations','HP printers for infrastructure documentation'],
+   value:'₦10m–₦18m',channel:'Works Corporation procurement office',est:14},
+  {id:52,state:'lagos',agency:'Lagos State Physical Planning & Urban Development',ministry:'Min. of Physical Planning',type:'both',priority:'standard',
+   research:['Urban land use & planning perception survey','Building permit application satisfaction study','Informal settlement survey (housing, infrastructure access)'],
+   tech:['HP workstations for GIS/planning teams','Microsoft 365 for planning officers','HP LaserJet printers for permit offices','UPS for GIS workstations (APC)'],
+   value:'₦12m–₦18m',channel:'Ministry procurement office direct engagement',est:15},
+  {id:53,state:'ekiti',agency:'Ekiti State University Teaching Hospital (EKUTH)',ministry:'Min. of Health',type:'both',priority:'high',
+   research:['Patient satisfaction & service quality survey','Staff welfare & retention study','Healthcare-seeking behaviour among Ado-Ekiti residents','Hospital brand perception vs private sector alternatives'],
+   tech:['HP desktops for hospital administration (x80)','Microsoft 365 for clinical & admin staff','UPS backup for hospital IT systems (APC x20+)','HP LaserJet printers for records','Dell server for hospital management system'],
+   value:'₦18m–₦30m',channel:'EKUTH management office + NHIS/FMOH programme routes',est:24},
+  {id:54,state:'ekiti',agency:'Ekiti State Housing Corporation',ministry:'Min. of Lands & Housing',type:'research',priority:'standard',
+   research:['Affordable housing demand & willingness-to-pay study','Current housing quality & deficiency survey','Mortgage uptake barriers study among Ekiti residents'],
+   tech:[],
+   value:'₦6m–₦10m',channel:'Housing Corporation DG office direct EOI',est:8},
+  {id:55,state:'lagos',agency:'Lagos Bus Services Ltd / LAGBUS',ministry:'Min. of Transportation',type:'research',priority:'standard',
+   research:['Commuter satisfaction survey — LAGBUS routes','Bus service frequency & reliability perception study','Willingness to pay for improved bus service study'],
+   tech:[],
+   value:'₦6m–₦10m',channel:'LAGBUS management office + LAMATA EOI route',est:8},
+  {id:56,state:'lagos',agency:'LASG Ministry of Information & Strategy',ministry:'Min. of Information',type:'research',priority:'medium',
+   research:['Government communication effectiveness survey','Citizen awareness of major Lagos government programmes','Media consumption & information access study','Social media sentiment analysis on LASG programmes'],
+   tech:[],
+   value:'₦10m–₦16m',channel:'Ministry of Information direct EOI + LASG communications team',est:13},
+  {id:57,state:'ekiti',agency:'Ekiti State Library Board',ministry:'Min. of Education',type:'tech',priority:'standard',
+   research:[],
+   tech:['HP desktops for state library (x30)','Microsoft 365 for library staff','HP printers for library administration','Cisco WiFi for Ado-Ekiti Central Library','Projectors for library training/events (Philips)'],
+   value:'₦6m–₦10m',channel:'Library Board Secretary + Min. Education EOI',est:8},
+  {id:58,state:'ekiti',agency:'Ekiti State Scholarship Board',ministry:'Min. of Education',type:'tech',priority:'standard',
+   research:[],
+   tech:['HP desktops for scholarship office administration','Microsoft 365 for scholarship team','HP LaserJet printers for scholarship documentation','UPS backup for scholarship database'],
+   value:'₦4m–₦7m',channel:'Scholarship Board Secretary direct',est:5.5},
+  {id:59,state:'lagos',agency:'Lagos State Parks & Garden Agency (LASPARK)',ministry:'Min. of Environment',type:'both',priority:'standard',
+   research:['Citizens\' use & satisfaction with Lagos parks & gardens','Parks economic contribution study (recreation & tourism)'],
+   tech:['HP desktops for LASPARK HQ','Microsoft 365 for management team','UPS backup for administrative systems'],
+   value:'₦6m–₦10m',channel:'LASPARK DG direct EOI',est:8},
+  {id:60,state:'lagos',agency:'Lagos State Ministry of Local Government & Community Affairs',ministry:'Min. of Local Govt',type:'research',priority:'medium',
+   research:['Citizen satisfaction with LGA service delivery (57 LGAs/LCDAs)','LGA revenue generation & transparency perception study','Community development fund impact assessment'],
+   tech:[],
+   value:'₦15m–₦25m',channel:'Ministry direct + ALGON Lagos chapter engagement',est:20},
+  {id:61,state:'ekiti',agency:'Ekiti State Sports Council',ministry:'Min. of Youth & Sports',type:'tech',priority:'standard',
+   research:[],
+   tech:['HP desktops & printers for sports council offices','Microsoft 365 for administrative team','Samsung tablets for sports event management'],
+   value:'₦3m–₦6m',channel:'Sports Council DG direct procurement',est:4.5},
+  {id:62,state:'both',agency:'USAID-funded programmes (both states)',ministry:'Cross-state donor programme',type:'research',priority:'high',
+   research:['Health system strengthening baseline & endline studies','Economic resilience programme impact evaluation','Livelihoods assessment & programme surveys','KAP studies for PEPFAR, MNCH, USAID education programmes'],
+   tech:[],
+   value:'₦30m–₦60m',channel:'USAID Nigeria implementing partners (Palladium, DAI, Chemonics, RTI) — register on USASpending.gov for prime & sub-award routes',est:45},
+  {id:63,state:'both',agency:'AfDB-funded programmes (both states)',ministry:'Cross-state donor programme',type:'both',priority:'high',
+   research:['Knowledge economy baseline study (Ekiti Knowledge Zone)','Skills & employment programme evaluation','Infrastructure beneficiary satisfaction surveys','Gender & youth inclusion assessments'],
+   tech:['IT equipment for AfDB-funded innovation hubs','Microsoft 365 for programme offices','Laptops & networking for EKZ (routed via RMS × TD Africa)'],
+   value:'₦35m–₦70m',channel:'AfDB Nigeria country office + EKZ programme management unit',est:53},
+  {id:64,state:'lagos',agency:'Lagos State Science Research & Innovation Council (LASRIC)',ministry:'Min. of Innovation',type:'both',priority:'medium',
+   research:['Tech ecosystem survey — startup outcomes & support gaps','Research & innovation capacity study in Lagos universities','Industry-academia collaboration perception study'],
+   tech:['HP laptops & workstations for LASRIC innovation centre','Microsoft 365 for LASRIC staff & researchers','Azure cloud for data science & research computing'],
+   value:'₦10m–₦16m',channel:'LASRIC DG direct EOI + LASG innovation budget',est:13},
+  {id:65,state:'lagos',agency:'Lagos State Waterfront Infrastructure Development Office',ministry:'Min. of Works',type:'research',priority:'standard',
+   research:['Waterfront community impact assessment','Lagoon-side residents satisfaction study','Water transport demand & willingness-to-pay study'],
+   tech:[],
+   value:'₦6m–₦10m',channel:'Waterfront office direct EOI + LASG procurement',est:8},
+  {id:66,state:'ekiti',agency:'Ekiti State Agency for the Control of AIDS (EKSACA)',ministry:'Min. of Health',type:'research',priority:'medium',
+   research:['HIV/AIDS KAP study across 16 LGAs','Youth sexual behaviour & risk perception study','PMTCT programme uptake & barrier study','Stigma & discrimination reduction programme evaluation'],
+   tech:[],
+   value:'₦8m–₦14m',channel:'USAID PEPFAR Ekiti routes + EKSACA DG direct EOI',est:11},
+  {id:67,state:'lagos',agency:'Vehicle Inspection Service (VIS) Lagos',ministry:'Min. of Transportation',type:'tech',priority:'standard',
+   research:[],
+   tech:['HP desktops for VIS inspection centres (x60)','Microsoft 365 for VIS administrative staff','UPS backup for vehicle registration systems (APC)','Samsung mobile devices for field inspection officers'],
+   value:'₦8m–₦14m',channel:'VIS DG direct procurement',est:11},
+  {id:68,state:'ekiti',agency:'Ekiti State Broadcasting Service (EBS)',ministry:'Min. of Information',type:'both',priority:'standard',
+   research:['Audience size & programme satisfaction survey','Media consumption habits study in Ekiti State','Brand perception of EBS vs competition'],
+   tech:['HP desktops for broadcasting administration','Microsoft 365 for editorial & admin teams','UPS & power backup for broadcast continuity (APC)'],
+   value:'₦6m–₦12m',channel:'EBS Director-General direct engagement',est:9},
+];
+
+let currentTab = 'all', currentView = 'grid';
+const PRIO_ORDER = {high:0,medium:1,standard:2};
+
+function switchTab(name, el) {
+  currentTab = name;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('tab-all').style.display = (name==='guide') ? 'none' : 'block';
+  document.getElementById('tab-guide').style.display = (name==='guide') ? 'block' : 'none';
+  if (name !== 'guide') render();
+}
+
+function setView(v, el) {
+  currentView = v;
+  document.querySelectorAll('.vt-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('opp-grid').style.display = v==='grid' ? 'grid' : 'none';
+  document.getElementById('opp-list').style.display = v==='list' ? 'flex' : 'none';
+  render();
+}
+
+function getFiltered() {
+  const q = (document.getElementById('search')||{value:''}).value.toLowerCase();
+  const t = (document.getElementById('type-filter')||{value:'all'}).value;
+  const p = (document.getElementById('prio-filter')||{value:'all'}).value;
+  return opportunities
+    .filter(o => {
+      const stateMatch = currentTab==='all' || currentTab===o.state || (currentTab!=='guide' && o.state==='both');
+      const textMatch = !q || [o.agency,o.ministry,o.research.join(' '),o.tech.join(' ')].join(' ').toLowerCase().includes(q);
+      const typeMatch = t==='all' || o.type===t || (t!=='both' && o.type==='both');
+      const prioMatch = p==='all' || o.priority===p;
+      return stateMatch && textMatch && typeMatch && prioMatch;
+    })
+    .sort((a,b)=>PRIO_ORDER[a.priority]-PRIO_ORDER[b.priority]);
+}
+
+function render() {
+  const data = getFiltered();
+  document.getElementById('showing').textContent = data.length;
+  const empty = document.getElementById('empty');
+  if (!data.length) { empty.style.display='block'; document.getElementById('opp-grid').style.display='none'; document.getElementById('opp-list').style.display='none'; return; }
+  empty.style.display = 'none';
+
+  const PRIO_HTML = {
+    high:'<span class="opp-priority p-high">🔥 High priority</span>',
+    medium:'<span class="opp-priority p-med">● Medium</span>',
+    standard:'<span class="opp-priority p-std">● Standard</span>'
+  };
+  const TYPE_HTML = {
+    research:'<span class="badge b-research">Research</span>',
+    tech:'<span class="badge b-tech">Tech</span>',
+    both:'<span class="badge b-both">Both</span>'
+  };
+  const STATE_HTML = {
+    lagos:'<span class="badge b-lagos">Lagos</span>',
+    ekiti:'<span class="badge b-ekiti">Ekiti</span>',
+    both:'<span class="badge b-lagos">Lagos</span><span class="badge b-ekiti" style="margin-left:4px">Ekiti</span>'
+  };
+
+  // Grid view
+  document.getElementById('opp-grid').innerHTML = data.map(o => {
+    const resSect = o.research.length ? `<div class="opp-section">
+      <div class="opp-section-lbl lbl-research">Research opportunities</div>
+      <ul class="opp-items">${o.research.map(r=>`<li class="opp-item">${r}</li>`).join('')}</ul>
+    </div>` : '';
+    const techSect = o.tech.length ? `<div class="opp-section">
+      <div class="opp-section-lbl lbl-tech">Tech / hardware opportunities</div>
+      <ul class="opp-items">${o.tech.map(t=>`<li class="opp-item">${t}</li>`).join('')}</ul>
+    </div>` : '';
+    return `<div class="opp-card">
+      <div class="opp-head">
+        <div class="opp-state-dot dot-${o.state==='both'?'both':o.state}"></div>
+        <div style="flex:1"><div class="opp-agency">${o.agency}</div><div class="opp-ministry">${o.ministry}</div></div>
+        <div class="opp-badges">${STATE_HTML[o.state]}${TYPE_HTML[o.type]}</div>
+      </div>
+      <div class="opp-body">${resSect}${techSect}</div>
+      <div class="opp-footer">
+        <div><div class="opp-value">${o.value}</div><div class="opp-channel" style="margin-top:3px">📍 ${o.channel}</div></div>
+        ${PRIO_HTML[o.priority]}
+      </div>
+    </div>`;
+  }).join('');
+
+  // List view
+  document.getElementById('opp-list').innerHTML = data.map(o => `
+    <div class="opp-row">
+      <div class="opp-state-dot dot-${o.state==='both'?'both':o.state}" style="margin:0 auto"></div>
+      <div><div style="font-size:13px;font-weight:500;color:var(--white)">${o.agency}</div><div style="font-size:11px;color:var(--white3)">${o.ministry}</div></div>
+      <div>${STATE_HTML[o.state]}</div>
+      <div>${TYPE_HTML[o.type]}</div>
+      <div class="opp-value">${o.value}</div>
+      <div>${PRIO_HTML[o.priority]}</div>
+    </div>`).join('');
+}
+
+render();
+</script>
+</body>
+</html>
