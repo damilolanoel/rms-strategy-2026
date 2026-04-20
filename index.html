@@ -4,914 +4,1119 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RMS 2026 — CEO Master Business Setup & Strategy</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #0f1117;
-  --ink2: #3a3d4a;
-  --ink3: #6b7280;
-  --rule: #e5e7eb;
-  --rule2: #d1d5db;
-  --bg: #ffffff;
-  --bg2: #f8f9fb;
-  --bg3: #f0f2f5;
-  --accent: #1a3a6b;
-  --accent2: #c8933a;
-  --green: #0d5c3b;
-  --green-bg: #ecfdf5;
-  --red: #991b1b;
-  --red-bg: #fef2f2;
-  --amber: #92400e;
-  --amber-bg: #fffbeb;
-  --blue-bg: #eff6ff;
-  --purple: #4c1d95;
-  --purple-bg: #f5f3ff;
+  --navy: #1A3A6B;
+  --gold: #C8933A;
+  --black: #0F1117;
+  --light: #F8F9FC;
+  --navy-light: #254E8E;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 15px; }
-body { font-family: 'DM Sans', sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; }
-
-/* ── Cover ── */
-.cover {
-  background: var(--accent);
-  color: white;
-  padding: 64px 56px 48px;
-  position: relative;
-  overflow: hidden;
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:var(--light); color:var(--black); }
+.font-display { font-family:'Playfair Display',serif; }
+.sidebar { width:280px; min-height:100vh; background:linear-gradient(180deg,#0F1117 0%,#1A3A6B 100%); position:fixed; left:0; top:0; z-index:50; overflow-y:auto; transition:transform .3s; }
+.sidebar.closed { transform:translateX(-100%); }
+.main { margin-left:280px; transition:margin .3s; }
+.main.full { margin-left:0; }
+.nav-item { padding:10px 20px; color:#94A3B8; font-size:13px; cursor:pointer; transition:all .2s; border-left:3px solid transparent; display:flex; align-items:center; gap:10px; }
+.nav-item:hover,.nav-item.active { color:#fff; background:rgba(200,147,58,.1); border-left-color:var(--gold); }
+.nav-item .dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.card { background:#fff; border-radius:16px; box-shadow:0 1px 3px rgba(0,0,0,.06); border:1px solid #E2E8F0; }
+.progress-ring { transform:rotate(-90deg); }
+.check-item { transition:all .2s; }
+.check-item:hover { background:#F8FAFC; }
+.gauge-fill { transition:stroke-dashoffset 1s ease; }
+.gold-bar { background:linear-gradient(90deg,var(--gold),#E0B05E); }
+.navy-bar { background:linear-gradient(90deg,var(--navy),var(--navy-light)); }
+.timeline-dot { width:14px; height:14px; border-radius:50%; border:3px solid var(--gold); background:#fff; position:absolute; left:-7px; top:4px; z-index:2; }
+.timeline-dot.filled { background:var(--gold); }
+.pulse { animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+.fade-in { animation:fadeIn .5s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.tab-btn { padding:8px 16px; font-size:13px; border-radius:8px; cursor:pointer; transition:all .2s; border:1px solid #E2E8F0; background:#fff; color:#64748B; }
+.tab-btn.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-thumb { background:#CBD5E1; border-radius:3px; }
+.canvas-chart { max-width:100%; }
+@media(max-width:1024px) {
+  .sidebar { transform:translateX(-100%); }
+  .sidebar.open { transform:translateX(0); }
+  .main { margin-left:0!important; }
 }
-.cover::before {
-  content: '';
-  position: absolute; top: -60px; right: -60px;
-  width: 340px; height: 340px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-.cover::after {
-  content: '';
-  position: absolute; bottom: -100px; right: 80px;
-  width: 200px; height: 200px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.06);
-}
-.cover-eyebrow { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
-.cover-title { font-family: 'DM Serif Display', serif; font-size: 46px; line-height: 1.1; margin-bottom: 10px; }
-.cover-title em { color: var(--accent2); font-style: italic; }
-.cover-sub { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 36px; font-weight: 300; }
-.cover-meta { display: flex; gap: 32px; flex-wrap: wrap; }
-.cover-meta-item { }
-.cover-meta-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 4px; }
-.cover-meta-val { font-size: 15px; font-weight: 500; }
-.cover-badges { margin-top: 28px; display: flex; gap: 10px; flex-wrap: wrap; }
-.badge { font-size: 11px; padding: 5px 12px; border-radius: 20px; font-weight: 500; }
-.badge-white { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.15); }
-
-/* ── Nav ── */
-.nav { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--rule); }
-.nav-inner { display: flex; gap: 0; overflow-x: auto; padding: 0 24px; }
-.nav-item { padding: 14px 18px; font-size: 12px; font-weight: 500; letter-spacing: 0.3px; cursor: pointer; white-space: nowrap; color: var(--ink3); border-bottom: 2px solid transparent; transition: all .2s; }
-.nav-item:hover { color: var(--accent); }
-.nav-item.active { color: var(--accent); border-bottom-color: var(--accent); }
-
-/* ── Layout ── */
-.page { max-width: 960px; margin: 0 auto; padding: 48px 32px; }
-.section { display: none; }
-.section.active { display: block; }
-
-/* ── Section headers ── */
-.sec-header { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
-.sec-eyebrow { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent2); font-weight: 600; margin-bottom: 8px; }
-.sec-title { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--accent); margin-bottom: 8px; }
-.sec-desc { font-size: 14px; color: var(--ink3); max-width: 640px; }
-
-/* ── Util ── */
-h2 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--accent); margin: 32px 0 14px; }
-h3 { font-size: 14px; font-weight: 600; color: var(--ink); margin: 20px 0 8px; }
-p { margin-bottom: 12px; color: var(--ink2); font-size: 14px; }
-.lead { font-size: 16px; color: var(--ink2); line-height: 1.7; margin-bottom: 20px; }
-
-/* ── Cards ── */
-.card { background: var(--bg2); border: 1px solid var(--rule); border-radius: 10px; padding: 20px 22px; }
-.card-accent { border-left: 3px solid var(--accent); }
-.card-amber { border-left: 3px solid var(--accent2); }
-.card-green { border-left: 3px solid var(--green); }
-.card-purple { border-left: 3px solid var(--purple); }
-
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-.grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-
-/* ── Stat cards ── */
-.stat-card { background: var(--bg2); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; }
-.stat-label { font-size: 11px; color: var(--ink3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-.stat-num { font-size: 26px; font-weight: 600; color: var(--accent); line-height: 1; }
-.stat-sub { font-size: 12px; color: var(--ink3); margin-top: 4px; }
-
-/* ── Checklist ── */
-.checklist { list-style: none; }
-.check-item { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: 13.5px; }
-.check-item:last-child { border-bottom: none; }
-.check-box { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 11px; font-weight: 700; }
-.done { background: var(--green); color: white; }
-.todo { background: white; border: 1.5px solid var(--rule2); color: transparent; }
-.urgent { background: var(--accent2); color: white; }
-.check-text { flex: 1; }
-.check-title { font-weight: 500; color: var(--ink); }
-.check-note { font-size: 12px; color: var(--ink3); margin-top: 2px; }
-.check-tag { font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 600; margin-left: 8px; vertical-align: middle; }
-.tag-done { background: var(--green-bg); color: var(--green); }
-.tag-urgent { background: var(--amber-bg); color: var(--amber); }
-.tag-week { background: var(--blue-bg); color: var(--accent); }
-.tag-month { background: var(--purple-bg); color: var(--purple); }
-
-/* ── Table ── */
-.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
-.tbl th { text-align: left; padding: 10px 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--ink3); border-bottom: 1.5px solid var(--rule2); background: var(--bg2); }
-.tbl td { padding: 10px 12px; border-bottom: 1px solid var(--rule); color: var(--ink2); vertical-align: top; }
-.tbl tr:last-child td { border-bottom: none; }
-.tbl tr:hover td { background: var(--bg3); }
-.tbl-wrap { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
-
-/* ── Revenue bar ── */
-.rev-bar { height: 8px; border-radius: 4px; background: var(--bg3); margin: 6px 0; overflow: hidden; }
-.rev-bar-fill { height: 100%; border-radius: 4px; }
-
-/* ── Org chart ── */
-.org-level { display: flex; justify-content: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
-.org-connector { display: flex; justify-content: center; margin: 0; }
-.org-connector::before { content: ''; display: block; width: 1px; height: 24px; background: var(--rule2); }
-.org-box { border: 1px solid var(--rule); border-radius: 8px; padding: 10px 14px; text-align: center; min-width: 130px; }
-.org-box.ceo { background: var(--accent); color: white; }
-.org-box.dept { background: var(--bg2); }
-.org-box.sme-role { background: var(--amber-bg); border-color: var(--accent2); }
-.org-name { font-size: 12px; font-weight: 600; }
-.org-role { font-size: 10.5px; color: var(--ink3); margin-top: 2px; }
-.org-box.ceo .org-role { color: rgba(255,255,255,0.7); }
-
-/* ── Product cards ── */
-.product-card { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
-.product-hdr { padding: 16px 18px; }
-.product-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-.product-desc { font-size: 12.5px; color: var(--ink3); }
-.product-body { padding: 14px 18px; border-top: 1px solid var(--rule); background: var(--bg2); }
-.product-price { font-size: 20px; font-weight: 700; color: var(--accent); }
-.product-price span { font-size: 13px; font-weight: 400; color: var(--ink3); }
-.product-detail { font-size: 12px; color: var(--ink3); margin-top: 4px; }
-.product-items { list-style: none; margin-top: 10px; }
-.product-items li { font-size: 12px; color: var(--ink2); padding: 3px 0; padding-left: 14px; position: relative; }
-.product-items li::before { content: '→'; position: absolute; left: 0; color: var(--accent2); font-size: 10px; top: 4px; }
-
-/* ── Pitch one-pager ── */
-.pitch { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
-.pitch-hdr { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
-.pitch-title { font-family: 'DM Serif Display', serif; font-size: 18px; }
-.pitch-sector { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
-.pitch-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--rule); }
-.pitch-col { padding: 14px 16px; border-right: 1px solid var(--rule); }
-.pitch-col:last-child { border-right: none; }
-.pitch-col-title { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink3); font-weight: 600; margin-bottom: 8px; }
-.pitch-col ul { list-style: none; }
-.pitch-col ul li { font-size: 12.5px; color: var(--ink2); padding: 3px 0; padding-left: 12px; position: relative; }
-.pitch-col ul li::before { content: '·'; position: absolute; left: 0; color: var(--ink3); }
-.pitch-footer { padding: 12px 16px; background: var(--bg2); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-.pitch-cta { font-size: 12px; font-weight: 600; color: var(--accent); }
-.pitch-fee { font-size: 13px; font-weight: 700; color: var(--accent); }
-
-/* ── SME segment ── */
-.sme-highlight { background: linear-gradient(135deg, var(--amber-bg) 0%, var(--bg) 100%); border: 1px solid #fde68a; border-radius: 12px; padding: 24px 26px; margin-bottom: 24px; }
-.sme-highlight h2 { color: var(--amber); margin-top: 0; }
-
-/* ── Financial P&L ── */
-.pl-row { display: flex; justify-content: space-between; padding: 9px 14px; font-size: 13.5px; border-bottom: 1px solid var(--rule); }
-.pl-row:last-child { border-bottom: none; }
-.pl-row.total { font-weight: 600; background: var(--bg2); }
-.pl-row.section-head { background: var(--accent); color: white; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; padding: 7px 14px; }
-.pl-positive { color: var(--green); font-weight: 600; }
-.pl-negative { color: var(--red); }
-.pl-wrap { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
-
-/* ── Competitive pos ── */
-.vs-row { display: grid; grid-template-columns: 160px 1fr 1fr; border-bottom: 1px solid var(--rule); }
-.vs-row:last-child { border-bottom: none; }
-.vs-row.header { background: var(--bg2); }
-.vs-cell { padding: 10px 14px; font-size: 12.5px; }
-.vs-cell.dim { color: var(--ink3); font-weight: 500; font-size: 12px; }
-.vs-cell.cmrg { color: var(--ink2); }
-.vs-cell.rms { color: var(--accent); font-weight: 500; }
-.vs-cell.header-cmrg { color: #b45309; font-weight: 600; font-size: 13px; }
-.vs-cell.header-rms { color: var(--accent); font-weight: 600; font-size: 13px; }
-
-/* ── Timeline ── */
-.timeline { position: relative; padding-left: 28px; }
-.timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 1px; background: var(--rule2); }
-.tl-item { position: relative; margin-bottom: 20px; }
-.tl-dot { position: absolute; left: -24px; top: 4px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: white; }
-.tl-dot.filled { background: var(--accent); }
-.tl-quarter { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 6px; }
-.tl-items { display: flex; flex-direction: column; gap: 6px; }
-.tl-task { font-size: 13px; color: var(--ink2); padding: 6px 10px; background: var(--bg2); border-radius: 6px; border-left: 2px solid var(--rule2); }
-.tl-task.priority { border-left-color: var(--accent2); }
-
-/* ── Footer ── */
-.doc-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--ink3); }
-
-@media print {
-  .nav { display: none; }
-  .section { display: block !important; }
-  .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-}
-@media (max-width: 640px) {
-  .grid2,.grid3,.grid4 { grid-template-columns: 1fr; }
-  .cover { padding: 36px 24px 32px; }
-  .cover-title { font-size: 32px; }
-  .page { padding: 32px 18px; }
-  .pitch-grid { grid-template-columns: 1fr; }
-  .vs-row { grid-template-columns: 120px 1fr 1fr; }
-  .org-level { gap: 8px; }
-  .org-box { min-width: 100px; }
-}
+.sector-card { transition:all .3s; border-left:4px solid transparent; }
+.sector-card:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(0,0,0,.08); }
 </style>
 </head>
 <body>
-
-<!-- COVER -->
-<div class="cover">
-  <div class="cover-eyebrow">Confidential CEO Master Document · April 2026</div>
-  <div class="cover-title">Reliable Market Survey <em>Ltd.</em></div>
-  <div class="cover-sub">2026 Business Setup, Strategy & Growth Plan — Full Remodel</div>
-  <div class="cover-meta">
-    <div class="cover-meta-item"><div class="cover-meta-label">Revenue target</div><div class="cover-meta-val">₦177m plan · ₦210m stretch</div></div>
-    <div class="cover-meta-item"><div class="cover-meta-label">Registration</div><div class="cover-meta-val">CAC Registered ✓</div></div>
-    <div class="cover-meta-item"><div class="cover-meta-label">Banking</div><div class="cover-meta-val">Accounts Active ✓</div></div>
-    <div class="cover-meta-item"><div class="cover-meta-label">Base</div><div class="cover-meta-val">Lagos, Nigeria</div></div>
-  </div>
-  <div class="cover-badges">
-    <span class="badge badge-white">Market Research</span>
-    <span class="badge badge-white">Data Analytics</span>
-    <span class="badge badge-white">SME Research</span>
-    <span class="badge badge-white">Field Operations</span>
-    <span class="badge badge-white">Syndicated Studies</span>
-  </div>
-</div>
-
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="nav-item active" onclick="showSection('setup','Setup')">Setup Checklist</div>
-    <div class="nav-item" onclick="showSection('identity','Identity')">Brand & Identity</div>
-    <div class="nav-item" onclick="showSection('sme','SME')">SME Opportunity</div>
-    <div class="nav-item" onclick="showSection('services','Services')">Service Catalog</div>
-    <div class="nav-item" onclick="showSection('clients','Clients')">Pitch Materials</div>
-    <div class="nav-item" onclick="showSection('revenue','Revenue')">Revenue Plan</div>
-    <div class="nav-item" onclick="showSection('org','Org')">Org Structure</div>
-    <div class="nav-item" onclick="showSection('finance','Finance')">Financials</div>
-    <div class="nav-item" onclick="showSection('compete','Compete')">Competitive Pos.</div>
-  </div>
-</nav>
-
-<!-- SECTIONS -->
-<div class="page">
-
-<!-- ══════════════ SETUP ══════════════ -->
-<section class="section active" id="section-setup">
-<div class="sec-header">
-  <div class="sec-eyebrow">Step 1 of 9</div>
-  <div class="sec-title">Business Setup Checklist</div>
-  <div class="sec-desc">All mandatory compliance, operational, and technology setup items — sequenced from day one. CAC registration and bank accounts are already complete.</div>
-</div>
-
-<div class="grid2" style="margin-bottom:28px">
-  <div class="stat-card"><div class="stat-label">Completed</div><div class="stat-num" style="color:var(--green)">2</div><div class="stat-sub">CAC + Bank accounts</div></div>
-  <div class="stat-card"><div class="stat-label">Remaining items</div><div class="stat-num">22</div><div class="stat-sub">Across compliance, ops & tech</div></div>
-</div>
-
-<h2>Legal & Compliance</h2>
-<ul class="checklist">
-  <li class="check-item"><span class="check-box done">✓</span><div class="check-text"><div class="check-title">CAC Incorporation <span class="check-tag tag-done">Done</span></div><div class="check-note">Company registered with Corporate Affairs Commission — RC number confirmed</div></div></li>
-  <li class="check-item"><span class="check-box done">✓</span><div class="check-text"><div class="check-title">Business Bank Accounts <span class="check-tag tag-done">Done</span></div><div class="check-note">Current + domiciliary accounts active</div></div></li>
-  <li class="check-item"><span class="check-box urgent">!</span><div class="check-text"><div class="check-title">FIRS TIN Registration <span class="check-tag tag-urgent">Week 1</span></div><div class="check-note">Tax Identification Number from Federal Inland Revenue Service — required for invoicing and contracts. Visit firs.gov.ng or nearest FIRS office with CAC documents.</div></div></li>
-  <li class="check-item"><span class="check-box urgent">!</span><div class="check-text"><div class="check-title">LIRS Business Registration <span class="check-tag tag-urgent">Week 1</span></div><div class="check-note">Lagos Internal Revenue Service — register for business premises levy and withholding tax. Required for Lagos-based client contracts.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">VAT Registration (FIRS) <span class="check-tag tag-week">Week 2</span></div><div class="check-note">Register for VAT collection and remittance. Required to issue VAT invoices to corporate clients. 7.5% standard rate applies.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">NSITF Registration <span class="check-tag tag-week">Week 2</span></div><div class="check-note">Nigeria Social Insurance Trust Fund — mandatory for all employers. 1% of employee monthly payroll.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">ITF Registration <span class="check-tag tag-week">Week 2</span></div><div class="check-note">Industrial Training Fund — 1% of annual payroll for organisations with 5+ staff or ₦50m+ turnover.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">NHF Registration <span class="check-tag tag-month">Month 1</span></div><div class="check-note">National Housing Fund — register with Federal Mortgage Bank. Deduct 2.5% of basic salary from each employee.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">Pension Fund Administrator (PenCom) <span class="check-tag tag-month">Month 1</span></div><div class="check-note">Select a licensed PFA. Employer contributes 10%, employee 8% of monthly emolument. Mandatory once headcount ≥ 3.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">NiMRA Membership <span class="check-tag tag-month">Month 1</span></div><div class="check-note">Nigeria Marketing Research Association — professional credibility, directory listing, industry access. Contact nimra.ng. Annual fee applies.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">Professional Indemnity Insurance <span class="check-tag tag-month">Month 1</span></div><div class="check-note">PI cover protects against claims from errors in research outputs. Minimum ₦50m cover recommended. Contact AXA Mansard, Leadway, or NEM Insurance.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">Cyber Liability Insurance <span class="check-tag tag-month">Month 2</span></div><div class="check-note">Covers data breaches and PII exposure. Critical given respondent panel and client data handling.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">NDPR Compliance Framework <span class="check-tag tag-month">Month 1</span></div><div class="check-note">Nigeria Data Protection Regulation — data audit, privacy policy, consent management, breach response plan. File compliance audit with NITDA annually.</div></div></li>
-</ul>
-
-<h2>Operational Setup</h2>
-<ul class="checklist">
-  <li class="check-item"><span class="check-box urgent">!</span><div class="check-text"><div class="check-title">Office Lease Agreement <span class="check-tag tag-urgent">Week 1</span></div><div class="check-note">Signed lease for Lagos head office. Minimum: 3 private offices, meeting room, fieldwork coordination area. Ikeja/VI/Lekki axis preferred for client access.</div></div></li>
-  <li class="check-item"><span class="check-box urgent">!</span><div class="check-text"><div class="check-title">Company Seal & Common Seal <span class="check-tag tag-urgent">Week 1</span></div><div class="check-note">Required for contract execution and official documents. Order from a certified seal maker with CAC certificate.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">Branded Letterhead, Invoice & Proposal Templates <span class="check-tag tag-week">Week 2</span></div><div class="check-note">PDF and Word templates with RMS logo, TIN, RC number, bank details. Needed before first invoice is raised.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">Contract Library (MSA / SOW / NDA) <span class="check-tag tag-week">Week 2</span></div><div class="check-note">Master Service Agreement, Statement of Work, and NDA templates reviewed by a commercial solicitor. Protects IP, data rights, and payment terms.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">Accounting Software (QuickBooks or Sage) <span class="check-tag tag-week">Week 2</span></div><div class="check-note">Set up chart of accounts, project cost centres, and invoice numbering. Link to business bank account for reconciliation.</div></div></li>
-</ul>
-
-<h2>Technology & Research Tools</h2>
-<ul class="checklist">
-  <li class="check-item"><span class="check-box urgent">!</span><div class="check-text"><div class="check-title">Website Domain & Hosting <span class="check-tag tag-urgent">Week 1</span></div><div class="check-note">Register reliablemarketsurvey.com or rms.ng. Host on Hostinger, WPX, or Cloudflare Pages. Deploy professional site within 3 weeks.</div></div></li>
-  <li class="check-item"><span class="check-box urgent">!</span><div class="check-text"><div class="check-title">Professional Email (Google Workspace) <span class="check-tag tag-urgent">Week 1</span></div><div class="check-note">firstname@reliablemarketsurvey.com. Google Workspace Business Starter ~₦2,500/user/month. Set up: CEO, BizDev, Research, Ops, Finance.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">Survey & CAPI Platform (SurveyCTO or KoboToolbox) <span class="check-tag tag-week">Week 2</span></div><div class="check-note">SurveyCTO recommended for professional fieldwork — GPS, audio audit, offline CAPI. KoboToolbox free for NGO/donor-funded projects.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">CAWI/Online Survey Platform (SurveyMonkey or Typeform) <span class="check-tag tag-week">Week 2</span></div><div class="check-note">For Rapid Pulse, Omnibus, and online panel surveys. SurveyMonkey Team plan supports logic, piping, and export.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">Data Analysis Software (SPSS or R + JASP) <span class="check-tag tag-month">Month 1</span></div><div class="check-note">IBM SPSS Statistics licence for quant analysis. R is free and powerful for advanced analytics. At minimum one SPSS seat for the Research Lead.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">Power BI (Microsoft) <span class="check-tag tag-month">Month 1</span></div><div class="check-note">Power BI Pro licence (~$10/user/month) for building client dashboards. Central to the RMS Insight Portal offering.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">CRM (HubSpot Free or Pipedrive) <span class="check-tag tag-month">Month 1</span></div><div class="check-note">Track proposals, pipeline, deal stages and client contacts. HubSpot Free is sufficient for Year 1. Upgrade when pipeline exceeds 50 active deals.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">Project Management (Asana or ClickUp) <span class="check-tag tag-month">Month 1</span></div><div class="check-note">Each research project gets a task board: brief → instrument → field → QA → analysis → reporting. Asana free plan handles up to 15 users.</div></div></li>
-  <li class="check-item"><span class="check-box todo"></span><div class="check-text"><div class="check-title">LinkedIn Company Page + Social Presence <span class="check-tag tag-week">Week 2</span></div><div class="check-note">Set up LinkedIn Company Page, X (Twitter), and email newsletter (Mailchimp free). Monthly Insight Notes drive organic reach and brand authority.</div></div></li>
-</ul>
-</section>
-
-<!-- ══════════════ IDENTITY ══════════════ -->
-<section class="section" id="section-identity">
-<div class="sec-header">
-  <div class="sec-eyebrow">Step 2 of 9</div>
-  <div class="sec-title">Brand Identity & Positioning</div>
-  <div class="sec-desc">Who RMS is, what we stand for, and how we want the market to see us — the foundation for every pitch, proposal, and publication.</div>
-</div>
-
-<div class="card card-accent" style="margin-bottom:24px">
-  <h3 style="color:var(--accent);margin-top:0">Company Full Name</h3>
-  <p style="font-size:16px;font-weight:600;color:var(--ink);margin:0">Reliable Market Survey Limited</p>
-  <p style="margin:6px 0 0;font-size:13px;color:var(--ink3)">Trading as <strong>RMS</strong> · RC No. [confirmed at CAC] · Head Office: Lagos, Nigeria</p>
-</div>
-
-<div class="grid2" style="margin-bottom:28px">
-<div class="card card-accent">
-  <h3 style="color:var(--accent);margin-top:0">Vision</h3>
-  <p style="font-size:15px;font-style:italic;color:var(--ink);margin:0">"To be West Africa's most trusted, technology-enabled market intelligence partner — turning data into decisions that grow businesses and transform communities."</p>
-</div>
-<div class="card card-amber">
-  <h3 style="color:var(--amber);margin-top:0">Mission</h3>
-  <p style="font-size:14px;color:var(--ink2);margin:0">We design and execute rigorous research, deliver clear and actionable insight, and build the data infrastructure that helps our clients — from MSMEs to multinationals — compete and grow with confidence.</p>
-</div>
-</div>
-
-<h2>Core Values</h2>
-<div class="grid3" style="margin-bottom:28px">
-  <div class="card"><h3 style="color:var(--accent);margin-top:0">01 · Integrity</h3><p style="font-size:13px;margin:0">Data accuracy and honest interpretation, always. We never let commercial pressure distort findings.</p></div>
-  <div class="card"><h3 style="color:var(--accent);margin-top:0">02 · Reliability</h3><p style="font-size:13px;margin:0">On-time, on-budget, on-brief delivery. Our name is our promise.</p></div>
-  <div class="card"><h3 style="color:var(--accent);margin-top:0">03 · Accessibility</h3><p style="font-size:13px;margin:0">Quality research for every business, not just large corporates. We serve SMEs as professionally as multinationals.</p></div>
-  <div class="card"><h3 style="color:var(--accent);margin-top:0">04 · Insight Over Data</h3><p style="font-size:13px;margin:0">We produce decisions, not just reports. Every engagement ends with a clear "so what and now what."</p></div>
-  <div class="card"><h3 style="color:var(--accent);margin-top:0">05 · Speed</h3><p style="font-size:13px;margin:0">The market moves fast. Our Rapid Pulse product answers business questions in 48 hours.</p></div>
-  <div class="card"><h3 style="color:var(--accent);margin-top:0">06 · Partnership</h3><p style="font-size:13px;margin:0">We sit on the client's side of the table. Retainers, dashboards, and open data rooms reflect this.</p></div>
-</div>
-
-<h2>Brand Architecture & Tagline</h2>
-<div class="card card-accent" style="margin-bottom:20px">
-  <p style="font-size:14px;color:var(--ink3);margin-bottom:8px">Master brand tagline</p>
-  <p style="font-size:20px;font-family:'DM Serif Display',serif;color:var(--accent);margin:0">"Insight You Can Build On."</p>
-</div>
-<div class="grid3">
-  <div class="card"><div style="font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Brand Color (Primary)</div><div style="width:100%;height:32px;background:#1a3a6b;border-radius:6px;margin-bottom:6px"></div><div style="font-size:12px;color:var(--ink3)">#1A3A6B — Deep Navy</div></div>
-  <div class="card"><div style="font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Brand Color (Accent)</div><div style="width:100%;height:32px;background:#c8933a;border-radius:6px;margin-bottom:6px"></div><div style="font-size:12px;color:var(--ink3)">#C8933A — Warm Gold</div></div>
-  <div class="card"><div style="font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Brand Color (Text)</div><div style="width:100%;height:32px;background:#0f1117;border-radius:6px;margin-bottom:6px"></div><div style="font-size:12px;color:var(--ink3)">#0F1117 — Rich Black</div></div>
-</div>
-
-<h2 style="margin-top:28px">Positioning Statement</h2>
-<div class="card" style="border-left:3px solid var(--accent2)">
-  <p style="font-size:14px;color:var(--ink2);margin:0">For <strong>Nigerian and West African businesses of all sizes</strong> — from growing SMEs to FMCG multinationals and NGOs — <strong>Reliable Market Survey Limited</strong> is the market research partner that combines <strong>rigorous nationwide fieldwork, advanced data analytics, and fast turnaround</strong> to deliver insight you can act on immediately. Unlike legacy agencies, <strong>RMS brings technology-enabled dashboards, a 15,000-person respondent panel, and affordable SME research packages</strong> that make quality insight accessible at every scale.</p>
-</div>
-</section>
-
-<!-- ══════════════ SME ══════════════ -->
-<section class="section" id="section-sme">
-<div class="sec-header">
-  <div class="sec-eyebrow">Step 3 of 9</div>
-  <div class="sec-title">SME Market Opportunity</div>
-  <div class="sec-desc">Nigeria's 39.6 million MSMEs are an almost entirely untapped research market. This section defines the opportunity, the products, the channels, and the ₦25m+ revenue it adds to our 2026 plan.</div>
-</div>
-
-<div class="sme-highlight">
-  <h2>Why SMEs? The opportunity CMRG and others have largely ignored.</h2>
-  <p>Nigeria's MSME sector contributes approximately 50% of GDP and accounts for 86.3% of employment (NBS 2021). Yet fewer than 3% of SMEs have ever commissioned formal market research. The reason is simple: the cost model of traditional agencies makes research inaccessible to businesses below ₦500m in annual revenue. RMS is purpose-built to close this gap with standardised, affordable, fast products that deliver professional-grade insight at a price SMEs can justify.</p>
-</div>
-
-<div class="grid4" style="margin-bottom:28px">
-  <div class="stat-card"><div class="stat-label">MSMEs in Nigeria</div><div class="stat-num">39.6m</div><div class="stat-sub">NBS 2021 census</div></div>
-  <div class="stat-card"><div class="stat-label">% with formal research</div><div class="stat-num" style="color:var(--red)"><3%</div><div class="stat-sub">Massive whitespace</div></div>
-  <div class="stat-card"><div class="stat-label">SME GDP contribution</div><div class="stat-num">~50%</div><div class="stat-sub">Of Nigeria's GDP</div></div>
-  <div class="stat-card"><div class="stat-label">2026 SME revenue target</div><div class="stat-num" style="color:var(--green)">₦25m</div><div class="stat-sub">80+ engagements</div></div>
-</div>
-
-<h2>SME Segments We Target</h2>
-<div class="grid3" style="margin-bottom:24px">
-  <div class="card card-amber"><h3 style="color:var(--amber);margin-top:0">Growth-stage businesses</h3><p style="font-size:13px;margin:0">₦50m–₦500m revenue. Expanding into new markets, launching new products, or entering new states. Need: market sizing, customer surveys, competitive intelligence.</p></div>
-  <div class="card card-accent"><h3 style="color:var(--accent);margin-top:0">Loan/funding seekers</h3><p style="font-size:13px;margin:0">Businesses seeking BoI, CBN MSME Fund, Access Bank, or investor funding. Banks and DFIs require feasibility studies and market reports before approving loans.</p></div>
-  <div class="card card-green"><h3 style="color:var(--green);margin-top:0">Established SMEs (local leaders)</h3><p style="font-size:13px;margin:0">₦500m–₦2b revenue. Competing with multinationals. Need: brand health tracking, NPS, pricing studies, retail audit, and go-to-market advisory.</p></div>
-</div>
-
-<h2>SME Product Suite (Affordable by Design)</h2>
-<div class="grid3" style="margin-bottom:24px">
-  <div class="product-card">
-    <div class="product-hdr" style="background:var(--amber-bg)">
-      <div class="product-name">Quick Market Scan</div>
-      <div class="product-desc">Desk research + secondary data synthesis. Fast market overview.</div>
-    </div>
-    <div class="product-body">
-      <div class="product-price">₦300k <span>– ₦500k</span></div>
-      <div class="product-detail">3–5 working days</div>
-      <ul class="product-items">
-        <li>Market size & growth estimate</li>
-        <li>Top 5 competitor profiles</li>
-        <li>Regulatory overview</li>
-        <li>Pricing landscape</li>
-        <li>12-page insight report</li>
-      </ul>
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="p-6 border-b border-white/10">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white text-lg" style="background:linear-gradient(135deg,var(--gold),#E0B05E)">R</div>
+      <div>
+        <div class="text-white font-bold text-sm">Reliable Market Survey</div>
+        <div class="text-slate-400 text-xs">Strategy 2026</div>
+      </div>
     </div>
   </div>
-  <div class="product-card">
-    <div class="product-hdr" style="background:var(--blue-bg)">
-      <div class="product-name">Customer Pulse Survey</div>
-      <div class="product-desc">Online or intercept survey of 100–200 target customers.</div>
-    </div>
-    <div class="product-body">
-      <div class="product-price">₦550k <span>– ₦900k</span></div>
-      <div class="product-detail">7–10 working days</div>
-      <ul class="product-items">
-        <li>Up to 20 survey questions</li>
-        <li>n=100–200 sample</li>
-        <li>NPS + satisfaction score</li>
-        <li>Key driver analysis</li>
-        <li>Action recommendations</li>
-      </ul>
+  <div class="py-4">
+    <div class="px-5 py-2 text-[10px] uppercase tracking-widest text-slate-500 font-semibold">Overview</div>
+    <div class="nav-item active" onclick="showSection('hero')"><span class="dot bg-emerald-400"></span>Dashboard Home</div>
+    <div class="nav-item" onclick="showSection('progress')"><span class="dot bg-amber-400"></span>Setup Progress</div>
+    <div class="px-5 py-2 text-[10px] uppercase tracking-widest text-slate-500 font-semibold mt-2">Strategy</div>
+    <div class="nav-item" onclick="showSection('values')"><span class="dot bg-blue-400"></span>Vision & Values</div>
+    <div class="nav-item" onclick="showSection('sme')"><span class="dot bg-purple-400"></span>SME Opportunity</div>
+    <div class="nav-item" onclick="showSection('products')"><span class="dot bg-pink-400"></span>Product Suite</div>
+    <div class="nav-item" onclick="showSection('sectors')"><span class="dot bg-cyan-400"></span>Sector Strategy</div>
+    <div class="px-5 py-2 text-[10px] uppercase tracking-widest text-slate-500 font-semibold mt-2">Financials</div>
+    <div class="nav-item" onclick="showSection('revenue')"><span class="dot bg-green-400"></span>Revenue Plan</div>
+    <div class="nav-item" onclick="showSection('pnl')"><span class="dot bg-yellow-400"></span>P&L Statement</div>
+    <div class="nav-item" onclick="showSection('competition')"><span class="dot bg-red-400"></span>Competitive Analysis</div>
+    <div class="px-5 py-2 text-[10px] uppercase tracking-widest text-slate-500 font-semibold mt-2">Operations</div>
+    <div class="nav-item" onclick="showSection('team')"><span class="dot bg-indigo-400"></span>Team & Hiring</div>
+    <div class="nav-item" onclick="showSection('timeline')"><span class="dot bg-teal-400"></span>GTM Timeline</div>
+  </div>
+  <div class="p-5 border-t border-white/10 mt-auto">
+    <div class="bg-white/5 rounded-xl p-4">
+      <div class="text-slate-400 text-[10px] uppercase tracking-widest mb-2">Completion</div>
+      <div class="flex items-end gap-2">
+        <span class="text-white text-2xl font-bold" id="sidebar-pct">8%</span>
+        <span class="text-emerald-400 text-xs mb-1">2 of 24 done</span>
+      </div>
+      <div class="w-full bg-white/10 rounded-full h-1.5 mt-2">
+        <div class="h-1.5 rounded-full bg-emerald-400" style="width:8%"></div>
+      </div>
     </div>
   </div>
-  <div class="product-card">
-    <div class="product-hdr" style="background:var(--green-bg)">
-      <div class="product-name">Feasibility Study</div>
-      <div class="product-desc">Bankable study for loan/funding applications. Bank-ready format.</div>
-    </div>
-    <div class="product-body">
-      <div class="product-price">₦900k <span>– ₦1.5m</span></div>
-      <div class="product-detail">10–15 working days</div>
-      <ul class="product-items">
-        <li>Market demand analysis</li>
-        <li>Competitor landscape</li>
-        <li>Financial projections (3yr)</li>
-        <li>Risk & mitigation</li>
-        <li>BoI / bank-compliant format</li>
-      </ul>
-    </div>
-  </div>
-  <div class="product-card">
-    <div class="product-hdr" style="background:var(--purple-bg)">
-      <div class="product-name">Rapid Pulse — SME Edition</div>
-      <div class="product-desc">48-hour online survey. Quick decisions, affordable speed.</div>
-    </div>
-    <div class="product-body">
-      <div class="product-price">₦250k <span>– ₦400k</span></div>
-      <div class="product-detail">48 working hours</div>
-      <ul class="product-items">
-        <li>8–12 focused questions</li>
-        <li>n=200–300 online sample</li>
-        <li>1-page insight flash</li>
-        <li>Ideal for product/price decisions</li>
-      </ul>
-    </div>
-  </div>
-  <div class="product-card">
-    <div class="product-hdr" style="background:var(--amber-bg)">
-      <div class="product-name">Product-Market Fit Sprint</div>
-      <div class="product-desc">Mixed-method sprint for new product or service launch validation.</div>
-    </div>
-    <div class="product-body">
-      <div class="product-price">₦1.2m <span>– ₦2.0m</span></div>
-      <div class="product-detail">3–4 weeks</div>
-      <ul class="product-items">
-        <li>3–4 IDIs or FGD</li>
-        <li>Concept test survey (n=150)</li>
-        <li>Purchase intent & pricing</li>
-        <li>GTM recommendations</li>
-      </ul>
-    </div>
-  </div>
-  <div class="product-card">
-    <div class="product-hdr" style="background:var(--blue-bg)">
-      <div class="product-name">Annual Research Retainer</div>
-      <div class="product-desc">Ongoing market intelligence for growing businesses. Monthly value.</div>
-    </div>
-    <div class="product-body">
-      <div class="product-price">₦2.4m <span>/ year</span></div>
-      <div class="product-detail">₦200k/month · 12-month contract</div>
-      <ul class="product-items">
-        <li>1 Customer Pulse/quarter</li>
-        <li>2 Rapid Pulse surveys/year</li>
-        <li>Monthly data dashboard</li>
-        <li>Quarterly strategy session</li>
-      </ul>
-    </div>
+</aside>
+
+<!-- Mobile Header -->
+<div class="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 lg:hidden">
+  <div class="flex items-center justify-between px-4 py-3">
+    <button onclick="toggleSidebar()" class="p-2 rounded-lg hover:bg-slate-100">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+    </button>
+    <span class="font-bold text-sm" style="color:var(--navy)">RMS 2026 Strategy</span>
+    <div class="w-8"></div>
   </div>
 </div>
 
-<h2>SME Acquisition Channels</h2>
-<div class="tbl-wrap">
-  <table class="tbl">
-    <thead><tr><th>Channel</th><th>Organisation</th><th>How to engage</th><th>Est. leads/qtr</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Business Associations</strong></td><td>LCCI, MAN, NACCIMA, NASME</td><td>Speak at events, partner for member discounts, exhibit at trade fairs</td><td>15–20</td></tr>
-      <tr><td><strong>Bank SME Desks</strong></td><td>Access, GTBank, Zenith, Stanbic IBTC</td><td>Refer clients seeking BoI/CBN loans who need feasibility studies. Revenue-share arrangement.</td><td>20–30</td></tr>
-      <tr><td><strong>Development Finance</strong></td><td>Bank of Industry, CBN MSME Fund, LAPO</td><td>Get on approved vendor list for loan applicants needing market studies</td><td>10–15</td></tr>
-      <tr><td><strong>Tech Accelerators</strong></td><td>Co-Creation Hub, Ventures Platform, GreenHouse Capital</td><td>Research partner for portfolio companies. Demo days, workshops</td><td>8–12</td></tr>
-      <tr><td><strong>Co-working Spaces</strong></td><td>Regus, Workstation, The Hive (Lagos)</td><td>Bulletin boards, workshops, resident startup offers</td><td>5–8</td></tr>
-      <tr><td><strong>Digital / LinkedIn</strong></td><td>Self-generated</td><td>Monthly Insight Notes, case studies, targeted LinkedIn ads at SME founders</td><td>10–15</td></tr>
-      <tr><td><strong>Referrals</strong></td><td>Existing clients</td><td>10% referral incentive (account credit) for clients who introduce new SME clients</td><td>8–12</td></tr>
-    </tbody>
-  </table>
-</div>
+<!-- Main Content -->
+<div class="main" id="main">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 mt-12 lg:mt-0">
 
-<h2 style="margin-top:28px">SME Revenue Ramp (2026)</h2>
-<div class="grid4">
-  <div class="stat-card"><div class="stat-label">Q1 — Channel build</div><div class="stat-num">₦3m</div><div class="stat-sub">~8 engagements · avg ₦375k</div></div>
-  <div class="stat-card"><div class="stat-label">Q2 — First traction</div><div class="stat-num">₦6m</div><div class="stat-sub">~18 engagements · avg ₦333k</div></div>
-  <div class="stat-card"><div class="stat-label">Q3 — Scale</div><div class="stat-num">₦8m</div><div class="stat-sub">~22 engagements · avg ₦364k</div></div>
-  <div class="stat-card"><div class="stat-label">Q4 — Full velocity</div><div class="stat-num">₦8m</div><div class="stat-sub">~22 engagements · avg ₦364k</div></div>
-</div>
-</section>
+    <!-- HERO SECTION -->
+    <section id="sec-hero" class="fade-in">
+      <!-- Hero Banner -->
+      <div class="card overflow-hidden mb-6" style="background:linear-gradient(135deg,#0F1117 0%,#1A3A6B 50%,#254E8E 100%)">
+        <div class="p-8 lg:p-12">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div>
+              <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4" style="background:rgba(200,147,58,.2);color:var(--gold)">STRATEGY DOCUMENT 2026</div>
+              <h1 class="font-display text-3xl lg:text-5xl text-white mb-2">Reliable Market Survey</h1>
+              <p class="text-slate-300 text-lg">Insight You Can Build On.</p>
+              <p class="text-slate-400 text-sm mt-3 max-w-xl">Reliable Market Survey Limited · RC No. [confirmed at CAC] · Head Office: Lagos, Nigeria</p>
+            </div>
+            <div class="flex gap-4">
+              <div class="text-center bg-white/10 backdrop-blur rounded-2xl p-5 min-w-[120px]">
+                <div class="text-3xl font-bold text-white">₦177m</div>
+                <div class="text-slate-400 text-xs mt-1">Revenue Target</div>
+              </div>
+              <div class="text-center bg-white/10 backdrop-blur rounded-2xl p-5 min-w-[120px]">
+                <div class="text-3xl font-bold" style="color:var(--gold)">₦25m</div>
+                <div class="text-slate-400 text-xs mt-1">SME Revenue</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<!-- ══════════════ SERVICES ══════════════ -->
-<section class="section" id="section-services">
-<div class="sec-header">
-  <div class="sec-eyebrow">Step 4 of 9</div>
-  <div class="sec-title">Full Service Catalog</div>
-  <div class="sec-desc">Complete menu of RMS services — covering corporate and SME clients — with delivery timelines and fee bands. This is the master rate card.</div>
-</div>
-<div class="tbl-wrap">
-  <table class="tbl">
-    <thead><tr><th>Service</th><th>Segment</th><th>Method</th><th>Deliverables</th><th>Timeline</th><th>Fee band</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Market Sizing & Opportunity Scan</strong></td><td>Corporate / SME</td><td>Desk + field</td><td>TAM/SAM/SOM deck, market map</td><td>2–4 wks</td><td>₦1.5m–₦8m</td></tr>
-      <tr><td><strong>Usage & Attitude (U&A)</strong></td><td>Corporate</td><td>Quant survey</td><td>Exec deck, dataset, codebook</td><td>4–8 wks</td><td>₦6m–₦12m</td></tr>
-      <tr><td><strong>Brand Health Tracker</strong></td><td>Corporate</td><td>Tracker waves</td><td>Wave reports, dashboard</td><td>Per wave 3–5 wks</td><td>₦4m–₦10m/wave</td></tr>
-      <tr><td><strong>Concept & Product Test (CLT/HUT)</strong></td><td>Corporate</td><td>Central/home test</td><td>Scores, ranking, action rec.</td><td>3–5 wks</td><td>₦3m–₦8m</td></tr>
-      <tr><td><strong>Pricing Research (VW/GG/Conjoint)</strong></td><td>Corporate</td><td>Quant + model</td><td>Optimal price band, elasticity</td><td>4–7 wks</td><td>₦4m–₦9m</td></tr>
-      <tr><td><strong>Customer Experience (NPS/CSAT/CES)</strong></td><td>Corp / SME</td><td>Survey + depth</td><td>NPS score, driver model</td><td>3–6 wks</td><td>₦3m–₦8m / ₦600k–₦1.5m</td></tr>
-      <tr><td><strong>Retail & Trade Audit</strong></td><td>Corporate</td><td>Field census</td><td>Distribution report, geo map</td><td>4–8 wks</td><td>₦4m–₦10m</td></tr>
-      <tr><td><strong>Mystery Shopping</strong></td><td>Corp / SME</td><td>Covert field</td><td>Compliance score, photos</td><td>2–4 wks</td><td>₦1.5m–₦6m / ₦400k–₦1m</td></tr>
-      <tr><td><strong>Feasibility Study</strong></td><td>SME</td><td>Mixed</td><td>Bankable 30–50 page report</td><td>10–15 days</td><td>₦900k–₦1.5m</td></tr>
-      <tr><td><strong>Quick Market Scan</strong></td><td>SME</td><td>Desk research</td><td>12-page insight report</td><td>3–5 days</td><td>₦300k–₦500k</td></tr>
-      <tr><td><strong>Customer Pulse Survey</strong></td><td>SME</td><td>Survey n=100–200</td><td>1-page flash + full deck</td><td>7–10 days</td><td>₦550k–₦900k</td></tr>
-      <tr><td><strong>Rapid Pulse (48h)</strong></td><td>Corp / SME</td><td>Online n=300–400</td><td>1-page decision flash</td><td>48 hours</td><td>₦250k–₦2.2m</td></tr>
-      <tr><td><strong>Monthly Omnibus</strong></td><td>Corp / SME</td><td>Shared survey</td><td>Cross-tabs, verbatim</td><td>10 days</td><td>₦350k/question (min 3)</td></tr>
-      <tr><td><strong>Qualitative Research (FGD/IDI)</strong></td><td>Corp / SME</td><td>Focus groups / depth</td><td>Transcript, insight report</td><td>2–4 wks</td><td>₦1.5m–₦6m</td></tr>
-      <tr><td><strong>Baseline / Midline / Endline</strong></td><td>NGO / Govt</td><td>Mixed methods</td><td>Full survey report, M&E framework</td><td>6–14 wks</td><td>₦6m–₦15m</td></tr>
-      <tr><td><strong>KAP Survey</strong></td><td>NGO / Govt</td><td>Quant field</td><td>Technical report + data</td><td>4–8 wks</td><td>₦4m–₦8m</td></tr>
-      <tr><td><strong>BI Dashboard Build</strong></td><td>Corp / SME</td><td>Power BI</td><td>Live dashboard + training</td><td>4–6 wks</td><td>₦4m–₦12m</td></tr>
-      <tr><td><strong>Syndicated Reports (License)</strong></td><td>Corp / SME</td><td>Multi-client</td><td>PDF + data + workshop</td><td>Ongoing</td><td>₦1.2m–₦2.5m/license</td></tr>
-      <tr><td><strong>Annual Research Retainer</strong></td><td>SME</td><td>Ongoing</td><td>Quarterly pulse + dashboard</td><td>12 months</td><td>₦2.4m/year</td></tr>
-      <tr><td><strong>Market Entry Advisory</strong></td><td>Corp / SME</td><td>Research + advisory</td><td>Board-ready business case</td><td>3–6 wks</td><td>₦3m–₦10m</td></tr>
-      <tr><td><strong>Research Training Workshop</strong></td><td>Corp / SME</td><td>In-person / virtual</td><td>Curricula, templates, cert</td><td>1–3 days</td><td>₦1m–₦4m</td></tr>
-    </tbody>
-  </table>
-</div>
-</section>
+      <!-- KPI Cards -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="card p-5">
+          <div class="text-xs text-slate-500 uppercase tracking-wider font-medium">Total Plan Revenue</div>
+          <div class="text-2xl font-bold mt-1" style="color:var(--navy)">₦177m</div>
+          <div class="text-xs text-emerald-600 mt-1 font-medium">+₦25m vs original</div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-500 uppercase tracking-wider font-medium">Corporate Accounts</div>
+          <div class="text-2xl font-bold mt-1" style="color:var(--navy)">₦152m</div>
+          <div class="text-xs text-slate-500 mt-1">20 core accounts</div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-500 uppercase tracking-wider font-medium">Net Profit Target</div>
+          <div class="text-2xl font-bold mt-1" style="color:var(--gold)">₦19.3m</div>
+          <div class="text-xs text-slate-500 mt-1">10.9% margin</div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-500 uppercase tracking-wider font-medium">Stretch Target</div>
+          <div class="text-2xl font-bold mt-1" style="color:var(--navy)">₦210m</div>
+          <div class="text-xs text-slate-500 mt-1">With strong SME channel</div>
+        </div>
+      </div>
 
-<!-- ══════════════ CLIENTS ══════════════ -->
-<section class="section" id="section-clients">
-<div class="sec-header">
-  <div class="sec-eyebrow">Step 5 of 9</div>
-  <div class="sec-title">Pitch Materials by Sector</div>
-  <div class="sec-desc">Five ready-to-adapt one-pagers — one per vertical — showing the problem, our method, deliverables, and investment range. Use as the core of every first meeting.</div>
-</div>
+      <!-- Vision & Mission -->
+      <div class="grid lg:grid-cols-2 gap-4">
+        <div class="card p-6 border-l-4" style="border-left-color:var(--navy)">
+          <h3 class="text-xs uppercase tracking-widest text-slate-500 font-semibold mb-3">Vision</h3>
+          <p class="text-sm leading-relaxed text-slate-700">"To be West Africa's most trusted, technology-enabled market intelligence partner — turning data into decisions that grow businesses and transform communities."</p>
+        </div>
+        <div class="card p-6 border-l-4" style="border-left-color:var(--gold)">
+          <h3 class="text-xs uppercase tracking-widest text-slate-500 font-semibold mb-3">Mission</h3>
+          <p class="text-sm leading-relaxed text-slate-700">We design and execute rigorous research, deliver clear and actionable insight, and build the data infrastructure that helps our clients — from MSMEs to multinationals — compete and grow with confidence.</p>
+        </div>
+      </div>
+    </section>
 
-<!-- TELCO -->
-<div class="pitch">
-  <div class="pitch-hdr" style="background:var(--blue-bg)">
-    <div class="pitch-title" style="color:var(--accent)">Telco & Technology</div>
-    <span class="pitch-sector" style="background:#185FA5;color:white">Target: MTN · Airtel · Glo · 9mobile · Opay · PalmPay · Paga</span>
+    <!-- PROGRESS SECTION -->
+    <section id="sec-progress" class="hidden fade-in">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-2xl font-bold" style="color:var(--navy)">Setup Progress</h2>
+          <p class="text-slate-500 text-sm mt-1">Track all compliance, ops & technology milestones</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2 text-xs"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>Done</div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>In Progress</div>
+          <div class="flex items-center gap-2 text-xs"><span class="w-3 h-3 rounded-full bg-slate-300 inline-block"></span>Pending</div>
+        </div>
+      </div>
+
+      <!-- Summary Ring -->
+      <div class="grid lg:grid-cols-4 gap-4 mb-6">
+        <div class="card p-6 flex items-center gap-5">
+          <svg width="80" height="80" class="progress-ring">
+            <circle cx="40" cy="40" r="34" fill="none" stroke="#E2E8F0" stroke-width="6"/>
+            <circle cx="40" cy="40" r="34" fill="none" stroke="#10B981" stroke-width="6" stroke-dasharray="213.6" stroke-dashoffset="196.5" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div class="text-3xl font-bold" style="color:var(--navy)">2<span class="text-lg text-slate-400">/24</span></div>
+            <div class="text-xs text-slate-500">Items Complete</div>
+            <div class="text-xs text-emerald-600 font-medium">8% done</div>
+          </div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Legal & Compliance</div>
+          <div class="text-xl font-bold" style="color:var(--navy)">2/12</div>
+          <div class="w-full bg-slate-100 rounded-full h-2 mt-2"><div class="h-2 rounded-full bg-emerald-500" style="width:17%"></div></div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Operational Setup</div>
+          <div class="text-xl font-bold" style="color:var(--navy)">0/5</div>
+          <div class="w-full bg-slate-100 rounded-full h-2 mt-2"><div class="h-2 rounded-full bg-amber-400" style="width:0%"></div></div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Tech & Research Tools</div>
+          <div class="text-xl font-bold" style="color:var(--navy)">0/9</div>
+          <div class="w-full bg-slate-100 rounded-full h-2 mt-2"><div class="h-2 rounded-full bg-blue-500" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <!-- Legal & Compliance -->
+      <div class="card mb-6 overflow-hidden">
+        <div class="p-5 border-b border-slate-100 flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">⚖️</div>
+          <h3 class="font-bold" style="color:var(--navy)">Legal & Compliance</h3>
+        </div>
+        <div id="legal-items"></div>
+      </div>
+
+      <!-- Operational Setup -->
+      <div class="card mb-6 overflow-hidden">
+        <div class="p-5 border-b border-slate-100 flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">🏢</div>
+          <h3 class="font-bold" style="color:var(--navy)">Operational Setup</h3>
+        </div>
+        <div id="ops-items"></div>
+      </div>
+
+      <!-- Technology -->
+      <div class="card overflow-hidden">
+        <div class="p-5 border-b border-slate-100 flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">💻</div>
+          <h3 class="font-bold" style="color:var(--navy)">Technology & Research Tools</h3>
+        </div>
+        <div id="tech-items"></div>
+      </div>
+    </section>
+
+    <!-- VALUES SECTION -->
+    <section id="sec-values" class="hidden fade-in">
+      <h2 class="text-2xl font-bold mb-2" style="color:var(--navy)">Core Values</h2>
+      <p class="text-slate-500 text-sm mb-6">The principles that guide every engagement</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div class="card p-6 hover:shadow-lg transition-shadow" style="border-top:3px solid var(--navy)">
+          <div class="text-xs font-bold text-slate-400 mb-2">01</div>
+          <h4 class="font-bold text-lg mb-2" style="color:var(--navy)">Integrity</h4>
+          <p class="text-sm text-slate-600">Data accuracy and honest interpretation, always. We never let commercial pressure distort findings.</p>
+        </div>
+        <div class="card p-6 hover:shadow-lg transition-shadow" style="border-top:3px solid var(--gold)">
+          <div class="text-xs font-bold text-slate-400 mb-2">02</div>
+          <h4 class="font-bold text-lg mb-2" style="color:var(--navy)">Reliability</h4>
+          <p class="text-sm text-slate-600">On-time, on-budget, on-brief delivery. Our name is our promise.</p>
+        </div>
+        <div class="card p-6 hover:shadow-lg transition-shadow" style="border-top:3px solid #6366F1">
+          <div class="text-xs font-bold text-slate-400 mb-2">03</div>
+          <h4 class="font-bold text-lg mb-2" style="color:var(--navy)">Accessibility</h4>
+          <p class="text-sm text-slate-600">Quality research for every business, not just large corporates. We serve SMEs as professionally as multinationals.</p>
+        </div>
+        <div class="card p-6 hover:shadow-lg transition-shadow" style="border-top:3px solid #EC4899">
+          <div class="text-xs font-bold text-slate-400 mb-2">04</div>
+          <h4 class="font-bold text-lg mb-2" style="color:var(--navy)">Insight Over Data</h4>
+          <p class="text-sm text-slate-600">We produce decisions, not just reports. Every engagement ends with a clear "so what and now what."</p>
+        </div>
+        <div class="card p-6 hover:shadow-lg transition-shadow" style="border-top:3px solid #F59E0B">
+          <div class="text-xs font-bold text-slate-400 mb-2">05</div>
+          <h4 class="font-bold text-lg mb-2" style="color:var(--navy)">Speed</h4>
+          <p class="text-sm text-slate-600">The market moves fast. Our Rapid Pulse product answers business questions in 48 hours.</p>
+        </div>
+        <div class="card p-6 hover:shadow-lg transition-shadow" style="border-top:3px solid #10B981">
+          <div class="text-xs font-bold text-slate-400 mb-2">06</div>
+          <h4 class="font-bold text-lg mb-2" style="color:var(--navy)">Partnership</h4>
+          <p class="text-sm text-slate-600">We sit on the client's side of the table. Retainers, dashboards, and open data rooms reflect this.</p>
+        </div>
+      </div>
+
+      <!-- Brand Architecture -->
+      <div class="card p-6">
+        <h3 class="font-bold mb-4" style="color:var(--navy)">Brand Architecture</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="rounded-xl p-4" style="background:#1A3A6B">
+            <div class="text-white/60 text-[10px] uppercase tracking-widest">Primary Color</div>
+            <div class="text-white font-bold mt-1">Deep Navy</div>
+            <div class="text-white/70 text-sm font-mono">#1A3A6B</div>
+          </div>
+          <div class="rounded-xl p-4" style="background:#C8933A">
+            <div class="text-white/60 text-[10px] uppercase tracking-widest">Accent Color</div>
+            <div class="text-white font-bold mt-1">Warm Gold</div>
+            <div class="text-white/70 text-sm font-mono">#C8933A</div>
+          </div>
+          <div class="rounded-xl p-4" style="background:#0F1117">
+            <div class="text-white/60 text-[10px] uppercase tracking-widest">Text Color</div>
+            <div class="text-white font-bold mt-1">Rich Black</div>
+            <div class="text-white/70 text-sm font-mono">#0F1117</div>
+          </div>
+          <div class="rounded-xl p-4 bg-slate-50 border border-slate-200">
+            <div class="text-slate-400 text-[10px] uppercase tracking-widest">Tagline</div>
+            <div class="font-bold mt-1" style="color:var(--navy)">"Insight You Can Build On."</div>
+            <div class="text-slate-400 text-sm">Master brand tagline</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SME OPPORTUNITY SECTION -->
+    <section id="sec-sme" class="hidden fade-in">
+      <h2 class="text-2xl font-bold mb-2" style="color:var(--navy)">The SME Opportunity</h2>
+      <p class="text-slate-500 text-sm mb-6">Why SMEs are the whitespace CMRG and others have largely ignored</p>
+
+      <div class="card p-6 mb-6" style="background:linear-gradient(135deg,#1A3A6B,#254E8E)">
+        <p class="text-white/90 text-sm leading-relaxed max-w-3xl">Nigeria's MSME sector contributes approximately 50% of GDP and accounts for 86.3% of employment (NBS 2021). Yet fewer than 3% of SMEs have ever commissioned formal market research. The reason is simple: the cost model of traditional agencies makes research inaccessible to businesses below ₦500m in annual revenue. <strong class="text-white">RMS is purpose-built to close this gap.</strong></p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="card p-5 text-center">
+          <div class="text-3xl font-bold" style="color:var(--navy)">39.6m</div>
+          <div class="text-xs text-slate-500 mt-1">MSMEs in Nigeria</div>
+          <div class="text-[10px] text-slate-400">NBS 2021 census</div>
+        </div>
+        <div class="card p-5 text-center">
+          <div class="text-3xl font-bold text-red-500"><3%</div>
+          <div class="text-xs text-slate-500 mt-1">With formal research</div>
+          <div class="text-[10px] text-slate-400">Massive whitespace</div>
+        </div>
+        <div class="card p-5 text-center">
+          <div class="text-3xl font-bold" style="color:var(--navy)">~50%</div>
+          <div class="text-xs text-slate-500 mt-1">SME GDP contribution</div>
+          <div class="text-[10px] text-slate-400">Of Nigeria's GDP</div>
+        </div>
+        <div class="card p-5 text-center">
+          <div class="text-3xl font-bold" style="color:var(--gold)">₦25m</div>
+          <div class="text-xs text-slate-500 mt-1">2026 SME revenue target</div>
+          <div class="text-[10px] text-slate-400">80+ engagements</div>
+        </div>
+      </div>
+
+      <!-- SME Segments -->
+      <h3 class="font-bold text-lg mb-4" style="color:var(--navy)">SME Segments We Target</h3>
+      <div class="grid lg:grid-cols-3 gap-4 mb-6">
+        <div class="card p-5" style="border-left:4px solid var(--gold)">
+          <h4 class="font-bold text-sm mb-2">Growth-stage businesses</h4>
+          <div class="text-xs text-slate-500 mb-2">₦50m–₦500m revenue</div>
+          <p class="text-sm text-slate-600">Expanding into new markets, launching new products, or entering new states. Need: market sizing, customer surveys, competitive intelligence.</p>
+        </div>
+        <div class="card p-5" style="border-left:4px solid var(--navy)">
+          <h4 class="font-bold text-sm mb-2">Loan / Funding Seekers</h4>
+          <div class="text-xs text-slate-500 mb-2">BoI, CBN MSME Fund, investors</div>
+          <p class="text-sm text-slate-600">Banks and DFIs require feasibility studies and market reports before approving loans. Bank-ready deliverables.</p>
+        </div>
+        <div class="card p-5" style="border-left:4px solid #10B981">
+          <h4 class="font-bold text-sm mb-2">Established SMEs (local leaders)</h4>
+          <div class="text-xs text-slate-500 mb-2">₦500m–₦2b revenue</div>
+          <p class="text-sm text-slate-600">Competing with multinationals. Need: brand health tracking, NPS, pricing studies, retail audit, and go-to-market advisory.</p>
+        </div>
+      </div>
+
+      <!-- SME Revenue Ramp -->
+      <h3 class="font-bold text-lg mb-4" style="color:var(--navy)">SME Revenue Ramp (2026)</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-5">
+          <div class="text-xs text-slate-400 uppercase tracking-wider">Q1 — Channel build</div>
+          <div class="text-xl font-bold mt-2" style="color:var(--navy)">₦3m</div>
+          <div class="text-xs text-slate-500">~8 engagements · avg ₦375k</div>
+          <div class="w-full bg-slate-100 rounded h-2 mt-3"><div class="h-2 rounded gold-bar" style="width:37.5%"></div></div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-400 uppercase tracking-wider">Q2 — First traction</div>
+          <div class="text-xl font-bold mt-2" style="color:var(--navy)">₦6m</div>
+          <div class="text-xs text-slate-500">~18 engagements · avg ₦333k</div>
+          <div class="w-full bg-slate-100 rounded h-2 mt-3"><div class="h-2 rounded gold-bar" style="width:75%"></div></div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-400 uppercase tracking-wider">Q3 — Scale</div>
+          <div class="text-xl font-bold mt-2" style="color:var(--navy)">₦8m</div>
+          <div class="text-xs text-slate-500">~22 engagements · avg ₦364k</div>
+          <div class="w-full bg-slate-100 rounded h-2 mt-3"><div class="h-2 rounded gold-bar" style="width:100%"></div></div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-400 uppercase tracking-wider">Q4 — Full velocity</div>
+          <div class="text-xl font-bold mt-2" style="color:var(--navy)">₦8m</div>
+          <div class="text-xs text-slate-500">~22 engagements · avg ₦364k</div>
+          <div class="w-full bg-slate-100 rounded h-2 mt-3"><div class="h-2 rounded gold-bar" style="width:100%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="sec-products" class="hidden fade-in">
+      <h2 class="text-2xl font-bold mb-2" style="color:var(--navy)">SME Product Suite</h2>
+      <p class="text-slate-500 text-sm mb-6">Affordable by design — professional-grade insight at every scale</p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8" id="sme-products"></div>
+
+      <!-- Full Service Catalog -->
+      <h3 class="font-bold text-lg mb-4" style="color:var(--navy)">Full Service Catalog</h3>
+      <div class="card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-slate-50 text-left">
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Service</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Segment</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Method</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Timeline</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Fee Band</th>
+              </tr>
+            </thead>
+            <tbody id="service-catalog"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTORS SECTION -->
+    <section id="sec-sectors" class="hidden fade-in">
+      <h2 class="text-2xl font-bold mb-2" style="color:var(--navy)">Sector Strategy</h2>
+      <p class="text-slate-500 text-sm mb-6">How RMS solves problems across industries</p>
+
+      <div class="flex flex-wrap gap-2 mb-6">
+        <button class="tab-btn active" onclick="showSector('telco',this)">📡 Telco & Tech</button>
+        <button class="tab-btn" onclick="showSector('fmcg',this)">🛒 FMCG & Retail</button>
+        <button class="tab-btn" onclick="showSector('fintech',this)">🏦 Financial Services</button>
+        <button class="tab-btn" onclick="showSector('ngo',this)">🌍 Public Sector & NGO</button>
+        <button class="tab-btn" onclick="showSector('sme',this)">💼 SMEs</button>
+      </div>
+
+      <div id="sector-content"></div>
+    </section>
+
+    <!-- REVENUE SECTION -->
+    <section id="sec-revenue" class="hidden fade-in">
+      <h2 class="text-2xl font-bold mb-2" style="color:var(--navy)">Revenue Plan 2026</h2>
+      <p class="text-slate-500 text-sm mb-6">Quarterly revenue breakdown by segment</p>
+
+      <!-- Revenue Chart -->
+      <div class="card p-6 mb-6">
+        <h3 class="font-bold text-sm mb-4" style="color:var(--navy)">Quarterly Revenue (₦ millions)</h3>
+        <canvas id="revenueChart" height="280" class="canvas-chart"></canvas>
+      </div>
+
+      <!-- Revenue Table -->
+      <div class="card overflow-hidden mb-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-slate-50 text-left">
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Segment</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Q1</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Q2</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Q3</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Q4</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Full Year</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">% of Plan</th>
+              </tr>
+            </thead>
+            <tbody id="revenue-table"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SME Acquisition Channels -->
+      <h3 class="font-bold text-lg mb-4" style="color:var(--navy)">SME Acquisition Channels</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3" id="channels-grid"></div>
+    </section>
+
+    <!-- P&L SECTION -->
+    <section id="sec-pnl" class="hidden fade-in">
+      <h2 class="text-2xl font-bold mb-2" style="color:var(--navy)">Indicative Annual P&L (₦m)</h2>
+      <p class="text-slate-500 text-sm mb-6">2026 projected profit and loss statement</p>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <!-- P&L Table -->
+        <div class="card overflow-hidden">
+          <table class="w-full text-sm" id="pnl-table">
+            <tbody></tbody>
+          </table>
+        </div>
+        <!-- P&L Visual -->
+        <div class="card p-6">
+          <h3 class="font-bold text-sm mb-4" style="color:var(--navy)">Revenue Waterfall</h3>
+          <canvas id="pnlChart" height="320" class="canvas-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Financial Policies -->
+      <h3 class="font-bold text-lg mt-8 mb-4" style="color:var(--navy)">Key Financial Policies</h3>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="card p-5">
+          <h4 class="font-bold text-sm mb-2" style="color:var(--navy)">💳 Payment Terms</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Corporate: 40% mobilisation on PO, 40% on fieldwork completion, 20% on final report. NGO/Govt: 50/50 or milestone-aligned. SME: 50% upfront, 50% on delivery. Retainers: monthly in advance. No final report released until 100% payment.</p>
+        </div>
+        <div class="card p-5">
+          <h4 class="font-bold text-sm mb-2" style="color:var(--navy)">📊 Cash & DSO Targets</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">DSO targets: Q1 ≤60 days → Q4 ≤35 days. Monthly AR aging review. CEO escalation after 60 days overdue. Maintain minimum 8-week payroll cash reserve.</p>
+        </div>
+        <div class="card p-5">
+          <h4 class="font-bold text-sm mb-2" style="color:var(--navy)">🏷️ Pricing Floor Rules</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">No project below 35% gross margin. SME products deliver ≥55% margin. No discounts beyond 10% without CEO approval. Research Lead must sign off on scope risks.</p>
+        </div>
+        <div class="card p-5">
+          <h4 class="font-bold text-sm mb-2" style="color:var(--navy)">🧾 VAT & Tax Compliance</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">All invoices include 7.5% VAT. Monthly VAT returns by 21st. WHT certificates collected for reconciliation. Quarterly CIT installments filed.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPETITION SECTION -->
+    <section id="sec-competition" class="hidden fade-in">
+      <h2 class="text-2xl font-bold mb-2" style="color:var(--navy)">Competitive Analysis</h2>
+      <p class="text-slate-500 text-sm mb-6">RMS vs. CMRG — our competitive positioning</p>
+
+      <div class="card p-6 mb-6" style="background:linear-gradient(135deg,#1A3A6B,#0F1117)">
+        <p class="text-white/90 text-sm italic">"CMRG has 25 years of relationships. We have technology, speed, and an SME desk. Clients don't have to choose — but when they want dashboards, 48-hour answers, or feasibility studies for their growing business, RMS is the only call to make."</p>
+        <div class="text-slate-400 text-xs mt-3">— RMS positioning line for every pitch</div>
+      </div>
+
+      <div class="card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr style="background:var(--navy)">
+                <th class="px-4 py-3 font-semibold text-white text-xs uppercase tracking-wider text-left">Dimension</th>
+                <th class="px-4 py-3 font-semibold text-xs uppercase tracking-wider text-center" style="color:var(--gold)">CMRG</th>
+                <th class="px-4 py-3 font-semibold text-white text-xs uppercase tracking-wider text-center">RMS Advantage</th>
+              </tr>
+            </thead>
+            <tbody id="comp-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section id="sec-team" class="hidden fade-in">
+      <h2 class="text-2xl font-bold mb-2" style="color:var(--navy)">Team & Hiring Plan</h2>
+      <p class="text-slate-500 text-sm mb-6">Organizational structure and hiring roadmap</p>
+
+      <!-- Org Chart -->
+      <div class="card p-6 mb-6">
+        <h3 class="font-bold text-sm mb-4" style="color:var(--navy)">Organizational Structure</h3>
+        <div class="flex flex-col items-center gap-4">
+          <div class="px-6 py-3 rounded-xl text-white font-bold text-sm" style="background:var(--navy)">CEO / Managing Director</div>
+          <div class="text-slate-400 text-xs">Strategy · Key accounts · Culture</div>
+          <div class="w-px h-4 bg-slate-300"></div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 w-full" id="org-chart"></div>
+        </div>
+      </div>
+
+      <!-- Hiring Roadmap -->
+      <h3 class="font-bold text-lg mb-4" style="color:var(--navy)">Hiring Roadmap</h3>
+      <div class="card overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-slate-50 text-left">
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Quarter</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Hire</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Type</th>
+                <th class="px-4 py-3 font-semibold text-slate-600 text-xs uppercase tracking-wider">Rationale</th>
+              </tr>
+            </thead>
+            <tbody id="hiring-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE SECTION -->
+    <section id="sec-timeline" class="hidden fade-in">
+      <h2 class="text-2xl font-bold mb-2" style="color:var(--navy)">Go-to-Market Timeline 2026</h2>
+      <p class="text-slate-500 text-sm mb-6">Quarterly milestones and deliverables</p>
+
+      <div class="grid lg:grid-cols-4 gap-4" id="gtm-timeline"></div>
+    </section>
+
   </div>
-  <div class="pitch-grid">
-    <div class="pitch-col">
-      <div class="pitch-col-title">Business problem</div>
-      <ul><li>Subscriber churn rising despite promos</li><li>Pricing changes cause unpredictable churn</li><li>Retail agents inconsistent on compliance</li><li>Net Promoter Score declining but reason unclear</li><li>New product adoption below forecast</li></ul>
-    </div>
-    <div class="pitch-col">
-      <div class="pitch-col-title">How RMS solves it</div>
-      <ul><li>Churn driver model — identifies the real reason subscribers leave</li><li>Pricing elasticity study — Van Westendorp + Gabor-Granger</li><li>Agent audit — GPS-verified retail coverage census</li><li>NPS/CX tracker — quarterly waves with dashboard</li><li>Concept test — validates offers before full launch</li></ul>
-    </div>
-    <div class="pitch-col">
-      <div class="pitch-col-title">What you receive</div>
-      <ul><li>Executive insight deck with clear action priorities</li><li>Segmented customer data by ARPU tier</li><li>Live Power BI dashboard with drill-down</li><li>Geospatial retail coverage map</li><li>Quarterly benchmark comparisons</li></ul>
-    </div>
-  </div>
-  <div class="pitch-footer">
-    <div class="pitch-cta">RMS Telco Research Suite — faster, deeper, dashboard-ready</div>
-    <div class="pitch-fee">₦3.0m – ₦18.5m per study | NPS Tracker from ₦4m/wave</div>
-  </div>
 </div>
-
-<!-- FMCG -->
-<div class="pitch">
-  <div class="pitch-hdr" style="background:var(--green-bg)">
-    <div class="pitch-title" style="color:var(--green)">FMCG & Retail</div>
-    <span class="pitch-sector" style="background:#0F6E56;color:white">Target: NB · Guinness · Nestlé · Unilever · FMN · Shoprite · Jumia</span>
-  </div>
-  <div class="pitch-grid">
-    <div class="pitch-col">
-      <div class="pitch-col-title">Business problem</div>
-      <ul><li>Losing shelf space to cheaper competitors</li><li>Price increase causing unexpected volume loss</li><li>New SKU underperforming vs. forecast</li><li>Brand equity eroding among youth</li><li>Distribution gap — don't know where products aren't</li></ul>
-    </div>
-    <div class="pitch-col">
-      <div class="pitch-col-title">How RMS solves it</div>
-      <ul><li>Retail audit — 12-state distribution census</li><li>Pricing study — conjoint + MaxDiff optimal bundle</li><li>Concept/pack test — HUT/CLT with scoring</li><li>Brand health tracker — 2 waves/year with equity scores</li><li>Shopper intercept — basket analysis, decision triggers</li></ul>
-    </div>
-    <div class="pitch-col">
-      <div class="pitch-col-title">What you receive</div>
-      <ul><li>State-by-state distribution heat map</li><li>SKU-level pricing architecture recommendation</li><li>Preference rank by segment + launch go/no-go</li><li>Brand equity scorecard vs. competition</li><li>Category buyer persona profiles</li></ul>
-    </div>
-  </div>
-  <div class="pitch-footer">
-    <div class="pitch-cta">RMS FMCG Suite — from shelf to shopper, end-to-end</div>
-    <div class="pitch-fee">₦3.0m – ₦12m per study | Retail Audit from ₦4m (6-state)</div>
-  </div>
-</div>
-
-<!-- FINTECH -->
-<div class="pitch">
-  <div class="pitch-hdr" style="background:var(--amber-bg)">
-    <div class="pitch-title" style="color:var(--amber)">Financial Services & Fintech</div>
-    <span class="pitch-sector" style="background:#854F0B;color:white">Target: Access · GTBank · Zenith · Opay · PalmPay · Interswitch</span>
-  </div>
-  <div class="pitch-grid">
-    <div class="pitch-col">
-      <div class="pitch-col-title">Business problem</div>
-      <ul><li>Digital onboarding drop-off above 40%</li><li>Agent liquidity complaints rising</li><li>SME customers not adopting digital products</li><li>Retention declining in wallet/savings products</li><li>Uncertain pricing on new lending products</li></ul>
-    </div>
-    <div class="pitch-col">
-      <div class="pitch-col-title">How RMS solves it</div>
-      <ul><li>UX diagnostics — drop-off journey mapping + survey</li><li>Agent quality audit — GPS-verified, liquidity-focused</li><li>SME proposition research — needs, barriers, willingness-to-pay</li><li>NPS/CX tracker — quarterly with churn driver model</li><li>Pricing sensitivity — Van Westendorp on rate tiers</li></ul>
-    </div>
-    <div class="pitch-col">
-      <div class="pitch-col-title">What you receive</div>
-      <ul><li>Top 5 friction points with fix priority</li><li>Agent scorecard + geo heat map</li><li>SME customer persona + product-feature matrix</li><li>Retention driver ranking with intervention options</li><li>Optimal rate range with price elasticity curve</li></ul>
-    </div>
-  </div>
-  <div class="pitch-footer">
-    <div class="pitch-cta">RMS Fintech Suite — built for Nigeria's mobile-first financial market</div>
-    <div class="pitch-fee">₦3.0m – ₦8.5m per study | NPS Tracker ₦3.5m/wave (2-wave deal)</div>
-  </div>
-</div>
-
-<!-- NGO -->
-<div class="pitch">
-  <div class="pitch-hdr" style="background:var(--red-bg)">
-    <div class="pitch-title" style="color:var(--red)">Public Sector, NGO & Development</div>
-    <span class="pitch-sector" style="background:#991b1b;color:white">Target: UNICEF · Palladium · DAI · USAID · State Govts · World Bank IPs</span>
-  </div>
-  <div class="pitch-grid">
-    <div class="pitch-col">
-      <div class="pitch-col-title">Programme challenge</div>
-      <ul><li>Need credible baseline before programme begins</li><li>Donor requires M&E framework and indicators</li><li>KAP survey needed for health/education/finance programme</li><li>Midline evaluation overdue; fieldwork capacity lacking</li><li>Beneficiary data not systematically collected</li></ul>
-    </div>
-    <div class="pitch-col">
-      <div class="pitch-col-title">How RMS solves it</div>
-      <ul><li>Baseline/midline/endline surveys — multi-state fieldwork</li><li>M&E framework design — indicators, data flow, MEAL plan</li><li>KAP surveys — CAPI field, rigorous sampling, IRB-ready</li><li>FGD/IDI — qualitative validation of programme outcomes</li><li>Data visualisation — donor-ready dashboards</li></ul>
-    </div>
-    <div class="pitch-col">
-      <div class="pitch-col-title">What you receive</div>
-      <ul><li>IRB-compliant technical report</li><li>Clean dataset + codebook + sampling documentation</li><li>MEAL framework with indicator definitions</li><li>Donor-ready presentation deck</li><li>Secure PII-compliant data room</li></ul>
-    </div>
-  </div>
-  <div class="pitch-footer">
-    <div class="pitch-cta">RMS Social Research — donor-compliant, IRB-ready, nationwide reach</div>
-    <div class="pitch-fee">₦6m – ₦15m per study | Aligned with USAID, EU, World Bank procurement formats</div>
-  </div>
-</div>
-
-<!-- SME -->
-<div class="pitch">
-  <div class="pitch-hdr" style="background:var(--purple-bg)">
-    <div class="pitch-title" style="color:var(--purple)">Small & Medium Enterprises (SMEs)</div>
-    <span class="pitch-sector" style="background:#4c1d95;color:white">Target: Growth-stage SMEs · Loan applicants · Established local brands</span>
-  </div>
-  <div class="pitch-grid">
-    <div class="pitch-col">
-      <div class="pitch-col-title">Business challenge</div>
-      <ul><li>Launching a product but not sure if the market is ready</li><li>Bank or BoI requires a feasibility study</li><li>Don't know how customers really feel about the brand</li><li>Thinking of expanding to another state or city</li><li>Can't afford a large agency but need real data</li></ul>
-    </div>
-    <div class="pitch-col">
-      <div class="pitch-col-title">How RMS solves it</div>
-      <ul><li>Quick Market Scan — market size, competition, pricing in 5 days</li><li>Feasibility Study — bank-ready, BoI-compliant format</li><li>Customer Pulse — hear directly from 100–200 of your customers</li><li>Rapid Pulse — one business question answered in 48 hours</li><li>Annual Retainer — ongoing insight at ₦200k/month</li></ul>
-    </div>
-    <div class="pitch-col">
-      <div class="pitch-col-title">What you receive</div>
-      <ul><li>Clear, jargon-free insight report</li><li>Decision recommendation — go/adjust/pause</li><li>Bankable feasibility study for loan application</li><li>Competitive pricing guidance</li><li>Direct CEO access throughout the project</li></ul>
-    </div>
-  </div>
-  <div class="pitch-footer">
-    <div class="pitch-cta">RMS SME Suite — professional research at a price that makes sense for your business</div>
-    <div class="pitch-fee">From ₦250k (Rapid Pulse) · Feasibility Study ₦900k–₦1.5m · Retainer ₦200k/month</div>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════ REVENUE ══════════════ -->
-<section class="section" id="section-revenue">
-<div class="sec-header">
-  <div class="sec-eyebrow">Step 6 of 9</div>
-  <div class="sec-title">Updated Revenue Plan — ₦177m</div>
-  <div class="sec-desc">SME segment (₦25m) added to the corporate plan (₦152.3m) — total plan ₦177.3m. Stretch with strong SME channel execution: ₦210m.</div>
-</div>
-
-<div class="grid4" style="margin-bottom:28px">
-  <div class="stat-card"><div class="stat-label">Total plan revenue</div><div class="stat-num">₦177m</div><div class="stat-sub">+₦25m vs. original plan</div></div>
-  <div class="stat-card"><div class="stat-label">Stretch target</div><div class="stat-num">₦210m</div><div class="stat-sub">With strong SME channel</div></div>
-  <div class="stat-card"><div class="stat-label">Corporate accounts</div><div class="stat-num">₦152m</div><div class="stat-sub">20 core accounts</div></div>
-  <div class="stat-card"><div class="stat-label">SME accounts</div><div class="stat-num">₦25m</div><div class="stat-sub">70+ engagements</div></div>
-</div>
-
-<h2>Revenue Mix by Segment</h2>
-<div class="tbl-wrap" style="margin-bottom:24px">
-  <table class="tbl">
-    <thead><tr><th>Segment</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Full Year</th><th>% of Plan</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Telco / Tech</strong></td><td>₦8.0m</td><td>₦10.0m</td><td>₦6.0m</td><td>₦9.5m</td><td>₦33.5m</td><td>19%</td></tr>
-      <tr><td><strong>FMCG / Retail</strong></td><td>₦10.0m</td><td>₦14.5m</td><td>₦14.0m</td><td>₦8.0m</td><td>₦46.5m</td><td>26%</td></tr>
-      <tr><td><strong>Financial Services</strong></td><td>₦9.5m</td><td>₦8.0m</td><td>₦8.5m</td><td>₦7.0m</td><td>₦33.0m</td><td>19%</td></tr>
-      <tr><td><strong>Public / NGO</strong></td><td>₦0</td><td>₦9.0m</td><td>₦13.0m</td><td>₦8.0m</td><td>₦32.0m</td><td>18%</td></tr>
-      <tr><td><strong>Syndicated & Omnibus</strong></td><td>₦1.25m</td><td>₦6.25m</td><td>₦1.25m</td><td>₦6.05m</td><td>₦14.8m</td><td>8%</td></tr>
-      <tr><td><strong>SME Segment (NEW)</strong></td><td>₦3.0m</td><td>₦6.0m</td><td>₦8.0m</td><td>₦8.0m</td><td>₦25.0m</td><td>14%</td></tr>
-      <tr style="background:var(--bg2);font-weight:600"><td><strong>TOTAL</strong></td><td><strong>₦31.75m</strong></td><td><strong>₦53.75m</strong></td><td><strong>₦50.75m</strong></td><td><strong>₦46.55m</strong></td><td><strong>₦177.0m</strong></td><td><strong>100%</strong></td></tr>
-    </tbody>
-  </table>
-</div>
-
-<h2>Quarterly Revenue Bars</h2>
-<div class="grid4">
-  <div class="stat-card"><div class="stat-label">Q1 — Foundation</div><div class="stat-num">₦31.8m</div><div class="rev-bar"><div class="rev-bar-fill" style="width:60%;background:#1a3a6b"></div></div><div class="stat-sub">Build pipeline; first SME wins</div></div>
-  <div class="stat-card"><div class="stat-label">Q2 — Scale</div><div class="stat-num">₦53.8m</div><div class="rev-bar"><div class="rev-bar-fill" style="width:100%;background:#c8933a"></div></div><div class="stat-sub">NGO baseline + FMCG + SME traction</div></div>
-  <div class="stat-card"><div class="stat-label">Q3 — Depth</div><div class="stat-num">₦50.8m</div><div class="rev-bar"><div class="rev-bar-fill" style="width:95%;background:#0d5c3b"></div></div><div class="stat-sub">Field expansion + publications</div></div>
-  <div class="stat-card"><div class="stat-label">Q4 — Consolidate</div><div class="stat-num">₦46.6m</div><div class="rev-bar"><div class="rev-bar-fill" style="width:87%;background:#4c1d95"></div></div><div class="stat-sub">Syndicated licenses + SME retainers</div></div>
-</div>
-</section>
-
-<!-- ══════════════ ORG ══════════════ -->
-<section class="section" id="section-org">
-<div class="sec-header">
-  <div class="sec-eyebrow">Step 7 of 9</div>
-  <div class="sec-title">Organisational Structure</div>
-  <div class="sec-desc">Target structure for 2026 — lean in Q1, fully built by Q3. 14 FTEs including the new SME Desk Manager role that no competitor in Lagos currently has.</div>
-</div>
-
-<div style="text-align:center;padding:20px 0 32px">
-  <div class="org-level">
-    <div class="org-box ceo" style="min-width:200px"><div class="org-name">CEO / Managing Director</div><div class="org-role">Strategy · Key accounts · Culture</div></div>
-  </div>
-  <div class="org-connector"></div>
-  <div class="org-level">
-    <div class="org-box dept"><div class="org-name">Head of Research</div><div class="org-role">Quant · Qual · QA</div></div>
-    <div class="org-box dept"><div class="org-name">Head of Field Ops</div><div class="org-role">Fieldwork · CATI · Panel</div></div>
-    <div class="org-box dept"><div class="org-name">BizDev Lead</div><div class="org-role">Corporate sales · Pipeline</div></div>
-    <div class="org-box sme-role"><div class="org-name" style="color:var(--amber)">SME Desk Manager</div><div class="org-role" style="color:var(--amber)">SME accounts · Channels</div></div>
-    <div class="org-box dept"><div class="org-name">Finance & Admin</div><div class="org-role">Accounts · Compliance · HR</div></div>
-  </div>
-  <div class="org-connector"></div>
-  <div class="org-level">
-    <div class="org-box dept" style="min-width:110px"><div class="org-name">Quant Analyst</div><div class="org-role">SPSS · R · models</div></div>
-    <div class="org-box dept" style="min-width:110px"><div class="org-name">Qual Researcher</div><div class="org-role">FGD · IDI · synthesis</div></div>
-    <div class="org-box dept" style="min-width:110px"><div class="org-name">Data Viz / BI</div><div class="org-role">Power BI · decks</div></div>
-    <div class="org-box dept" style="min-width:110px"><div class="org-name">Project Manager</div><div class="org-role">Delivery · timeline</div></div>
-    <div class="org-box dept" style="min-width:110px"><div class="org-name">Field Coordinators</div><div class="org-role">x3 (state leads)</div></div>
-    <div class="org-box dept" style="min-width:110px"><div class="org-name">Comms & Marketing</div><div class="org-role">Content · brand</div></div>
-  </div>
-</div>
-
-<h2>Hiring Roadmap</h2>
-<div class="tbl-wrap">
-  <table class="tbl">
-    <thead><tr><th>Quarter</th><th>Hire</th><th>Type</th><th>Rationale</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Pre-Q1 / Founders</strong></td><td>CEO + Head of Research + BizDev Lead</td><td>Core</td><td>Strategic, proposal, and commercial capability from day one</td></tr>
-      <tr><td><strong>Q1</strong></td><td>Head of Field Ops + Finance & Admin Officer</td><td>Full-time</td><td>Fieldwork delivery + financial controls before first projects launch</td></tr>
-      <tr><td><strong>Q1/Q2</strong></td><td>SME Desk Manager</td><td>Full-time</td><td>Dedicated SME channel build — can't be CEO's secondary task</td></tr>
-      <tr><td><strong>Q2</strong></td><td>Quant Analyst + Data Viz / BI Specialist + Project Manager</td><td>Full-time</td><td>Scaling delivery for 3–4 concurrent projects by Q2</td></tr>
-      <tr><td><strong>Q2</strong></td><td>Comms & Marketing Officer</td><td>Full-time or retainer</td><td>Content for Insight Notes, LinkedIn, Omnibus marketing</td></tr>
-      <tr><td><strong>Q3</strong></td><td>Qual Researcher + Field Coordinators x2</td><td>Full-time + contract</td><td>State expansion to 10–12 states requires dedicated field leadership</td></tr>
-      <tr><td><strong>Q3</strong></td><td>CATI Supervisors x2</td><td>Part-time/contract</td><td>CATI centre launch — 10 seats, needs supervisory capacity</td></tr>
-    </tbody>
-  </table>
-</div>
-</section>
-
-<!-- ══════════════ FINANCE ══════════════ -->
-<section class="section" id="section-finance">
-<div class="sec-header">
-  <div class="sec-eyebrow">Step 8 of 9</div>
-  <div class="sec-title">Financial Framework & P&L</div>
-  <div class="sec-desc">Indicative 2026 P&L structure targeting ≥45% gross margin and ≥15% EBITDA margin by Q4. All figures in ₦m.</div>
-</div>
-
-<h2>Indicative Annual P&L (₦m)</h2>
-<div class="pl-wrap" style="margin-bottom:28px">
-  <div class="pl-row section-head"><span>REVENUE</span><span></span></div>
-  <div class="pl-row"><span>Corporate research projects</span><span>117.5</span></div>
-  <div class="pl-row"><span>Syndicated reports & Omnibus</span><span>14.8</span></div>
-  <div class="pl-row"><span>SME segment (new)</span><span>25.0</span></div>
-  <div class="pl-row"><span>Retainers & dashboards</span><span>20.0</span></div>
-  <div class="pl-row total"><span>Total Revenue</span><span class="pl-positive">177.3</span></div>
-  <div class="pl-row section-head"><span>COST OF SALES</span><span></span></div>
-  <div class="pl-row"><span>Field operations (data collection, travel, incentives)</span><span>(42.5)</span></div>
-  <div class="pl-row"><span>Research tools & platforms (SurveyCTO, SPSS, Power BI)</span><span>(4.2)</span></div>
-  <div class="pl-row"><span>Data processing & coding (in-house + outsourced)</span><span>(5.0)</span></div>
-  <div class="pl-row"><span>Freelance field enumerators & CATI agents</span><span>(8.0)</span></div>
-  <div class="pl-row"><span>Subcontracted fieldwork (partner agencies)</span><span>(10.0)</span></div>
-  <div class="pl-row total"><span>Total COGS</span><span class="pl-negative">(69.7)</span></div>
-  <div class="pl-row total" style="font-size:15px"><span>Gross Profit</span><span class="pl-positive">107.6 (61%)</span></div>
-  <div class="pl-row section-head"><span>OPERATING EXPENSES</span><span></span></div>
-  <div class="pl-row"><span>Salaries & benefits (14 FTE avg over year)</span><span>(52.0)</span></div>
-  <div class="pl-row"><span>Office rent & utilities (Lagos HQ)</span><span>(7.2)</span></div>
-  <div class="pl-row"><span>Marketing, events & Insight Breakfasts</span><span>(4.5)</span></div>
-  <div class="pl-row"><span>Insurance (PI + cyber + office)</span><span>(1.8)</span></div>
-  <div class="pl-row"><span>Legal, compliance & professional fees</span><span>(2.5)</span></div>
-  <div class="pl-row"><span>IT infrastructure, cloud & software</span><span>(3.0)</span></div>
-  <div class="pl-row"><span>Travel & business development</span><span>(4.0)</span></div>
-  <div class="pl-row"><span>Miscellaneous & contingency (3%)</span><span>(3.5)</span></div>
-  <div class="pl-row total"><span>Total OpEx</span><span class="pl-negative">(78.5)</span></div>
-  <div class="pl-row total" style="font-size:15px"><span>EBITDA</span><span class="pl-positive">29.1 (16.4%)</span></div>
-  <div class="pl-row"><span>Depreciation & amortisation</span><span>(1.5)</span></div>
-  <div class="pl-row total" style="font-size:15px"><span>Operating Profit (EBIT)</span><span class="pl-positive">27.6 (15.6%)</span></div>
-  <div class="pl-row"><span>Company Income Tax (30% CIT)</span><span>(8.3)</span></div>
-  <div class="pl-row total" style="font-size:16px;background:var(--accent);color:white"><span>NET PROFIT</span><span>19.3 (10.9%)</span></div>
-</div>
-
-<h2>Key Financial Policies</h2>
-<div class="grid2">
-  <div class="card card-accent">
-    <h3 style="margin-top:0;color:var(--accent)">Payment Terms (all clients)</h3>
-    <p style="font-size:13px;margin:0">Corporate projects: 40% mobilisation on PO, 40% on fieldwork completion, 20% on final report delivery. NGO/Govt: 50%/50% or project-milestone aligned. SME: 50% upfront, 50% on delivery. Retainers: monthly in advance. No final report released until 100% payment received.</p>
-  </div>
-  <div class="card card-amber">
-    <h3 style="margin-top:0;color:var(--amber)">Cash & DSO Targets</h3>
-    <p style="font-size:13px;margin:0">Days Sales Outstanding targets: Q1 ≤ 60 days, Q2 ≤ 45 days, Q3 ≤ 38 days, Q4 ≤ 35 days. Monthly AR aging review by Finance. Escalation to CEO after 60 days overdue. Maintain minimum 8-week payroll cash reserve at all times.</p>
-  </div>
-  <div class="card card-green">
-    <h3 style="margin-top:0;color:var(--green)">Pricing Floor Rules</h3>
-    <p style="font-size:13px;margin:0">No project may be accepted below 35% gross margin (post-direct costs). BizDev Lead must get Research Lead sign-off on any scope that risks margin. SME products are priced to deliver ≥55% margin (low delivery cost). No discounts beyond 10% without CEO approval.</p>
-  </div>
-  <div class="card card-purple">
-    <h3 style="margin-top:0;color:var(--purple)">VAT & Tax Compliance</h3>
-    <p style="font-size:13px;margin:0">All invoices to corporate and government clients include 7.5% VAT. Monthly VAT returns filed with FIRS by the 21st of each following month. WHT (typically 5% on professional fees) deducted by corporate clients — ensure certificates are collected for annual tax reconciliation. Quarterly CIT installments filed.</p>
-  </div>
-</div>
-</section>
-
-<!-- ══════════════ COMPETE ══════════════ -->
-<section class="section" id="section-compete">
-<div class="sec-header">
-  <div class="sec-eyebrow">Step 9 of 9</div>
-  <div class="sec-title">Competitive Positioning</div>
-  <div class="sec-desc">How RMS wins against CMRG and the broader Lagos market research landscape in 2026.</div>
-</div>
-
-<div class="card card-accent" style="margin-bottom:24px">
-  <h3 style="margin-top:0;color:var(--accent)">Our single positioning line (for every pitch)</h3>
-  <p style="font-size:15px;font-style:italic;color:var(--ink);margin:0">"CMRG has 25 years of relationships. We have technology, speed, and an SME desk. Clients don't have to choose — but when they want dashboards, 48-hour answers, or feasibility studies for their growing business, RMS is the only call to make."</p>
-</div>
-
-<div class="tbl-wrap" style="margin-bottom:24px">
-  <div class="vs-row header">
-    <div class="vs-cell dim">Dimension</div>
-    <div class="vs-cell header-cmrg">CMRG (benchmark)</div>
-    <div class="vs-cell header-rms">RMS (our edge)</div>
-  </div>
-  <div class="vs-row"><div class="vs-cell dim">Heritage</div><div class="vs-cell cmrg">Est. 2000, 25+ yrs, NiMRA president, award-winning</div><div class="vs-cell rms">New entrant — win on product, speed & tech, not tenure</div></div>
-  <div class="vs-row"><div class="vs-cell dim">Speed</div><div class="vs-cell cmrg">Standard agency timeline (weeks)</div><div class="vs-cell rms">Rapid Pulse: 48 hrs · Omnibus: 10 days · No competitor matches this</div></div>
-  <div class="vs-row"><div class="vs-cell dim">Technology</div><div class="vs-cell cmrg">PDF reports, traditional delivery</div><div class="vs-cell rms">RMS Insight Portal — live dashboards, client self-serve, data rooms</div></div>
-  <div class="vs-row"><div class="vs-cell dim">SME market</div><div class="vs-cell cmrg">Not publicly addressed</div><div class="vs-cell rms">Dedicated SME Desk — 6 affordable products from ₦250k · Feasibility studies for BoI/bank loan applicants</div></div>
-  <div class="vs-row"><div class="vs-cell dim">Analytics depth</div><div class="vs-cell cmrg">Standard cross-tabs and charts</div><div class="vs-cell rms">Driver models, conjoint/MaxDiff, NLP text analytics, geo-analytics, forecasting</div></div>
-  <div class="vs-row"><div class="vs-cell dim">Fieldwork</div><div class="vs-cell cmrg">National reach, limited state transparency</div><div class="vs-cell rms">12-state GPS/photo/audio QA · Panel 15,000+ · CATI 10 seats by Q3</div></div>
-  <div class="vs-row"><div class="vs-cell dim">Syndicated data</div><div class="vs-cell cmrg">None publicly listed</div><div class="vs-cell rms">3 flagship trackers (Shopper, MSME Credit, Youth Digital) — recurring revenue</div></div>
-  <div class="vs-row"><div class="vs-cell dim">Pricing model</div><div class="vs-cell cmrg">Project-by-project</div><div class="vs-cell rms">Projects + retainers + licenses + Omnibus slots + SME packages</div></div>
-  <div class="vs-row"><div class="vs-cell dim">Compliance</div><div class="vs-cell cmrg">NiMRA member</div><div class="vs-cell rms">ISO-20252-aligned SOPs · NDPR governance · PI + cyber insurance · Contract library</div></div>
-  <div class="vs-row"><div class="vs-cell dim">Client entry strategy vs CMRG</div><div class="vs-cell cmrg">Entrenched in FMCG/telco accounts</div><div class="vs-cell rms">Don't bid against them on same brief — offer Rapid Pulse / dashboard / SME study first, then expand</div></div>
-</div>
-
-<h2>Go-to-Market Timeline 2026</h2>
-<div class="timeline">
-  <div class="tl-item"><div class="tl-dot filled"></div><div class="tl-quarter">Q1 — Launch & Establish</div><div class="tl-items"><div class="tl-task priority">Website live, professional email, all compliance filings submitted</div><div class="tl-task priority">Hire Head of Research, Head of Field Ops, BizDev Lead</div><div class="tl-task priority">5 lighthouse clients signed: Nestlé, Access Bank, Shoprite, MTN, Zenith</div><div class="tl-task">Rapid Pulse product live — first 3 SME clients onboarded</div><div class="tl-task">Proposal library built (one template per vertical)</div></div></div>
-  <div class="tl-item"><div class="tl-dot filled"></div><div class="tl-quarter">Q2 — Scale & Publish</div><div class="tl-items"><div class="tl-task priority">RMS Insight Portal MVP live (client logins + dashboards)</div><div class="tl-task priority">Nigeria Shopper & Pricing Tracker published — 5 license sales target</div><div class="tl-task priority">First Insight Breakfast — Lagos (75–100 guests)</div><div class="tl-task">Panel at 5,000+ respondents — field ops in 6 states</div><div class="tl-task">SME Desk Manager in role — bank partnership for feasibility referrals activated</div></div></div>
-  <div class="tl-item"><div class="tl-dot"></div><div class="tl-quarter">Q3 — Depth & Thought Leadership</div><div class="tl-items"><div class="tl-task priority">MSME Credit + Youth Digital syndicated studies published</div><div class="tl-task priority">2 conference presentations (NIMRA, Lagos Business Summit)</div><div class="tl-task">Panel at 10,000+ · 12 states covered · CATI 10 seats live</div><div class="tl-task">6 case studies published on website</div><div class="tl-task">Second Insight Breakfast — Abuja</div></div></div>
-  <div class="tl-item"><div class="tl-dot"></div><div class="tl-quarter">Q4 — Consolidate & Plan 2027</div><div class="tl-items"><div class="tl-task priority">Portal v2 — self-serve dashboard + data download</div><div class="tl-task priority">20 core corporate accounts on record · NPS ≥ 60</div><div class="tl-task">SME annual retainer renewals — target 15 retainer clients</div><div class="tl-task">2027 plan: West Africa expansion (Ghana pilot) + 2 new verticals (agri, healthcare)</div></div></div>
-</div>
-
-<div class="doc-footer">
-  <div>Reliable Market Survey Limited · CEO Strategy Document · 2026</div>
-  <div>Confidential — not for external distribution without CEO approval</div>
-</div>
-</section>
-
-</div><!-- /page -->
 
 <script>
-function showSection(id, label) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('section-' + id).classList.add('active');
-  event.target.classList.add('active');
-  window.scrollTo({top: document.querySelector('.nav').offsetTop - 10, behavior: 'smooth'});
+// ===== DATA =====
+const legalItems = [
+  { name:'CAC Incorporation', time:'Done', status:'done', desc:'Company registered with Corporate Affairs Commission — RC number confirmed' },
+  { name:'Business Bank Accounts', time:'Done', status:'done', desc:'Current + domiciliary accounts active' },
+  { name:'FIRS TIN Registration', time:'Week 1', status:'progress', desc:'Tax Identification Number from Federal Inland Revenue Service' },
+  { name:'LIRS Business Registration', time:'Week 1', status:'progress', desc:'Lagos Internal Revenue Service — business premises levy and withholding tax' },
+  { name:'VAT Registration (FIRS)', time:'Week 2', status:'pending', desc:'Register for VAT collection and remittance. 7.5% standard rate' },
+  { name:'NSITF Registration', time:'Week 2', status:'pending', desc:'Nigeria Social Insurance Trust Fund — 1% of employee monthly payroll' },
+  { name:'ITF Registration', time:'Week 2', status:'pending', desc:'Industrial Training Fund — 1% of annual payroll' },
+  { name:'NHF Registration', time:'Month 1', status:'pending', desc:'National Housing Fund — 2.5% of basic salary from each employee' },
+  { name:'Pension Fund Administrator', time:'Month 1', status:'pending', desc:'Employer 10%, employee 8% of monthly emolument' },
+  { name:'NiMRA Membership', time:'Month 1', status:'pending', desc:'Nigeria Marketing Research Association — professional credibility' },
+  { name:'Professional Indemnity Insurance', time:'Month 1', status:'pending', desc:'PI cover, minimum ₦50m recommended' },
+  { name:'NDPR Compliance Framework', time:'Month 1', status:'pending', desc:'Nigeria Data Protection Regulation — data audit, privacy policy, consent management' },
+];
+const opsItems = [
+  { name:'Office Lease Agreement', time:'Week 1', status:'progress', desc:'Lagos head office. Ikeja/VI/Lekki axis preferred' },
+  { name:'Company Seal & Common Seal', time:'Week 1', status:'progress', desc:'Required for contract execution and official documents' },
+  { name:'Branded Templates', time:'Week 2', status:'pending', desc:'Letterhead, Invoice & Proposal Templates with logo, TIN, RC number' },
+  { name:'Contract Library (MSA/SOW/NDA)', time:'Week 2', status:'pending', desc:'Templates reviewed by commercial solicitor' },
+  { name:'Accounting Software', time:'Week 2', status:'pending', desc:'QuickBooks or Sage — chart of accounts, project cost centres' },
+];
+const techItems = [
+  { name:'Website Domain & Hosting', time:'Week 1', status:'progress', desc:'reliablemarketsurvey.com or rms.ng' },
+  { name:'Professional Email (Google Workspace)', time:'Week 1', status:'progress', desc:'~₦2,500/user/month. CEO, BizDev, Research, Ops, Finance' },
+  { name:'Survey & CAPI Platform', time:'Week 2', status:'pending', desc:'SurveyCTO recommended — GPS, audio audit, offline CAPI' },
+  { name:'CAWI/Online Survey Platform', time:'Week 2', status:'pending', desc:'SurveyMonkey or Typeform for Rapid Pulse, Omnibus' },
+  { name:'Data Analysis (SPSS or R + JASP)', time:'Month 1', status:'pending', desc:'IBM SPSS licence for quant analysis' },
+  { name:'Power BI (Microsoft)', time:'Month 1', status:'pending', desc:'Pro licence ~$10/user/month for client dashboards' },
+  { name:'CRM (HubSpot Free)', time:'Month 1', status:'pending', desc:'Track proposals, pipeline, deal stages' },
+  { name:'Project Management (Asana)', time:'Month 1', status:'pending', desc:'Each project gets a task board: brief → instrument → field → QA → analysis → reporting' },
+  { name:'LinkedIn + Social Presence', time:'Week 2', status:'pending', desc:'Company Page, X, email newsletter (Mailchimp free)' },
+];
+
+const smeProducts = [
+  { name:'Quick Market Scan', price:'₦300k – ₦500k', time:'3–5 days', color:'#3B82F6', features:['Market size & growth estimate','Top 5 competitor profiles','Regulatory overview','Pricing landscape','12-page insight report'] },
+  { name:'Customer Pulse Survey', price:'₦550k – ₦900k', time:'7–10 days', color:'#8B5CF6', features:['Up to 20 survey questions','n=100–200 sample','NPS + satisfaction score','Key driver analysis','Action recommendations'] },
+  { name:'Feasibility Study', price:'₦900k – ₦1.5m', time:'10–15 days', color:'#10B981', features:['Market demand analysis','Competitor landscape','Financial projections (3yr)','Risk & mitigation','BoI / bank-compliant format'] },
+  { name:'Rapid Pulse — SME Edition', price:'₦250k – ₦400k', time:'48 hours', color:'#F59E0B', features:['8–12 focused questions','n=200–300 online sample','1-page insight flash','Ideal for product/price decisions'] },
+  { name:'Product-Market Fit Sprint', price:'₦1.2m – ₦2.0m', time:'3–4 weeks', color:'#EC4899', features:['3–4 IDIs or FGD','Concept test survey (n=150)','Purchase intent & pricing','GTM recommendations'] },
+  { name:'Annual Research Retainer', price:'₦2.4m / year', time:'₦200k/month', color:'#6366F1', features:['1 Customer Pulse/quarter','2 Rapid Pulse surveys/year','Monthly data dashboard','Quarterly strategy session'] },
+];
+
+const serviceCatalog = [
+  ['Market Sizing & Opportunity Scan','Corp / SME','Desk + field','2–4 wks','₦1.5m–₦8m'],
+  ['Usage & Attitude (U&A)','Corporate','Quant survey','4–8 wks','₦6m–₦12m'],
+  ['Brand Health Tracker','Corporate','Tracker waves','Per wave 3–5 wks','₦4m–₦10m/wave'],
+  ['Concept & Product Test','Corporate','Central/home test','3–5 wks','₦3m–₦8m'],
+  ['Pricing Research','Corporate','Quant + model','4–7 wks','₦4m–₦9m'],
+  ['Customer Experience (NPS/CSAT)','Corp / SME','Survey + depth','3–6 wks','₦3m–₦8m'],
+  ['Retail & Trade Audit','Corporate','Field census','4–8 wks','₦4m–₦10m'],
+  ['Mystery Shopping','Corp / SME','Covert field','2–4 wks','₦1.5m–₦6m'],
+  ['Feasibility Study','SME','Mixed','10–15 days','₦900k–₦1.5m'],
+  ['Quick Market Scan','SME','Desk research','3–5 days','₦300k–₦500k'],
+  ['Customer Pulse Survey','SME','Survey n=100–200','7–10 days','₦550k–₦900k'],
+  ['Rapid Pulse (48h)','Corp / SME','Online n=300–400','48 hours','₦250k–₦2.2m'],
+  ['Monthly Omnibus','Corp / SME','Shared survey','10 days','₦350k/question'],
+  ['Qualitative (FGD/IDI)','Corp / SME','Focus groups','2–4 wks','₦1.5m–₦6m'],
+  ['Baseline / Midline / Endline','NGO / Govt','Mixed methods','6–14 wks','₦6m–₦15m'],
+  ['KAP Survey','NGO / Govt','Quant field','4–8 wks','₦4m–₦8m'],
+  ['BI Dashboard Build','Corp / SME','Power BI','4–6 wks','₦4m–₦12m'],
+  ['Syndicated Reports','Corp / SME','Multi-client','Ongoing','₦1.2m–₦2.5m'],
+  ['Annual Research Retainer','SME','Ongoing','12 months','₦2.4m/year'],
+  ['Market Entry Advisory','Corp / SME','Research + advisory','3–6 wks','₦3m–₦10m'],
+  ['Research Training Workshop','Corp / SME','In-person / virtual','1–3 days','₦1m–₦4m'],
+];
+
+const revenueData = [
+  ['Telco / Tech',8.0,10.0,6.0,9.5,33.5,'19%'],
+  ['FMCG / Retail',10.0,14.5,14.0,8.0,46.5,'26%'],
+  ['Financial Services',9.5,8.0,8.5,7.0,33.0,'19%'],
+  ['Public / NGO',0,9.0,13.0,8.0,32.0,'18%'],
+  ['Syndicated & Omnibus',1.25,6.25,1.25,6.05,14.8,'8%'],
+  ['SME Segment (NEW)',3.0,6.0,8.0,8.0,25.0,'14%'],
+];
+
+const compData = [
+  ['Heritage','Est. 2000, 25+ yrs','New entrant — win on product, speed & tech'],
+  ['Speed','Standard agency timeline (weeks)','Rapid Pulse: 48 hrs · Omnibus: 10 days'],
+  ['Technology','PDF reports, traditional delivery','Live dashboards, client self-serve, data rooms'],
+  ['SME Market','Not publicly addressed','Dedicated SME Desk — 6 products from ₦250k'],
+  ['Analytics','Standard cross-tabs and charts','Driver models, conjoint, NLP, geo-analytics'],
+  ['Fieldwork','National reach, limited transparency','12-state GPS/photo/audio QA · Panel 15,000+'],
+  ['Syndicated Data','None publicly listed','3 flagship trackers — recurring revenue'],
+  ['Pricing Model','Project-by-project','Projects + retainers + licenses + Omnibus + SME'],
+  ['Compliance','NiMRA member','ISO-aligned SOPs · NDPR · PI + cyber insurance'],
+];
+
+const pnlData = [
+  {label:'Corporate research projects',value:117.5,type:'rev'},
+  {label:'Syndicated reports & Omnibus',value:14.8,type:'rev'},
+  {label:'SME segment',value:25.0,type:'rev'},
+  {label:'Retainers & dashboards',value:20.0,type:'rev'},
+  {label:'Total Revenue',value:177.3,type:'total'},
+  {label:'Cost of Sales',value:-69.7,type:'cost'},
+  {label:'Gross Profit',value:107.6,type:'gross'},
+  {label:'Salaries & benefits',value:-52.0,type:'cost'},
+  {label:'Office & utilities',value:-7.2,type:'cost'},
+  {label:'Marketing & events',value:-4.5,type:'cost'},
+  {label:'Other OpEx',value:-14.8,type:'cost'},
+  {label:'Total OpEx',value:-78.5,type:'subtotal'},
+  {label:'EBITDA',value:29.1,type:'ebitda'},
+  {label:'Depreciation',value:-1.5,type:'cost'},
+  {label:'Operating Profit (EBIT)',value:27.6,type:'gross'},
+  {label:'Tax (30% CIT)',value:-8.3,type:'cost'},
+  {label:'NET PROFIT',value:19.3,type:'net'},
+];
+
+const orgRoles = [
+  {role:'Head of Research',desc:'Quant · Qual · QA',color:'#3B82F6'},
+  {role:'Head of Field Ops',desc:'Fieldwork · CATI · Panel',color:'#10B981'},
+  {role:'BizDev Lead',desc:'Corporate sales · Pipeline',color:'#F59E0B'},
+  {role:'SME Desk Manager',desc:'SME accounts · Channels',color:'#EC4899'},
+  {role:'Finance & Admin',desc:'Accounts · Compliance · HR',color:'#6366F1'},
+  {role:'Quant Analyst',desc:'SPSS · R · models',color:'#3B82F6'},
+  {role:'Qual Researcher',desc:'FGD · IDI · synthesis',color:'#8B5CF6'},
+  {role:'Data Viz / BI',desc:'Power BI · decks',color:'#06B6D4'},
+  {role:'Project Manager',desc:'Delivery · timeline',color:'#10B981'},
+  {role:'Field Coordinators',desc:'x3 (state leads)',color:'#F59E0B'},
+  {role:'Comms & Marketing',desc:'Content · brand',color:'#EC4899'},
+];
+
+const hiringData = [
+  ['Pre-Q1','CEO + Head of Research + BizDev Lead','Core','Strategic, proposal, and commercial capability from day one'],
+  ['Q1','Head of Field Ops + Finance & Admin','Full-time','Fieldwork delivery + financial controls before first projects'],
+  ['Q1/Q2','SME Desk Manager','Full-time','Dedicated SME channel build'],
+  ['Q2','Quant Analyst + Data Viz/BI + Project Manager','Full-time','Scaling delivery for 3–4 concurrent projects'],
+  ['Q2','Comms & Marketing Officer','FT / retainer','Content for Insight Notes, LinkedIn, Omnibus marketing'],
+  ['Q3','Qual Researcher + Field Coordinators x2','FT + contract','State expansion to 10–12 states'],
+  ['Q3','CATI Supervisors x2','Part-time','CATI centre launch — 10 seats'],
+];
+
+const sectorInfo = {
+  telco: {
+    targets:'MTN · Airtel · Glo · 9mobile · Opay · PalmPay · Paga',
+    problems:['Subscriber churn rising despite promos','Pricing changes cause unpredictable churn','Retail agents inconsistent on compliance','NPS declining but reason unclear','New product adoption below forecast'],
+    solutions:['Churn driver model — identifies real reasons','Pricing elasticity — Van Westendorp + Gabor-Granger','Agent audit — GPS-verified retail coverage','NPS/CX tracker — quarterly waves + dashboard','Concept test — validates offers before launch'],
+    deliverables:['Executive insight deck with action priorities','Segmented data by ARPU tier','Live Power BI dashboard with drill-down','Geospatial retail coverage map','Quarterly benchmark comparisons'],
+  },
+  fmcg: {
+    targets:'NB · Guinness · Nestlé · Unilever · FMN · Shoprite · Jumia',
+    problems:['Losing shelf space to cheaper competitors','Price increase causing volume loss','New SKU underperforming vs. forecast','Brand equity eroding among youth','Distribution gap unknown'],
+    solutions:['Retail audit — 12-state distribution census','Pricing study — conjoint + MaxDiff','Concept/pack test — HUT/CLT with scoring','Brand health tracker — 2 waves/year','Shopper intercept — basket analysis'],
+    deliverables:['State-by-state distribution heat map','SKU-level pricing architecture','Preference rank by segment + launch go/no-go','Brand equity scorecard vs. competition','Category buyer persona profiles'],
+  },
+  fintech: {
+    targets:'Access · GTBank · Zenith · Opay · PalmPay · Interswitch',
+    problems:['Digital onboarding drop-off above 40%','Agent liquidity complaints rising','SME customers not adopting digital products','Retention declining in wallet/savings','Uncertain pricing on new lending products'],
+    solutions:['UX diagnostics — drop-off journey mapping','Agent quality audit — GPS-verified','SME proposition research — needs, barriers, WTP','NPS/CX tracker — quarterly with churn driver','Pricing sensitivity — Van Westendorp on rate tiers'],
+    deliverables:['Top 5 friction points with fix priority','Agent scorecard + geo heat map','SME customer persona + product-feature matrix','Retention driver ranking + intervention options','Optimal rate range with price elasticity curve'],
+  },
+  ngo: {
+    targets:'UNICEF · Palladium · DAI · USAID · State Govts · World Bank IPs',
+    problems:['Need credible baseline before programme begins','Donor requires M&E framework and indicators','KAP survey needed for health/education/finance','Midline evaluation overdue','Beneficiary data not systematically collected'],
+    solutions:['Baseline/midline/endline surveys — multi-state','M&E framework design — indicators, MEAL plan','KAP surveys — CAPI field, rigorous sampling','FGD/IDI — qualitative validation','Data visualisation — donor-ready dashboards'],
+    deliverables:['IRB-compliant technical report','Clean dataset + codebook + sampling docs','MEAL framework with indicator definitions','Donor-ready presentation deck','Secure PII-compliant data room'],
+  },
+  sme: {
+    targets:'Growth-stage SMEs · Loan applicants · Established local brands',
+    problems:['Launching a product — market readiness uncertain','Bank/BoI requires feasibility study','Customer sentiment unknown','Considering expansion to another state','Can\'t afford large agency but need real data'],
+    solutions:['Quick Market Scan — 5-day market overview','Feasibility Study — bank-ready format','Customer Pulse — 100–200 customer survey','Rapid Pulse — 48-hour answer','Annual Retainer — ₦200k/month'],
+    deliverables:['Clear, jargon-free insight report','Decision recommendation — go/adjust/pause','Bankable feasibility study for loan application','Competitive pricing guidance','Direct CEO access throughout project'],
+  },
+};
+
+const gtmData = [
+  {q:'Q1',title:'Launch & Establish',color:'#3B82F6',items:['Website live, professional email, compliance filings','Hire Head of Research, Field Ops, BizDev','5 lighthouse clients: Nestlé, Access Bank, Shoprite, MTN, Zenith','Rapid Pulse live — first 3 SME clients','Proposal library built per vertical']},
+  {q:'Q2',title:'Scale & Publish',color:'#10B981',items:['RMS Insight Portal MVP live','Nigeria Shopper & Pricing Tracker — 5 license sales','First Insight Breakfast — Lagos (75–100 guests)','Panel at 5,000+ respondents — 6 states','SME Desk Manager — bank partnership activated']},
+  {q:'Q3',title:'Depth & Thought Leadership',color:'#F59E0B',items:['MSME Credit + Youth Digital studies published','2 conference presentations (NIMRA, Lagos Business Summit)','Panel at 10,000+ · 12 states · CATI 10 seats','6 case studies on website','Second Insight Breakfast — Abuja']},
+  {q:'Q4',title:'Consolidate & Plan 2027',color:'#8B5CF6',items:['Portal v2 — self-serve dashboard + data download','20 core corporate accounts · NPS ≥ 60','SME annual retainer renewals — 15 clients','2027 plan: Ghana pilot + 2 new verticals','Full year financial review']},
+];
+
+const channels = [
+  {name:'Business Associations',orgs:'LCCI, MAN, NACCIMA, NASME',leads:'15–20/qtr'},
+  {name:'Bank SME Desks',orgs:'Access, GTBank, Zenith, Stanbic',leads:'20–30/qtr'},
+  {name:'Development Finance',orgs:'BoI, CBN MSME Fund, LAPO',leads:'10–15/qtr'},
+  {name:'Tech Accelerators',orgs:'CcHub, Ventures Platform',leads:'8–12/qtr'},
+  {name:'Co-working Spaces',orgs:'Regus, Workstation, The Hive',leads:'5–8/qtr'},
+  {name:'Digital / LinkedIn',orgs:'Self-generated',leads:'10–15/qtr'},
+  {name:'Client Referrals',orgs:'Existing clients (10% incentive)',leads:'8–12/qtr'},
+];
+
+// ===== RENDER FUNCTIONS =====
+
+function renderChecklist(items, containerId) {
+  const c = document.getElementById(containerId);
+  c.innerHTML = items.map((item,i) => {
+    const icon = item.status==='done' ? '<div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</div>' :
+                 item.status==='progress' ? '<div class="w-6 h-6 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-xs font-bold">!</div>' :
+                 '<div class="w-6 h-6 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-xs font-bold">'+(i+1)+'</div>';
+    const nameClass = item.status==='done' ? 'text-slate-400 line-through' : 'text-slate-800 font-medium';
+    const descClass = item.status==='done' ? 'text-slate-300' : 'text-slate-500';
+    return `<div class="check-item flex items-start gap-3 px-5 py-3 border-b border-slate-50 last:border-0">
+      ${icon}
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-sm ${nameClass}">${item.name}</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full ${item.status==='done'?'bg-emerald-50 text-emerald-600':item.status==='progress'?'bg-amber-50 text-amber-600':'bg-slate-50 text-slate-400'}">${item.time}</span>
+        </div>
+        <p class="text-xs ${descClass} mt-0.5">${item.desc}</p>
+      </div>
+    </div>`;
+  }).join('');
 }
+
+function renderProducts() {
+  document.getElementById('sme-products').innerHTML = smeProducts.map(p => `
+    <div class="card p-5 hover:shadow-lg transition-shadow" style="border-top:3px solid ${p.color}">
+      <h4 class="font-bold text-sm" style="color:var(--navy)">${p.name}</h4>
+      <div class="flex items-center gap-3 mt-2 mb-3">
+        <span class="text-lg font-bold" style="color:${p.color}">${p.price}</span>
+        <span class="text-xs text-slate-400">${p.time}</span>
+      </div>
+      <ul class="space-y-1">${p.features.map(f=>`<li class="text-xs text-slate-600 flex items-start gap-1.5"><span class="text-emerald-500 mt-0.5">✓</span>${f}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+}
+
+function renderServiceCatalog() {
+  document.getElementById('service-catalog').innerHTML = serviceCatalog.map((r,i) => `
+    <tr class="${i%2?'bg-slate-50/50':''} hover:bg-slate-50">
+      <td class="px-4 py-2.5 font-medium text-slate-800">${r[0]}</td>
+      <td class="px-4 py-2.5"><span class="text-xs px-2 py-0.5 rounded-full ${r[1].includes('SME')?'bg-purple-50 text-purple-700':'bg-blue-50 text-blue-700'}">${r[1]}</span></td>
+      <td class="px-4 py-2.5 text-slate-600">${r[2]}</td>
+      <td class="px-4 py-2.5 text-slate-500">${r[3]}</td>
+      <td class="px-4 py-2.5 font-mono text-xs" style="color:var(--gold)">${r[4]}</td>
+    </tr>
+  `).join('');
+}
+
+function renderSector(key) {
+  const s = sectorInfo[key];
+  document.getElementById('sector-content').innerHTML = `
+    <div class="card p-5 mb-4" style="border-left:4px solid var(--gold)">
+      <div class="text-xs text-slate-500 uppercase tracking-wider">Target Clients</div>
+      <div class="font-semibold mt-1" style="color:var(--navy)">${s.targets}</div>
+    </div>
+    <div class="grid lg:grid-cols-3 gap-4">
+      <div class="card p-5">
+        <h4 class="font-bold text-sm mb-3 text-red-600">🔴 Business Problems</h4>
+        <ul class="space-y-2">${s.problems.map(p=>`<li class="text-xs text-slate-600 flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0"></span>${p}</li>`).join('')}</ul>
+      </div>
+      <div class="card p-5">
+        <h4 class="font-bold text-sm mb-3" style="color:var(--navy)">🔵 How RMS Solves It</h4>
+        <ul class="space-y-2">${s.solutions.map(p=>`<li class="text-xs text-slate-600 flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:var(--navy)"></span>${p}</li>`).join('')}</ul>
+      </div>
+      <div class="card p-5">
+        <h4 class="font-bold text-sm mb-3 text-emerald-600">🟢 What You Receive</h4>
+        <ul class="space-y-2">${s.deliverables.map(p=>`<li class="text-xs text-slate-600 flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0"></span>${p}</li>`).join('')}</ul>
+      </div>
+    </div>`;
+}
+
+function renderRevenueTable() {
+  const total = {q1:31.75,q2:53.75,q3:50.75,q4:46.55,full:177.0,pct:'100%'};
+  document.getElementById('revenue-table').innerHTML = revenueData.map((r,i) => `
+    <tr class="${i%2?'bg-slate-50/50':''} hover:bg-slate-50">
+      <td class="px-4 py-2.5 font-medium text-slate-800">${r[0]}</td>
+      <td class="px-4 py-2.5 text-slate-600">₦${r[1]}m</td>
+      <td class="px-4 py-2.5 text-slate-600">₦${r[2]}m</td>
+      <td class="px-4 py-2.5 text-slate-600">₦${r[3]}m</td>
+      <td class="px-4 py-2.5 text-slate-600">₦${r[4]}m</td>
+      <td class="px-4 py-2.5 font-bold" style="color:var(--navy)">₦${r[5]}m</td>
+      <td class="px-4 py-2.5"><span class="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-medium">${r[6]}</span></td>
+    </tr>
+  `).join('') + `<tr class="font-bold" style="background:var(--navy)">
+    <td class="px-4 py-3 text-white">TOTAL</td>
+    <td class="px-4 py-3 text-white">₦${total.q1}m</td>
+    <td class="px-4 py-3 text-white">₦${total.q2}m</td>
+    <td class="px-4 py-3 text-white">₦${total.q3}m</td>
+    <td class="px-4 py-3 text-white">₦${total.q4}m</td>
+    <td class="px-4 py-3" style="color:var(--gold)">₦${total.full}m</td>
+    <td class="px-4 py-3 text-white">100%</td>
+  </tr>`;
+}
+
+function renderChannels() {
+  document.getElementById('channels-grid').innerHTML = channels.map(ch => `
+    <div class="card p-4 hover:shadow-md transition-shadow">
+      <h4 class="font-bold text-xs" style="color:var(--navy)">${ch.name}</h4>
+      <div class="text-[10px] text-slate-500 mt-1">${ch.orgs}</div>
+      <div class="mt-2 text-xs font-semibold" style="color:var(--gold)">${ch.leads}</div>
+    </div>
+  `).join('');
+}
+
+function renderCompTable() {
+  document.getElementById('comp-table').innerHTML = compData.map((r,i) => `
+    <tr class="${i%2?'bg-slate-50/50':''}">
+      <td class="px-4 py-3 font-medium text-slate-700">${r[0]}</td>
+      <td class="px-4 py-3 text-slate-500 text-center">${r[1]}</td>
+      <td class="px-4 py-3 text-center"><span class="text-xs font-semibold px-3 py-1 rounded-full" style="background:rgba(200,147,58,.1);color:var(--gold)">${r[2]}</span></td>
+    </tr>
+  `).join('');
+}
+
+function renderPnL() {
+  const tbody = document.querySelector('#pnl-table tbody');
+  tbody.innerHTML = pnlData.map(r => {
+    let cls = '', style = '', prefix = '';
+    if(r.type==='total'||r.type==='net') { cls='font-bold text-sm'; style='background:var(--navy);color:white;'; }
+    else if(r.type==='gross'||r.type==='ebitda') { cls='font-semibold'; style='background:#F0F9FF;'; }
+    else if(r.type==='cost') { prefix='style="color:#DC2626"'; }
+    else { cls=''; }
+    const val = r.value<0 ? `<span class="text-red-500">(${Math.abs(r.value)})</span>` :
+                r.type==='net' ? `<span style="color:var(--gold)">${r.value}</span>` :
+                r.value;
+    const margin = r.type==='net' ? '<span class="text-xs ml-2 opacity-70">(10.9%)</span>' :
+                   r.type==='gross' ? `<span class="text-xs ml-2 opacity-70">(${(r.value/177.3*100).toFixed(0)}%)</span>` :
+                   r.type==='ebitda' ? `<span class="text-xs ml-2 opacity-70">(${(r.value/177.3*100).toFixed(1)}%)</span>` : '';
+    return `<tr style="${style}">
+      <td class="px-4 py-2 ${cls}">${r.label}${margin}</td>
+      <td class="px-4 py-2 text-right ${cls}">${val}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderOrg() {
+  document.getElementById('org-chart').innerHTML = orgRoles.map(r => `
+    <div class="text-center p-3 rounded-xl border-2 border-slate-100 hover:border-slate-200 transition-colors">
+      <div class="w-8 h-8 rounded-full mx-auto mb-1 flex items-center justify-center text-white text-xs font-bold" style="background:${r.color}">${r.role[0]}</div>
+      <div class="text-xs font-semibold" style="color:var(--navy)">${r.role}</div>
+      <div class="text-[10px] text-slate-400">${r.desc}</div>
+    </div>
+  `).join('');
+}
+
+function renderHiring() {
+  document.getElementById('hiring-table').innerHTML = hiringData.map((r,i) => `
+    <tr class="${i%2?'bg-slate-50/50':''} hover:bg-slate-50">
+      <td class="px-4 py-3"><span class="text-xs font-semibold px-2 py-1 rounded-full" style="background:rgba(26,58,107,.1);color:var(--navy)">${r[0]}</span></td>
+      <td class="px-4 py-3 font-medium text-slate-800">${r[1]}</td>
+      <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">${r[2]}</span></td>
+      <td class="px-4 py-3 text-slate-600 text-xs">${r[3]}</td>
+    </tr>
+  `).join('');
+}
+
+function renderGTM() {
+  document.getElementById('gtm-timeline').innerHTML = gtmData.map(q => `
+    <div class="card p-5" style="border-top:4px solid ${q.color}">
+      <div class="flex items-center gap-2 mb-3">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold" style="background:${q.color}">${q.q}</div>
+        <div class="font-bold text-sm" style="color:var(--navy)">${q.title}</div>
+      </div>
+      <ul class="space-y-2">${q.items.map(it => `
+        <li class="text-xs text-slate-600 flex items-start gap-2">
+          <span class="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:${q.color}"></span>${it}
+        </li>`).join('')}
+      </ul>
+    </div>
+  `).join('');
+}
+
+// ===== CHARTS =====
+
+function drawRevenueChart() {
+  const canvas = document.getElementById('revenueChart');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const w = rect.width, h = rect.height;
+  const pad = {top:20,right:20,bottom:40,left:50};
+  const cw = w-pad.left-pad.right, ch = h-pad.top-pad.bottom;
+
+  const colors = ['#3B82F6','#10B981','#F59E0B','#6366F1','#EC4899','#8B5CF6'];
+  const labels = ['Q1','Q2','Q3','Q4'];
+  const data = revenueData.map(r => [r[1],r[2],r[3],r[4]]);
+  const names = revenueData.map(r => r[0]);
+  const maxVal = 16;
+  const barW = cw / labels.length;
+  const segW = barW / (data.length+1);
+  const gap = segW * 0.5;
+
+  ctx.clearRect(0,0,w,h);
+
+  // Grid
+  for(let i=0;i<=4;i++) {
+    const y = pad.top + ch - (i/4)*ch;
+    ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(w-pad.right,y);
+    ctx.strokeStyle='#E2E8F0'; ctx.lineWidth=1; ctx.stroke();
+    ctx.fillStyle='#94A3B8'; ctx.font='11px Inter'; ctx.textAlign='right';
+    ctx.fillText('₦'+(i*4)+'m',pad.left-8,y+4);
+  }
+
+  // Labels
+  labels.forEach((l,i) => {
+    const x = pad.left + i*barW + barW/2;
+    ctx.fillStyle='#64748B'; ctx.font='bold 12px Inter'; ctx.textAlign='center';
+    ctx.fillText(l,x,h-pad.bottom+20);
+  });
+
+  // Bars
+  data.forEach((seg,si) => {
+    seg.forEach((val,qi) => {
+      const x = pad.left + qi*barW + gap + si*(segW);
+      const bh = (val/maxVal)*ch;
+      const y = pad.top + ch - bh;
+      ctx.fillStyle = colors[si];
+      ctx.beginPath();
+      const r = 2;
+      ctx.roundRect(x, y, segW-gap/2, bh, [r,r,0,0]);
+      ctx.fill();
+    });
+  });
+
+  // Legend
+  const legendY = h - 8;
+  let lx = pad.left;
+  names.forEach((n,i) => {
+    ctx.fillStyle = colors[i];
+    ctx.fillRect(lx, legendY-6, 10, 10);
+    ctx.fillStyle = '#64748B'; ctx.font='10px Inter'; ctx.textAlign='left';
+    ctx.fillText(n, lx+14, legendY+3);
+    lx += ctx.measureText(n).width + 28;
+  });
+}
+
+function drawPnLChart() {
+  const canvas = document.getElementById('pnlChart');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const w = rect.width, h = rect.height;
+  const pad = {top:20,right:20,bottom:50,left:55};
+  const cw = w-pad.left-pad.right, ch = h-pad.top-pad.bottom;
+
+  const items = [
+    {label:'Revenue',value:177.3,color:'#3B82F6'},
+    {label:'COGS',value:-69.7,color:'#EF4444'},
+    {label:'Gross Profit',value:107.6,color:'#10B981'},
+    {label:'OpEx',value:-78.5,color:'#F59E0B'},
+    {label:'EBITDA',value:29.1,color:'#6366F1'},
+    {label:'Tax+Dep',value:-9.8,color:'#EC4899'},
+    {label:'Net Profit',value:19.3,color:'var(--gold)'},
+  ];
+  const maxVal = 200;
+  const barH = ch / items.length;
+  const barPad = barH * 0.2;
+
+  ctx.clearRect(0,0,w,h);
+
+  // Grid
+  for(let i=0;i<=4;i++) {
+    const x = pad.left + (i/4)*cw;
+    ctx.beginPath(); ctx.moveTo(x,pad.top); ctx.lineTo(x,h-pad.bottom);
+    ctx.strokeStyle='#E2E8F0'; ctx.lineWidth=1; ctx.stroke();
+    ctx.fillStyle='#94A3B8'; ctx.font='10px Inter'; ctx.textAlign='center';
+    ctx.fillText('₦'+(i*50)+'m',x,h-pad.bottom+15);
+  }
+
+  items.forEach((item,i) => {
+    const y = pad.top + i*barH + barPad;
+    const bh = barH - barPad*2;
+    const bw = (Math.abs(item.value)/maxVal)*cw;
+    const x = pad.left;
+
+    // Bar
+    const color = item.color === 'var(--gold)' ? '#C8933A' : item.color;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.roundRect(x, y, bw, bh, 4);
+    ctx.fill();
+
+    // Label
+    ctx.fillStyle = '#334155'; ctx.font='bold 11px Inter'; ctx.textAlign='left';
+    ctx.fillText(item.label, x+6, y+bh/2+4);
+
+    // Value
+    ctx.fillStyle = '#fff'; ctx.font='bold 11px Inter'; ctx.textAlign='right';
+    const valText = item.value<0 ? `(₦${Math.abs(item.value)}m)` : `₦${item.value}m`;
+    ctx.fillText(valText, x+bw-6, y+bh/2+4);
+  });
+}
+
+// ===== NAVIGATION =====
+let currentSection = 'hero';
+
+function showSection(name) {
+  document.querySelectorAll('[id^="sec-"]').forEach(el => el.classList.add('hidden'));
+  document.getElementById('sec-'+name).classList.remove('hidden');
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  event.target.closest('.nav-item')?.classList.add('active');
+  currentSection = name;
+  // Close sidebar on mobile
+  if(window.innerWidth < 1024) {
+    document.getElementById('sidebar').classList.remove('open');
+  }
+  // Redraw charts if needed
+  if(name==='revenue') setTimeout(drawRevenueChart, 100);
+  if(name==='pnl') setTimeout(drawPnLChart, 100);
+}
+
+function showSector(key, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSector(key);
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+// ===== INIT =====
+function init() {
+  renderChecklist(legalItems, 'legal-items');
+  renderChecklist(opsItems, 'ops-items');
+  renderChecklist(techItems, 'tech-items');
+  renderProducts();
+  renderServiceCatalog();
+  renderSector('telco');
+  renderRevenueTable();
+  renderChannels();
+  renderCompTable();
+  renderPnL();
+  renderOrg();
+  renderHiring();
+  renderGTM();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+window.addEventListener('resize', () => {
+  if(currentSection==='revenue') drawRevenueChart();
+  if(currentSection==='pnl') drawPnLChart();
+});
 </script>
 </body>
 </html>
